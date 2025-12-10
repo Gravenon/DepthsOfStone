@@ -22,7 +22,7 @@ public class Enemy_Movement1 : MonoBehaviour
         if (isCgasing == true)
         {
             Vector2 direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * speed;
+            rb.linearVelocity = direction * speed;
         }
     }
 
@@ -42,7 +42,7 @@ public class Enemy_Movement1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             isCgasing = false;
         }
     }

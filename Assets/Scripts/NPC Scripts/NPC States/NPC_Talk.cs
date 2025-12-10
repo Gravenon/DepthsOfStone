@@ -20,8 +20,8 @@ public class NPC_Talk : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         anim.Play("Idle");
         interactAnim.Play("Open");
     }
@@ -29,7 +29,7 @@ public class NPC_Talk : MonoBehaviour
     private void OnDisable()
     {
         interactAnim.Play("Close");
-        rb.isKinematic = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void Update()
@@ -69,7 +69,6 @@ public class NPC_Talk : MonoBehaviour
                     {
                         converstations.Remove(toRemove);
                     }
-
                 }
                 break;
             }

@@ -37,7 +37,7 @@ public class PlayerMovment : MonoBehaviour
                 Flip();
             }
 
-            rb.velocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
+            rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
         }
     }
 
@@ -51,14 +51,14 @@ public class PlayerMovment : MonoBehaviour
     {
         isKnockBack = true;
         Vector2 direction = (transform.position - enemy.position).normalized;
-        rb.velocity = direction * force;
+        rb.linearVelocity = direction * force;
         StartCoroutine(KnockbackCounter(stunTime));
     }
 
     IEnumerator KnockbackCounter(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         isKnockBack = false;
     }
 }

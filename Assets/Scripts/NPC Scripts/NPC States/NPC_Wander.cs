@@ -33,7 +33,7 @@ public class NPC_Wander : MonoBehaviour
     {
         if (isPaused)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
@@ -49,7 +49,7 @@ public class NPC_Wander : MonoBehaviour
         if (direction.x < 0 && transform.localScale.x > 0 || direction.x > 0 && transform.localScale.x < 0)
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
     }
 
 
