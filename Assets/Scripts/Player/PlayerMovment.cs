@@ -16,6 +16,11 @@ public class PlayerMovment : MonoBehaviour
 
     public PlayerCombat player_Combat;
 
+    private void Start()
+    {
+        EnablePlayerMovment();
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

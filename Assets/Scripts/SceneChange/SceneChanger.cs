@@ -39,7 +39,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeSceneAfterDie()
     {
-        sceneName = "DwarfVialge";
+        sceneName = "VilageDwarfs";
         if (player == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
