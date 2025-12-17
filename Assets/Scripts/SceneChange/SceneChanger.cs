@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-
-
     public string sceneName;
     public Animator fadeAnim;
     public float fadeTime = .5f;
@@ -36,13 +34,13 @@ public class SceneChanger : MonoBehaviour
                 fadeAnim.Play("FadeToBlack");
                 StartCoroutine(DelayFade());
             }
-
         }
     }
 
-    public void ChangeSceneFromWave()
+    public void ChangeSceneAfterDie()
     {
-        if(player == null)
+        sceneName = "DwarfVialge";
+        if (player == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
             if (playerObject != null)

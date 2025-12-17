@@ -42,7 +42,9 @@ public class WaveSpawner : MonoBehaviour {
 		get { return state; }
 	}
 
-	void Start()
+	private bool transitionTriggered = false;
+
+    void Start()
 	{
 		if (spawnPoints.Length == 0)
 		{
@@ -54,7 +56,9 @@ public class WaveSpawner : MonoBehaviour {
 
 	void Update()
 	{
-		if (state == SpawnState.WAITING)
+		if(transitionTriggered) return;
+
+        if (state == SpawnState.WAITING)
 		{
 			if (!EnemyIsAlive())
 			{
@@ -90,9 +94,9 @@ public class WaveSpawner : MonoBehaviour {
 		{
 			nextWave = 0;
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
+
 			//Move the player to a vilage and change level defficult
-			sceneChanger.ChangeSceneFromWave();
-            
+			sceneChanger.ChangeSceneAfterDie();
         }
         else
 		{

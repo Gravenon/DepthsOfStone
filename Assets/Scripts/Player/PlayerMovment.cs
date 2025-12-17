@@ -16,7 +16,6 @@ public class PlayerMovment : MonoBehaviour
 
     public PlayerCombat player_Combat;
 
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -24,6 +23,17 @@ public class PlayerMovment : MonoBehaviour
             player_Combat.Attack();
         }
     }
+
+    private void OnEnable()
+    {
+        PlayerHealth.Died += DisablePlayerMovment;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.Died -= DisablePlayerMovment;
+    }
+
     void FixedUpdate()
     {
         if (isKnockBack == false)
@@ -60,5 +70,19 @@ public class PlayerMovment : MonoBehaviour
         yield return new WaitForSeconds(stunTime);
         rb.linearVelocity = Vector2.zero;
         isKnockBack = false;
+    }
+
+
+    // new code
+
+    private void DisablePlayerMovment()
+    {
+        //anim.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+    public void EnablePlayerMovment()
+    {
+        //anim.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }
