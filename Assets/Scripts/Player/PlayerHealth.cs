@@ -17,12 +17,13 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        isDead = false;
         healthText.text = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
     }
 
     public void ChangeHealth(int amount)
     {
+        if(isDead) return;
+
         StatsManager.Instance.currentHealth += amount;
         StatsManager.Instance.currentHealth = Mathf.Clamp(StatsManager.Instance.currentHealth, 0, StatsManager.Instance.maxHealth);
 
@@ -38,9 +39,18 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         if (isDead) return;
-        isDead = true;
 
+        isDead = true;
         Died?.Invoke();
     }
+
+    public void Revive()
+    {
+        isDead = false;
+
+        healthTextAnim.Play("TextUpdate");
+        healthText.text = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
+    }
+
 
 }

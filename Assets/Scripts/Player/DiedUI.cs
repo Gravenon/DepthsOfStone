@@ -3,15 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class DiedUI : MonoBehaviour
 {
-    [SerializeField] private SceneChanger sceneChanger;
-
     public GameObject diedUI; 
 
-    private void Start()
-    {
-        if (sceneChanger == null)
-            sceneChanger = FindAnyObjectByType<SceneChanger>();
-    }
 
     private void OnEnable()
     {
@@ -30,9 +23,14 @@ public class DiedUI : MonoBehaviour
 
     public void Respawn()
     {
-        sceneChanger.ChangeSceneAfterDie();
-        int health = StatsManager.Instance.currentHealth + StatsManager.Instance.maxHealth;
-        StatsManager.Instance.UpdateHealth(health);
+        PlayerData data = SaveSystem.LodadPlayer();
+
+        StatsManager.Instance.ApplyPlayerData(data);
+
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+        playerHealth.Revive();
+
+        diedUI.SetActive(false);
     }
 
     //public void GoToMainMenu()

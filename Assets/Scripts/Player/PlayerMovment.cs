@@ -16,27 +16,12 @@ public class PlayerMovment : MonoBehaviour
 
     public PlayerCombat player_Combat;
 
-    private void Start()
-    {
-        EnablePlayerMovment();
-    }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             player_Combat.Attack();
         }
-    }
-
-    private void OnEnable()
-    {
-        PlayerHealth.Died += DisablePlayerMovment;
-    }
-
-    private void OnDisable()
-    {
-        PlayerHealth.Died -= DisablePlayerMovment;
     }
 
     void FixedUpdate()
@@ -79,15 +64,4 @@ public class PlayerMovment : MonoBehaviour
 
 
     // new code
-
-    private void DisablePlayerMovment()
-    {
-        //anim.enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
-    }
-    public void EnablePlayerMovment()
-    {
-        //anim.enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
-    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class StatsManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class StatsManager : MonoBehaviour
 
     [Header("Movment Stats")]
     public int speed;
+    [SerializeField] public Transform playerTransform;
 
     [Header("Health Stats")]
     public int maxHealth;
@@ -59,5 +61,26 @@ public class StatsManager : MonoBehaviour
         statsUI.UpdataAllStats();
     }
 
+    public void ApplyPlayerData(PlayerData data)
+    {
+        if (data == null) return;
+
+        damage = data.damage;
+        weaponRange = data.weaponRange;
+        knockbackForce = data.knockbackForce;
+        knockbackTimre = data.knockbackTimre;
+        stunTime = data.stunTime;
+
+        speed = data.speed;
+
+        playerTransform.position = new Vector3(
+           data.position[0],
+           data.position[1],
+           data.position[2]
+       );
+
+        maxHealth = data.maxHealth;
+        currentHealth = data.currentHealth;
+    }
 
 }
