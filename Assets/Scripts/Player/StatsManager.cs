@@ -63,8 +63,6 @@ public class StatsManager : MonoBehaviour
 
     public void ApplyPlayerData(PlayerData data)
     {
-        if (data == null) return;
-
         damage = data.damage;
         weaponRange = data.weaponRange;
         knockbackForce = data.knockbackForce;

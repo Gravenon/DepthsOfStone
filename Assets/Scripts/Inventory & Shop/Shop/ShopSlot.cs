@@ -13,7 +13,7 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TMP_Text priceText;
     public Image itemImage;
 
-    [SerializeField] private ShopManger shopManger;
+    [SerializeField] private ShopManger shopManager;
     [SerializeField] private ShopInfo shopInfo;
 
     public int price;
@@ -32,7 +32,7 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnBuyButtonClicked()
     {
         Console.WriteLine("Buy Button Clicked");
-        shopManger.TryBuyItem(itemSO, price);
+        shopManager.TryBuyItem(itemSO, price);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

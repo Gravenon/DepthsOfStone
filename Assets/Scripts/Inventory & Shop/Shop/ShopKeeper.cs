@@ -8,8 +8,9 @@ public class ShopKeeper : MonoBehaviour
     public static ShopKeeper currentShopKeeper;
 
     public Animator anim;
-    public CanvasGroup shopCanvasGroup;
-    public ShopManger shopManager;
+
+    [SerializeField] private CanvasGroup shopCanvasGroup;
+    [SerializeField] private ShopManger shopManager;
 
     [SerializeField] private List<ShopItems> shopItems;
     [SerializeField] private List<ShopItems> shopWeapons;
@@ -18,6 +19,7 @@ public class ShopKeeper : MonoBehaviour
     public static event Action<ShopManger, bool> OnShopOpenClose;
     private bool playerInRange;
     private bool isShopOpen;
+
 
     // Update is called once per frame
     void Update()

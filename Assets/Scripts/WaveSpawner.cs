@@ -96,7 +96,7 @@ public class WaveSpawner : MonoBehaviour {
 			Debug.Log("ALL WAVES COMPLETE! Looping...");
 
 			//Move the player to a vilage and change level defficult
-			sceneChanger.ChangeSceneAfterDie();
+			
         }
         else
 		{

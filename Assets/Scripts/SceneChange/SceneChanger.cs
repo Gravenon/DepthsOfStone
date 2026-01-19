@@ -37,18 +37,6 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
-    public void ChangeSceneAfterDie()
-    {
-        sceneName = "VilageDwarfs";
-        if (player == null)
-        {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject != null)
-                player = playerObject.transform;
-        }
-        fadeAnim.Play("FadeToBlack");
-        StartCoroutine(DelayFade());
-    }
 
     public void OnYesButton()
     {

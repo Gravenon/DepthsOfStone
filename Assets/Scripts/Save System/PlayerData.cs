@@ -3,30 +3,29 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    [Header("Combat Stats")]
+
+    [Header("Scene")]
+    public string sceneName;
+
+    [Header("Position")]
+    public float[] position;
+
+    [Header("Stats")]
+    public int maxHealth;
+    public int currentHealth;
+
+    public int speed;
+
     public int damage;
     public float weaponRange;
     public float knockbackForce;
     public float knockbackTimre;
     public float stunTime;
 
-    [Header("Movment Stats")]
-    public int speed;
-    public float[] position;
-
-    [Header("Health Stats")]
-    public int maxHealth;
-    public int currentHealth;
-
     public PlayerData(StatsManager stats, Transform playerTransform)
     {
-        damage = stats.damage;
-        weaponRange = stats.weaponRange;
-        knockbackForce = stats.knockbackForce;
-        knockbackTimre = stats.knockbackTimre;
-        stunTime = stats.stunTime;
+        sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        speed = stats.speed;
         position = new float[3];
         position[0] = playerTransform.position.x;
         position[1] = playerTransform.position.y;
@@ -34,6 +33,14 @@ public class PlayerData
 
         maxHealth = stats.maxHealth;
         currentHealth = stats.currentHealth;
+
+        speed = stats.speed;
+
+        damage = stats.damage;
+        weaponRange = stats.weaponRange;
+        knockbackForce = stats.knockbackForce;
+        knockbackTimre = stats.knockbackTimre;
+        stunTime = stats.stunTime;
     }
 
 }
