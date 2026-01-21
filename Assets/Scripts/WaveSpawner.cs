@@ -1,145 +1,158 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
 
-public class WaveSpawner : MonoBehaviour {
 
+[System.Serializable]
+public class WaveData
+{
+    public string name;
+    public int easyEnimies;
+    public int hardEnimies;
+    public float rate;
+}
 
-	public SceneChanger sceneChanger;
+public class WaveSpawner : MonoBehaviour
+{
+    [SerializeField] private SceneChanger sceneChanger;
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
-	[System.Serializable]
-	public class Wave
-	{
-		public string name;
-		public Transform enemy;
-		public int count;
-		public float rate;
-	}
+    public WaveData[] waves;
 
-	public Wave[] waves;
-	private int nextWave = 0;
-	public int NextWave
-	{
-		get { return nextWave + 1; }
-	}
+    public GameObject easyEnimiesPrefab;
+    public GameObject hardEnimiesPrefab;
 
-	public Transform[] spawnPoints;
+    private int nextWave = 0;
 
-	public float timeBetweenWaves = 5f;
-	private float waveCountdown;
-	public float WaveCountdown
-	{
-		get { return waveCountdown; }
-	}
+    private bool waveComplete = false;
 
-	private float searchCountdown = 1f;
+    public Transform[] spawnPoints;
 
-	private SpawnState state = SpawnState.COUNTING;
-	public SpawnState State
-	{
-		get { return state; }
-	}
+    public float timeBetweenWaves = 5f;
+    private float waveCountdown;
 
-	private bool transitionTriggered = false;
+    private float searchCountdown = 1f;
 
+    private SpawnState state = SpawnState.COUNTING;
+
+    private bool transitionTriggered = false;
+
+    public SpawnState State
+    {
+        get { return state; }
+    }
+
+    public float WaveCountdown
+    {
+        get { return waveCountdown; }
+    }
+
+    public int NextWave
+    {
+        get { return nextWave + 1; }
+    }
     void Start()
-	{
-		if (spawnPoints.Length == 0)
-		{
-			Debug.LogError("No spawn points referenced.");
-		}
+    {
+        WorldData world = WorldSaveSystem.LoadWorld();
+        
+        if (world != null)
+        {
+            nextWave = world.arenaWaveIndex;
+        }
 
-		waveCountdown = timeBetweenWaves;
-	}
+        waveCountdown = timeBetweenWaves;
+    }
 
-	void Update()
-	{
-		if(transitionTriggered) return;
+    void Update()
+    {
+        if (transitionTriggered) return;
 
         if (state == SpawnState.WAITING)
-		{
-			if (!EnemyIsAlive())
-			{
-				WaveCompleted();
-			}
-			else
-			{
-				return;
-			}
-		}
+        {
+            if (!EnemyIsAlive())
+            {
+                WaveCompleted();
+            }
+            else
+            {
+                return;
+            }
+        }
 
-		if (waveCountdown <= 0)
-		{
-			if (state != SpawnState.SPAWNING)
-			{
-				StartCoroutine( SpawnWave ( waves[nextWave] ) );
-			}
-		}
-		else
-		{
-			waveCountdown -= Time.deltaTime;
-		}
-	}
-
-	void WaveCompleted()
-	{
-		Debug.Log("Wave Completed!");
-
-		state = SpawnState.COUNTING;
-		waveCountdown = timeBetweenWaves;
-
-		if (nextWave + 1 > waves.Length - 1)
-		{
-			nextWave = 0;
-			Debug.Log("ALL WAVES COMPLETE! Looping...");
-
-			//Move the player to a vilage and change level defficult
-			
+        if (waveCountdown <= 0)
+        {
+            if (state != SpawnState.SPAWNING)
+            {
+                StartCoroutine(SpawnWave(waves[nextWave]));
+            }
         }
         else
-		{
-			nextWave++;
-		}
-	}
+        {
+            if(!waveComplete)
+            waveCountdown -= Time.deltaTime; 
+        }
+    }
 
-	bool EnemyIsAlive()
-	{
-		searchCountdown -= Time.deltaTime;
-		if (searchCountdown <= 0f)
-		{
-			searchCountdown = 1f;
-			if (GameObject.FindGameObjectWithTag("Enemy") == null)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
+    void WaveCompleted()
+    {
+        Debug.Log("Wave Completed!");
+        waveCountdown = timeBetweenWaves;
+        waveComplete = true;
 
-	IEnumerator SpawnWave(Wave _wave)
-	{
-		Debug.Log("Spawning Wave: " + _wave.name);
-		state = SpawnState.SPAWNING;
+        state = SpawnState.COUNTING;
 
-		for (int i = 0; i < _wave.count; i++)
-		{
-			SpawnEnemy(_wave.enemy);
-			yield return new WaitForSeconds( 1f/_wave.rate );
-		}
+        int nextWaveIndex = nextWave + 1;
 
-		state = SpawnState.WAITING;
+        WorldSaveSystem.SaveWorld("Arena", nextWaveIndex);
 
-		yield break;
-	}
+        sceneChanger.ChangeScene();
 
-	void SpawnEnemy(Transform _enemy)
-	{
-		Debug.Log("Spawning Enemy: " + _enemy.name);
+    }
 
-		Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
-		Instantiate(_enemy, _sp.position, _sp.rotation);
-	}
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0f)
+        {
+            searchCountdown = 1f;
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    IEnumerator SpawnWave(WaveData _wave)
+    {
+        Debug.Log("Spawning Wave: " + _wave.name);
+        state = SpawnState.SPAWNING;
+
+        for (int i = 0; i < _wave.easyEnimies; i++)
+        {
+            SpawnEnemy(easyEnimiesPrefab);
+            yield return new WaitForSeconds(1f / _wave.rate);
+        }
+
+        for (int i = 0; i < _wave.hardEnimies; i++)
+        {
+            SpawnEnemy(hardEnimiesPrefab);
+            yield return new WaitForSeconds(1f / _wave.rate);
+        }
+
+        state = SpawnState.WAITING;
+
+        yield break;
+    }
+
+    void SpawnEnemy(GameObject prefab)
+    {
+        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+        GameObject _enemy = Instantiate(prefab, _sp.position, _sp.rotation);
+    }
 
 }

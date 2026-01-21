@@ -37,6 +37,16 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
+    public void ChangeScene()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
+
+        fadeAnim.Play("FadeToBlack");
+        StartCoroutine(DelayFade());
+    }
+
 
     public void OnYesButton()
     {
@@ -62,4 +72,22 @@ public class SceneChanger : MonoBehaviour
         player.position = newPlayerPosition;
         SceneManager.LoadScene(sceneName);
     }
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (player != null)
+            player.position = newPlayerPosition;
+    }
+
 }

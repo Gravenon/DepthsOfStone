@@ -6784,7 +6784,7 @@ PrefabInstance:
       objectReference: {fileID: 721338229}
     - target: {fileID: 8454250326209689178, guid: 550bef0ef6f5e504bbc11e2528a5a6e3, type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 8454250326209689178, guid: 550bef0ef6f5e504bbc11e2528a5a6e3, type: 3}
       propertyPath: healthText
@@ -6792,7 +6792,7 @@ PrefabInstance:
       objectReference: {fileID: 26761325}
     - target: {fileID: 8454250326209689178, guid: 550bef0ef6f5e504bbc11e2528a5a6e3, type: 3}
       propertyPath: currentHealth
-      value: 5
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 8454250326209689178, guid: 550bef0ef6f5e504bbc11e2528a5a6e3, type: 3}
       propertyPath: playerTransform

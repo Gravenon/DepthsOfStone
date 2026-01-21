@@ -9,8 +9,8 @@ public static class SaveSystem
         PlayerData data = new PlayerData(stats, playerTransform);
 
         string json = JsonUtility.ToJson(data);
-        //string encoded = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
-        File.WriteAllText(path, json);
+        string encoded = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+        File.WriteAllText(path, encoded);
 
         Debug.Log("Game Saved to " + path);
     }
@@ -20,9 +20,9 @@ public static class SaveSystem
         if (File.Exists(path))
         {
             string encoded = File.ReadAllText(path);
-            //string json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(encoded));
+            string json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(encoded));
 
-            PlayerData data = JsonUtility.FromJson<PlayerData>(encoded);
+            PlayerData data = JsonUtility.FromJson<PlayerData>(json);
 
 
             Debug.Log("Game Loaded from " + path);
