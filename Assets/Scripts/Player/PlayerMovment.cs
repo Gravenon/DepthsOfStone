@@ -14,20 +14,24 @@ public class PlayerMovment : MonoBehaviour
 
     private bool isKnockBack;
 
-    public PlayerCombat player_Combat;
+    public PlayerCombat playerCombat;
+    public PlayerHealth playerHealth;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            player_Combat.Attack();
+            playerCombat.Attack();
         }
     }
 
     void FixedUpdate()
     {
-        if (isKnockBack == false)
+        if (playerHealth.isDead && isKnockBack)
         {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertival = Input.GetAxisRaw("Vertical");
 
@@ -38,7 +42,7 @@ public class PlayerMovment : MonoBehaviour
             }
 
             rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
-        }
+        
     }
 
     void Flip()

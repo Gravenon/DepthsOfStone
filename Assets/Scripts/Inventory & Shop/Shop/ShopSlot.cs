@@ -17,7 +17,6 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private ShopInfo shopInfo;
 
     public int price;
-
     public void Initialize(ItemSO newitemSO, int price)
     {
         //fill the slot with information

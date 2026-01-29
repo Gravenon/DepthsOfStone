@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Light2D))]
 
 public class WorldLight : MonoBehaviour
 {
+    private static WorldLight instance;
     private Light2D worldLight;
 
     [SerializeField]
@@ -14,15 +16,50 @@ public class WorldLight : MonoBehaviour
     [SerializeField]
     private Gradient gradient;
 
+    [SerializeField]
+    private string[] disabledScenes;
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
         worldLight = GetComponent<Light2D>();
         worldTime.WorldTimeChange += OnWorldTimeChange;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        if (worldTime == null)
+            worldTime = FindFirstObjectByType<WorldTime>();
     }
 
     private void OnDestroy()
     {
         worldTime.WorldTimeChange -= OnWorldTimeChange;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        bool disable = false;
+
+        foreach (var s in disabledScenes)
+        {
+            if (scene.name == s)
+            {
+                disable = true;
+                break;
+            }
+        }
+
+        worldLight.enabled = !disable;
     }
 
     private void OnWorldTimeChange(object sender, TimeSpan newTime)

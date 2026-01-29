@@ -1178,7 +1178,7 @@ MonoBehaviour:
   itemNameText: {fileID: 1597710928578990165}
   priceText: {fileID: 2134015145592011051}
   itemImage: {fileID: 4820364671727166555}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &1061168579638038349
@@ -2443,7 +2443,7 @@ MonoBehaviour:
   itemNameText: {fileID: 530596638722045049}
   priceText: {fileID: 5599722334977357998}
   itemImage: {fileID: 1047837005085374893}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &3085651714939367590
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   itemNameText: {fileID: 7480466010733395834}
   priceText: {fileID: 1182779654960177262}
   itemImage: {fileID: 749062596241874377}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &4369818861453340486
@@ -4645,7 +4645,7 @@ MonoBehaviour:
   itemNameText: {fileID: 6423517897685399610}
   priceText: {fileID: 2532395783348926886}
   itemImage: {fileID: 6723246705431876303}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &5396980448148431304
@@ -5698,7 +5698,7 @@ MonoBehaviour:
   itemNameText: {fileID: 953559246130377906}
   priceText: {fileID: 3489374655001774740}
   itemImage: {fileID: 4183093671806317935}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &6173665917960571106
@@ -6217,7 +6217,7 @@ MonoBehaviour:
   itemNameText: {fileID: 3379830238892073685}
   priceText: {fileID: 8153298539224199488}
   itemImage: {fileID: 8971335975379338623}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &7818932113964909754
@@ -6372,7 +6372,7 @@ MonoBehaviour:
   itemNameText: {fileID: 4096374306402021379}
   priceText: {fileID: 4501338410946502930}
   itemImage: {fileID: 5397866251164583136}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 0}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &7839501642236175320
@@ -8169,7 +8169,7 @@ MonoBehaviour:
   itemNameText: {fileID: 6710994383553943979}
   priceText: {fileID: 7699311650135217514}
   itemImage: {fileID: 281722899965963161}
-  shopManger: {fileID: 3717289615884133352}
+  shopManager: {fileID: 3717289615884133352}
   shopInfo: {fileID: 1867416412945513384}
   price: 0
 --- !u!1 &9177960076650011261

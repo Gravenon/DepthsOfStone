@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac38be2a49e1ac24797b6ae0d2737476, type: 3}
-  m_Name: DefultMine
-  m_EditorClassIdentifier: 
+  m_Name: DefualtMine_2lvl
+  m_EditorClassIdentifier: Assembly-CSharp::MineConfig
   ores:
   - orePrefab: {fileID: 2904974959229320165, guid: bec95187d8a6b02469713c7f118cfae0, type: 3}
-    minAmount: 1
-    maxAmount: 2
-  - orePrefab: {fileID: 8198064411324609573, guid: 7a8542a57f47d6a40bfa7c82027004af, type: 3}
-    minAmount: 2
-    maxAmount: 3
-  spawnAreaMin: {x: -32.39, y: 12.05}
-  spawnAreaMax: {x: -45.96, y: -4.96}
+    minAmount: 5
+    maxAmount: 12
+  spawnAreaMin: {x: -47.52, y: -7.14}
+  spawnAreaMax: {x: -66.13, y: -35.84}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512

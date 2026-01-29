@@ -11,6 +11,7 @@ public class WorldTime : MonoBehaviour
     private float dayLength; // Length of a full day in seconds
 
     private TimeSpan currentTime = new TimeSpan(6, 0, 0);
+    public TimeSpan CurrentTime => currentTime;
     private float minuteLength => dayLength / WorldTimeConstants.MinutesInDay;
 
     private void Start()
