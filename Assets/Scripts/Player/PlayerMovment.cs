@@ -32,17 +32,18 @@ public class PlayerMovment : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertival = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertival = Input.GetAxisRaw("Vertical");
 
-            if (horizontal > 0 && transform.localScale.x < 0 ||
+        if (horizontal > 0 && transform.localScale.x < 0 ||
                 horizontal < 0 && transform.localScale.x > 0)
-            {
-                Flip();
-            }
+        {
+            Flip();
+        }
 
-            rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
-        
+
+        rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
+
     }
 
     void Flip()
@@ -65,7 +66,4 @@ public class PlayerMovment : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         isKnockBack = false;
     }
-
-
-    // new code
 }

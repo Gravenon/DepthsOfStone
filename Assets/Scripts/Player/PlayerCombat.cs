@@ -12,6 +12,15 @@ public class PlayerCombat : MonoBehaviour
     public float colldown = 2;
     private float timer;
 
+    private Camera mainCamera;
+
+    public PlayerMovment playerMovment;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
+
     private void Update()
     {
         if(timer > 0)
@@ -24,11 +33,24 @@ public class PlayerCombat : MonoBehaviour
     {
         if (timer <= 0)
         {
+            AimToMouse();
             anim.SetBool("isAttacking", true);
 
             timer = colldown;
         }
     }
+
+    private void AimToMouse()
+    {
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
+
+        Vector2 direction = (mousePos - transform.position).normalized;
+
+        attackPoint.localPosition = direction * StatsManager.Instance.weaponRange;
+    }
+
+
 
     public void DealDamage()
     {
@@ -47,9 +69,9 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange); 
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange);
+    }
 }

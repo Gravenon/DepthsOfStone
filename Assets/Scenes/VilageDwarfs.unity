@@ -5180,6 +5180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d870c8b9e7c7d044b5ff06f06167544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1713641404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2677662187937861924, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+  m_PrefabInstance: {fileID: 3536062767956877422}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713641391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b0b222ab252d54f80e9214141e2ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1765304281 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1134725632010310513, guid: 40e9189c3165c954a8f9245975a3c761, type: 3}
@@ -6950,8 +6961,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877860034327957977, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
       propertyPath: colldown
-      value: 1.7
+      value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8877860034327957977, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: playerMovment
+      value: 
+      objectReference: {fileID: 1713641404}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
