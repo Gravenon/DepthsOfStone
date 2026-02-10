@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string sceneName;
+    public string[] sceneNames;
+    private string selectedSceneName;
     public Animator fadeAnim;
     public float fadeTime = .5f;
     public Vector2 newPlayerPosition;
@@ -66,11 +67,30 @@ public class SceneChanger : MonoBehaviour
         Time.timeScale = 1f; // Resume the game
     }
 
+    public void ranndomScene()
+    {
+        if (sceneNames == null || sceneNames.Length == 0)
+        {
+            Debug.LogWarning("SceneChanger: sceneNames array is empty.");
+            return;
+        }
+
+        int index = Random.Range(0, sceneNames.Length);
+        selectedSceneName = sceneNames[index];
+    }
+
+
     IEnumerator DelayFade()
     {
         yield return new WaitForSeconds(fadeTime);
         player.position = newPlayerPosition;
-        SceneManager.LoadScene(sceneName);
+        ranndomScene();
+        if (!string.IsNullOrEmpty(selectedSceneName))
+            SceneManager.LoadScene(selectedSceneName);
+        else if (sceneNames != null && sceneNames.Length > 0)
+            SceneManager.LoadScene(sceneNames[0]);
+        else
+            Debug.LogWarning("SceneChanger: No scene specified to load.");
     }
 
 

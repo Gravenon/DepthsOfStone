@@ -14,6 +14,10 @@ public class MineConfig : ScriptableObject
         public int maxAmount;
     }
 
+
+    // add enemy spawn data
+
+    
     public OreSpawnData[] ores;
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;

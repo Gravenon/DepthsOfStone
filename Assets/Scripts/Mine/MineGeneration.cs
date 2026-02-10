@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class MineSpawn : MonoBehaviour
+public class MineGeneration : MonoBehaviour
 {
     public MineConfig mineConfig;
 
@@ -11,6 +11,11 @@ public class MineSpawn : MonoBehaviour
     {
         SpawnOre();
     }
+
+    //add function what will spawn ore and mobe more if player go mine in nigtht time
+
+
+    // add spawn enemy
 
     private void SpawnOre()
     {
