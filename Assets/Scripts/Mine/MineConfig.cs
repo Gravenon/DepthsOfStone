@@ -16,6 +16,8 @@ public class MineConfig : ScriptableObject
 
 
     // add enemy spawn data
+    public GameObject[] enemyPrefabs;
+    public int enemiesCount = 3;
 
     
     public OreSpawnData[] ores;

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38be2a49e1ac24797b6ae0d2737476, type: 3}
   m_Name: DefultMine
   m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 1234291985899740653, guid: 777afe3f50d13fa499791360ab085de8, type: 3}
+  enemiesCount: 3
   ores:
   - orePrefab: {fileID: 2904974959229320165, guid: bec95187d8a6b02469713c7f118cfae0, type: 3}
     minAmount: 1

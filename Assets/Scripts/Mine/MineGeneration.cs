@@ -10,6 +10,7 @@ public class MineGeneration : MonoBehaviour
     private void Start()
     {
         SpawnOre();
+        SpawnEnemies();
     }
 
     //add function what will spawn ore and mobe more if player go mine in nigtht time
@@ -32,10 +33,23 @@ public class MineGeneration : MonoBehaviour
                 if (pos != Vector2.zero)
                 {
                     GameObject oreObject = Instantiate(oreData.orePrefab, pos, Quaternion.identity);
-
-
                 }
             }
+        }
+    }
+
+    public void SpawnEnemies()
+    {
+        int enemyCount = mineConfig.enemiesCount;
+
+        for(int i = 0; i < enemyCount; i++)
+        {
+            Vector2 pos = new Vector2(
+                    Random.Range(mineConfig.spawnAreaMin.x, mineConfig.spawnAreaMax.x),
+                    Random.Range(mineConfig.spawnAreaMin.y, mineConfig.spawnAreaMax.y));
+
+            GameObject enemyPrefab = mineConfig.enemyPrefabs[Random.Range(0, mineConfig.enemyPrefabs.Length)];
+            Instantiate(enemyPrefab, pos, Quaternion.identity);
         }
     }
 }

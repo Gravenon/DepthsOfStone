@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cave_Medium.unity
     guid: b3dae25352bcb4fff9ac0265bce21fb1
   - enabled: 1
+    path: Assets/Scenes/Cave_Hard.unity
+    guid: 0b828de96ff0f4b699958dea1afb9c4a
+  - enabled: 1
     path: Assets/Scenes/Arena.unity
     guid: 1daa4ef0431f35247951a007b0c5e059
   m_configObjects: {}
