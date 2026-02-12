@@ -2442,7 +2442,9 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   disabledScenes:
-  - Cave
+  - Cave_Easy
+  - Cave_Hard
+  - Cave_Medium
 --- !u!1 &640684043
 GameObject:
   m_ObjectHideFlags: 0

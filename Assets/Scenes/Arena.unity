@@ -737,7 +737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d5b4bf5d785745a0dc953dfafe5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: VilageDwarfs
+  sceneNames:
+  - VilageDwarfs
   fadeAnim: {fileID: 420845154}
   fadeTime: 1
   newPlayerPosition: {x: 1, y: 0}

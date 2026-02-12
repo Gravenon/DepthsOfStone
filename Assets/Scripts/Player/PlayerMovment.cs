@@ -36,7 +36,7 @@ public class PlayerMovment : MonoBehaviour
         float vertival = Input.GetAxisRaw("Vertical");
 
         if (horizontal > 0 && transform.localScale.x < 0 ||
-                horizontal < 0 && transform.localScale.x > 0)
+            horizontal < 0 && transform.localScale.x > 0)
         {
             Flip();
         }

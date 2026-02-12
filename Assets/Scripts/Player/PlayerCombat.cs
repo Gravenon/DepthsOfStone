@@ -23,7 +23,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
-        if(timer > 0)
+        if (timer > 0)
         {
             timer -= Time.deltaTime;
         }
@@ -33,24 +33,10 @@ public class PlayerCombat : MonoBehaviour
     {
         if (timer <= 0)
         {
-            AimToMouse();
             anim.SetBool("isAttacking", true);
-
             timer = colldown;
         }
     }
-
-    private void AimToMouse()
-    {
-        Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f;
-
-        Vector2 direction = (mousePos - transform.position).normalized;
-
-        attackPoint.localPosition = direction * StatsManager.Instance.weaponRange;
-    }
-
-
 
     public void DealDamage()
     {
