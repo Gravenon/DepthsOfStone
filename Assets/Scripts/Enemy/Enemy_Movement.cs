@@ -23,11 +23,26 @@ public class Enemy_Movement : MonoBehaviour
     private Transform player;
     private Animator anim;
 
+    [Header("Patrol")]
+    public float patrolWidth = 5f;                // horizontal patrol area width
+    public float patrolHeight = 5f;               // vertical patrol area height
+    public float pauseDuration = 1f;              // pause duration at patrol point
+    public float minLookDuration = 0.5f;          // min duration of the random "look" pause
+    public float maxLookDuration = 1.5f;          // max duration of the random "look" pause
+    public float patrolSpeed = 2f;                // movement speed during patrol
+
+    private Vector2 spawnPosition;
+    private Vector2 patrolTarget;
+    private bool isPaused = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ChangeState(EnemyState.Idle);
+
+        // patrol initialization from spawn point
+        spawnPosition = transform.position;
+        StartCoroutine(PauseAndPickNewDestination());
     }
 
     void Update()
@@ -46,6 +61,10 @@ public class Enemy_Movement : MonoBehaviour
         else if (enemyState == EnemyState.Attacking)
         {
             rb.linearVelocity = Vector2.zero;
+        }
+        else if (enemyState == EnemyState.Patrolling)
+        {
+            Patrol();
         }
     }
 
@@ -69,6 +88,71 @@ public class Enemy_Movement : MonoBehaviour
 
     }
 
+    // --- Patrol behaviour -------------------------------------------------
+    void Patrol()
+    {
+        if (isPaused)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        if (Vector2.Distance(transform.position, patrolTarget) < 0.1f)
+        {
+            StartCoroutine(PauseAndPickNewDestination());
+            return;
+        }
+
+        Move();
+    }
+
+    private void Move()
+    {
+        Vector2 direction = (patrolTarget - (Vector2)transform.position).normalized;
+        
+        // flip sprite if moving opposite to facing
+        if (direction.x < 0 && facingDirection == 1)
+            Flip();
+        else if (direction.x > 0 && facingDirection == -1)
+            Flip();
+
+        rb.linearVelocity = direction * patrolSpeed;
+    }
+
+    IEnumerator PauseAndPickNewDestination()
+    {
+        isPaused = true;
+        rb.linearVelocity = Vector2.zero;
+        
+        // random pause with looking left/right
+        float lookDuration = Random.Range(minLookDuration, maxLookDuration);
+        yield return new WaitForSeconds(lookDuration);
+        
+        // randomly face left or right
+        Flip();
+        Flip();
+        
+        yield return new WaitForSeconds(pauseDuration);
+
+        patrolTarget = GetRandomPatrolPoint();
+        isPaused = false;
+    }
+
+    Vector2 GetRandomPatrolPoint()
+    {
+        float halfWidth = patrolWidth / 2f;
+        float halfHeight = patrolHeight / 2f;
+        int edge = Random.Range(0, 4);
+
+        return edge switch
+        {
+            0 => new Vector2(spawnPosition.x - halfWidth, Random.Range(spawnPosition.y - halfHeight, spawnPosition.y + halfHeight)),
+            1 => new Vector2(spawnPosition.x + halfWidth, Random.Range(spawnPosition.y - halfHeight, spawnPosition.y + halfHeight)),
+            2 => new Vector2(Random.Range(spawnPosition.x - halfWidth, spawnPosition.x + halfWidth), spawnPosition.y - halfHeight),
+            _ => new Vector2(Random.Range(spawnPosition.x - halfWidth, spawnPosition.x + halfWidth), spawnPosition.y + halfHeight),
+        };
+    }
+
     private void CheckForPlayer()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectRange, playerLayer);
@@ -90,8 +174,8 @@ public class Enemy_Movement : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            ChangeState(EnemyState.Idle);
+            // no player found — continue patrolling
+            ChangeState(EnemyState.Patrolling);
         }
     }
 
@@ -103,6 +187,8 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isAttacking", false);
         else if (enemyState == EnemyState.Chasing)
             anim.SetBool("isChasing", false);
+        else if (enemyState == EnemyState.Patrolling)
+            anim.SetBool("isPatrolling", false);
 
         enemyState = newState;
 
@@ -112,22 +198,27 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isAttacking", true);
         else if (enemyState == EnemyState.Chasing)
             anim.SetBool("isChasing", true);
+        else if (enemyState == EnemyState.Patrolling)
+            anim.SetBool("isPatrolling", true);
     }
 
     private void OnDrawGizmosSelected()
     {
-
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(detectionPoint.position, playerDetectRange);
+        if (detectionPoint != null)
+            Gizmos.DrawWireSphere(detectionPoint.position, playerDetectRange);
 
+        // patrol bounds visualization (matching NPC_Wander style)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, new Vector3(patrolWidth, patrolHeight, 0));
     }
 
 }
 
-
 public enum EnemyState
 {
     Idle,
+    Patrolling,
     Chasing,
     Attacking
 }
