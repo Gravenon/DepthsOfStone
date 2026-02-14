@@ -13,6 +13,8 @@ public class Enemy_Movement : MonoBehaviour
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
+    private Enemy_Combat ec;
+
     private float attackCooldownTimer;
     private int facingDirection = -1; // 1 for right, -1 for left
     private EnemyState enemyState;
@@ -172,7 +174,7 @@ public class Enemy_Movement : MonoBehaviour
         }
         else
         {
-            // no player found � continue patrolling
+            // no player found continue patrolling
             ChangeState(EnemyState.Patrolling);
         }
     }

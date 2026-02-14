@@ -3431,22 +3431,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1234291985899740653, guid: 777afe3f50d13fa499791360ab085de8, type: 3}
   m_PrefabInstance: {fileID: 59226606405933903}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &782741975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 214469956344443350, guid: 777afe3f50d13fa499791360ab085de8, type: 3}
-  m_PrefabInstance: {fileID: 59226606405933903}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782741971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8f01df11004ff47845ee8cc597105a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &782741978 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8558101792322426850, guid: 777afe3f50d13fa499791360ab085de8, type: 3}
-  m_PrefabInstance: {fileID: 59226606405933903}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &782741981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,14 +3443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f4303e417ffe94da8525e87471e5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 3
-  playerDetectRange: 5
-  attackRange: 2
-  attackCooldown: 2
-  rb: {fileID: 782741978}
-  player: {fileID: 1713641393}
-  attackTimer: 0
-  movement: {fileID: 782741975}
 --- !u!1 &935274025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3070079198593006856, guid: 58df044114e9e1d449f3625bca9413e8, type: 3}
