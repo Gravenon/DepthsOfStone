@@ -23,7 +23,7 @@ public class NPC_Patrol : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-       StartCoroutine(SetPatrolPoint());
+        StartCoroutine(SetPatrolPoint());
     }
 
     // Update is called once per frame
