@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -109,7 +109,7 @@ public class Enemy_Movement : MonoBehaviour
     private void Move()
     {
         Vector2 direction = (patrolTarget - (Vector2)transform.position).normalized;
-        
+
         // flip sprite if moving opposite to facing
         if (direction.x < 0 && facingDirection == 1)
             Flip();
@@ -123,15 +123,15 @@ public class Enemy_Movement : MonoBehaviour
     {
         isPaused = true;
         rb.linearVelocity = Vector2.zero;
-        
+
         // random pause with looking left/right
         float lookDuration = Random.Range(minLookDuration, maxLookDuration);
         yield return new WaitForSeconds(lookDuration);
-        
+
         // randomly face left or right
         Flip();
         Flip();
-        
+
         yield return new WaitForSeconds(pauseDuration);
 
         patrolTarget = GetRandomPatrolPoint();
@@ -174,7 +174,7 @@ public class Enemy_Movement : MonoBehaviour
         }
         else
         {
-            // no player found — continue patrolling
+            // no player found � continue patrolling
             ChangeState(EnemyState.Patrolling);
         }
     }
