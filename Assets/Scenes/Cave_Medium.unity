@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 72845942}
   - component: {fileID: 72845941}
+  - component: {fileID: 72845943}
   m_Layer: 0
   m_Name: ChekcAreaPoint
   m_TagString: Untagged
@@ -235,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineConfig: {fileID: 11400000, guid: 7435aed6e45fe4647ba6e7df0a44c8fc, type: 2}
+  inNightTime: 0
 --- !u!4 &72845942
 Transform:
   m_ObjectHideFlags: 0
@@ -250,6 +252,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &72845943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72845940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee5871f65792745bb6078f8280363d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldTimeWatcher
+  worldTime: {fileID: 0}
+  schedules: []
 --- !u!1 &111678067
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +947,74 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &362354243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5937617655058284610, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_Name
+      value: System Day and Night
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.49608
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.58603
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748434323938748866, guid: ac962249b5578514887efc1588c424fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac962249b5578514887efc1588c424fa, type: 3}
+--- !u!114 &362354244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1508609888084573756, guid: ac962249b5578514887efc1588c424fa, type: 3}
+  m_PrefabInstance: {fileID: 362354243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c3fa28d8152d54d89ac7020a8651e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldTime
 --- !u!1 &481641353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,12 +1745,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d5b4bf5d785745a0dc953dfafe5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNames:
-  - VilageDwarfs
+  sceneName: VilageDwarfs
   fadeAnim: {fileID: 285318554}
   fadeTime: 1
   newPlayerPosition: {x: -23, y: 0}
   requireConfirmation: 0
+  selectedLevel: 0
+  levelSelectCanvasGroup: {fileID: 0}
+  levelSelectUI: {fileID: 0}
   confirmCanvasGroup: {fileID: 0}
   confirmationUI: {fileID: 0}
 --- !u!61 &983518146
@@ -1901,6 +1987,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 566076048830463999, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 566076048830463999, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 699813772170819858, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1924,6 +2018,14 @@ PrefabInstance:
     - target: {fileID: 699813772170819858, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770150784016445766, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 770150784016445766, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 1205812691807701073, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
       propertyPath: m_Pivot.x
@@ -2005,6 +2107,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1300794577820492476, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 1300794577820492476, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 2041412974431549711, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
       propertyPath: m_Name
       value: InventoryCanvas
@@ -2057,6 +2167,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4039889841488934561, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 4039889841488934561, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440991462672933144, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+    - target: {fileID: 4440991462672933144, guid: 958ec20a146062843bfa9cda7074bbbb, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2077,6 +2203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1218941052}
   - component: {fileID: 1218941051}
+  - component: {fileID: 1218941053}
   m_Layer: 0
   m_Name: ChekcAreaPoint (1)
   m_TagString: Untagged
@@ -2097,6 +2224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineConfig: {fileID: 11400000, guid: 7435aed6e45fe4647ba6e7df0a44c8fc, type: 2}
+  inNightTime: 0
 --- !u!4 &1218941052
 Transform:
   m_ObjectHideFlags: 0
@@ -2112,6 +2240,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218941053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218941050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee5871f65792745bb6078f8280363d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldTimeWatcher
+  worldTime: {fileID: 362354244}
+  schedules:
+  - hour: 20
+    minute: 0
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1218941051}
+          m_TargetAssemblyTypeName: MineGeneration, Assembly-CSharp
+          m_MethodName: NightTimeSpawn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1282027581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,6 +3121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8684310910683269717, guid: 76c61684c03752449b38967c58c73ed9, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 8974532028482790431, guid: 76c61684c03752449b38967c58c73ed9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3564,6 +3727,7 @@ SceneRoots:
   - {fileID: 563797753}
   - {fileID: 1499458069}
   - {fileID: 1116483493}
+  - {fileID: 362354243}
   - {fileID: 111678068}
   - {fileID: 1915665968}
   - {fileID: 1374573438}

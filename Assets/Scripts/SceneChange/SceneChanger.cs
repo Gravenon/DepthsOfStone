@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string[] sceneNames;
-    private string selectedSceneName;
+    public string sceneName;
     public Animator fadeAnim;
     public float fadeTime = .5f;
     public Vector2 newPlayerPosition;
     private Transform player;
 
     public bool requireConfirmation = false;
+    public bool selectedLevel = false;
+
+    public CanvasGroup levelSelectCanvasGroup;
+    public GameObject levelSelectUI;
 
     public CanvasGroup confirmCanvasGroup;
     public GameObject confirmationUI;
@@ -27,6 +31,13 @@ public class SceneChanger : MonoBehaviour
             {
                 confirmationUI.SetActive(true);
                 confirmCanvasGroup.alpha = 1;
+                playerInTrigger = true;
+                Time.timeScale = 0f; // Pause the game
+            }
+            else if (selectedLevel)
+            {
+                levelSelectUI.SetActive(true);
+                levelSelectCanvasGroup.alpha = 1;
                 playerInTrigger = true;
                 Time.timeScale = 0f; // Pause the game
             }
@@ -67,30 +78,49 @@ public class SceneChanger : MonoBehaviour
         Time.timeScale = 1f; // Resume the game
     }
 
-    public void ranndomScene()
+    public void OnCaveEasy()
     {
-        if (sceneNames == null || sceneNames.Length == 0)
-        {
-            Debug.LogWarning("SceneChanger: sceneNames array is empty.");
-            return;
-        }
 
-        int index = Random.Range(0, sceneNames.Length);
-        selectedSceneName = sceneNames[index];
+        sceneName = "Cave_Easy";
+        if (playerInTrigger)
+        {
+            levelSelectUI.SetActive(false);
+            Time.timeScale = 1f; // Resume the game
+            fadeAnim.Play("FadeToBlack");
+            StartCoroutine(DelayFade());
+        }
     }
 
+    public void OnCaveMiddle()
+    {
+        sceneName = "Cave_Medium";
+        if (playerInTrigger)
+        {
+            levelSelectUI.SetActive(false);
+            Time.timeScale = 1f; // Resume the game
+            fadeAnim.Play("FadeToBlack");
+            StartCoroutine(DelayFade());
+        }
+    }
+
+    public void OnCaveHard()
+    {
+        sceneName = "Cave_Hard";
+         if (playerInTrigger)
+        {
+            levelSelectUI.SetActive(false);
+            Time.timeScale = 1f; // Resume the game
+            fadeAnim.Play("FadeToBlack");
+            StartCoroutine(DelayFade());
+        }
+    }
 
     IEnumerator DelayFade()
     {
         yield return new WaitForSeconds(fadeTime);
         player.position = newPlayerPosition;
-        ranndomScene();
-        if (!string.IsNullOrEmpty(selectedSceneName))
-            SceneManager.LoadScene(selectedSceneName);
-        else if (sceneNames != null && sceneNames.Length > 0)
-            SceneManager.LoadScene(sceneNames[0]);
-        else
-            Debug.LogWarning("SceneChanger: No scene specified to load.");
+       
+        SceneManager.LoadScene(sceneName);
     }
 
 

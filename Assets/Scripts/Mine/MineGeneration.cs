@@ -6,6 +6,7 @@ using UnityEngine;
 public class MineGeneration : MonoBehaviour
 {
     public MineConfig mineConfig;
+    public bool inNightTime = false;
 
     private void Start()
     {
@@ -40,7 +41,12 @@ public class MineGeneration : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        int enemyCount = mineConfig.enemiesCount;
+        int enemyCount = mineConfig.enemiesCount + Random.Range(0, 3); // Add 0-2 extra enemies for variability
+
+        // if(inNightTime)
+        // {
+        //    NightTimeSpawn();
+        // }
 
         for(int i = 0; i < enemyCount; i++)
         {
@@ -51,5 +57,11 @@ public class MineGeneration : MonoBehaviour
             GameObject enemyPrefab = mineConfig.enemyPrefabs[Random.Range(0, mineConfig.enemyPrefabs.Length)];
             Instantiate(enemyPrefab, pos, Quaternion.identity);
         }
+    }
+
+    public void NightTimeSpawn()
+    {
+        mineConfig.enemiesCount +=  Random.Range(1, 3); // Increase enemy count by 1-2 during night time
+        SpawnEnemies(); // Spawn additional enemies for night time
     }
 }

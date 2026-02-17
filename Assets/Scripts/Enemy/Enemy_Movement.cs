@@ -27,8 +27,6 @@ public class Enemy_Movement : MonoBehaviour
     public float patrolWidth = 5f;                // horizontal patrol area width
     public float patrolHeight = 5f;               // vertical patrol area height
     public float pauseDuration = 1f;              // pause duration at patrol point
-    public float minLookDuration = 0.5f;          // min duration of the random "look" pause
-    public float maxLookDuration = 1.5f;          // max duration of the random "look" pause
     public float patrolSpeed = 2f;                // movement speed during patrol
 
     private Vector2 spawnPosition;
@@ -123,15 +121,7 @@ public class Enemy_Movement : MonoBehaviour
     {
         isPaused = true;
         rb.linearVelocity = Vector2.zero;
-        
-        // random pause with looking left/right
-        float lookDuration = Random.Range(minLookDuration, maxLookDuration);
-        yield return new WaitForSeconds(lookDuration);
-        
-        // randomly face left or right
-        Flip();
-        Flip();
-        
+                
         yield return new WaitForSeconds(pauseDuration);
 
         patrolTarget = GetRandomPatrolPoint();
