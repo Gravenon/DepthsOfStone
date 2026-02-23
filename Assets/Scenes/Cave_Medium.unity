@@ -215,7 +215,6 @@ GameObject:
   m_Component:
   - component: {fileID: 72845942}
   - component: {fileID: 72845941}
-  - component: {fileID: 72845943}
   m_Layer: 0
   m_Name: ChekcAreaPoint
   m_TagString: Untagged
@@ -237,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineConfig: {fileID: 11400000, guid: 7435aed6e45fe4647ba6e7df0a44c8fc, type: 2}
   inNightTime: 0
+  worldTime: {fileID: 362354244}
 --- !u!4 &72845942
 Transform:
   m_ObjectHideFlags: 0
@@ -252,20 +252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &72845943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72845940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee5871f65792745bb6078f8280363d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorldTimeWatcher
-  worldTime: {fileID: 0}
-  schedules: []
 --- !u!1 &111678067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1218941052}
   - component: {fileID: 1218941051}
-  - component: {fileID: 1218941053}
   m_Layer: 0
   m_Name: ChekcAreaPoint (1)
   m_TagString: Untagged
@@ -2225,6 +2210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineConfig: {fileID: 11400000, guid: 7435aed6e45fe4647ba6e7df0a44c8fc, type: 2}
   inNightTime: 0
+  worldTime: {fileID: 362354244}
 --- !u!4 &1218941052
 Transform:
   m_ObjectHideFlags: 0
@@ -2240,37 +2226,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1218941053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218941050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee5871f65792745bb6078f8280363d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorldTimeWatcher
-  worldTime: {fileID: 362354244}
-  schedules:
-  - hour: 20
-    minute: 0
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1218941051}
-          m_TargetAssemblyTypeName: MineGeneration, Assembly-CSharp
-          m_MethodName: NightTimeSpawn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1282027581
 GameObject:
   m_ObjectHideFlags: 0

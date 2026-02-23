@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class WorldTime : MonoBehaviour
 {
+    public static WorldTime Instance { get; private set; }
+
     public event EventHandler<TimeSpan> WorldTimeChange;
 
     [SerializeField]
@@ -13,17 +14,56 @@ public class WorldTime : MonoBehaviour
     private TimeSpan currentTime = new TimeSpan(6, 0, 0);
     public TimeSpan CurrentTime => currentTime;
     private float minuteLength => dayLength / WorldTimeConstants.MinutesInDay;
+    private Coroutine minuteCoroutine;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        if (transform.root != null)
+        {
+            DontDestroyOnLoad(transform.root.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     private void Start()
     {
-        StartCoroutine(AddMinute());
+        if (dayLength <= 0f)
+        {
+            dayLength = 60f;
+        }
+
+        if (minuteCoroutine == null)
+        {
+            minuteCoroutine = StartCoroutine(AddMinute());
+        }
     }
 
     private IEnumerator AddMinute()
     {
-        currentTime += TimeSpan.FromMinutes(1);
-        WorldTimeChange?.Invoke(this, currentTime);
-        yield return new WaitForSeconds(minuteLength);
-        StartCoroutine(AddMinute());
+        while (true)
+        {
+            currentTime += TimeSpan.FromMinutes(1);
+            WorldTimeChange?.Invoke(this, currentTime);
+            yield return new WaitForSeconds(minuteLength);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 }

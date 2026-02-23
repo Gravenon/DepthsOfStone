@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +18,8 @@ public class SceneChanger : MonoBehaviour
 
     public CanvasGroup confirmCanvasGroup;
     public GameObject confirmationUI;
+
+
     private bool playerInTrigger = false;
 
     private void OnTriggerEnter2D(Collider2D collision)

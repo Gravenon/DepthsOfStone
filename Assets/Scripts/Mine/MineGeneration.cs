@@ -1,12 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class MineGeneration : MonoBehaviour
 {
     public MineConfig mineConfig;
-    public bool inNightTime = false;
+
+    [SerializeField]
+    private int nightStartHour = 20;
+
+    [SerializeField]
+    private int nightEndHour = 6;
+
+    [SerializeField]
+    private float nightEnemyMultiplier = 2f;
+
+    [SerializeField]
+    private Vector2Int nightExtraEnemiesRange = new Vector2Int(2, 5);
+
+    [SerializeField]
+    private float nightOreMultiplier = 1.5f;
+
+    [SerializeField]
+    private Vector2Int nightExtraOreRange = new Vector2Int(1, 3);
 
     private void Start()
     {
@@ -14,16 +28,19 @@ public class MineGeneration : MonoBehaviour
         SpawnEnemies();
     }
 
-    //add function what will spawn ore and mobe more if player go mine in nigtht time
-
-
-    // add spawn enemy
-
     private void SpawnOre()
     {
+        bool isNightTime = IsNightTime();
+
         foreach (var oreData in mineConfig.ores)
         {
             int count = Random.Range(oreData.minAmount, oreData.maxAmount + 1);
+
+            if (isNightTime)
+            {
+                count = Mathf.CeilToInt(count * Mathf.Max(1f, nightOreMultiplier));
+                count += Random.Range(nightExtraOreRange.x, nightExtraOreRange.y + 1);
+            }
 
             for (int i = 0; i < count; i++)
             {
@@ -43,10 +60,11 @@ public class MineGeneration : MonoBehaviour
     {
         int enemyCount = mineConfig.enemiesCount + Random.Range(0, 3); // Add 0-2 extra enemies for variability
 
-        // if(inNightTime)
-        // {
-        //    NightTimeSpawn();
-        // }
+        if (IsNightTime())
+        {
+            enemyCount = Mathf.CeilToInt(enemyCount * Mathf.Max(1f, nightEnemyMultiplier));
+            enemyCount += Random.Range(nightExtraEnemiesRange.x, nightExtraEnemiesRange.y + 1);
+        }
 
         for(int i = 0; i < enemyCount; i++)
         {
@@ -59,9 +77,27 @@ public class MineGeneration : MonoBehaviour
         }
     }
 
-    public void NightTimeSpawn()
+    private bool IsNightTime()
     {
-        mineConfig.enemiesCount +=  Random.Range(1, 3); // Increase enemy count by 1-2 during night time
-        SpawnEnemies(); // Spawn additional enemies for night time
+        WorldTime worldTime = WorldTime.Instance;
+
+        if (worldTime == null)
+        {
+            worldTime = FindFirstObjectByType<WorldTime>();
+        }
+
+        if (worldTime == null)
+        {
+            return false;
+        }
+
+        int hour = worldTime.CurrentTime.Hours;
+
+        if (nightStartHour > nightEndHour)
+        {
+            return hour >= nightStartHour || hour < nightEndHour;
+        }
+
+        return hour >= nightStartHour && hour < nightEndHour;
     }
 }
