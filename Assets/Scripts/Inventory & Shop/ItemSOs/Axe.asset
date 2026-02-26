@@ -16,8 +16,7 @@ MonoBehaviour:
   itemDescription: "The greatest dwarf war axe.\nThe inscription \u2018'This is Sparta!\u2019
     is engraved on the handle."
   itemIcon: {fileID: 1265588211, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  isCoin: 0
-  isOre: 0
+  itemType: 5
   stackSize: 1
   currentHealth: 0
   maxHealth: 0

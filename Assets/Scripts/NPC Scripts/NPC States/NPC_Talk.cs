@@ -1,12 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NPC_Talk : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
     public Animator interactAnim;
+    public InputActionReference interactAction;
 
     public List<DialogueSO> converstations;
     public DialogueSO currentConversation;
@@ -19,6 +20,11 @@ public class NPC_Talk : MonoBehaviour
 
     private void OnEnable()
     {
+        if (interactAction != null)
+        {
+            interactAction.action.performed += OnInteract;
+        }
+
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         anim.Play("Idle");
@@ -27,23 +33,27 @@ public class NPC_Talk : MonoBehaviour
 
     private void OnDisable()
     {
+        if (interactAction != null)
+        {
+            interactAction.action.performed -= OnInteract;
+        }
+
         interactAnim.Play("Close");
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
-    private void Update()
+    private void OnInteract(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Interact"))
+        if (GameManager.Instance.DialogueManager.isDialogueActive)
         {
-            if (GameManager.Instance.DialogueManager.isDialogueActive)
-                GameManager.Instance.DialogueManager.AdvancedDialogue();
-            else
+            GameManager.Instance.DialogueManager.AdvancedDialogue();
+        }
+        else
+        {
+            if (GameManager.Instance.DialogueManager.CanStartDialogue())
             {
-                if (GameManager.Instance.DialogueManager.CanStartDialogue())
-                {
-                    CheckForNewConverstation();
-                    GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
-                }
+                CheckForNewConverstation();
+                GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
             }
         }
     }

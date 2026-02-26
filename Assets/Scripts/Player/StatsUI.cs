@@ -1,39 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class StatsUI : MonoBehaviour
 {
     public GameObject[] statsSlots;
-    public CanvasGroup statsCanvas;
-
-    private bool statsOpen = false;
 
     private void Start()
     {
         UpdataAllStats();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetButtonDown("ToggleStats"))
-            if (statsOpen)
-            {
-                Time.timeScale = 1;
-                UpdataAllStats();
-                statsCanvas.alpha = 0;
-                statsCanvas.blocksRaycasts = false;
-                statsOpen = false;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                UpdataAllStats();
-                statsCanvas.alpha = 1;
-                statsCanvas.blocksRaycasts = true;
-                statsOpen = true;
-            }
+        UpdataAllStats();
     }
 
     public void UpdateDameg()

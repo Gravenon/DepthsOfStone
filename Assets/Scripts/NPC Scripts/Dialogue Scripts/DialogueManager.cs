@@ -49,9 +49,17 @@ public class DialogueManager : MonoBehaviour
     public void AdvancedDialogue()
     {
         if (dialogueIndex < currentDialogue.lines.Length)
+        {
             ShowDialogue();
-        else
+        }
+        else if (currentDialogue.options != null && currentDialogue.options.Length > 0)
+        {
             ShowChoices();
+        }
+        else
+        {
+            EndDialogue();
+        }
     }
 
     private void ShowDialogue()

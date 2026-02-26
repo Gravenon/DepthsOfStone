@@ -3,13 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IPointerClickHandler
+public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemSO itemSO;
     public int quantity;
 
     public Image itemImage;
-    public TMP_Text quantityText;
 
     private InventoryManager inventoryManager;
     private static ShopManger activeShop;
@@ -48,10 +47,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
                 }
                 else
                 {
-                    if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
-                        return;
-                    if (itemSO.itemType != ItemType.ore)
-                        inventoryManager.UseItem(this);
+                    // Check if the item is a piece of equipment and if the player can equip it
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
@@ -71,12 +67,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         {
             itemImage.sprite = itemSO.itemIcon;
             itemImage.gameObject.SetActive(true);
-            quantityText.text = quantity.ToString();
         }
         else
         {
             itemImage.gameObject.SetActive(false);
-            quantityText.text = "";
         }
 
     }

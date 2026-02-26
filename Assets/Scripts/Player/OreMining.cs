@@ -1,27 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OreMining : MonoBehaviour
 {
     public float interactRange = 1.5f;
     public LayerMask resourceLayer;
 
-    // Update is called once per frame
-    void Update()
+    public void Fire(InputAction.CallbackContext context)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!context.performed)
         {
-            TryMineUnderMouse();
+            return;
         }
+
+        if (Pointer.current == null || Camera.main == null)
+        {
+            return;
+        }
+
+        Vector2 pointerPosition = Pointer.current.position.ReadValue();
+        TryMineUnderPointer(pointerPosition);
     }
 
-    void TryMineUnderMouse()
+    void TryMineUnderPointer(Vector2 pointerPosition)
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(pointerPosition);
 
-        Collider2D hit = Physics2D.OverlapPoint(mousePosition, resourceLayer);
+        Collider2D hit = Physics2D.OverlapPoint(worldPosition, resourceLayer);
         if (hit != null)
         {
             float distance = Vector2.Distance(hit.ClosestPoint(transform.position), transform.position);

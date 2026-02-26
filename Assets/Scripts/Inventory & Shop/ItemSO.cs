@@ -10,8 +10,7 @@ public class ItemSO : ScriptableObject
     [TextArea]public string itemDescription;  
     public Sprite itemIcon;
 
-    public bool isCoin;
-    public bool isOre;
+    public ItemType itemType;
     public int stackSize = 6;
 
     [Header("Stats")]

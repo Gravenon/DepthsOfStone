@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShopInfo : MonoBehaviour
 {
@@ -68,7 +69,12 @@ public class ShopInfo : MonoBehaviour
 
     public void FollowMouse()
     {
-        Vector3 mousePosition = Input.mousePosition;
+        if (Pointer.current == null)
+        {
+            return;
+        }
+
+        Vector3 mousePosition = Pointer.current.position.ReadValue();
         Vector3 offset = new Vector3(10, -10, 0);
 
         infoPanelRect.position = mousePosition + offset;

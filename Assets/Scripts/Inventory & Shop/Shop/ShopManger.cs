@@ -35,6 +35,10 @@ public class ShopManger : MonoBehaviour
                 inventoryManager.AddItem(itemSO, 1);
             }
         }
+        else
+        {
+            Debug.Log("Not enough coins or invalid item.");
+        }
     }
 
     private bool HasSpaceForItem(ItemSO itemSO)

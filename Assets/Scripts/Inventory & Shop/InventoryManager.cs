@@ -1,14 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
+using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
+
+    public GameObject EqipmentPanel;
+    public InputActionReference toggleInventoryAction;
+
     public InventorySlot[] inventorySlots;
+    public EquipmentSlot[] equimentSlot;
+
     public UseItem useItem;
     public int coins;
     public TMP_Text coinText;
@@ -39,51 +43,108 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         Loot.OnItemLooted += AddItem;
+
+        if (toggleInventoryAction != null)
+        {
+            toggleInventoryAction.action.performed += OnToggleInventory;
+        }
     }
 
     private void OnDisable()
     {
         Loot.OnItemLooted -= AddItem;
+
+        if (toggleInventoryAction != null)
+        {
+            toggleInventoryAction.action.performed -= OnToggleInventory;
+        }
+    }
+
+    private void OnToggleInventory(InputAction.CallbackContext context)
+    {
+        if (!context.performed || EqipmentPanel == null)
+        {
+            return;
+        }
+
+        EqipmentPanel.SetActive(!EqipmentPanel.activeSelf);
     }
 
     public void AddItem(ItemSO itemSO, int quantity)
     {
-        if (itemSO.isCoin)
+        if (itemSO.itemType == ItemType.coins)
         {
             coins += quantity;
             coinText.text = coins.ToString();
             return;
         }
 
-        foreach (var slot in inventorySlots)
+        if ( itemSO.itemType != ItemType.mainHand && itemSO.itemType != ItemType.head && itemSO.itemType != ItemType.body && itemSO.itemType != ItemType.legs && itemSO.itemType != ItemType.feet)
         {
-            if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
+            foreach (var slot in inventorySlots)
             {
-                int availableSpace = itemSO.stackSize - slot.quantity;
-                int amountToAdd = Mathf.Min(availableSpace, quantity);
+                if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
+                {
+                    int availableSpace = itemSO.stackSize - slot.quantity;
+                    int amountToAdd = Mathf.Min(availableSpace, quantity);
 
 
-                slot.quantity += amountToAdd;
-                quantity -= amountToAdd;
+                    slot.quantity += amountToAdd;
+                    quantity -= amountToAdd;
 
-                slot.UpdateUI();
+                    slot.UpdateUI();
 
-                if (quantity <= 0)
+                    if (quantity <= 0)
+                        return;
+                }
+            }
+
+            foreach (var slot in inventorySlots)
+            {
+                if (slot.itemSO == null)
+                {
+                    int amountToAdd = Mathf.Min(itemSO.stackSize, quantity);
+                    slot.itemSO = itemSO;
+                    slot.quantity = quantity;
+                    slot.UpdateUI();
                     return;
+                }
+
             }
         }
-
-        foreach (var slot in inventorySlots)
+        else
         {
-            if (slot.itemSO == null)
+            foreach (var slot in equimentSlot)
             {
-                int amountToAdd = Mathf.Min(itemSO.stackSize, quantity);
-                slot.itemSO = itemSO;
-                slot.quantity = quantity;
-                slot.UpdateUI();
-                return;
+                if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
+                {
+                    int availableSpace = itemSO.stackSize - slot.quantity;
+                    int amountToAdd = Mathf.Min(availableSpace, quantity);
+
+
+                    slot.quantity += amountToAdd;
+                    quantity -= amountToAdd;
+
+                    slot.UpdateUI();
+
+                    if (quantity <= 0)
+                        return;
+                }
+
             }
 
+            foreach (var slot in equimentSlot)
+            {
+                if (slot.itemSO == null)
+                {
+                    int amountToAdd = Mathf.Min(itemSO.stackSize, quantity);
+                    slot.itemSO = itemSO;
+                    slot.quantity = quantity;
+                    slot.UpdateUI();
+                    return;
+                }
+
+            }
         }
 
         if(quantity > 0)
@@ -91,6 +152,17 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void DropItem(InventorySlot slot)
+    {
+        DropLoot(slot.itemSO, 1);
+        slot.quantity--;
+        if(slot.quantity <= 0)
+        {
+            slot.itemSO = null;
+        }
+        slot.UpdateUI();
+    }
+
+       public void DropItem(EquipmentSlot slot)
     {
         DropLoot(slot.itemSO, 1);
         slot.quantity--;
@@ -136,4 +208,20 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
+}
+
+
+public enum ItemType
+{
+    consumable,
+    crafting,
+    head,
+    body,
+    legs,
+    mainHand,
+    feet,
+    relic,
+    ore,
+    coins,
+    none
 }

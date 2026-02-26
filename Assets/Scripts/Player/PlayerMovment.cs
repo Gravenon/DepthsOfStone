@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerMovment : MonoBehaviour
 {
@@ -17,13 +14,8 @@ public class PlayerMovment : MonoBehaviour
     public PlayerCombat playerCombat;
     public PlayerHealth playerHealth;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            playerCombat.Attack();
-        }
-    }
+    private float horizontal;
+    private float vertival;
 
     void FixedUpdate()
     {
@@ -32,8 +24,8 @@ public class PlayerMovment : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertival = Input.GetAxisRaw("Vertical");
+        // float horizontal = Input.GetAxisRaw("Horizontal");
+        // float vertival = Input.GetAxisRaw("Vertical");
 
         if (horizontal > 0 && transform.localScale.x < 0 ||
             horizontal < 0 && transform.localScale.x > 0)
@@ -45,6 +37,24 @@ public class PlayerMovment : MonoBehaviour
         rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
 
     }
+
+    #region  PLAYER_CONTROLS
+    public void Move(InputAction.CallbackContext context)
+    {
+        horizontal = context.ReadValue<Vector2>().x;
+        vertival = context.ReadValue<Vector2>().y;    
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+
+        playerCombat.Attack();
+    }
+    #endregion
 
     void Flip()
     {

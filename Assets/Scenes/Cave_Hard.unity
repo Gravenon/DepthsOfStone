@@ -239,6 +239,8 @@ MonoBehaviour:
   nightEndHour: 6
   nightEnemyMultiplier: 2
   nightExtraEnemiesRange: {x: 2, y: 5}
+  nightOreMultiplier: 1.5
+  nightExtraOreRange: {x: 1, y: 3}
 --- !u!4 &72845942
 Transform:
   m_ObjectHideFlags: 0
@@ -2208,6 +2210,8 @@ MonoBehaviour:
   nightEndHour: 6
   nightEnemyMultiplier: 2
   nightExtraEnemiesRange: {x: 2, y: 5}
+  nightOreMultiplier: 1.5
+  nightExtraOreRange: {x: 1, y: 3}
 --- !u!4 &1218941052
 Transform:
   m_ObjectHideFlags: 0

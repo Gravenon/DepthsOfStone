@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShopKeeper : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShopKeeper : MonoBehaviour
 
     [SerializeField] private CanvasGroup shopCanvasGroup;
     [SerializeField] private ShopManger shopManager;
+    [SerializeField] private InputActionReference interactAction;
+    [SerializeField] private InputActionReference cancelAction;
 
     [SerializeField] private List<ShopItems> shopItems;
     [SerializeField] private List<ShopItems> shopWeapons;
@@ -21,36 +24,75 @@ public class ShopKeeper : MonoBehaviour
     private bool isShopOpen;
 
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        if (playerInRange)
+        if (interactAction != null)
         {
-            if (Input.GetButtonDown("Interact"))
-            {
-                if (!isShopOpen)
-                {
-                    Time.timeScale = 0;
-                    currentShopKeeper = this;
-                    isShopOpen = true;
-                    OnShopOpenClose?.Invoke(shopManager, true);
-                    shopCanvasGroup.alpha = 1;
-                    shopCanvasGroup.blocksRaycasts = true;
-                    shopCanvasGroup.interactable = true;
-                    OpenItemShop();
-                }
-            }
-            else if (Input.GetButtonDown("Cancel"))
-            {
-                Time.timeScale = 1;
-                isShopOpen = false;
-                currentShopKeeper = null;
-                OnShopOpenClose?.Invoke(shopManager, false);
-                shopCanvasGroup.alpha = 0;
-                shopCanvasGroup.blocksRaycasts = false;
-                shopCanvasGroup.interactable = false;
-            }
+            interactAction.action.performed += OnInteract;
         }
+
+        if (cancelAction != null)
+        {
+            cancelAction.action.performed += OnCancel;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (interactAction != null)
+        {
+            interactAction.action.performed -= OnInteract;
+        }
+
+        if (cancelAction != null)
+        {
+            cancelAction.action.performed -= OnCancel;
+        }
+    }
+
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        if (isShopOpen)
+        {
+            CloseShop();
+            return;
+        }
+
+        if (!playerInRange)
+            return;
+        
+        OpenShop();
+    }
+
+    private void OnCancel(InputAction.CallbackContext context)
+    {
+        if (!isShopOpen)
+            return;
+        
+        CloseShop();
+    }
+
+    private void OpenShop()
+    {
+        Time.timeScale = 0;
+        currentShopKeeper = this;
+        isShopOpen = true;
+        OnShopOpenClose?.Invoke(shopManager, true);
+        shopCanvasGroup.alpha = 1;
+        shopCanvasGroup.blocksRaycasts = true;
+        shopCanvasGroup.interactable = true;
+        OpenItemShop();
+    }
+
+    private void CloseShop()
+    {
+        Time.timeScale = 1;
+        isShopOpen = false;
+        currentShopKeeper = null;
+        OnShopOpenClose?.Invoke(shopManager, false);
+        shopCanvasGroup.alpha = 0;
+        shopCanvasGroup.blocksRaycasts = false;
+        shopCanvasGroup.interactable = false;
     }
 
     public void OpenItemShop()

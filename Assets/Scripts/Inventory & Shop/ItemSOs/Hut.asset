@@ -16,8 +16,7 @@ MonoBehaviour:
   itemDescription: 'The boots of the forester who was in the forest after the balloon
     crash '
   itemIcon: {fileID: -247137754, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  isCoin: 0
-  isOre: 0
+  itemType: 6
   stackSize: 1
   currentHealth: 0
   maxHealth: 0
