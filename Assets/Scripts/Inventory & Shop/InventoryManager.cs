@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        if ( itemSO.itemType != ItemType.mainHand && itemSO.itemType != ItemType.head && itemSO.itemType != ItemType.body && itemSO.itemType != ItemType.legs && itemSO.itemType != ItemType.feet)
+        if ( itemSO.itemType != ItemType.mainHand && itemSO.itemType != ItemType.head && itemSO.itemType != ItemType.body && itemSO.itemType != ItemType.legs && itemSO.itemType != ItemType.feet && itemSO.itemType != ItemType.relic)
         {
             foreach (var slot in inventorySlots)
             {
@@ -105,7 +105,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     int amountToAdd = Mathf.Min(itemSO.stackSize, quantity);
                     slot.itemSO = itemSO;
-                    slot.quantity = quantity;
+                    slot.quantity = amountToAdd;
                     slot.UpdateUI();
                     return;
                 }
@@ -139,7 +139,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     int amountToAdd = Mathf.Min(itemSO.stackSize, quantity);
                     slot.itemSO = itemSO;
-                    slot.quantity = quantity;
+                    slot.quantity = amountToAdd;
                     slot.UpdateUI();
                     return;
                 }

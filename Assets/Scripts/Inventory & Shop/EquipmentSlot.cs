@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
@@ -10,8 +9,11 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
     public Image itemImage;
 
+    public EquippedSlot headSlot, bodySlot, legsSlot, weaponSlot, accessorySlot, feetSlot;
+    
     private InventoryManager inventoryManager;
     private static ShopManger activeShop;
+ 
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
                 else
                 {
                     // Check if the item is a piece of equipment and if the player can equip it
+                    EquipGear();
+                    UpdateUI();
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
@@ -56,6 +60,44 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
             }
         }
 
+    }
+
+    private void EquipGear()
+    {
+        if (itemSO == null)
+            return;
+
+        EquippedSlot targetSlot = GetTargetSlot(itemSO.itemType);
+        if (targetSlot == null)
+            return;
+
+        bool equipped = targetSlot.EquipGear(itemSO);
+        if (!equipped)
+            return;
+
+        quantity--;
+        UpdateUI();
+    }
+
+    private EquippedSlot GetTargetSlot(ItemType type)
+    {
+        switch (type)
+        {
+            case ItemType.head:
+                return headSlot;
+            case ItemType.body:
+                return bodySlot;
+            case ItemType.legs:
+                return legsSlot;
+            case ItemType.mainHand:
+                return weaponSlot;
+            case ItemType.relic:
+                return accessorySlot;
+            case ItemType.feet:
+                return feetSlot;
+            default:
+                return null;
+        }
     }
 
     public void UpdateUI()

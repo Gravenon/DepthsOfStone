@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item")]
@@ -21,4 +18,92 @@ public class ItemSO : ScriptableObject
 
     [Header("For temporary Items")]
     public float duration;
+
+
+
+    public void Use()
+    {
+        switch (itemType)
+        {
+            case ItemType.mainHand:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;
+            case ItemType.head:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;
+            case ItemType.body:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;
+            case ItemType.legs:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;
+            case ItemType.relic:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;
+            case ItemType.feet:
+                StatsManager.Instance.UpdateHealth(currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(maxHealth);
+                StatsManager.Instance.UpdateSpeed(speed);
+                StatsManager.Instance.UpdateDamage(damage);
+                break;      
+        }
+    }
+
+    public void Unuse()
+    {
+         switch (itemType)
+        {
+            case ItemType.mainHand:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;
+            case ItemType.head:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;
+            case ItemType.body:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;
+            case ItemType.legs:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;
+            case ItemType.relic:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;
+            case ItemType.feet:
+                StatsManager.Instance.UpdateHealth(-currentHealth);
+                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+                StatsManager.Instance.UpdateSpeed(-speed);
+                StatsManager.Instance.UpdateDamage(-damage);
+                break;      
+        }    
+    }
 }
