@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: MenuUI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: MenuUI
+  m_TableCollectionNameGuidString: bb7d5a123388a4dca8aadc7e16fe6693
+  m_Entries:
+  - m_Id: 104743297024
+    m_Key: menu.start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170112
+    m_Key: menu.settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170113
+    m_Key: menu.quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170114
+    m_Key: menu.controller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170115
+    m_Key: menu.moveUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170116
+    m_Key: menu.MoveDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170117
+    m_Key: menu.moveLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170118
+    m_Key: menu.moveRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170119
+    m_Key: menu.slash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170120
+    m_Key: menu.look
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170121
+    m_Key: menu.resetAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170122
+    m_Key: menu.video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170123
+    m_Key: menu.windows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170124
+    m_Key: menu.frameLimit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170125
+    m_Key: menu.borderlessWindows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170126
+    m_Key: menu.fullScren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170123
+    m_Key: menu.windows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170127
+    m_Key: menu.auido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170128
+    m_Key: menu.masterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170129
+    m_Key: menu.musicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170130
+    m_Key: menu.sfxVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170131
+    m_Key: menu.ambientVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170132
+    m_Key: menu.language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10400174170133
+    m_Key: menu.interface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81509359804416
+    m_Key: menu.combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81509372387328
+    m_Key: menu.movment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81509372387329
+    m_Key: menu.back
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7786884657267605717
+  references:
+    version: 2
+    RefIds:
+    - rid: 7786884657267605717
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1773659456752
