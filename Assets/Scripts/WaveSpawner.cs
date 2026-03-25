@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
-
 [System.Serializable]
 public class WaveData
 {
@@ -12,7 +10,7 @@ public class WaveData
     public float rate;
 }
 
-public class WaveSpawner : MonoBehaviour
+public class WaveSpawner : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private SceneChanger sceneChanger;
 
@@ -38,29 +36,12 @@ public class WaveSpawner : MonoBehaviour
 
     private bool transitionTriggered = false;
 
-    public SpawnState State
-    {
-        get { return state; }
-    }
+    public SpawnState State => state;
+    public float WaveCountdown => waveCountdown;
+    public int NextWave => nextWave + 1;
 
-    public float WaveCountdown
-    {
-        get { return waveCountdown; }
-    }
-
-    public int NextWave
-    {
-        get { return nextWave + 1; }
-    }
     void Start()
     {
-        WorldData world = WorldSaveSystem.LoadWorld();
-        
-        if (world != null)
-        {
-            nextWave = world.arenaWaveIndex;
-        }
-
         waveCountdown = timeBetweenWaves;
     }
 
@@ -89,8 +70,8 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
-            if(!waveComplete)
-            waveCountdown -= Time.deltaTime; 
+            if (!waveComplete)
+                waveCountdown -= Time.deltaTime;
         }
     }
 
@@ -99,15 +80,15 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Wave Completed!");
         waveCountdown = timeBetweenWaves;
         waveComplete = true;
-
         state = SpawnState.COUNTING;
 
-        int nextWaveIndex = nextWave + 1;
-
-        WorldSaveSystem.SaveWorld("Arena", nextWaveIndex);
+        nextWave++;
+        // Save now; suppress the automatic save that fires on scene unload
+        // to avoid touching already-destroyed objects.
+        DataPersistenceeManager.instance.SaveGame();
+        DataPersistenceeManager.SuppressNextSave = true;
 
         sceneChanger.ChangeScene();
-
     }
 
     bool EnemyIsAlive()
@@ -142,15 +123,23 @@ public class WaveSpawner : MonoBehaviour
         }
 
         state = SpawnState.WAITING;
-
         yield break;
     }
 
     void SpawnEnemy(GameObject prefab)
     {
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-        GameObject _enemy = Instantiate(prefab, _sp.position, _sp.rotation);
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(prefab, sp.position, sp.rotation);
     }
 
+    // IDataPersistence
+    public void LoadData(GameData data)
+    {
+        nextWave = data.arenaWaveIndex;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.arenaWaveIndex = nextWave;
+    }
 }

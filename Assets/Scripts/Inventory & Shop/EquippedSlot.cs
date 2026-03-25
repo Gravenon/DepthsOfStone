@@ -124,4 +124,39 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
 
         slotName.enabled = true;
     }
+
+    /// <summary>
+    /// Clears the slot without returning the item to inventory and without touching stats
+    /// (used on new game / load — StatsManager.LoadData sets the authoritative stat values).
+    /// </summary>
+    public void ClearSlot()
+    {
+        if (itemSO == null) return;
+
+        itemSO = null;
+        slotInUse = false;
+        SetEmptyVisual();
+    }
+
+    /// <summary>Returns the item currently equipped in this slot, or null if empty.</summary>
+    public ItemSO GetEquippedItem() => slotInUse ? itemSO : null;
+
+    /// <summary>Returns the item type this slot accepts.</summary>
+    public ItemType GetSlotItemType() => itemType;
+
+    /// <summary>
+    /// Restores the visual appearance of this slot from a save file without calling Use()
+    /// (stats are already restored by StatsManager.LoadData).
+    /// </summary>
+    public void RestoreGearVisual(ItemSO item)
+    {
+        if (item == null) return;
+        itemSO = item;
+        slotImage.sprite = item.itemIcon;
+        Color c = slotImage.color;
+        c.a = 1f;
+        slotImage.color = c;
+        slotName.enabled = false;
+        slotInUse = true;
+    }
 }

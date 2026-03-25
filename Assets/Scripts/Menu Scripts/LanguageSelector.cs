@@ -1,8 +1,6 @@
 using System.Collections;
-using UnityEditor.Localization.Platform.iOS;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
-using UnityEngine.SocialPlatforms;
 
 public class LanguageSelector : MonoBehaviour
 {

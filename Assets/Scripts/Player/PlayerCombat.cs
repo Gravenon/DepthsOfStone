@@ -54,6 +54,11 @@ public class PlayerCombat : MonoBehaviour
         anim.SetBool("isAttacking", false);
     }
 
+    public void FlipAttackPoint()
+    {
+        attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+    }
+
 
     // private void OnDrawGizmosSelected()
     // {

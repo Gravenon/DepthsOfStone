@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class Loot : MonoBehaviour
 {
+    [SerializeField] private string id;
+
+    [ContextMenu("Generate ID")]
+    private void GenerateID()
+    {
+        id = Guid.NewGuid().ToString();
+    }
+
     public ItemSO itemSO;
     public SpriteRenderer sr;
     public Animator anim;
@@ -10,6 +18,8 @@ public class Loot : MonoBehaviour
     public bool canBePickedUp = true;
     public int quantity;
     public static event Action<ItemSO, int> OnItemLooted;
+
+    private bool collected = false;
 
     private void Start()
     {
@@ -20,15 +30,27 @@ public class Loot : MonoBehaviour
         }
     }
 
-    //#if UNITY_EDITOR
-    //    private void OnValidate()
-    //    {
-    //        if(Application.isPlaying && itemSO != null)
-    //        {
-    //            name = itemSO.itemName;
-    //        }
-    //    }
-    //#endif
+    //save data for loot
+
+    // public void LoadData(GameData data)
+    // {
+    //     data.itemCollected.TryGetValue(id, out collected);
+    //     if (collected)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
+
+    // public void SaveData(ref GameData data)
+    // {
+    //     if (data.itemCollected.ContainsKey(id))
+    //     {
+    //         data.itemCollected.Remove(id);
+    //     }
+    //     data.itemCollected.Add(id, collected);
+        
+
+    // }
 
     private void OnValidate()
     {
@@ -54,7 +76,7 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && canBePickedUp == true)
+        if (collision.CompareTag("Player") && canBePickedUp == true && collected == false)
         {
             anim.Play("LootPickup");
             OnItemLooted?.Invoke(itemSO, quantity);

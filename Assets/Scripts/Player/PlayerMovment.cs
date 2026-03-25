@@ -4,18 +4,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovment : MonoBehaviour
 {
-    public int facingDirection = 1;
-
     public Rigidbody2D rb;
     public Animator anim;
 
     private bool isKnockBack;
+    private float lastHorizontalSign = 1f;
 
     public PlayerCombat playerCombat;
     public PlayerHealth playerHealth;
 
     private float horizontal;
     private float vertival;
+
+    private Vector2 lastMoveDirection = Vector2.down;
+
+    void Update()
+    {
+        UpdateAnimations();
+    }
+
+    void UpdateAnimations()
+    {
+        if (horizontal != 0 || vertival != 0)
+        {
+            anim.SetBool("isWalking", true);
+            lastMoveDirection = new Vector2(horizontal, vertival).normalized;
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+
+        anim.SetFloat("LastInputX", lastMoveDirection.x);
+        anim.SetFloat("LastInputY", lastMoveDirection.y);
+    }
 
     void FixedUpdate()
     {
@@ -24,13 +46,15 @@ public class PlayerMovment : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
-        // float horizontal = Input.GetAxisRaw("Horizontal");
-        // float vertival = Input.GetAxisRaw("Vertical");
 
-        if (horizontal > 0 && transform.localScale.x < 0 ||
-            horizontal < 0 && transform.localScale.x > 0)
+        if (horizontal != 0)
         {
-            Flip();
+            float currentSign = Mathf.Sign(horizontal);
+            if (currentSign != lastHorizontalSign)
+            {
+                lastHorizontalSign = currentSign;
+                playerCombat.FlipAttackPoint();
+            }
         }
 
 
@@ -41,8 +65,14 @@ public class PlayerMovment : MonoBehaviour
     #region  PLAYER_CONTROLS
     public void Move(InputAction.CallbackContext context)
     {
+        anim.SetBool("isWalking", true);
+
         horizontal = context.ReadValue<Vector2>().x;
-        vertival = context.ReadValue<Vector2>().y;    
+        vertival = context.ReadValue<Vector2>().y;
+
+        anim.SetFloat("InputX", horizontal);
+        anim.SetFloat("InputY", vertival);
+
     }
 
     public void Fire(InputAction.CallbackContext context)
@@ -55,12 +85,6 @@ public class PlayerMovment : MonoBehaviour
         playerCombat.Attack();
     }
     #endregion
-
-    void Flip()
-    {
-        facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-    }
 
     public void Knockback(Transform enemy, float force, float stunTime)
     {

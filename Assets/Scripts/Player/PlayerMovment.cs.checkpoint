@@ -1,0 +1,81 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerMovment : MonoBehaviour
+{
+    public int facingDirection = 1;
+
+    public Rigidbody2D rb;
+    public Animator anim;
+
+    private bool isKnockBack;
+
+    public PlayerCombat playerCombat;
+    public PlayerHealth playerHealth;
+
+    private float horizontal;
+    private float vertival;
+
+    void FixedUpdate()
+    {
+        if (playerHealth.isDead && isKnockBack)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        if (horizontal > 0 && transform.localScale.x < 0 ||
+            horizontal < 0 && transform.localScale.x > 0)
+        {
+            Flip();
+        }
+
+
+        rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
+
+    }
+
+    #region  PLAYER_CONTROLS
+    public void Move(InputAction.CallbackContext context)
+    {
+        horizontal = context.ReadValue<Vector2>().x;
+        vertival = context.ReadValue<Vector2>().y;
+        if(horizontal )
+        {
+            
+        }    
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+
+        playerCombat.Attack();
+    }
+    #endregion
+
+    void Flip()
+    {
+        facingDirection *= -1;
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void Knockback(Transform enemy, float force, float stunTime)
+    {
+        isKnockBack = true;
+        Vector2 direction = (transform.position - enemy.position).normalized;
+        rb.linearVelocity = direction * force;
+        StartCoroutine(KnockbackCounter(stunTime));
+    }
+
+    IEnumerator KnockbackCounter(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        rb.linearVelocity = Vector2.zero;
+        isKnockBack = false;
+    }
+}

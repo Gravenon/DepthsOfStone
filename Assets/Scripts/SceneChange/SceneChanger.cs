@@ -119,7 +119,16 @@ public class SceneChanger : MonoBehaviour
     {
         yield return new WaitForSeconds(fadeTime);
         player.position = newPlayerPosition;
-       
+
+        // Save while all scene objects (InventoryManager, StatsManager, etc.) are still alive.
+        // Suppress the automatic save that fires on sceneUnloaded to avoid a double-save
+        // attempt when those objects are already destroyed.
+        if (DataPersistenceeManager.instance != null)
+        {
+            DataPersistenceeManager.instance.SaveGame();
+            DataPersistenceeManager.SuppressNextSave = true;
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 

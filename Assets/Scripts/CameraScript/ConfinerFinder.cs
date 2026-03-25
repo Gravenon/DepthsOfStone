@@ -1,6 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +18,11 @@ public class ConfinerFinder : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CinemachineConfiner2D confiner = GetComponent<CinemachineConfiner2D>();
-        confiner.m_BoundingShape2D = GameObject.FindWithTag("Confiner").GetComponent<PolygonCollider2D>();
+        if (confiner == null) return;
+
+        GameObject confinerObj = GameObject.FindWithTag("Confiner");
+        if (confinerObj == null) return;
+
+        confiner.m_BoundingShape2D = confinerObj.GetComponent<PolygonCollider2D>();
     }
 }

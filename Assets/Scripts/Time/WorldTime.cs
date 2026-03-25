@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class WorldTime : MonoBehaviour
+public class WorldTime : MonoBehaviour, IDataPersistence
 {
     public static WorldTime Instance { get; private set; }
 
@@ -65,5 +65,25 @@ public class WorldTime : MonoBehaviour
         {
             Instance = null;
         }
+    }
+
+    public void ResetToMorning()
+    {
+        currentTime = new TimeSpan(6, 0, 0);
+        WorldTimeChange?.Invoke(this, currentTime);
+    }
+
+    // ---------------------------------------------------------------
+    // IDataPersistence implementation
+    // ---------------------------------------------------------------
+    public void LoadData(GameData data)
+    {
+        currentTime = TimeSpan.FromMinutes(data.worldTimeMinutes);
+        WorldTimeChange?.Invoke(this, currentTime);
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.worldTimeMinutes = (int)currentTime.TotalMinutes;
     }
 }

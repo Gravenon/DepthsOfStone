@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IDataPersistence
 {
     public static InventoryManager Instance;
 
@@ -24,7 +25,8 @@ public class InventoryManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // NOT DontDestroyOnLoad — inventory belongs to a specific gameplay session.
+            // All data is restored from the save file via LoadData() on scene load.
         }
         else
         {
@@ -58,6 +60,94 @@ public class InventoryManager : MonoBehaviour
         {
             toggleInventoryAction.action.performed -= OnToggleInventory;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        // Clear inventory
+        foreach (var slot in inventorySlots)
+        {
+            slot.itemSO = null;
+            slot.quantity = 0;
+            slot.UpdateUI();
+        }
+
+        // Clear equipment panel
+        foreach (var slot in equimentSlot)
+        {
+            slot.itemSO = null;
+            slot.quantity = 0;
+            slot.UpdateUI();
+        }
+
+        // Clear equipped slots
+        EquippedSlot[] equippedSlots = GetComponentsInChildren<EquippedSlot>(true);
+        foreach (var slot in equippedSlots)
+            slot.ClearSlot();
+
+        // Restore coins
+        coins = data.coins;
+        if (coinText != null)
+            coinText.text = coins.ToString();
+
+        // Item restoration requires ItemSOLibrary from the gameplay scene.
+        // If it's absent (main menu), items will be restored on next scene load.
+        ItemSOLibrary library = FindFirstObjectByType<ItemSOLibrary>();
+        if (library == null) return;
+
+        if (data.inventoryItems != null)
+            foreach (var saved in data.inventoryItems)
+            {
+                ItemSO item = System.Array.Find(library.itemSOs, so => so != null && so.itemName == saved.itemName);
+                if (item != null) AddItem(item, saved.quantity);
+            }
+
+        if (data.equipmentItems != null)
+            foreach (var saved in data.equipmentItems)
+            {
+                ItemSO item = System.Array.Find(library.itemSOs, so => so != null && so.itemName == saved.itemName);
+                if (item != null) AddItem(item, saved.quantity);
+            }
+
+        // Restore equipped visuals — stats are already handled by StatsManager.LoadData
+        equippedSlots = GetComponentsInChildren<EquippedSlot>(true);
+        if (data.equippedItems != null)
+            foreach (var saved in data.equippedItems)
+            {
+                ItemSO item = System.Array.Find(library.itemSOs, so => so != null && so.itemName == saved.itemName);
+                if (item == null) continue;
+                EquippedSlot target = System.Array.Find(equippedSlots, s => (int)s.GetSlotItemType() == saved.itemTypeId);
+                if (target != null) target.RestoreGearVisual(item);
+            }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        if (this == null) return;
+
+        data.coins = coins;
+
+        var invList = new System.Collections.Generic.List<SerializedSlot>();
+        foreach (var slot in inventorySlots)
+            if (slot.itemSO != null && slot.quantity > 0)
+                invList.Add(new SerializedSlot { itemName = slot.itemSO.itemName, quantity = slot.quantity });
+        data.inventoryItems = invList.ToArray();
+
+        var eqList = new System.Collections.Generic.List<SerializedSlot>();
+        foreach (var slot in equimentSlot)
+            if (slot.itemSO != null && slot.quantity > 0)
+                eqList.Add(new SerializedSlot { itemName = slot.itemSO.itemName, quantity = slot.quantity });
+        data.equipmentItems = eqList.ToArray();
+
+        EquippedSlot[] equippedSlots = GetComponentsInChildren<EquippedSlot>(true);
+        var wornList = new System.Collections.Generic.List<SerializedEquippedSlot>();
+        foreach (var slot in equippedSlots)
+        {
+            ItemSO item = slot.GetEquippedItem();
+            if (item != null)
+                wornList.Add(new SerializedEquippedSlot { itemTypeId = (int)slot.GetSlotItemType(), itemName = item.itemName });
+        }
+        data.equippedItems = wornList.ToArray();
     }
 
     private void OnToggleInventory(InputAction.CallbackContext context)

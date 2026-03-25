@@ -1,11 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DiedUI : MonoBehaviour
 {
     public GameObject diedUI;
-
 
     private void OnEnable()
     {
@@ -22,31 +20,23 @@ public class DiedUI : MonoBehaviour
         diedUI.SetActive(true);
     }
 
+    /// <summary>
+    /// Reloads the scene where the last checkpoint was triggered.
+    /// OnSceneLoaded → LoadGame() restores position, stats and inventory from the save file.
+    /// </summary>
     public void Respawn()
     {
-        PlayerData data = SaveSystem.LodadPlayer();
-        if (data == null) return;
+        // Suppress the auto-save on scene unload so we don't overwrite the
+        // checkpoint save with the dead state.
+        DataPersistenceeManager.SuppressNextSave = true;
 
-        StartCoroutine(RespawnRoutine(data));
-
-        StatsManager.Instance.ApplyPlayerData(data);
-
-        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
-        playerHealth.Revive();
+        string targetScene = DataPersistenceeManager.instance.GetLastSavedScene();
+        SceneManager.LoadScene(targetScene);
     }
 
-    //public void GoToMainMenu()
-    //{
-    //    SceneManager.LoadScene("MainMenu");
-    //}
-
-    IEnumerator RespawnRoutine(PlayerData data)
+    public void GoToMainMenu()
     {
-        SceneManager.LoadScene(data.sceneName);
-
-        yield return null;
-        yield return null;
-
-        diedUI.SetActive(false);
+        DataPersistenceeManager.SuppressNextSave = true;
+        SceneManager.LoadScene("Menu");
     }
 }

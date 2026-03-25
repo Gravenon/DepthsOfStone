@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if(Instance != null) 
         {
             CleanUpAndDestroy();
             return;
@@ -25,6 +24,37 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             MarkPersistentObjects();
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AudioListener[] listeners = FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
+        if (listeners.Length <= 1) return;
+
+        // Keep the first active one, disable the rest
+        bool keptOne = false;
+        foreach (AudioListener listener in listeners)
+        {
+            if (!keptOne)
+            {
+                listener.enabled = true;
+                keptOne = true;
+            }
+            else
+            {
+                listener.enabled = false;
+            }
         }
     }
 
