@@ -14,7 +14,7 @@ public class ShopManger : MonoBehaviour
         for (int i = 0; i < shopItems.Count && i < shopSlots.Length; i++)
         {
             ShopItems shopItem = shopItems[i];
-            shopSlots[i].Initialize(shopItem.itemSO, shopItem.price);
+            shopSlots[i].Initialize(shopItem.itemSO, shopItem.price, shopItem.ransomProcentage);
             shopSlots[i].gameObject.SetActive(true);
         }
 
@@ -64,7 +64,7 @@ public class ShopManger : MonoBehaviour
             if (slot.itemSO == itemSO)
             {
 
-                int reward = (int)Math.Ceiling(slot.price / 5.0);
+                int reward = (int)Math.Ceiling(slot.price * slot.ransomProcentage);
                 inventoryManager.coins += reward;
                 inventoryManager.coinText.text = inventoryManager.coins.ToString();
             }
@@ -81,5 +81,7 @@ public class ShopItems
 {
     public ItemSO itemSO;
     public int price;
+
+    public float ransomProcentage;
 
 }

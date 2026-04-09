@@ -17,13 +17,17 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private ShopInfo shopInfo;
 
     public int price;
-    public void Initialize(ItemSO newitemSO, int price)
+
+    public float ransomProcentage;
+
+    public void Initialize(ItemSO newitemSO, int price, float ransomProcentage )
     {
         //fill the slot with information
         itemSO = newitemSO;
         itemImage.sprite = itemSO.itemIcon;
         itemNameText.text = itemSO.itemName;
         this.price = price;
+        this.ransomProcentage = ransomProcentage;
         priceText.text = price.ToString();
 
     }

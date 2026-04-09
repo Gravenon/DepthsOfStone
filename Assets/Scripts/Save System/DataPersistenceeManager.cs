@@ -17,6 +17,7 @@ public class DataPersistenceeManager : MonoBehaviour
     private static bool _pendingNewGame = false;
     private static GameData _pendingGameData = null;
     public static bool SuppressNextSave = false;
+    public static bool IsRespawning = false;
 
     private string profilID
     {
@@ -49,10 +50,6 @@ public class DataPersistenceeManager : MonoBehaviour
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    // ---------------------------------------------------------------
-    // Scene events
-    // ---------------------------------------------------------------
-
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         dataPersistenceObjects = FindAllDataPersistenceObjects();
@@ -63,10 +60,8 @@ public class DataPersistenceeManager : MonoBehaviour
             _pendingNewGame = false;
             _pendingGameData = null;
 
-            // Step 1: Reset all objects to clean defaults.
             ApplyDataToAll(new GameData("", ""));
 
-            // Step 2: Apply the actual new-game data on top.
             ApplyDataToAll(gameData);
 
             dataHandler.Save(gameData, profilID);
@@ -75,6 +70,8 @@ public class DataPersistenceeManager : MonoBehaviour
         {
             LoadGame();
         }
+
+        IsRespawning = false;
     }
 
     public void OnSceneUnloaded(Scene scene)
@@ -86,27 +83,16 @@ public class DataPersistenceeManager : MonoBehaviour
         }
         SaveGame();
     }
-
-    // ---------------------------------------------------------------
-    // Public API
-    // ---------------------------------------------------------------
-
-    /// <summary>
-    /// Select a profile slot. Resets all runtime state first so no
-    /// data from a previous world can bleed through.
-    /// </summary>
+    
     public void ChangeSelectedProfileID(string newProfilID)
     {
         profilID = newProfilID;
         gameData = dataHandler.Load(newProfilID);
 
-        // Always do a full reset first — wipes any in-memory leftovers
-        // from a previously active world (time, inventory, stats, etc.).
         HardResetAllObjects();
 
         if (gameData != null)
         {
-            // Apply this profile's data on top of the clean state.
             dataPersistenceObjects = FindAllDataPersistenceObjects();
             ApplyDataToAll(gameData);
         }
@@ -117,14 +103,11 @@ public class DataPersistenceeManager : MonoBehaviour
         _pendingGameData = new GameData(worldName, playerName);
         _pendingNewGame = true;
 
-        // Wipe any leftover runtime state immediately (operates on live
-        // objects — DDOL ones like WorldTime and InventoryManager).
         HardResetAllObjects();
 
         if (WorldTime.Instance != null)
             WorldTime.Instance.ResetToMorning();
 
-        // Write clean file so the slot shows data in the menu immediately.
         dataHandler.Save(_pendingGameData, profilID);
     }
 
@@ -163,16 +146,31 @@ public class DataPersistenceeManager : MonoBehaviour
 
     public void OnApplicationQuit() => SaveGame();
 
-    /// <summary>True when the currently selected profile has a save file on disk.</summary>
     public bool HasActiveGameData => gameData != null;
 
     public Dictionary<string, GameData> GetAllProfilesGameData()
         => dataHandler.LoadAllProfiles();
 
-    /// <summary>
-    /// Returns the scene where the last checkpoint was saved.
-    /// Falls back to the active scene.
-    /// </summary>
+    public void SaveCheckpoint(Vector3 checkpointPosition)
+    {
+        if (gameData == null)
+        {
+            Debug.LogWarning("[DPM] SaveCheckpoint skipped — no active game data.");
+            return;
+        }
+
+        gameData.lastScene = SceneManager.GetActiveScene().name;
+        gameData.playerPosition = checkpointPosition;
+
+        // Store dedicated checkpoint data used on respawn
+        gameData.checkpointScene = SceneManager.GetActiveScene().name;
+        gameData.checkpointPosition = checkpointPosition;
+        gameData.checkpointHealth = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
+
+        SaveGame();
+        Debug.Log($"[DPM] Checkpoint saved — scene: {gameData.lastScene}, pos: {checkpointPosition}");
+    }
+
     public string GetLastSavedScene()
     {
         if (gameData != null && !string.IsNullOrEmpty(gameData.lastScene))
@@ -180,16 +178,19 @@ public class DataPersistenceeManager : MonoBehaviour
         return SceneManager.GetActiveScene().name;
     }
 
-    // ---------------------------------------------------------------
-    // Internal helpers
-    // ---------------------------------------------------------------
+    public string GetCheckpointScene()
+    {
+        if (gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene))
+            return gameData.checkpointScene;
+        return GetLastSavedScene();
+    }
 
-    /// <summary>
-    /// Hard-resets every IDataPersistence object currently alive in
-    /// any scene (including DontDestroyOnLoad) by feeding each a blank
-    /// GameData. Re-discovers objects fresh every call so the list is
-    /// never stale.
-    /// </summary>
+    public bool HasCheckpoint()
+    {
+        return gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene);
+    }
+
+
     private void HardResetAllObjects()
     {
         if (WorldTime.Instance != null)

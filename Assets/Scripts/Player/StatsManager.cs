@@ -87,15 +87,28 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     {
         if (this == null || playerTransform == null) return;
 
-        // Restore position only if it was saved in this same scene.
-        // For a brand-new world (lastScene is empty), always spawn at origin.
-        if (string.IsNullOrEmpty(data.lastScene))
-            playerTransform.position = Vector3.zero;
-        else if (data.lastScene == SceneManager.GetActiveScene().name)
-            playerTransform.position = data.playerPosition;
+        if (DataPersistenceeManager.IsRespawning && !string.IsNullOrEmpty(data.checkpointScene))
+        {
+            // Respawning from checkpoint: use checkpoint position and restore health to checkpoint health
+            if (data.checkpointScene == SceneManager.GetActiveScene().name)
+                playerTransform.position = data.checkpointPosition;
 
-        maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
-        currentHealth = data.currentHealth != 0 ? data.currentHealth : baseCurrentHealth;
+            maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
+            currentHealth = data.checkpointHealth > 0 ? data.checkpointHealth : (data.maxHealth != 0 ? data.maxHealth : baseMaxHealth);
+        }
+        else
+        {
+            // Restore position only if it was saved in this same scene.
+            // For a brand-new world (lastScene is empty), always spawn at origin.
+            if (string.IsNullOrEmpty(data.lastScene))
+                playerTransform.position = Vector3.zero;
+            else if (data.lastScene == SceneManager.GetActiveScene().name)
+                playerTransform.position = data.playerPosition;
+
+            maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
+            currentHealth = data.currentHealth != 0 ? data.currentHealth : baseCurrentHealth;
+        }
+
         speed = data.speed != 0 ? data.speed : baseSpeed;
         damage = data.damage != 0 ? data.damage : baseDamage;
         weaponRange = data.weaponRange != 0 ? data.weaponRange : baseWeaponRange;

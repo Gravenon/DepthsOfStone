@@ -32,6 +32,11 @@ public class GameData
     // Player position (only restored if lastScene matches the loaded scene)
     public Vector3 playerPosition;
 
+    // Last activated checkpoint (used on respawn)
+    public string checkpointScene;
+    public Vector3 checkpointPosition;
+    public int checkpointHealth;
+
     // Player stats
     public int maxHealth;
     public int currentHealth;
@@ -64,19 +69,19 @@ public class GameData
         coins = 0;
         inventoryItems = new SerializedSlot[0];
         equipmentItems = new SerializedSlot[0];
-        equippedItems  = new SerializedEquippedSlot[0];
+        equippedItems = new SerializedEquippedSlot[0];
         arenaWaveIndex = 0;
 
         if (StatsManager.Instance != null)
         {
-            maxHealth      = StatsManager.Instance.baseMaxHealth;
-            currentHealth  = StatsManager.Instance.baseCurrentHealth;
-            speed          = StatsManager.Instance.baseSpeed;
-            damage         = StatsManager.Instance.baseDamage;
-            weaponRange    = StatsManager.Instance.baseWeaponRange;
+            maxHealth = StatsManager.Instance.baseMaxHealth;
+            currentHealth = StatsManager.Instance.baseCurrentHealth;
+            speed = StatsManager.Instance.baseSpeed;
+            damage = StatsManager.Instance.baseDamage;
+            weaponRange = StatsManager.Instance.baseWeaponRange;
             knockbackForce = StatsManager.Instance.baseKnockbackForce;
             knockbackTimre = StatsManager.Instance.baseKnockbackTimre;
-            stunTime       = StatsManager.Instance.baseStunTime;
+            stunTime = StatsManager.Instance.baseStunTime;
         }
     }
 }

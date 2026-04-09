@@ -20,17 +20,15 @@ public class DiedUI : MonoBehaviour
         diedUI.SetActive(true);
     }
 
-    /// <summary>
-    /// Reloads the scene where the last checkpoint was triggered.
-    /// OnSceneLoaded → LoadGame() restores position, stats and inventory from the save file.
-    /// </summary>
     public void Respawn()
     {
-        // Suppress the auto-save on scene unload so we don't overwrite the
-        // checkpoint save with the dead state.
         DataPersistenceeManager.SuppressNextSave = true;
+        DataPersistenceeManager.IsRespawning = true;
 
-        string targetScene = DataPersistenceeManager.instance.GetLastSavedScene();
+        string targetScene = DataPersistenceeManager.instance.HasCheckpoint()
+            ? DataPersistenceeManager.instance.GetCheckpointScene()
+            : DataPersistenceeManager.instance.GetLastSavedScene();
+
         SceneManager.LoadScene(targetScene);
     }
 

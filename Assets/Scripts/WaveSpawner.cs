@@ -7,6 +7,7 @@ public class WaveData
     public string name;
     public int easyEnimies;
     public int hardEnimies;
+    public int distantEnimies;
     public float rate;
 }
 
@@ -20,6 +21,7 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
 
     public GameObject easyEnimiesPrefab;
     public GameObject hardEnimiesPrefab;
+    public GameObject distantEnimiesPrefab;
 
     private int nextWave = 0;
 
@@ -40,9 +42,39 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
     public float WaveCountdown => waveCountdown;
     public int NextWave => nextWave + 1;
 
+    private MusicManager musicManager;
+
     void Start()
     {
         waveCountdown = timeBetweenWaves;
+        musicManager = FindFirstObjectByType<MusicManager>();
+        musicManager.PlayCombatMusic();
+        
+        // Подписываемся на событие смерти игрока
+        PlayerHealth.Died += OnPlayerDied;
+    }
+
+    void OnDestroy()
+    {
+        // Отписываемся от события при уничтожении
+        PlayerHealth.Died -= OnPlayerDied;
+    }
+
+    private void OnPlayerDied()
+    {
+        if (transitionTriggered) return;
+        
+        transitionTriggered = true;
+        
+        // Сбрасываем индекс волн
+        nextWave = 0;
+        
+        // Сохраняем игру с обнулённым индексом
+        DataPersistenceeManager.instance.SaveGame();
+        DataPersistenceeManager.SuppressNextSave = true;
+        
+        // Переходим в другую сцену
+        sceneChanger.ChangeScene();
     }
 
     void Update()
@@ -83,12 +115,28 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
         state = SpawnState.COUNTING;
 
         nextWave++;
-        // Save now; suppress the automatic save that fires on scene unload
-        // to avoid touching already-destroyed objects.
-        DataPersistenceeManager.instance.SaveGame();
-        DataPersistenceeManager.SuppressNextSave = true;
-
-        sceneChanger.ChangeScene();
+        
+        // Проверяем, остались ли еще волны
+        if (nextWave >= waves.Length)
+        {
+            // Все волны пройдены - переходим в другую сцену
+            Debug.Log("All waves completed!");
+            
+            // Save now; suppress the automatic save that fires on scene unload
+            // to avoid touching already-destroyed objects.
+            DataPersistenceeManager.instance.SaveGame();
+            DataPersistenceeManager.SuppressNextSave = true;
+            
+            transitionTriggered = true;
+            sceneChanger.ChangeScene();
+            musicManager.PlayCalmMusic();
+        }
+        else
+        {
+            // Еще есть волны - продолжаем
+            Debug.Log("Preparing next wave...");
+            waveComplete = false;
+        }
     }
 
     bool EnemyIsAlive()
@@ -119,6 +167,12 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
         for (int i = 0; i < _wave.hardEnimies; i++)
         {
             SpawnEnemy(hardEnimiesPrefab);
+            yield return new WaitForSeconds(1f / _wave.rate);
+        }
+
+        for (int i = 0; i < _wave.distantEnimies; i++)
+        {
+            SpawnEnemy(distantEnimiesPrefab);
             yield return new WaitForSeconds(1f / _wave.rate);
         }
 

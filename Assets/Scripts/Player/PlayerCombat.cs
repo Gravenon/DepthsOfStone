@@ -7,19 +7,23 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
+    private Vector3 baseAttackOffset;
+
     public Animator anim;
+
+    private void Awake()
+    {
+        baseAttackOffset = attackPoint.localPosition;
+    }
 
     public float colldown = 2;
     private float timer;
 
-    private Camera mainCamera;
+    public float knockbackForce = 5f;
+    public float knockbackStunTime = 0.2f;
+    public float hitStopDuration = 0.05f;
 
     public PlayerMovment playerMovment;
-
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-    }
 
     private void Update()
     {
@@ -34,6 +38,7 @@ public class PlayerCombat : MonoBehaviour
         if (timer <= 0)
         {
             anim.SetBool("isAttacking", true);
+            playerMovment.AudiManager.PlayHitSound();
             timer = colldown;
         }
     }
@@ -44,9 +49,11 @@ public class PlayerCombat : MonoBehaviour
 
         if (enemies.Length > 0)
         {
-            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-StatsManager.Instance.damage);
+            Enemy_Health enemyHealth = enemies[0].GetComponent<Enemy_Health>();
+            enemyHealth.ChangeHealth(-StatsManager.Instance.damage);
+            enemyHealth.Knockback(transform, knockbackForce, knockbackStunTime);
+            StartCoroutine(HitSotp(hitStopDuration));
         }
-
     }
 
     public void FinishAttacking()
@@ -54,10 +61,28 @@ public class PlayerCombat : MonoBehaviour
         anim.SetBool("isAttacking", false);
     }
 
-    public void FlipAttackPoint()
+    public void SetAttackPointDirection(Vector2 direction)
     {
-        attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, attackPoint.localPosition.z);
+        float dist = baseAttackOffset.magnitude;
+        if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
+        {
+            attackPoint.localPosition = new Vector3(dist * Mathf.Sign(direction.x), -0.15f, baseAttackOffset.z);
+        }
+        else
+        {
+            attackPoint.localPosition = new Vector3(0f, dist * Mathf.Sign(direction.y), baseAttackOffset.z);
+        }
     }
+
+    IEnumerator HitSotp(float time)
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1f;
+    }
+
+
+
 
 
     // private void OnDrawGizmosSelected()

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DefualtMine_2lvl
   m_EditorClassIdentifier: Assembly-CSharp::MineConfig
   enemyPrefabs:
-  - {fileID: 1234291985899740653, guid: 777afe3f50d13fa499791360ab085de8, type: 3}
-  enemiesCount: 4
+  - {fileID: 7905704420351958002, guid: d7bc376d44d424ede988d1e2bbbe414f, type: 3}
+  - {fileID: 6791109013168107850, guid: 772ad3b7ebd614d4cbaeffd9ba9a4d12, type: 3}
+  enemiesCount: 3
   ores:
   - orePrefab: {fileID: 2904974959229320165, guid: bec95187d8a6b02469713c7f118cfae0, type: 3}
     minAmount: 5

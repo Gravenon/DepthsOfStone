@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.XR;
 
 public class Enemy_Movement : MonoBehaviour
 {
@@ -10,14 +7,18 @@ public class Enemy_Movement : MonoBehaviour
     public float attackRange = 2f;
     public float attackCooldown = 2; // Time between attacks
     public float playerDetectRange = 5;
+    public float stoppingDistance = 1.2f;
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
-    private Enemy_Combat ec;
+    private Enemy_Health enemyHealth;
+    private Enemy_Combat enemyCombat;
 
     private float attackCooldownTimer;
-    private int facingDirection = -1; // 1 for right, -1 for left
+    private int facingDirection = -1;
     private EnemyState enemyState;
+    private Vector2 lastMoveDirection = Vector2.down;
+    private Vector2 currentDirection = Vector2.down;
 
     private Rigidbody2D rb;
     private Transform player;
@@ -37,10 +38,17 @@ public class Enemy_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        enemyHealth = GetComponent<Enemy_Health>();
+        enemyCombat = GetComponent<Enemy_Combat>();
 
         // patrol initialization from spawn point
         spawnPosition = transform.position;
         StartCoroutine(PauseAndPickNewDestination());
+
+        GetComponent<Enemy_Combat>().OnAttackFinished += () =>
+        {
+            ChangeState(EnemyState.Chasing);
+        };
     }
 
     void Update()
@@ -51,6 +59,8 @@ public class Enemy_Movement : MonoBehaviour
         {
             attackCooldownTimer -= Time.deltaTime;
         }
+
+        if (enemyHealth != null && enemyHealth.isKnockback) return;
 
         if (enemyState == EnemyState.Chasing)
         {
@@ -64,6 +74,13 @@ public class Enemy_Movement : MonoBehaviour
         {
             Patrol();
         }
+
+        // Обновляем attack point только если не в состоянии атаки и не атакуем
+        if (enemyState != EnemyState.Attacking && !enemyCombat.IsAttacking)
+            enemyCombat.SetAttackPointDirection(lastMoveDirection);
+
+        // Обновление направления для анимации
+        UpdateAnimationDirection();
     }
 
     void Chase()
@@ -74,10 +91,22 @@ public class Enemy_Movement : MonoBehaviour
             Flip();
         }
 
-        Vector2 direction = (player.position - transform.position).normalized;
-        rb.linearVelocity = direction * speed;
-    }
+        float distance = Vector2.Distance(transform.position, player.position);
+        float stopAt = Mathf.Max(stoppingDistance, attackRange);
+        if (distance > stopAt)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            lastMoveDirection = direction;
+            rb.linearVelocity = direction * speed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
 
+            if (player != null)
+                lastMoveDirection = (player.position - transform.position).normalized;
+        }
+    }
 
     void Flip()
     {
@@ -86,7 +115,6 @@ public class Enemy_Movement : MonoBehaviour
 
     }
 
-    // --- Patrol behaviour -------------------------------------------------
     void Patrol()
     {
         if (isPaused)
@@ -107,7 +135,8 @@ public class Enemy_Movement : MonoBehaviour
     private void Move()
     {
         Vector2 direction = (patrolTarget - (Vector2)transform.position).normalized;
-        
+        lastMoveDirection = direction;
+
         // flip sprite if moving opposite to facing
         if (direction.x < 0 && facingDirection == 1)
             Flip();
@@ -151,11 +180,14 @@ public class Enemy_Movement : MonoBehaviour
         {
             player = hits[0].transform;
 
-            //if the player is in attack range AND cooldown is ready
             if (Vector2.Distance(transform.position, player.position) <= attackRange && attackCooldownTimer <= 0)
             {
-                attackCooldownTimer = attackCooldown;
-                ChangeState(EnemyState.Attacking);
+                if (!enemyCombat.IsAttacking)
+                {
+                    attackCooldownTimer = attackCooldown;
+                    ChangeState(EnemyState.Attacking);
+                    enemyCombat.InitiateAttack();
+                }
             }
             else if (Vector2.Distance(transform.position, player.position) > attackRange && enemyState != EnemyState.Attacking)
             {
@@ -166,31 +198,36 @@ public class Enemy_Movement : MonoBehaviour
         {
             // no player found — continue patrolling
             ChangeState(EnemyState.Patrolling);
+            enemyCombat.ResetAttack();
         }
     }
 
     void ChangeState(EnemyState newState)
     {
-        if (enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", false);
-        else if (enemyState == EnemyState.Attacking)
-            anim.SetBool("isAttacking", false);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", false);
-        else if (enemyState == EnemyState.Patrolling)
-            anim.SetBool("isPatrolling", false);
-
         enemyState = newState;
 
-        if (enemyState == EnemyState.Idle)
-            anim.SetBool("isIdle", true);
-        else if (enemyState == EnemyState.Attacking)
-            anim.SetBool("isAttacking", true);
-        else if (enemyState == EnemyState.Chasing)
-            anim.SetBool("isChasing", true);
-        else if (enemyState == EnemyState.Patrolling)
-            anim.SetBool("isPatrolling", true);
+        anim.SetBool("isAttacking", enemyState == EnemyState.Attacking);
+        anim.SetBool("isChasing", enemyState == EnemyState.Chasing);
+        anim.SetBool("isPatrolling", enemyState == EnemyState.Patrolling);
+
+        UpdateAnimationDirection();
     }
+
+    void UpdateAnimationDirection()
+    {
+        if (rb.linearVelocity.magnitude > 0.01f)
+        {
+            currentDirection = rb.linearVelocity.normalized;
+        }
+        else if (lastMoveDirection.magnitude > 0.01f)
+        {
+            currentDirection = lastMoveDirection;
+        }
+
+        anim.SetFloat("DirectionX", currentDirection.x);
+        anim.SetFloat("DirectionY", currentDirection.y);
+    }
+
 
     private void OnDrawGizmosSelected()
     {
@@ -201,14 +238,17 @@ public class Enemy_Movement : MonoBehaviour
         // patrol bounds visualization (matching NPC_Wander style)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(patrolWidth, patrolHeight, 0));
+
+        Gizmos.color = Color.blue;
+        if (enemyCombat != null)
+            Gizmos.DrawWireSphere(transform.position, enemyCombat.weaponRange);
     }
 
 }
 
 public enum EnemyState
 {
-    Idle,
     Patrolling,
     Chasing,
-    Attacking
+    Attacking,
 }

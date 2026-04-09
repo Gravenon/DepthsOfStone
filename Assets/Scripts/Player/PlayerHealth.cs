@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using TMPro;
 using System;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
-{
+{ 
+    [SerializeField] private bool isInvulnerable;
+    
     public TMP_Text healthText;
     public Animator healthTextAnim;
 
@@ -22,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
-        if(isDead) return;
+        if(isDead || isInvulnerable) return;
 
         StatsManager.Instance.currentHealth += amount;
         StatsManager.Instance.currentHealth = Mathf.Clamp(StatsManager.Instance.currentHealth, 0, StatsManager.Instance.maxHealth);
@@ -50,6 +49,18 @@ public class PlayerHealth : MonoBehaviour
 
         healthTextAnim.Play("TextUpdate");
         healthText.text = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
+    }
+
+    public void SetInvulnerable(bool invulnerable)
+    {
+        isInvulnerable = invulnerable;
+    }
+
+    private IEnumerator InvulnerabilityCoroutine(float duration)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(duration);
+        isInvulnerable = false;
     }
 
 

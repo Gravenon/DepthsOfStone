@@ -15,9 +15,10 @@ MonoBehaviour:
   itemName: Meet
   itemDescription: Delicious meat
   itemIcon: {fileID: -736579258, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  isCoin: 0
-  currentHealth: 1
-  maxHealth: 2
+  itemType: 0
+  stackSize: 5
+  currentHealth: 2
+  maxHealth: 0
   speed: 0
   damage: 0
-  duration: 20
+  duration: 0
