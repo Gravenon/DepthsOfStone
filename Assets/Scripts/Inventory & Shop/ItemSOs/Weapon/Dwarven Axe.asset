@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
-  m_Name: Axe
+  m_Name: Dwarven Axe
   m_EditorClassIdentifier: 
-  itemName: Combat axe
-  itemDescription: "The greatest dwarf war axe.\nThe inscription \u2018'This is Sparta!\u2019
-    is engraved on the handle."
+  itemName: 'Dwarven Axe '
+  itemDescription: A heavy blow, proven in the mines.
   itemIcon: {fileID: 1265588211, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
   itemType: 5
   stackSize: 1
   currentHealth: 0
   maxHealth: 0
   speed: 0
-  damage: 10
+  damage: 18
   duration: 0

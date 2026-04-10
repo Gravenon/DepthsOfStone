@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6154783773447769082}
   - component: {fileID: 8885805372947791789}
   m_Layer: 6
-  m_Name: IronOre
+  m_Name: Silver ore
   m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

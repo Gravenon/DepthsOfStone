@@ -26,6 +26,12 @@ public class ShopManger : MonoBehaviour
 
     public void TryBuyItem(ItemSO itemSO, int price)
     {
+        if (ShopKeeper.currentShopKeeper != null && ShopKeeper.currentShopKeeper.OnlySell)
+        {
+            Debug.Log("Этот торговец не продает товары, только покупает у игроков.");
+            return;
+        }
+
         if (itemSO != null && inventoryManager.coins >= price)
         {
             if (HasSpaceForItem(itemSO))

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
-  m_Name: Meet
-  m_EditorClassIdentifier: 
-  itemName: Meet
-  itemDescription: Delicious meat
-  itemIcon: {fileID: -736579258, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 0
-  stackSize: 5
-  currentHealth: 2
+  m_Name: A battered helmet
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: 'A battered helmet '
+  itemDescription: "It\u2019s seen a lot\u2026 and survived."
+  itemIcon: {fileID: 0}
+  itemType: 2
+  stackSize: 1
+  currentHealth: 10
   maxHealth: 0
   speed: 0
   damage: 0

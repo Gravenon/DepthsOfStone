@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
-  m_Name: Epick Axe
-  m_EditorClassIdentifier: 
-  itemName: Epick Axe
-  itemDescription: "The greatest dwarf war axe.\nThe inscription \u2018'This is Sparta!\u2019
-    is engraved on the handle."
-  itemIcon: {fileID: -1082413018, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
+  m_Name: Battle Hammer
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: 'Battle Hammer '
+  itemDescription: Every blow is as powerful as a mountain.
+  itemIcon: {fileID: -751710411, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
   itemType: 5
-  stackSize: 1
+  stackSize: 6
   currentHealth: 0
   maxHealth: 0
-  speed: 0
-  damage: 15
+  speed: -1
+  damage: 25
   duration: 0

@@ -19,9 +19,14 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField] private List<ShopItems> shopWeapons;
     [SerializeField] private List<ShopItems> shopArmour;
 
+    [Header("Settings trade")]
+    [SerializeField] private bool onlySell = false; 
+
     public static event Action<ShopManger, bool> OnShopOpenClose;
     private bool playerInRange;
     private bool isShopOpen;
+
+    public bool OnlySell => onlySell;
 
 
     private void OnEnable()
