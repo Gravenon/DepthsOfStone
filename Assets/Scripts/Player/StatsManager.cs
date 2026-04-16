@@ -10,7 +10,7 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     public TMP_Text healthText;
 
     [Header("Combat Stats")]
-    public int damage;
+    public float damage;
     public float weaponRange;
     public float knockbackForce;
     public float knockbackTimre;
@@ -29,7 +29,7 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     [HideInInspector] public int baseMaxHealth;
     [HideInInspector] public int baseCurrentHealth;
     [HideInInspector] public int baseSpeed;
-    [HideInInspector] public int baseDamage;
+    [HideInInspector] public float baseDamage;
     [HideInInspector] public float baseWeaponRange;
     [HideInInspector] public float baseKnockbackForce;
     [HideInInspector] public float baseKnockbackTimre;
@@ -74,9 +74,15 @@ public class StatsManager : MonoBehaviour, IDataPersistence
         statsUI.UpdataAllStats();
     }
 
-    public void UpdateDamage(int amount)
+    public void UpdateDamage(float amount)
     {
         damage += amount;
+        statsUI.UpdataAllStats();
+    }
+
+    public void UpdataKnockbackForce(int amount)
+    {
+        knockbackForce += amount;
         statsUI.UpdataAllStats();
     }
 

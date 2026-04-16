@@ -389,14 +389,21 @@ MonoBehaviour:
   anim: {fileID: 779010225352978625}
   shopCanvasGroup: {fileID: 0}
   shopManager: {fileID: 0}
+  interactAction: {fileID: 0}
+  cancelAction: {fileID: 0}
   shopItems:
   - itemSO: {fileID: 11400000, guid: 7078d58369e1a234399f54a57c51bf69, type: 2}
     price: 2
+    ransomProcentage: 0
   - itemSO: {fileID: 11400000, guid: cee5bf6773674184983e7cd0a7574389, type: 2}
     price: 5
+    ransomProcentage: 0
   shopWeapons:
   - itemSO: {fileID: 11400000, guid: 71a82a93db04fad4889e9239b82aec3c, type: 2}
     price: 15
+    ransomProcentage: 0
   shopArmour:
   - itemSO: {fileID: 11400000, guid: 4eb77792aefab3144b9fe991ec2082e8, type: 2}
     price: 3
+    ransomProcentage: 0
+  onlySell: 0

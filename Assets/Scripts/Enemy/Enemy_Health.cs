@@ -25,9 +25,9 @@ public class Enemy_Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
-        currentHealth += amount;
+        currentHealth += (int)amount;
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;

@@ -6,7 +6,7 @@ public class Enemy_Combat : MonoBehaviour
 {
     public Action OnAttackFinished;
 
-    public int damage = 1;
+    public float damage = 1;
     public Transform attackPoint;
     public float weaponRange;
     public float knockbackForce;
@@ -25,6 +25,7 @@ public class Enemy_Combat : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Coroutine attackRoutine;
+    private SkillManager skillManager;
 
     private bool isAttacking;
     private bool hasHit;
@@ -39,6 +40,7 @@ public class Enemy_Combat : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        skillManager = FindFirstObjectByType<SkillManager>();
     }
 
     public void SetAttackPointDirection(Vector2 direction)
@@ -117,7 +119,15 @@ public class Enemy_Combat : MonoBehaviour
             if (health != null)
             {
                 hasHit = true;
-                health.ChangeHealth(-damage);
+                
+                // Применяем снижение урона от Stone Skin
+                float finalDamage = damage;
+                if (skillManager != null)
+                {
+                    finalDamage = skillManager.ApplyDamageReduction(damage);
+                }
+                
+                health.ChangeHealth(-finalDamage);
 
                 StartCoroutine(HitStop(hitStopDuration));
 

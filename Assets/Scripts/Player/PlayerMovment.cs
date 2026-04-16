@@ -31,6 +31,7 @@ public class PlayerMovment : MonoBehaviour
     private TrailRenderer[] dashTrails;
     private bool isDashing;
     private bool canDash = true;
+    private bool isDashUnlocked = false;
 
     private void Awake()
     {
@@ -104,7 +105,7 @@ public class PlayerMovment : MonoBehaviour
 
     private IEnumerator DashRoutine()
     {
-        if (!canDash || isDashing) yield break;
+        if (!isDashUnlocked || !canDash || isDashing) yield break;
 
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
         canDash = false;
@@ -153,5 +154,11 @@ public class PlayerMovment : MonoBehaviour
         foreach(var trail in dashTrails){
             trail.emitting = isDashing;
         }
+    }
+
+    public void UnlockDash()
+    {
+        isDashUnlocked = true;
+        Debug.Log("Даш разблокирован!");
     }
 }

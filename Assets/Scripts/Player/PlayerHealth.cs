@@ -19,11 +19,11 @@ public class PlayerHealth : MonoBehaviour
         healthText.text = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
         if(isDead || isInvulnerable) return;
 
-        StatsManager.Instance.currentHealth += amount;
+        StatsManager.Instance.currentHealth += (int)amount;
         StatsManager.Instance.currentHealth = Mathf.Clamp(StatsManager.Instance.currentHealth, 0, StatsManager.Instance.maxHealth);
 
         healthTextAnim.Play("TextUpdate");

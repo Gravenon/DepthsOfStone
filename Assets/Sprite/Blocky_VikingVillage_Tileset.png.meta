@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: f0d5303110acd4b1b9da7789f987110f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1149503610564467405
+    second: Blocky_VikingVillage_Tileset_0
+  - first:
+      213: -905595598625316853
+    second: Blocky_VikingVillage_Tileset_1
+  - first:
+      213: -3893063457481598320
+    second: Blocky_VikingVillage_Tileset_2
+  - first:
+      213: 3623672151111984264
+    second: Blocky_VikingVillage_Tileset_3
+  - first:
+      213: 6959721708093795228
+    second: Blocky_VikingVillage_Tileset_4
+  - first:
+      213: -6941738555543281447
+    second: Blocky_VikingVillage_Tileset_5
+  - first:
+      213: 7530350963229439912
+    second: Blocky_VikingVillage_Tileset_6
+  - first:
+      213: 8043909023511957572
+    second: Blocky_VikingVillage_Tileset_7
+  - first:
+      213: -1247800666797899163
+    second: Blocky_VikingVillage_Tileset_8
+  - first:
+      213: 6753068001594861325
+    second: Blocky_VikingVillage_Tileset_9
+  - first:
+      213: 6537159451378541323
+    second: Blocky_VikingVillage_Tileset_10
+  - first:
+      213: -7223669733292337365
+    second: Blocky_VikingVillage_Tileset_11
+  - first:
+      213: -8772390560093524271
+    second: Blocky_VikingVillage_Tileset_12
+  - first:
+      213: 4752224910581091229
+    second: Blocky_VikingVillage_Tileset_13
+  - first:
+      213: -2864217278118881458
+    second: Blocky_VikingVillage_Tileset_14
+  - first:
+      213: 3123481998431155861
+    second: Blocky_VikingVillage_Tileset_15
+  - first:
+      213: 4139834749579295167
+    second: Blocky_VikingVillage_Tileset_16
+  - first:
+      213: 3328474588007780819
+    second: Blocky_VikingVillage_Tileset_17
+  - first:
+      213: -7684812095538989634
+    second: Blocky_VikingVillage_Tileset_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_0
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 4
+        width: 113
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dca59b7817bd3ff00800000000000000
+      internalID: 1149503610564467405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 61
+        width: 162
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b00e7c1e99dae63f0800000000000000
+      internalID: -905595598625316853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_2
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 131
+        width: 111
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a51c8696f09f9c0800000000000000
+      internalID: -3893063457481598320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_3
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 32
+        width: 150
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88461855f9ed94230800000000000000
+      internalID: 3623672151111984264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_4
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 32
+        width: 22
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9b6182f406e59060800000000000000
+      internalID: 6959721708093795228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_5
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 96
+        width: 23
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d0a539009df9af90800000000000000
+      internalID: -6941738555543281447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_6
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 64
+        width: 22
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a7bf45bd4e218860800000000000000
+      internalID: 7530350963229439912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_7
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 83
+        width: 143
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4405dff63a4b1af60800000000000000
+      internalID: 8043909023511957572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_8
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 83
+        width: 15
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562040997ebeeaee0800000000000000
+      internalID: -1247800666797899163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_9
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 0
+        width: 46
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d076e137197b7bd50800000000000000
+      internalID: 6753068001594861325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_10
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 78
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03618bb2e7a8ba50800000000000000
+      internalID: 6537159451378541323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_11
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 33
+        width: 18
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b279e5476ae50cb90800000000000000
+      internalID: -7223669733292337365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_12
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 38
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dea2a28345324680800000000000000
+      internalID: -8772390560093524271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_13
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 38
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9bc2f7b06b43f140800000000000000
+      internalID: 4752224910581091229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_14
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 7
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4710329f814048d0800000000000000
+      internalID: -2864217278118881458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_15
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 7
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596f0d22456d85b20800000000000000
+      internalID: 3123481998431155861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2
+        width: 64
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb9fd7d55c5a37930800000000000000
+      internalID: 4139834749579295167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_17
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 2
+        width: 212
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d15e16b00e113e20800000000000000
+      internalID: 3328474588007780819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocky_VikingVillage_Tileset_18
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 0
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb5f5cf6d101a5590800000000000000
+      internalID: -7684812095538989634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6528e8f8e49a042759c00c96f474cd27
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Blocky_VikingVillage_Tileset_0: 1149503610564467405
+      Blocky_VikingVillage_Tileset_1: -905595598625316853
+      Blocky_VikingVillage_Tileset_10: 6537159451378541323
+      Blocky_VikingVillage_Tileset_11: -7223669733292337365
+      Blocky_VikingVillage_Tileset_12: -8772390560093524271
+      Blocky_VikingVillage_Tileset_13: 4752224910581091229
+      Blocky_VikingVillage_Tileset_14: -2864217278118881458
+      Blocky_VikingVillage_Tileset_15: 3123481998431155861
+      Blocky_VikingVillage_Tileset_16: 4139834749579295167
+      Blocky_VikingVillage_Tileset_17: 3328474588007780819
+      Blocky_VikingVillage_Tileset_18: -7684812095538989634
+      Blocky_VikingVillage_Tileset_2: -3893063457481598320
+      Blocky_VikingVillage_Tileset_3: 3623672151111984264
+      Blocky_VikingVillage_Tileset_4: 6959721708093795228
+      Blocky_VikingVillage_Tileset_5: -6941738555543281447
+      Blocky_VikingVillage_Tileset_6: 7530350963229439912
+      Blocky_VikingVillage_Tileset_7: 8043909023511957572
+      Blocky_VikingVillage_Tileset_8: -1247800666797899163
+      Blocky_VikingVillage_Tileset_9: 6753068001594861325
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,6 +2,7 @@ using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ExpManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ExpManager : MonoBehaviour
 
     public Slider expBar; // Reference to the UI Slider for the experience bar
     public TMP_Text levelText; // Reference to the UI Text for displaying the current level
+
+    public static event Action<int> OnLevelUp; // Event to notify when the player levels up
 
     public void Start()
     {
@@ -39,11 +42,18 @@ public class ExpManager : MonoBehaviour
     {
         if (currentExp >= expToNextLevel)
         {
-            currentExp -= expToNextLevel;
-            level++;
-            expToNextLevel = Mathf.RoundToInt(expToNextLevel * expGrowthMultiplier); // Increase exp needed for next level
+            LevelUp(); 
         }
         UpdateUI(); // Update the UI after gaining experience and potentially leveling up
+    }
+
+    private void LevelUp()
+    {
+        currentExp -= expToNextLevel;
+        level++;
+        expToNextLevel = Mathf.RoundToInt(expToNextLevel * expGrowthMultiplier); // Increase exp needed for next level
+        OnLevelUp?.Invoke(level); 
+
     }
 
     private void UpdateUI()

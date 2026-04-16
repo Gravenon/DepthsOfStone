@@ -17,7 +17,7 @@ public class StatsUI : MonoBehaviour
 
     public void UpdateDameg()
     {
-        statsSlots[0].GetComponentInChildren<TMP_Text>().text = "Damage: " + StatsManager.Instance.damage; 
+        statsSlots[0].GetComponentInChildren<TMP_Text>().text = "Damage: " + (int)StatsManager.Instance.damage; 
     }
 
     public void UpdateSpeed()

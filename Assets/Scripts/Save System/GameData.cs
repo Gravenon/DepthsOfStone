@@ -41,7 +41,7 @@ public class GameData
     public int maxHealth;
     public int currentHealth;
     public int speed;
-    public int damage;
+    public float damage;
     public float weaponRange;
     public float knockbackForce;
     public float knockbackTimre;

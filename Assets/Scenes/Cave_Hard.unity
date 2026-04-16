@@ -520,7 +520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -28.599976, y: 26.81903}
+  m_AnchoredPosition: {x: -28.599976, y: 26.819092}
   m_SizeDelta: {x: 194.9797, y: 165.2384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &331436056
@@ -1670,7 +1670,7 @@ MonoBehaviour:
   sceneName: VilageDwarfs
   fadeAnim: {fileID: 285318554}
   fadeTime: 1
-  newPlayerPosition: {x: -23, y: 0}
+  newPlayerPosition: {x: -5, y: 3}
   requireConfirmation: 0
   selectedLevel: 0
   levelSelectCanvasGroup: {fileID: 0}

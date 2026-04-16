@@ -1727,7 +1727,7 @@ MonoBehaviour:
   sceneName: VilageDwarfs
   fadeAnim: {fileID: 285318554}
   fadeTime: 1
-  newPlayerPosition: {x: -23, y: 0}
+  newPlayerPosition: {x: -5, y: 3}
   requireConfirmation: 0
   selectedLevel: 0
   levelSelectCanvasGroup: {fileID: 0}
