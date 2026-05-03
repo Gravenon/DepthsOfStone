@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
-  m_Name: Coin
+  m_Name: Exp
   m_EditorClassIdentifier: 
-  itemName: Coin
-  itemDescription: Coin - money.
-  itemIcon: {fileID: 964620320, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
+  itemName: EXP
+  itemDescription: exp
+  itemIcon: {fileID: -5079587934203481674, guid: 225e2c53da7b543bc9587858a0ef7950, type: 3}
   itemType: 7
-  isEXP: 0
-  stackSize: 6
+  isEXP: 1
+  stackSize: 0
   currentHealth: 0
   maxHealth: 0
   speed: 0

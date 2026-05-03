@@ -179,13 +179,13 @@ TextureImporter:
       name: SkillTree_Panel 1_1
       rect:
         serializedVersion: 2
-        x: 251
-        y: 237
-        width: 163
+        x: 250
+        y: 238
+        width: 164
         height: 74
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 2, z: 3, w: 4}
       customData: 
       outline: []
       physicsShape: []

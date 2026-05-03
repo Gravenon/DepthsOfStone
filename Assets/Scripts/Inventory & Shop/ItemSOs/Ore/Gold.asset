@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Gold
   itemDescription: Gold is an item that can be traded with villagers.
   itemIcon: {fileID: 1011649785, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
-  itemType: 8
+  itemType: 6
   stackSize: 6
   currentHealth: 0
   maxHealth: 0

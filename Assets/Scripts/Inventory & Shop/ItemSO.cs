@@ -8,6 +8,7 @@ public class ItemSO : ScriptableObject
     public Sprite itemIcon;
 
     public ItemType itemType;
+    public bool isEXP;
     public int stackSize = 6;
 
     [Header("Stats")]

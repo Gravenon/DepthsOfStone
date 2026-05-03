@@ -306,13 +306,24 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
         return false;
     }
+
+    public int GetItemCount(ItemSO itemSO)
+    {
+        int total = 0;
+
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.itemSO = itemSO)
+                total += slot.quantity;
+        }
+        
+        return total;
+    }
 }
 
 
 public enum ItemType
 {
-    consumable,
-    crafting,
     head,
     body,
     legs,
