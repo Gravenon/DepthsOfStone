@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -86,12 +85,10 @@ public class OpenSkillTree : MonoBehaviour
         isSkillTreeOpen = true;
         OnSkillTreeOpenClose?.Invoke(true);
         
-        // Открываем канвас
         skillTreeCanvasGroup.alpha = 1;
         skillTreeCanvasGroup.blocksRaycasts = true;
         skillTreeCanvasGroup.interactable = true;
         
-        // Активируем нужное дерево навыков
         ActivateCorrectTree();
     }
 
@@ -102,21 +99,17 @@ public class OpenSkillTree : MonoBehaviour
         currentSkillTreeNPC = null;
         OnSkillTreeOpenClose?.Invoke(false);
         
-        // Закрываем канвас
         skillTreeCanvasGroup.alpha = 0;
         skillTreeCanvasGroup.blocksRaycasts = false;
         skillTreeCanvasGroup.interactable = false;
         
-        // Деактивируем все деревья
         DeactivateAllTrees();
     }
 
     private void ActivateCorrectTree()
     {
-        // Сначала деактивируем все деревья
         DeactivateAllTrees();
         
-        // Активируем нужное дерево
         switch (treeType)
         {
             case SkillTreeType.Combat:

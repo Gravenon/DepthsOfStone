@@ -5,35 +5,36 @@ using UnityEngine;
 
 public class Ore : MonoBehaviour
 {
-
-    public int durability = 3;
-
+    [Header("Drop Settings")]
     public ItemSO oreItem;
     public GameObject orePrefab;
-
-
+    public int minDropQuantity = 1;
+    public int maxDropQuantity = 4;
 
     public void Mine()
     {
-        durability--;
-        if (durability <= 0)
-        {
-            DropResource();
-            Destroy(gameObject);
-        }
+        DropResource();
+        Destroy(gameObject);
     }
 
     private void DropResource()
     {
         if(oreItem == null)
         {
-            Debug.LogWarning($"Problem {name}");
+            Debug.LogWarning($"Ore item is null on {name}");
+            return;
+        }
+
+        if(orePrefab == null)
+        {
+            Debug.LogWarning($"Ore prefab is null on {name}");
+            return;
         }
 
         GameObject oreDrop = Instantiate(orePrefab, transform.position, Quaternion.identity);
         Loot loot = oreDrop.GetComponent<Loot>();
         loot.itemSO = oreItem;
-        loot.quantity = Random.Range(1, 4);
+        loot.quantity = Random.Range(minDropQuantity, maxDropQuantity + 1);
         
     }
 

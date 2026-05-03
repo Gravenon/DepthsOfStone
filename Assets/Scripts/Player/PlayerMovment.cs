@@ -159,6 +159,6 @@ public class PlayerMovment : MonoBehaviour
     public void UnlockDash()
     {
         isDashUnlocked = true;
-        Debug.Log("Даш разблокирован!");
+        Debug.Log("[Player] Dash unlocked.");
     }
 }

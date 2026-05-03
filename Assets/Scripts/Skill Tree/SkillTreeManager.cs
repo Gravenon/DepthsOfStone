@@ -77,10 +77,8 @@ public class SkillTreeManager : MonoBehaviour
 
     private void HandleLevelUp(int level)
     {
-        // При каждом повышении уровня даем 2 боевых очка
         availableCombatPoints += 2;
         
-        // При каждом 5-м уровне даем 1 магическое очко
         if (level % 5 == 0)
         {
             availableMagicPoints++;

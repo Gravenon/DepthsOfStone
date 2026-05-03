@@ -44,5 +44,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 1382027847
+    locked: 0
+  - name: Backgorund
+    uniqueID: 12182951
+    locked: 0
+  - name: Mount
+    uniqueID: 3051831333
+    locked: 0
+  - name: MidCloud
+    uniqueID: 2414715351
+    locked: 0
+  - name: Hil
+    uniqueID: 68550783
+    locked: 0
+  - name: Cloud
+    uniqueID: 1747509155
+    locked: 0
   m_RenderingLayers:
   - Default

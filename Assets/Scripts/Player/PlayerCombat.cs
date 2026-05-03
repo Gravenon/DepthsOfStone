@@ -21,7 +21,7 @@ public class PlayerCombat : MonoBehaviour
 
     public float knockbackForce = 5f;
     public float knockbackStunTime = 0.2f;
-    public float hitStopDuration = 0.05f;
+    public float hitStopDuration = 0.06f;
 
     public PlayerMovment playerMovment;
 
@@ -47,13 +47,28 @@ public class PlayerCombat : MonoBehaviour
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayers);
 
-        if (enemies.Length > 0)
+        bool hitAny = false;
+        foreach (var enemy in enemies)
         {
-            Enemy_Health enemyHealth = enemies[0].GetComponent<Enemy_Health>();
-            enemyHealth.ChangeHealth(-StatsManager.Instance.damage);
-            enemyHealth.Knockback(transform, knockbackForce, knockbackStunTime);
-            StartCoroutine(HitSotp(hitStopDuration));
+            Enemy_Health enemyHealth = enemy.GetComponent<Enemy_Health>();
+            Boss_Health bossHealth = enemy.GetComponent<Boss_Health>();
+
+            if (enemyHealth == null && bossHealth == null) continue;
+
+            if (enemyHealth != null)
+            {
+                enemyHealth.ChangeHealth(-StatsManager.Instance.damage);
+                enemyHealth.Knockback(transform, knockbackForce, knockbackStunTime);
+            }
+
+            if (bossHealth != null)
+                bossHealth.ChangeHealth(-StatsManager.Instance.damage);
+
+            hitAny = true;
         }
+
+        if (hitAny)
+            StartCoroutine(HitSotp(hitStopDuration));
     }
 
     public void FinishAttacking()

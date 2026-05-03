@@ -9,71 +9,58 @@ public class WaveData
     public int hardEnimies;
     public int distantEnimies;
     public float rate;
+    public bool isBossWave;    // if true — spawns boss instead of regular enemies
 }
 
 public class WaveSpawner : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private SceneChanger sceneChanger;
 
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING }
 
     public WaveData[] waves;
 
     public GameObject easyEnimiesPrefab;
     public GameObject hardEnimiesPrefab;
     public GameObject distantEnimiesPrefab;
+    public GameObject bossPrefab;               // assign Boss prefab here
 
     private int nextWave = 0;
-
     private bool waveComplete = false;
+    private bool transitionTriggered = false;
 
     public Transform[] spawnPoints;
+    public Transform   bossSpawnPoint;          // centre of arena
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 4f;
     private float waveCountdown;
-
     private float searchCountdown = 1f;
 
     private SpawnState state = SpawnState.COUNTING;
 
-    private bool transitionTriggered = false;
-
-    public SpawnState State => state;
-    public float WaveCountdown => waveCountdown;
-    public int NextWave => nextWave + 1;
+    public SpawnState State      => state;
+    public float      WaveCountdown => waveCountdown;
+    public int        NextWave   => nextWave + 1;
 
     private MusicManager musicManager;
 
     void Start()
     {
         waveCountdown = timeBetweenWaves;
-        musicManager = FindFirstObjectByType<MusicManager>();
+        musicManager  = FindFirstObjectByType<MusicManager>();
         musicManager.PlayCombatMusic();
-        
-        // Подписываемся на событие смерти игрока
         PlayerHealth.Died += OnPlayerDied;
     }
 
-    void OnDestroy()
-    {
-        // Отписываемся от события при уничтожении
-        PlayerHealth.Died -= OnPlayerDied;
-    }
+    void OnDestroy() => PlayerHealth.Died -= OnPlayerDied;
 
     private void OnPlayerDied()
     {
         if (transitionTriggered) return;
-        
         transitionTriggered = true;
-        
-        // Сбрасываем индекс волн
         nextWave = 0;
-        
-        // Сохраняем игру с обнулённым индексом
         DataPersistenceeManager.instance.SaveGame();
         DataPersistenceeManager.SuppressNextSave = true;
-        
-        // Переходим в другую сцену
         sceneChanger.ChangeScene();
     }
 
@@ -83,22 +70,14 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
 
         if (state == SpawnState.WAITING)
         {
-            if (!EnemyIsAlive())
-            {
-                WaveCompleted();
-            }
-            else
-            {
-                return;
-            }
+            if (!EnemyIsAlive()) WaveCompleted();
+            return;
         }
 
-        if (waveCountdown <= 0)
+        if (waveCountdown <= 0f)
         {
             if (state != SpawnState.SPAWNING)
-            {
                 StartCoroutine(SpawnWave(waves[nextWave]));
-            }
         }
         else
         {
@@ -109,34 +88,65 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
 
     void WaveCompleted()
     {
-        Debug.Log("Wave Completed!");
         waveCountdown = timeBetweenWaves;
-        waveComplete = true;
-        state = SpawnState.COUNTING;
-
+        waveComplete  = true;
+        state         = SpawnState.COUNTING;
         nextWave++;
-        
-        // Проверяем, остались ли еще волны
+
         if (nextWave >= waves.Length)
         {
-            // Все волны пройдены - переходим в другую сцену
-            Debug.Log("All waves completed!");
-            
-            // Save now; suppress the automatic save that fires on scene unload
-            // to avoid touching already-destroyed objects.
             DataPersistenceeManager.instance.SaveGame();
             DataPersistenceeManager.SuppressNextSave = true;
-            
             transitionTriggered = true;
-            sceneChanger.ChangeScene();
             musicManager.PlayCalmMusic();
+            sceneChanger.ChangeScene();
         }
         else
         {
-            // Еще есть волны - продолжаем
-            Debug.Log("Preparing next wave...");
             waveComplete = false;
         }
+    }
+
+    IEnumerator SpawnWave(WaveData wave)
+    {
+        state = SpawnState.SPAWNING;
+
+        if (wave.isBossWave)
+        {
+            // Boss wave — spawn boss at centre spawn point, no regular enemies
+            if (bossPrefab != null)
+            {
+                Transform sp = bossSpawnPoint != null ? bossSpawnPoint : spawnPoints[0];
+                Instantiate(bossPrefab, sp.position, sp.rotation);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < wave.easyEnimies; i++)
+            {
+                SpawnEnemy(easyEnimiesPrefab);
+                yield return new WaitForSeconds(1f / wave.rate);
+            }
+            for (int i = 0; i < wave.hardEnimies; i++)
+            {
+                SpawnEnemy(hardEnimiesPrefab);
+                yield return new WaitForSeconds(1f / wave.rate);
+            }
+            for (int i = 0; i < wave.distantEnimies; i++)
+            {
+                SpawnEnemy(distantEnimiesPrefab);
+                yield return new WaitForSeconds(1f / wave.rate);
+            }
+        }
+
+        state = SpawnState.WAITING;
+    }
+
+    void SpawnEnemy(GameObject prefab)
+    {
+        if (prefab == null) return;
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(prefab, sp.position, sp.rotation);
     }
 
     bool EnemyIsAlive()
@@ -145,55 +155,12 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                return false;
-            }
+            return GameObject.FindGameObjectWithTag("Enemy") != null;
         }
         return true;
     }
 
-    IEnumerator SpawnWave(WaveData _wave)
-    {
-        Debug.Log("Spawning Wave: " + _wave.name);
-        state = SpawnState.SPAWNING;
-
-        for (int i = 0; i < _wave.easyEnimies; i++)
-        {
-            SpawnEnemy(easyEnimiesPrefab);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        for (int i = 0; i < _wave.hardEnimies; i++)
-        {
-            SpawnEnemy(hardEnimiesPrefab);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        for (int i = 0; i < _wave.distantEnimies; i++)
-        {
-            SpawnEnemy(distantEnimiesPrefab);
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        state = SpawnState.WAITING;
-        yield break;
-    }
-
-    void SpawnEnemy(GameObject prefab)
-    {
-        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(prefab, sp.position, sp.rotation);
-    }
-
-    // IDataPersistence
-    public void LoadData(GameData data)
-    {
-        nextWave = data.arenaWaveIndex;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.arenaWaveIndex = nextWave;
-    }
+    public void LoadData(GameData data) => nextWave = data.arenaWaveIndex;
+    public void SaveData(ref GameData data) => data.arenaWaveIndex = nextWave;
 }
+

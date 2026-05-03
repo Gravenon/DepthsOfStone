@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MineConfig")]
 public class MineConfig : ScriptableObject
 {
+    public string MineName;
+    [TextArea] public string itemDescription;
+    public string sceneName;
+
     [System.Serializable]
     public class OreSpawnData
     {
         public GameObject orePrefab;
-        //public ItemSO itemSO;
         public int minAmount;
         public int maxAmount;
     }
 
-
-    // add enemy spawn data
     public GameObject[] enemyPrefabs;
     public int enemiesCount = 3;
-
-    
     public OreSpawnData[] ores;
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;

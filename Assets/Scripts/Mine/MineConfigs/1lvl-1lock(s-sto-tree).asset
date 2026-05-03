@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38be2a49e1ac24797b6ae0d2737476, type: 3}
+  m_Name: 1lvl-1lock(s-sto-tree)
+  m_EditorClassIdentifier: Assembly-CSharp::MineConfig
+  MineName: EzLvl
+  itemDescription: EzLvlEzLvlEzLvlEzLvlEzLvlEzLvlEzLvlEzLvlEzLvl
+  sceneName: Cave_Easy
+  enemyPrefabs:
+  - {fileID: 7905704420351958002, guid: d7bc376d44d424ede988d1e2bbbe414f, type: 3}
+  enemiesCount: 4
+  ores:
+  - orePrefab: {fileID: 2904974959229320165, guid: 04dfff376cee54b16bcf9dc28328b760, type: 3}
+    minAmount: 3
+    maxAmount: 5
+  - orePrefab: {fileID: 2904974959229320165, guid: 41ff72760564846d59cbeb3c62225223, type: 3}
+    minAmount: 4
+    maxAmount: 7
+  spawnAreaMin: {x: -62, y: -10}
+  spawnAreaMax: {x: -54, y: -28}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512

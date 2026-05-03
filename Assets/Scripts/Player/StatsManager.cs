@@ -5,6 +5,8 @@ using TMPro;
 public class StatsManager : MonoBehaviour, IDataPersistence
 {
     public static StatsManager Instance;
+    public static event System.Action OnHealthChanged;
+
     public UseItem useItem;
     public StatsUI statsUI;
     public TMP_Text healthText;
@@ -56,34 +58,47 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     public void UpdateMaxHealth(int amount)
     {
         maxHealth += amount;
-        healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
+        if (maxHealth < 0) maxHealth = 0;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        RefreshHealthText();
     }
 
     public void UpdateHealth(int amount)
     {
         currentHealth += amount;
-        if (currentHealth >= maxHealth)
-            currentHealth = maxHealth;
-
-        healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        if (currentHealth < 0) currentHealth = 0;
+        RefreshHealthText();
     }
 
     public void UpdateSpeed(int amount)
     {
         speed += amount;
-        statsUI.UpdataAllStats();
+        if (statsUI != null) statsUI.UpdataAllStats();
+        else Debug.LogWarning("[StatsManager] statsUI is NULL — assign it in Inspector!");
     }
 
     public void UpdateDamage(float amount)
     {
         damage += amount;
-        statsUI.UpdataAllStats();
+        if (statsUI != null) statsUI.UpdataAllStats();
+        else Debug.LogWarning("[StatsManager] statsUI is NULL — assign it in Inspector!");
     }
 
     public void UpdataKnockbackForce(int amount)
     {
         knockbackForce += amount;
-        statsUI.UpdataAllStats();
+        if (statsUI != null) statsUI.UpdataAllStats();
+    }
+
+    private void RefreshHealthText()
+    {
+        if (healthText != null)
+            healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
+        else
+            Debug.LogWarning("[StatsManager] healthText is NULL — assign it in Inspector!");
+
+        OnHealthChanged?.Invoke();
     }
 
 // ---------------------------------------------------------------

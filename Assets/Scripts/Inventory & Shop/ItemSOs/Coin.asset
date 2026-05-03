@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Coin
   itemDescription: Coin - money.
-  itemIcon: {fileID: 21300000, guid: ab58b5a3036f7054fb710b24c1ca39c2, type: 3}
+  itemIcon: {fileID: 964620320, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 9
   stackSize: 6
   currentHealth: 0

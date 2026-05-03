@@ -74,6 +74,29 @@ public class FilePathHandler
 
     }
 
+    public void Delete(string profilID)
+    {
+        string fullPath = Path.Combine(dataDirPath, profilID, dataFileName);
+        try
+        {
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+                string dir = Path.GetDirectoryName(fullPath);
+                if (Directory.Exists(dir) && Directory.GetFiles(dir).Length == 0)
+                    Directory.Delete(dir);
+            }
+            else
+            {
+                Debug.LogWarning("[FilePathHandler] No save file to delete at: " + fullPath);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("[FilePathHandler] Error deleting save: " + e.Message);
+        }
+    }
+
     public void Save(GameData gameData, string profilID)
     {
         string fullPath = Path.Combine(dataDirPath, profilID, dataFileName);

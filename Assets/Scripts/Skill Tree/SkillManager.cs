@@ -42,13 +42,13 @@ public class SkillManager : MonoBehaviour
         switch (skillName)
         {
             case "Max Health Boost":
-                StatsManager.Instance.UpdateMaxHealth(5);
+                StatsManager.Instance.UpdateMaxHealth(15);   // was 5 — now feels meaningful
                 break;
             case "Stone Skin":
                 if (!stoneSkinActive)
                 {
                     stoneSkinActive = true;
-                    damageReduction += 0.05f;
+                    damageReduction += 0.15f;                 // was 0.05 — 15% actual reduction
                 }
                 break;
             case "Regeneration":
@@ -63,7 +63,7 @@ public class SkillManager : MonoBehaviour
                 baseDamage = StatsManager.Instance.damage;
                 break;
             case "A powerful blow":
-                StatsManager.Instance.UpdateDamage(1.05f);
+                StatsManager.Instance.UpdateDamage(StatsManager.Instance.damage * 0.15f); // +15% of current damage
                 break;
             case "Light on his feet":
                 StatsManager.Instance.UpdateSpeed(1);
@@ -88,12 +88,10 @@ public class SkillManager : MonoBehaviour
     {
         while (regenerationActive)
         {
-            yield return new WaitForSeconds(2f);
-            
+            yield return new WaitForSeconds(3f);              // was 2f — slightly slower tick
+
             if (StatsManager.Instance.currentHealth < StatsManager.Instance.maxHealth)
-            {
-                StatsManager.Instance.UpdateHealth(1);
-            }
+                StatsManager.Instance.UpdateHealth(2);        // was 1 — heals 2 per tick
         }
     }
 

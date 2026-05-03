@@ -6,30 +6,23 @@ using UnityEngine.EventSystems;
 public class EquippedSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image slotImage;
-    [SerializeField] private TMP_Text slotName;
+    [SerializeField] private Image emptySlotImage;
     // [SerializeField] private Image playerDisplayImage;
 
     [SerializeField] private ItemType itemType;
 
     private ItemSO itemSO;
     private bool slotInUse;
-
-    [SerializeField] private Sprite emptySlotSprite;  
-
+    
     private InventoryManager inventoryManager;
-    private ItemSOLibrary itemLibrary;
 
 
     private void Start()
     {
-        inventoryManager = InventoryManager.Instance;
-        itemLibrary = FindAnyObjectByType<ItemSOLibrary>();
-        if (inventoryManager == null && itemLibrary == null)
-        {
-            inventoryManager = FindAnyObjectByType<InventoryManager>();
-            itemLibrary = FindAnyObjectByType<ItemSOLibrary>();
+        inventoryManager = InventoryManager.Instance ?? FindAnyObjectByType<InventoryManager>();
 
-        }
+        if (inventoryManager == null)
+            Debug.LogError("[EquippedSlot] InventoryManager not found in scene!", this);
 
         SetEmptyVisual();
     }
@@ -53,7 +46,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         if(slotInUse)
             UnequipGear();
 
-        if (slotImage == null || slotName == null)
+        if (slotImage == null || emptySlotImage == null)
         {
             Debug.LogError("EquippedSlot: slotImage или slotName не назначены в Inspector.");
             return false;
@@ -66,20 +59,13 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         color.a = 1f;
         slotImage.color = color;
         
-        slotName.enabled = false;
+        emptySlotImage.enabled = false;
 
         //Displaying items on the user 
         // playerDisplayImage.sprite = itemSprite;
 
 
-        for(int i = 0; i < itemLibrary.itemSOs.Length; i++)
-        {
-            if(itemLibrary.itemSOs[i] == itemSO)
-            {
-                itemLibrary.itemSOs[i].Use();
-                // break;
-            }
-        }
+        itemSO.Use();
 
         slotInUse = true;
         return true;
@@ -91,22 +77,18 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
             return;
 
         if (inventoryManager == null)
+            inventoryManager = InventoryManager.Instance ?? FindAnyObjectByType<InventoryManager>();
+
+        if (inventoryManager == null)
         {
-            inventoryManager = InventoryManager.Instance;
-            if (inventoryManager == null)
-                inventoryManager = FindAnyObjectByType<InventoryManager>();
+            Debug.LogError("[EquippedSlot] Cannot unequip — InventoryManager is null!", this);
+            return;
         }
 
+        Debug.Log($"[EquippedSlot] Unequipping '{itemSO.itemName}', returning to inventory.");
         inventoryManager.AddItem(itemSO, 1);
 
-        for(int i = 0; i < itemLibrary.itemSOs.Length; i++)
-        {
-            if(itemLibrary.itemSOs[i] == itemSO)
-            {
-                itemLibrary.itemSOs[i].Unuse();
-                // break;
-            }
-        }
+        itemSO.Unuse();
 
 
         itemSO = null;
@@ -116,19 +98,13 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
 
     private void SetEmptyVisual()
     {
-        slotImage.sprite = emptySlotSprite;
-
         Color color = slotImage.color;
         color.a = 0f;
         slotImage.color = color;
 
-        slotName.enabled = true;
+        emptySlotImage.enabled = true;
     }
-
-    /// <summary>
-    /// Clears the slot without returning the item to inventory and without touching stats
-    /// (used on new game / load — StatsManager.LoadData sets the authoritative stat values).
-    /// </summary>
+    
     public void ClearSlot()
     {
         if (itemSO == null) return;
@@ -138,16 +114,12 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         SetEmptyVisual();
     }
 
-    /// <summary>Returns the item currently equipped in this slot, or null if empty.</summary>
+
     public ItemSO GetEquippedItem() => slotInUse ? itemSO : null;
 
     /// <summary>Returns the item type this slot accepts.</summary>
     public ItemType GetSlotItemType() => itemType;
-
-    /// <summary>
-    /// Restores the visual appearance of this slot from a save file without calling Use()
-    /// (stats are already restored by StatsManager.LoadData).
-    /// </summary>
+    
     public void RestoreGearVisual(ItemSO item)
     {
         if (item == null) return;
@@ -156,7 +128,7 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         Color c = slotImage.color;
         c.a = 1f;
         slotImage.color = c;
-        slotName.enabled = false;
+        emptySlotImage.enabled = false;
         slotInUse = true;
     }
 }

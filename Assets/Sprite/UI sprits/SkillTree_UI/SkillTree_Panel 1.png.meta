@@ -1,0 +1,479 @@
+fileFormatVersion: 2
+guid: 4fb84971f978642dcb95812ab00c0fbe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1552625279531561302
+    second: SkillTree_Panel 1_0
+  - first:
+      213: 9205869528192367331
+    second: SkillTree_Panel 1_1
+  - first:
+      213: 4139163714469393167
+    second: SkillTree_Panel 1_2
+  - first:
+      213: -6992930262796638173
+    second: SkillTree_Panel 1_3
+  - first:
+      213: 4747966427540183975
+    second: SkillTree_Panel 1_4
+  - first:
+      213: -4560332224601154302
+    second: SkillTree_Panel 1_5
+  - first:
+      213: -2224348728870872982
+    second: SkillTree_Panel 1_6
+  - first:
+      213: 2202198172042563101
+    second: SkillTree_Panel 1_7
+  - first:
+      213: -1394575987586263827
+    second: SkillTree_Panel 1_8
+  - first:
+      213: 2770661072272502904
+    second: SkillTree_Panel 1_9
+  - first:
+      213: 3698020126529678904
+    second: SkillTree_Panel 1_10
+  - first:
+      213: 4681882078183930858
+    second: SkillTree_Panel 1_11
+  - first:
+      213: 1045305043564440744
+    second: SkillTree_Panel 1_12
+  - first:
+      213: -4870219368082641384
+    second: SkillTree_Panel 1_13
+  - first:
+      213: 4332688822238169338
+    second: SkillTree_Panel 1_14
+  - first:
+      213: -3935035082752496598
+    second: SkillTree_Panel 1_15
+  - first:
+      213: -8303014885936511259
+    second: SkillTree_Panel 1_16
+  - first:
+      213: 5775080196871439597
+    second: SkillTree_Panel 1_17
+  - first:
+      213: 7984507171843400943
+    second: SkillTree_Panel 1_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 23
+        width: 245
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaeca30d887f37ae0800000000000000
+      internalID: -1552625279531561302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_1
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 237
+        width: 163
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eabf74af81d1cf70800000000000000
+      internalID: 9205869528192367331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_2
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 270
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f037224d773417930800000000000000
+      internalID: 4139163714469393167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_3
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 270
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3286de2e9fe14fe90800000000000000
+      internalID: -6992930262796638173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_4
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 15
+        width: 163
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 11, y: 10, z: 10, w: 12}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ab530f5f4a24e140800000000000000
+      internalID: 4747966427540183975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_5
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 206
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d91eed00276b0c0800000000000000
+      internalID: -4560332224601154302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_6
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 142
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a685f0fbd968121e0800000000000000
+      internalID: -2224348728870872982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_8
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 64
+        width: 63
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de491af278875ace0800000000000000
+      internalID: -1394575987586263827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_14
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 34
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8cfcb378dc02c30800000000000000
+      internalID: 4332688822238169338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_15
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c66d1e072f369c0800000000000000
+      internalID: -3935035082752496598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_16
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e649f6d3f3c5cc80800000000000000
+      internalID: -8303014885936511259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_17
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 6
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de44ae367d4352050800000000000000
+      internalID: 5775080196871439597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_18
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 6
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4e84418faaece60800000000000000
+      internalID: 7984507171843400943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 11af9e8504f7c4183b40d2470ef5e7c6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkillTree_Panel 1_0: -1552625279531561302
+      SkillTree_Panel 1_1: 9205869528192367331
+      SkillTree_Panel 1_10: 3698020126529678904
+      SkillTree_Panel 1_11: 4681882078183930858
+      SkillTree_Panel 1_12: 1045305043564440744
+      SkillTree_Panel 1_13: -4870219368082641384
+      SkillTree_Panel 1_14: 4332688822238169338
+      SkillTree_Panel 1_15: -3935035082752496598
+      SkillTree_Panel 1_16: -8303014885936511259
+      SkillTree_Panel 1_17: 5775080196871439597
+      SkillTree_Panel 1_18: 7984507171843400943
+      SkillTree_Panel 1_2: 4139163714469393167
+      SkillTree_Panel 1_3: -6992930262796638173
+      SkillTree_Panel 1_4: 4747966427540183975
+      SkillTree_Panel 1_5: -4560332224601154302
+      SkillTree_Panel 1_6: -2224348728870872982
+      SkillTree_Panel 1_7: 2202198172042563101
+      SkillTree_Panel 1_8: -1394575987586263827
+      SkillTree_Panel 1_9: 2770661072272502904
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

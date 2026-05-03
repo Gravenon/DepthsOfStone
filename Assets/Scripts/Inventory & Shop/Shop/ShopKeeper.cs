@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,129 +7,115 @@ public class ShopKeeper : MonoBehaviour
 {
     public static ShopKeeper currentShopKeeper;
 
-    public Animator anim;
-
+    [SerializeField] private Animator anim;
     [SerializeField] private CanvasGroup shopCanvasGroup;
     [SerializeField] private ShopManger shopManager;
     [SerializeField] private InputActionReference interactAction;
     [SerializeField] private InputActionReference cancelAction;
 
+    [Header("Shop Inventory")]
     [SerializeField] private List<ShopItems> shopItems;
     [SerializeField] private List<ShopItems> shopWeapons;
     [SerializeField] private List<ShopItems> shopArmour;
 
-    [Header("Settings trade")]
-    [SerializeField] private bool onlySell = false; 
+    [Header("Settings")]
+    [SerializeField] private bool onlySell;
 
     public static event Action<ShopManger, bool> OnShopOpenClose;
-    private bool playerInRange;
-    private bool isShopOpen;
+
+    private bool _playerInRange;
+    private bool _isShopOpen;
 
     public bool OnlySell => onlySell;
 
+    // ─── Unity Events ─────────────────────────────────────────────────────────
+
+    private void Awake()
+    {
+        // Ensure shop is fully closed (no raycasts) on game start
+        SetCanvasVisible(false);
+    }
 
     private void OnEnable()
     {
-        if (interactAction != null)
-        {
-            interactAction.action.performed += OnInteract;
-        }
-
-        if (cancelAction != null)
-        {
-            cancelAction.action.performed += OnCancel;
-        }
+        if (interactAction != null) interactAction.action.performed += OnInteract;
+        if (cancelAction != null)   cancelAction.action.performed   += OnCancel;
     }
 
     private void OnDisable()
     {
-        if (interactAction != null)
-        {
-            interactAction.action.performed -= OnInteract;
-        }
-
-        if (cancelAction != null)
-        {
-            cancelAction.action.performed -= OnCancel;
-        }
+        if (interactAction != null) interactAction.action.performed -= OnInteract;
+        if (cancelAction != null)   cancelAction.action.performed   -= OnCancel;
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isShopOpen)
+        if (!collision.CompareTag("Player")) return;
+        _playerInRange = true;
+        anim.SetBool("playerInRange", true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player")) return;
+        _playerInRange = false;
+        anim.SetBool("playerInRange", false);
+    }
+
+    // ─── Input Handlers ───────────────────────────────────────────────────────
+
+    private void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (_isShopOpen)
         {
-            CloseShop();
+            CloseShop(); 
             return;
         }
-
-        if (!playerInRange)
-            return;
-        
-        OpenShop();
+        if (_playerInRange) 
+            OpenShop();
     }
 
-    private void OnCancel(InputAction.CallbackContext context)
+    private void OnCancel(InputAction.CallbackContext ctx)
     {
-        if (!isShopOpen)
-            return;
-        
-        CloseShop();
+        if (_isShopOpen) CloseShop();
     }
+
+    // ─── Shop Control ─────────────────────────────────────────────────────────
 
     private void OpenShop()
     {
         Time.timeScale = 0;
         currentShopKeeper = this;
-        isShopOpen = true;
+        _isShopOpen = true;
+
+        SetCanvasVisible(true);
         OnShopOpenClose?.Invoke(shopManager, true);
-        shopCanvasGroup.alpha = 1;
-        shopCanvasGroup.blocksRaycasts = true;
-        shopCanvasGroup.interactable = true;
+
+        shopManager.SetAllShopItems(shopItems, shopWeapons, shopArmour);
+        shopManager.RefreshInventoryDisplay();
         OpenItemShop();
     }
 
     private void CloseShop()
     {
         Time.timeScale = 1;
-        isShopOpen = false;
         currentShopKeeper = null;
+        _isShopOpen = false;
+
+        SetCanvasVisible(false);
         OnShopOpenClose?.Invoke(shopManager, false);
-        shopCanvasGroup.alpha = 0;
-        shopCanvasGroup.blocksRaycasts = false;
-        shopCanvasGroup.interactable = false;
     }
 
-    public void OpenItemShop()
+    private void SetCanvasVisible(bool visible)
     {
-        shopManager.PopulateShopItem(shopItems);
+        shopCanvasGroup.alpha = visible ? 1 : 0;
+        shopCanvasGroup.blocksRaycasts = visible;
+        shopCanvasGroup.interactable = visible;
     }
 
-    public void OpenWeaponShop()
-    {
-        shopManager.PopulateShopItem(shopWeapons);
-    }
+    // ─── Page Switching (called by UI buttons via ShopButtonToggles) ──────────
 
-    public void OpenArmourShop()
-    {
-        shopManager.PopulateShopItem(shopArmour);
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            anim.SetBool("playerInRange", true);
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            anim.SetBool("playerInRange", false);
-            playerInRange = false;
-        }
-    }
+    public void OpenItemShop()   => shopManager.PopulateShopItem(shopItems);
+    public void OpenWeaponShop() => shopManager.PopulateShopItem(shopWeapons);
+    public void OpenArmourShop() => shopManager.PopulateShopItem(shopArmour);
 }

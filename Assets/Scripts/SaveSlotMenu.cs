@@ -73,6 +73,13 @@ public class SaveSlotMenu : MonoBehaviour
         if (newGamePanel != null) newGamePanel.SetActive(false);
     }
 
+    // Called by the Delete button on each SaveSlot — pass (this) from the slot.
+    public void OnDeleteSlotClicked(SaveSlot slot)
+    {
+        DataPersistenceeManager.instance.DeleteProfile(slot.GetProfileID());
+        RefreshSlots();
+    }
+
     // ---------------------------------------------------------------
 
     private void RefreshSlots()

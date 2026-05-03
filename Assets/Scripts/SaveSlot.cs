@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SaveSlot : MonoBehaviour
 {
@@ -13,25 +14,27 @@ public class SaveSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameWorldText;
     [SerializeField] private TextMeshProUGUI namePlayerText;
     [SerializeField] private TextMeshProUGUI countNightText;
+    [SerializeField] private Button deleteButton;
 
     public void SetData(GameData data)
     {
-        if(data == null)
+        if (data == null)
         {
             noDataContent.SetActive(true);
-            hasDataContent.SetActive(false);   
+            hasDataContent.SetActive(false);
+            if (deleteButton != null) deleteButton.gameObject.SetActive(false);
         }
         else
         {
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
+            if (deleteButton != null) deleteButton.gameObject.SetActive(true);
 
             saveTimeText.text = data.saveTime;
             nameWorldText.text = data.nameWorld;
             namePlayerText.text = data.namePlayer;
             countNightText.text = data.countNight.ToString();
         }
-        
     }
 
     public string GetProfileID()

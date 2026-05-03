@@ -1,4 +1,3 @@
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -60,6 +59,6 @@ public class ExpManager : MonoBehaviour
     {
         expBar.maxValue = expToNextLevel; // Set the max value of the experience bar to the required experience for the next level
         expBar.value = currentExp; // Update the experience bar
-        levelText.text = "Level: " + level; // Update the level text
+        levelText.text = level.ToString(); // Update the level text
     }
 }

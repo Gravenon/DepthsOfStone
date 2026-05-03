@@ -1,23 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour
 {
-    private Rigidbody2D rb;
     public bool isKnockback;
+    public bool isDead;
 
-    public int currentHealth = 100;
+    public int currentHealth;
     public int maxHealth;
+    public int expReward = 3;
 
-    public int expReward = 3; // Experience points awarded to the player upon defeating this enemy
-
-    public delegate void EnemyDefeated(int expReward);
+    public delegate void EnemyDefeated(int exp);
     public static event EnemyDefeated OnEnemyDefeated;
+
+    private Rigidbody2D rb;
+    private Collider2D col;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb  = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
     }
 
     private void Start()
@@ -27,32 +29,39 @@ public class Enemy_Health : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        currentHealth += (int)amount;
-        if(currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        else if (currentHealth <= 0)
-        {
-            OnEnemyDefeated(expReward); 
-            Destroy(gameObject);
-        }
+        if (isDead) return;
+
+        currentHealth = Mathf.Clamp(currentHealth + (int)amount, 0, maxHealth);
+
+        if (currentHealth <= 0)
+            Die();
     }
+
+    private void Die()
+    {
+        isDead = true;
+        col.enabled = false;
+        // Stop coroutines on all components immediately to prevent patrol/attack callbacks firing in the death frame
+        foreach (var mb in GetComponents<MonoBehaviour>())
+            mb.StopAllCoroutines();
+        OnEnemyDefeated?.Invoke(expReward);
+    }
+
+    // Called by Animation Event on the last frame of the Death animation
+    public void DestroyEnemy() => Destroy(gameObject);
 
     public void Knockback(Transform attacker, float force, float stunTime)
     {
-        if (rb == null) return;
+        if (isDead) return;
         isKnockback = true;
-        Vector2 direction = (transform.position - attacker.position).normalized;
-        rb.linearVelocity = direction * force;
-        StartCoroutine(KnockbackCounter(stunTime));
+        rb.linearVelocity = (transform.position - attacker.position).normalized * force;
+        StartCoroutine(KnockbackRoutine(stunTime));
     }
 
-    IEnumerator KnockbackCounter(float stunTime)
+    private IEnumerator KnockbackRoutine(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
-        if (rb != null) rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         isKnockback = false;
     }
-
 }

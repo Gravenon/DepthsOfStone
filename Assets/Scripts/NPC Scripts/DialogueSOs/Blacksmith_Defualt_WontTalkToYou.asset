@@ -15,7 +15,9 @@ MonoBehaviour:
   lines:
   - speaker: {fileID: 11400000, guid: aaad19e66bbdde846bc425f69e3f5cad, type: 2}
     dialogueText: Who are you, lad? Don't come near me! Can't you see I'm busy?
-  options: []
+  options:
+  - optionText: 'Your Brother find you '
+    nextDialogue: {fileID: 11400000, guid: 6d86153d6f32c6b47a2909f121daade9, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []

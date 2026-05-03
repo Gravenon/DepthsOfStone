@@ -169,7 +169,11 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        if ( itemSO.itemType != ItemType.mainHand && itemSO.itemType != ItemType.head && itemSO.itemType != ItemType.body && itemSO.itemType != ItemType.legs && itemSO.itemType != ItemType.feet && itemSO.itemType != ItemType.relic)
+        bool isEquipment = itemSO.itemType == ItemType.mainHand || itemSO.itemType == ItemType.head
+            || itemSO.itemType == ItemType.body  || itemSO.itemType == ItemType.legs
+            || itemSO.itemType == ItemType.feet  || itemSO.itemType == ItemType.relic;
+
+        if (!isEquipment)
         {
             foreach (var slot in inventorySlots)
             {
@@ -204,6 +208,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
         else
         {
+            Debug.Log($"[InventoryManager] Adding equipment '{itemSO.itemName}' x{quantity} to equipment panel. Panel slots: {equimentSlot.Length}");
             foreach (var slot in equimentSlot)
             {
                 if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
@@ -238,7 +243,10 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
 
         if(quantity > 0)
+        {
+            Debug.LogWarning($"[InventoryManager] No space for '{itemSO.itemName}' — dropping to world.");
             DropLoot(itemSO, quantity);
+        }
     }
 
     public void DropItem(InventorySlot slot)

@@ -146,6 +146,16 @@ public class DataPersistenceeManager : MonoBehaviour
 
     public void OnApplicationQuit() => SaveGame();
 
+    public void DeleteProfile(string profileID)
+    {
+        dataHandler.Delete(profileID);
+        if (profilID == profileID)
+        {
+            gameData = null;
+            profilID = "";
+        }
+    }
+
     public bool HasActiveGameData => gameData != null;
 
     public Dictionary<string, GameData> GetAllProfilesGameData()

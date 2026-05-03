@@ -17,6 +17,9 @@ public class SkillSlot : MonoBehaviour
     public Button upgradeButton;
     public TMP_Text skillLevelText;
 
+    public Sprite ActiveSkillIcon;
+    public Sprite MaxLvlIcon;
+
 
     public static event Action<SkillSlot, SkillType> OnAbilityPointSpent;
     public static event Action<SkillSlot> OnSkillMaxed;
@@ -70,6 +73,14 @@ public class SkillSlot : MonoBehaviour
         UpdateUI();
     }
 
+    private void SetButtonSprite(Sprite sprite)
+    {
+        var rt = upgradeButton.image.rectTransform;
+        Vector2 originalSize = rt.sizeDelta;
+        upgradeButton.image.sprite = sprite;
+        rt.sizeDelta = originalSize;
+    }
+
     private void UpdateUI()
     {
         skillIcon.sprite = skillSO.skillIcon;
@@ -78,12 +89,17 @@ public class SkillSlot : MonoBehaviour
         {
             upgradeButton.interactable = true;
             skillLevelText.text = $"{currentLevel}/{skillSO.maxLevel}";
-            skillIcon.color = Color.white; // Set to normal color when unlocked
+            skillIcon.color = Color.white;
+
+            if (currentLevel >= skillSO.maxLevel)
+                SetButtonSprite(MaxLvlIcon);
+            else
+                SetButtonSprite(ActiveSkillIcon);
         }
         else
         {
             skillLevelText.text = "Locked";
-            skillIcon.color = Color.gray; // Set to gray color when locked
+            skillIcon.color = Color.gray;
         }
     }
 }

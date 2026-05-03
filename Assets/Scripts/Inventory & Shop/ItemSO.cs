@@ -23,87 +23,28 @@ public class ItemSO : ScriptableObject
 
     public void Use()
     {
-        switch (itemType)
+        if (StatsManager.Instance == null)
         {
-            case ItemType.mainHand:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;
-            case ItemType.head:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;
-            case ItemType.body:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;
-            case ItemType.legs:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;
-            case ItemType.relic:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;
-            case ItemType.feet:
-                StatsManager.Instance.UpdateHealth(currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(maxHealth);
-                StatsManager.Instance.UpdateSpeed(speed);
-                StatsManager.Instance.UpdateDamage(damage);
-                break;      
+            return;
         }
+        
+        if (maxHealth != 0)  StatsManager.Instance.UpdateMaxHealth(maxHealth);
+        if (currentHealth != 0) StatsManager.Instance.UpdateHealth(currentHealth);
+        if (speed != 0) StatsManager.Instance.UpdateSpeed(speed);
+        if (damage != 0) StatsManager.Instance.UpdateDamage(damage);
     }
 
     public void Unuse()
     {
-         switch (itemType)
+        if (StatsManager.Instance == null)
         {
-            case ItemType.mainHand:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;
-            case ItemType.head:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;
-            case ItemType.body:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;
-            case ItemType.legs:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;
-            case ItemType.relic:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;
-            case ItemType.feet:
-                StatsManager.Instance.UpdateHealth(-currentHealth);
-                StatsManager.Instance.UpdateMaxHealth(-maxHealth);
-                StatsManager.Instance.UpdateSpeed(-speed);
-                StatsManager.Instance.UpdateDamage(-damage);
-                break;      
-        }    
+            return;
+        }
+
+
+        if (maxHealth != 0)  StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+        if (currentHealth != 0) StatsManager.Instance.UpdateHealth(-currentHealth);
+        if (speed != 0)     StatsManager.Instance.UpdateSpeed(-speed);
+        if (damage != 0)    StatsManager.Instance.UpdateDamage(-damage);
     }
 }

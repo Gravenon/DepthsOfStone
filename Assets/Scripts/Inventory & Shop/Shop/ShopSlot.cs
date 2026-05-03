@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,51 +5,38 @@ using UnityEngine.UI;
 
 public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
-    public ItemSO itemSO;
-    public TMP_Text itemNameText;
-    public TMP_Text priceText;
-    public Image itemImage;
-
+    [Header("UI References")]
+    [SerializeField] private TMP_Text priceText;
+    [SerializeField] private Image itemImage;
     [SerializeField] private ShopManger shopManager;
     [SerializeField] private ShopInfo shopInfo;
 
-    public int price;
+    public ItemSO itemSO { get; private set; }
+    public int price { get; private set; }
+    public float ransomProcentage { get; private set; }
 
-    public float ransomProcentage;
-
-    public void Initialize(ItemSO newitemSO, int price, float ransomProcentage )
+    public void Initialize(ItemSO item, int itemPrice, float buybackRate)
     {
-        //fill the slot with information
-        itemSO = newitemSO;
-        itemImage.sprite = itemSO.itemIcon;
-        itemNameText.text = itemSO.itemName;
-        this.price = price;
-        this.ransomProcentage = ransomProcentage;
-        priceText.text = price.ToString();
+        itemSO = item;
+        price = itemPrice;
+        ransomProcentage = buybackRate;
 
+        itemImage.sprite = item.itemIcon;
+        priceText.text = itemPrice.ToString();
     }
 
-    public void OnBuyButtonClicked()
-    {
-        Console.WriteLine("Buy Button Clicked");
-        shopManager.TryBuyItem(itemSO, price);
-    }
+    // Called by the Buy button in the UI
+    public void OnBuyButtonClicked() => shopManager.TryBuyItem(itemSO, price);
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
-        if (itemSO != null)
-            shopInfo.ShowItemInfo(itemSO);
+        if (itemSO != null) shopInfo.ShowItemInfo(itemSO);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        shopInfo.HideItemInfo();
-    }
+    public void OnPointerExit(PointerEventData eventData) => shopInfo.HideItemInfo();
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        if (itemSO != null)
-            shopInfo.FollowMouse();
+        if (itemSO != null) shopInfo.FollowMouse();
     }
 }

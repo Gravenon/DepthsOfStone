@@ -1,79 +1,60 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemSO itemSO;
     public int quantity;
 
-    public Image itemImage;
+    [SerializeField] private Image itemImage;
 
-    public EquippedSlot headSlot, bodySlot, legsSlot, weaponSlot, accessorySlot, feetSlot;
-    
-    private InventoryManager inventoryManager;
-    private static ShopManger activeShop;
- 
+    [Header("Equipped Slots")]
+    public EquippedSlot headSlot;
+    public EquippedSlot bodySlot;
+    public EquippedSlot legsSlot;
+    public EquippedSlot weaponSlot;
+    public EquippedSlot accessorySlot;
+    public EquippedSlot feetSlot;
 
-    private void Start()
+    private InventoryManager _inventoryManager;
+    private static ShopManger _activeShop;
+
+    private void Start() => _inventoryManager = GetComponentInParent<InventoryManager>();
+
+    private void OnEnable()  => ShopKeeper.OnShopOpenClose += HandleShopStateChange;
+    private void OnDisable() => ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+
+    private void HandleShopStateChange(ShopManger shop, bool isOpen)
     {
-        inventoryManager = GetComponentInParent<InventoryManager>();
-    }
-
-    private void OnEnable()
-    {
-        ShopKeeper.OnShopOpenClose += HendleShopStateChange;
-    }
-
-    private void OnDisable()
-    {
-        ShopKeeper.OnShopOpenClose -= HendleShopStateChange;
-    }
-
-    private void HendleShopStateChange(ShopManger shopManager, bool isOpen)
-    {
-        activeShop = isOpen ? shopManager : null;
+        _activeShop = isOpen ? shop : null;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (quantity > 0)
-        {
-            if (eventData.button == PointerEventData.InputButton.Left)
-            {
-                if (activeShop != null)
-                {
-                    activeShop.SellItem(itemSO);
-                    quantity--;
-                    UpdateUI();
-                }
-                else
-                {
-                    // Check if the item is a piece of equipment and if the player can equip it
-                    EquipGear();
-                    UpdateUI();
-                }
-            }
-            else if (eventData.button == PointerEventData.InputButton.Right)
-            {
-                inventoryManager.DropItem(this);
-            }
-        }
+        if (quantity <= 0) return;
 
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (_activeShop != null)
+                _activeShop.SellItem(itemSO);
+            else
+                TryEquipGear();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            _inventoryManager.DropItem(this);
+        }
     }
 
-    private void EquipGear()
+    private void TryEquipGear()
     {
-        if (itemSO == null)
-            return;
+        if (itemSO == null) return;
 
-        EquippedSlot targetSlot = GetTargetSlot(itemSO.itemType);
-        if (targetSlot == null)
-            return;
+        EquippedSlot target = GetTargetSlot(itemSO.itemType);
+        if (target == null) return;
 
-        bool equipped = targetSlot.EquipGear(itemSO);
-        if (!equipped)
-            return;
+        if (!target.EquipGear(itemSO)) return;
 
         quantity--;
         UpdateUI();
@@ -83,37 +64,22 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     {
         switch (type)
         {
-            case ItemType.head:
-                return headSlot;
-            case ItemType.body:
-                return bodySlot;
-            case ItemType.legs:
-                return legsSlot;
-            case ItemType.mainHand:
-                return weaponSlot;
-            case ItemType.relic:
-                return accessorySlot;
-            case ItemType.feet:
-                return feetSlot;
-            default:
-                return null;
+            case ItemType.head:     return headSlot;
+            case ItemType.body:     return bodySlot;
+            case ItemType.legs:     return legsSlot;
+            case ItemType.mainHand: return weaponSlot;
+            case ItemType.relic:    return accessorySlot;
+            case ItemType.feet:     return feetSlot;
+            default:                return null;
         }
     }
 
     public void UpdateUI()
     {
-        if (quantity <= 0)
-            itemSO = null;
+        if (quantity <= 0) itemSO = null;
 
-        if (itemSO != null)
-        {
-            itemImage.sprite = itemSO.itemIcon;
-            itemImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            itemImage.gameObject.SetActive(false);
-        }
-
+        bool hasItem = itemSO != null;
+        itemImage.gameObject.SetActive(hasItem);
+        if (hasItem) itemImage.sprite = itemSO.itemIcon;
     }
 }

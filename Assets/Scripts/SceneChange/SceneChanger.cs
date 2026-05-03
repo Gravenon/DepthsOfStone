@@ -8,121 +8,45 @@ public class SceneChanger : MonoBehaviour
     public Animator fadeAnim;
     public float fadeTime = .5f;
     public Vector2 newPlayerPosition;
-    private Transform player;
 
-    public bool requireConfirmation = false;
-    public bool selectedLevel = false;
+    public bool selectedLevel;
+    public MineManager mineManager;
 
-    public CanvasGroup levelSelectCanvasGroup;
-    public GameObject levelSelectUI;
-
-    public CanvasGroup confirmCanvasGroup;
-    public GameObject confirmationUI;
-
-
-    private bool playerInTrigger = false;
+    private Transform _player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player")) return;
+
+        _player = collision.transform;
+
+        if (selectedLevel && mineManager != null)
+            mineManager.ShowLevelSelect();
+        else
         {
-            player = collision.transform;
-            if (requireConfirmation)
-            {
-                confirmationUI.SetActive(true);
-                confirmCanvasGroup.alpha = 1;
-                playerInTrigger = true;
-                Time.timeScale = 0f; // Pause the game
-            }
-            else if (selectedLevel)
-            {
-                levelSelectUI.SetActive(true);
-                levelSelectCanvasGroup.alpha = 1;
-                playerInTrigger = true;
-                Time.timeScale = 0f; // Pause the game
-            }
-            else
-            {
-                fadeAnim.Play("FadeToBlack");
-                StartCoroutine(DelayFade());
-            }
+            fadeAnim.Play("FadeToBlack");
+            StartCoroutine(DelayFade());
         }
     }
 
     public void ChangeScene()
     {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            player = playerObj.transform;
+        if (playerObj != null) _player = playerObj.transform;
 
         fadeAnim.Play("FadeToBlack");
         StartCoroutine(DelayFade());
     }
 
-
-    public void OnYesButton()
-    {
-        if (playerInTrigger)
-        {
-            confirmationUI.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
-            fadeAnim.Play("FadeToBlack");
-            StartCoroutine(DelayFade());
-        }
-    }
-
-    public void OnNoButton()
-    {
-        confirmationUI.SetActive(false);
-        playerInTrigger = false;
-        Time.timeScale = 1f; // Resume the game
-    }
-
-    public void OnCaveEasy()
-    {
-
-        sceneName = "Cave_Easy";
-        if (playerInTrigger)
-        {
-            levelSelectUI.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
-            fadeAnim.Play("FadeToBlack");
-            StartCoroutine(DelayFade());
-        }
-    }
-
-    public void OnCaveMiddle()
-    {
-        sceneName = "Cave_Medium";
-        if (playerInTrigger)
-        {
-            levelSelectUI.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
-            fadeAnim.Play("FadeToBlack");
-            StartCoroutine(DelayFade());
-        }
-    }
-
-    public void OnCaveHard()
-    {
-        sceneName = "Cave_Hard";
-         if (playerInTrigger)
-        {
-            levelSelectUI.SetActive(false);
-            Time.timeScale = 1f; // Resume the game
-            fadeAnim.Play("FadeToBlack");
-            StartCoroutine(DelayFade());
-        }
-    }
-
-    IEnumerator DelayFade()
+    private IEnumerator DelayFade()
     {
         yield return new WaitForSeconds(fadeTime);
-        player.position = newPlayerPosition;
 
-        // Save while all scene objects (InventoryManager, StatsManager, etc.) are still alive.
-        // Suppress the automatic save that fires on sceneUnloaded to avoid a double-save
-        // attempt when those objects are already destroyed.
+        // Set position before saving so the save contains the correct spawn point
+        if (_player != null)
+            _player.position = newPlayerPosition;
+
+        // Save before unloading — suppress the automatic save on sceneUnloaded to avoid a double-save
         if (DataPersistenceeManager.instance != null)
         {
             DataPersistenceeManager.instance.SaveGame();
@@ -132,21 +56,12 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (player != null)
-            player.position = newPlayerPosition;
+        if (_player != null)
+            _player.position = newPlayerPosition;
     }
-
 }

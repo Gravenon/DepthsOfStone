@@ -1,83 +1,61 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemSO itemSO;
     public int quantity;
 
-    public Image itemImage;
-    public TMP_Text quantityText;
+    [SerializeField] private Image itemImage;
+    [SerializeField] private TMP_Text quantityText;
 
-    private InventoryManager inventoryManager;
-    private static ShopManger activeShop;
+    private InventoryManager _inventoryManager;
+    private static ShopManger _activeShop;
 
-    private void Start()
+    private void Start() => _inventoryManager = GetComponentInParent<InventoryManager>();
+
+    private void OnEnable()  => ShopKeeper.OnShopOpenClose += HandleShopStateChange;
+    private void OnDisable() => ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+
+    private void HandleShopStateChange(ShopManger shop, bool isOpen)
     {
-        inventoryManager = GetComponentInParent<InventoryManager>();
-    }
-
-    private void OnEnable()
-    {
-        ShopKeeper.OnShopOpenClose += HendleShopStateChange;
-    }
-
-    private void OnDisable()
-    {
-        ShopKeeper.OnShopOpenClose -= HendleShopStateChange;
-    }
-
-    private void HendleShopStateChange(ShopManger shopManager, bool isOpen)
-    {
-        activeShop = isOpen ? shopManager : null;
+        _activeShop = isOpen ? shop : null;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (quantity > 0)
+        if (quantity <= 0) return;
+
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
+            if (_activeShop != null)
             {
-                if (activeShop != null)
-                {
-                    activeShop.SellItem(itemSO);
-                    quantity--;
-                    UpdateUI();
-                }
-                else
-                {
-                    if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
-                        return;
-                    if (itemSO.itemType != ItemType.ore)
-                        inventoryManager.UseItem(this);
-                }
+                _activeShop.SellItem(itemSO);
             }
-            else if (eventData.button == PointerEventData.InputButton.Right)
+            else
             {
-                inventoryManager.DropItem(this);
+                // Consumables that restore health can only be used below max health
+                if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
+                    return;
+                if (itemSO.itemType != ItemType.ore)
+                    _inventoryManager.UseItem(this);
             }
         }
-
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            _inventoryManager.DropItem(this);
+        }
     }
 
     public void UpdateUI()
     {
-        if (quantity <= 0)
-            itemSO = null;
+        if (quantity <= 0) itemSO = null;
 
-        if (itemSO != null)
-        {
-            itemImage.sprite = itemSO.itemIcon;
-            itemImage.gameObject.SetActive(true);
-            quantityText.text = quantity.ToString();
-        }
-        else
-        {
-            itemImage.gameObject.SetActive(false);
-            quantityText.text = "";
-        }
-
+        bool hasItem = itemSO != null;
+        itemImage.gameObject.SetActive(hasItem);
+        itemImage.sprite  = hasItem ? itemSO.itemIcon : null;
+        quantityText.text = hasItem ? quantity.ToString() : "";
     }
 }

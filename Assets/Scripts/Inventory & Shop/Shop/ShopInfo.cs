@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,77 +5,63 @@ using UnityEngine.InputSystem;
 
 public class ShopInfo : MonoBehaviour
 {
-    public CanvasGroup infoPanel;
-
-    public TMP_Text itemNameText;
-    public TMP_Text itemDescriptionText;
+    [SerializeField] private CanvasGroup infoPanel;
+    [SerializeField] private TMP_Text itemNameText;
+    [SerializeField] private TMP_Text itemDescriptionText;
 
     [Header("Stat Fields")]
-    public TMP_Text[] statText;
+    [SerializeField] private TMP_Text[] statTexts;
 
-    private RectTransform infoPanelRect;
+    private RectTransform _rect;
 
-    private void Awake()
-    {
-        infoPanelRect = GetComponent<RectTransform>();
-    }
+    private void Awake() => _rect = GetComponent<RectTransform>();
 
-    public void ShowItemInfo(ItemSO itemSO)
+    public void ShowItemInfo(ItemSO item)
     {
         infoPanel.alpha = 1;
+        itemNameText.text        = item.itemName;
+        itemDescriptionText.text = item.itemDescription;
 
-        itemNameText.text = itemSO.itemName;
-        itemDescriptionText.text = itemSO.itemDescription;
+        var stats = BuildStatList(item);
 
-        List<string> stats = new List<string>();
-        if (itemSO.currentHealth > 0) stats.Add("Health: " + itemSO.currentHealth.ToString());
-        if (itemSO.maxHealth > 0) stats.Add("Max Health: " + itemSO.maxHealth.ToString());
-        if (itemSO.speed > 0) stats.Add("Speed: " + itemSO.speed.ToString());
-        if (itemSO.damage > 0) stats.Add("Damege: " + itemSO.damage.ToString());
-        if (itemSO.duration > 0) stats.Add("Duration: " + itemSO.duration.ToString());
-
-
-
-        for (int i = 0; i < statText.Length; i++)
+        for (int i = 0; i < statTexts.Length; i++)
         {
-            if (stats.Count <= 0)
-            {
-                statText[i].text = "";
-            }
-
-
             if (i < stats.Count)
             {
-                statText[i].text = stats[i];
-                statText[i].gameObject.SetActive(true);
+                statTexts[i].text = stats[i];
+                statTexts[i].gameObject.SetActive(true);
             }
             else
             {
-                statText[i].gameObject.SetActive(false);
+                statTexts[i].text = "";
+                statTexts[i].gameObject.SetActive(false);
             }
-
         }
-
     }
 
     public void HideItemInfo()
     {
-        infoPanel.alpha = 0;
-
-        itemNameText.text = "";
+        infoPanel.alpha          = 0;
+        itemNameText.text        = "";
         itemDescriptionText.text = "";
     }
 
     public void FollowMouse()
     {
-        if (Pointer.current == null)
-        {
-            return;
-        }
+        if (Pointer.current == null) return;
+        if (_rect == null) _rect = GetComponent<RectTransform>();
+        if (_rect == null) return;
+        _rect.position = (Vector3)Pointer.current.position.ReadValue() + new Vector3(10f, -10f, 0f);
+    }
 
-        Vector3 mousePosition = Pointer.current.position.ReadValue();
-        Vector3 offset = new Vector3(10, -10, 0);
-
-        infoPanelRect.position = mousePosition + offset;
+    private static List<string> BuildStatList(ItemSO item)
+    {
+        var stats = new List<string>();
+        if (item.currentHealth > 0) stats.Add("Health: "     + item.currentHealth);
+        if (item.maxHealth     > 0) stats.Add("Max Health: " + item.maxHealth);
+        if (item.speed         > 0) stats.Add("Speed: "      + item.speed);
+        if (item.damage        > 0) stats.Add("Damage: "     + item.damage);
+        if (item.duration      > 0) stats.Add("Duration: "   + item.duration);
+        return stats;
     }
 }

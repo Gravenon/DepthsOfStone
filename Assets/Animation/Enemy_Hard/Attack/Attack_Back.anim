@@ -21,27 +21,27 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2566801441112676559, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.083333336
-      value: {fileID: 9083741465043326541, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.15
-      value: {fileID: -2090171585303833420, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.23333333
-      value: {fileID: -1882217219249422085, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.31666666
-      value: {fileID: -1314009764107779635, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.4
-      value: {fileID: 5896345051488477779, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.46666667
-      value: {fileID: -8238417651626266267, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - time: 0.55
-      value: {fileID: -787675763247117579, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
+      value: {fileID: -7457063870938938066, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.14285715
+      value: {fileID: 4667780783463807567, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.2857143
+      value: {fileID: -8973230801233295797, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.42857143
+      value: {fileID: 7368952380255190324, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.5714286
+      value: {fileID: -3279367142057360995, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.71428573
+      value: {fileID: 3167555203293896314, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 0.85714287
+      value: {fileID: 6606251569814962155, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - time: 1
+      value: {fileID: -633913448640043036, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 60
+  m_SampleRate: 14
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -58,20 +58,20 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2566801441112676559, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: 9083741465043326541, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: -2090171585303833420, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: -1882217219249422085, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: -1314009764107779635, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: 5896345051488477779, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: -8238417651626266267, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
-    - {fileID: -787675763247117579, guid: 0ffe44f4be2a7413aab875f08eb2ea18, type: 3}
+    - {fileID: -7457063870938938066, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: 4667780783463807567, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: -8973230801233295797, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: 7368952380255190324, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: -3279367142057360995, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: 3167555203293896314, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: 6606251569814962155, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
+    - {fileID: -633913448640043036, guid: ac47e914b55cd4cf38cf68713d7a30a4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.56666666
+    m_StopTime: 1.0714285
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -98,14 +98,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.23333333
+  - time: 0.42857143
     functionName: StartAttacking
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.55
+  - time: 1
     functionName: ChangeState
     data: 
     objectReferenceParameter: {fileID: 0}
