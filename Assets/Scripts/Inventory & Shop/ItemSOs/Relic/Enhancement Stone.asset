@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Enhancement Stone
   itemDescription: Enhancement Stone
   itemIcon: {fileID: 1549213664, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 7
+  itemType: 5
+  isEXP: 0
   stackSize: 1
   currentHealth: 2
   maxHealth: 2

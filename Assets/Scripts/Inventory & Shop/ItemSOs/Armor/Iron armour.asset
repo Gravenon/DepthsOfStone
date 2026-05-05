@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: 'Iron armour '
   itemDescription: "A miner\u2019s reliable protection."
   itemIcon: {fileID: 0}
-  itemType: 3
+  itemType: 1
+  isEXP: 0
   stackSize: 1
   currentHealth: 0
   maxHealth: 40

@@ -17,7 +17,8 @@ MonoBehaviour:
 
 '
   itemIcon: {fileID: 0}
-  itemType: 2
+  itemType: 0
+  isEXP: 0
   stackSize: 1
   currentHealth: 0
   maxHealth: 20

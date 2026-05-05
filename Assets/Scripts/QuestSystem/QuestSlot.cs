@@ -6,9 +6,6 @@ public class QuestSlot : MonoBehaviour
     [SerializeField] private TMP_Text questNameText;
     [SerializeField] private TMP_Text questLevelText;
     
-    //Todo
-    //[SerializeField] private TMP_Text questDescriptionText;
-    
     public QuestSO currentQuest;
     
     public QuestLogUI questLogUI;
@@ -32,6 +29,12 @@ public class QuestSlot : MonoBehaviour
         questLevelText.text = "Lv." + quest.questLevel;
         
         gameObject.SetActive(true);
+    }
+
+    public void ClearSlot()
+    {
+        currentQuest = null;
+        gameObject.SetActive(false);
     }
 
     public void OnSlotClicked()

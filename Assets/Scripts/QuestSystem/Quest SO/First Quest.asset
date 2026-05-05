@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335145e9b4c38463d91adc3eea79bf15, type: 3}
   m_Name: First Quest
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO
-  questName: Open Dash
-  questDescription: 'Bla bla bla '
+  questName: Test
+  questDescription: Test
   questLevel: 1
+  objectives:
+  - description: Test
+    trarget: {fileID: 11400000, guid: cee5bf6773674184983e7cd0a7574389, type: 2}
+    requiredAmount: 3
+    currentAmount: 0
+  rewards:
+  - itemSo: {fileID: 11400000, guid: 3f3246849c8df4434a4ddcb3354a4b37, type: 2}
+    quantity: 10
+  - itemSo: {fileID: 11400000, guid: 04ba451c3c4da32489f9bdc33a2f2120, type: 2}
+    quantity: 20

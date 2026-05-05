@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,9 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public TMP_Text coinText;
     public GameObject lootPrefab;
     public Transform player;
+    
+    public static event Action<int> OnExperienceGained; // Event to notify when the player gains experience
+
 
     private void Awake()
     {
@@ -169,6 +173,12 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             return;
         }
 
+        if (itemSO.isEXP)
+        {
+            OnExperienceGained?.Invoke(quantity);
+            return;
+        }
+
         bool isEquipment = itemSO.itemType == ItemType.mainHand || itemSO.itemType == ItemType.head
             || itemSO.itemType == ItemType.body  || itemSO.itemType == ItemType.legs
             || itemSO.itemType == ItemType.feet  || itemSO.itemType == ItemType.relic;
@@ -249,6 +259,34 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void RemoveItem(ItemSO itemSO,  int quantity)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            var slot = inventorySlots[i];   
+            
+            //Skip slot htat don't match the item
+            if (slot.itemSO != itemSO)
+                continue;
+
+            if (slot.quantity > quantity)
+            {
+                //Remove only what we need 
+                slot.quantity -= quantity;
+                slot.UpdateUI();
+                quantity = 0;
+            }
+            else
+            {
+                //take ALL from this slot
+                quantity -= slot.quantity;
+                slot.itemSO = null;
+                slot.quantity = 0;
+                slot.UpdateUI();
+            }
+        }
+    }
+    
     public void DropItem(InventorySlot slot)
     {
         DropLoot(slot.itemSO, 1);
@@ -313,7 +351,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
         foreach (var slot in inventorySlots)
         {
-            if (slot.itemSO = itemSO)
+            if (slot.itemSO == itemSO)
                 total += slot.quantity;
         }
         

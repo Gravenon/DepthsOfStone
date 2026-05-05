@@ -1,66 +1,224 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class QuestLogUI : MonoBehaviour
 {
     [SerializeField] private QuestManager questManager;
+
     [SerializeField] private TMP_Text questName;
     [SerializeField] private TMP_Text questDescription;
     [SerializeField] private QuestObjectivSlot[] objectiveSlots;
     [SerializeField] private QuestRewardSlot[] rewardSlots;
 
-    [SerializeField] private CanvasGroup questDetailCanvasGroup;
+    [SerializeField] private CanvasGroup questCanvas;
+    
+    [SerializeField] private CanvasGroup acceptCanvasGroup;
+    [SerializeField] private CanvasGroup declineCanvasGroup;
+    [SerializeField] private CanvasGroup completeCanvasGroup;
+    
+    [SerializeField] private QuestSO NoAvailableQuestSO;
+    [SerializeField] private QuestSlot[] questSlots;
 
-    private QuestSO _currentQuest;
+    [Header("Input")]
+    [SerializeField] private InputActionReference questLogAction;
+    
+    private QuestSO questSO;
+    private bool _isOpen;
 
     private void Start()
     {
-        SetDetailVisible(false);
+        SetCanvasState(questCanvas, false);
+    }
+
+    private void OnEnable()
+    {
+        QuestEvents.OnQuestOfferRequested += ShowQuestOffer;
+        QuestEvents.OnQuestTurnInRequested += ShowQuestTurnIn;
+        QuestEvents.OnQuestBoardExit += CloseQuestOffer;
+        QuestEvents.OnQuestLogToggle += ToggleQuestLog;
+
+        if (questLogAction != null)
+            questLogAction.action.performed += OnQuestLogInput;
+    }
+
+    private void OnDisable()
+    {
+        QuestEvents.OnQuestOfferRequested -= ShowQuestOffer;
+        QuestEvents.OnQuestTurnInRequested -= ShowQuestTurnIn;
+        QuestEvents.OnQuestBoardExit -= CloseQuestOffer;
+        QuestEvents.OnQuestLogToggle -= ToggleQuestLog;
+
+        if (questLogAction != null)
+            questLogAction.action.performed -= OnQuestLogInput;
+    }
+
+    private void OnQuestLogInput(InputAction.CallbackContext context)
+    {
+        ToggleQuestLog();
+    }
+
+    public void ToggleQuestLog()
+    {
+        if (_isOpen)
+        {
+            CloseQuestOffer();
+        }
+        else
+        {
+            OpenQuestLog();
+        }
+    }
+
+    // Открыть журнал в режиме просмотра (без кнопок принятия/отказа/завершения)
+    private void OpenQuestLog()
+    {
+        RefreshQuestList();
+
+        SetCanvasState(acceptCanvasGroup, false);
+        SetCanvasState(declineCanvasGroup, false);
+        SetCanvasState(completeCanvasGroup, false);
+
+        // Показать первый активный квест, если есть
+        var activeQuests = questManager.GetActiveQuests();
+        if (activeQuests.Count > 0)
+            HandleQuestClicked(activeQuests[0]);
+        else if (NoAvailableQuestSO != null)
+            HandleQuestClicked(NoAvailableQuestSO);
+
+        SetCanvasState(questCanvas, true);
+        _isOpen = true;
+    }
+
+    #region Show Quest Method
+    
+    // Called via QuestEvents when player interacts with QuestBoard
+    public void ShowQuestOffer(QuestSO incomingQuestSO)
+    {
+        // Press E again while open — close (toggle)
+        if (_isOpen && questSO == incomingQuestSO)
+        {
+            CloseQuestOffer();
+            return;
+        }
+
+        if (questManager.IsQuestAccepted(incomingQuestSO) || questManager.GetCompleteQuest(incomingQuestSO))
+        {
+            questSO = NoAvailableQuestSO;
+            SetCanvasState(acceptCanvasGroup, false);
+            SetCanvasState(declineCanvasGroup, true);
+            SetCanvasState(completeCanvasGroup, false);
+        }
+        else
+        {
+            questSO = incomingQuestSO;
+            SetCanvasState(acceptCanvasGroup, true);
+            SetCanvasState(declineCanvasGroup, true);
+            SetCanvasState(completeCanvasGroup, false);
+        }
+
+        HandleQuestClicked(questSO);
+        SetCanvasState(questCanvas, true);
+        _isOpen = true;
+    }
+
+    public void ShowQuestTurnIn(QuestSO incomingQuestSO)
+    {
+        questSO = incomingQuestSO;
+        
+        HandleQuestClicked(questSO);
+        
+        SetCanvasState(completeCanvasGroup, true);
+        SetCanvasState(declineCanvasGroup, false);
+        SetCanvasState(acceptCanvasGroup, false);
+        SetCanvasState(questCanvas, true);
+    }
+    
+    #endregion
+    
+    #region On Button Click Method
+    public void OnAcceptQuestClicked()
+    {
+        QuestEvents.OnQuestAccepted?.Invoke(questSO);
+        
+        questManager.AcceptQuest(questSO);
+        SetCanvasState(completeCanvasGroup, false);
+        SetCanvasState(acceptCanvasGroup, false);
+
+        RefreshQuestList();
+        HandleQuestClicked(NoAvailableQuestSO);
+    }
+
+    public void OnDeclineQuestClicked()
+    {
+        CloseQuestOffer();
+    }
+
+    public void OnCompleteQuestClicked()
+    {
+        questManager.CompleteQuest(questSO);
+        RefreshQuestList();
+        CloseQuestOffer();
+    }
+    
+    #endregion
+
+    private void CloseQuestOffer()
+    {
+        _isOpen = false;
+        SetCanvasState(questCanvas, false);
     }
 
     public void HandleQuestClicked(QuestSO quest)
     {
-        _currentQuest = quest;
+        questSO = quest;
 
         questName.text = quest.questName;
         questDescription.text = quest.questDescription;
 
-        SetDetailVisible(true);
         DisplayObjectives();
         DisplayRewards();
     }
-
-    public void CloseDetail()
+    
+    private void SetCanvasState(CanvasGroup canvasGroup, bool visible)
     {
-        _currentQuest = null;
-        SetDetailVisible(false);
+        if (canvasGroup == null) return;
+        
+        canvasGroup.alpha = visible ? 1f : 0f;
+        canvasGroup.interactable = visible;
+        canvasGroup.blocksRaycasts = visible;
     }
 
-    private void SetDetailVisible(bool visible)
+    public void RefreshQuestList()
     {
-        if (questDetailCanvasGroup == null)
-        {
-            Debug.LogWarning("[QuestLogUI] questDetailCanvasGroup is not assigned!");
-            return;
-        }
+        List<QuestSO> activeQuest = questManager.GetActiveQuests();
 
-        questDetailCanvasGroup.alpha = visible ? 1f : 0f;
-        questDetailCanvasGroup.interactable = visible;
-        questDetailCanvasGroup.blocksRaycasts = visible;
+        for (int i = 0; i < questSlots.Length; i++)
+        {
+            if (i < activeQuest.Count)
+            {
+                questSlots[i].SetQuest(activeQuest[i]);
+            }
+            else
+            {
+                questSlots[i].ClearSlot();
+            }
+        }
     }
 
     private void DisplayObjectives()
     {
         for (int i = 0; i < objectiveSlots.Length; i++)
         {
-            if (i < _currentQuest.objectives.Count)
+            if (i < questSO.objectives.Count)
             {
-                var objective = _currentQuest.objectives[i];
-                questManager.UpdateObjectiveProgress(_currentQuest, objective);
+                var objective = questSO.objectives[i];
+                questManager.UpdateObjectiveProgress(questSO, objective);
 
-                int currentAmount = questManager.GteCurrentAmount(_currentQuest, objective);
-                string progress = questManager.GetProgressText(_currentQuest, objective);
-                bool isComplete = currentAmount >= objective.requiredAmount;
+                int currentAmount = questManager.GteCurrentAmount(questSO, objective);
+                string progress   = questManager.GetProgressText(questSO, objective);
+                bool isComplete   = currentAmount >= objective.requiredAmount;
 
                 objectiveSlots[i].gameObject.SetActive(true);
                 objectiveSlots[i].RefreshObjective(objective.description, progress, isComplete);
@@ -71,14 +229,14 @@ public class QuestLogUI : MonoBehaviour
             }
         }
     }
-
+    
     private void DisplayRewards()
     {
         for (int i = 0; i < rewardSlots.Length; i++)
         {
-            if (i < _currentQuest.rewards.Count)
+            if (i < questSO.rewards.Count)
             {
-                var reward = _currentQuest.rewards[i];
+                var reward = questSO.rewards[i];
                 rewardSlots[i].DisplayReward(reward.itemSo.itemIcon, reward.quantity);
                 rewardSlots[i].gameObject.SetActive(true);
             }
@@ -88,6 +246,4 @@ public class QuestLogUI : MonoBehaviour
             }
         }
     }
-
-
 }

@@ -14,7 +14,7 @@ public class ExpManager : MonoBehaviour
     public TMP_Text levelText; // Reference to the UI Text for displaying the current level
 
     public static event Action<int> OnLevelUp; // Event to notify when the player levels up
-
+    
     public void Start()
     {
         UpdateUI(); // Initialize the UI at the start
@@ -29,11 +29,13 @@ public class ExpManager : MonoBehaviour
     void OnEnable()
     {
         Enemy_Health.OnEnemyDefeated += GainExp; // Subscribe to the event when an enemy is defeated
+        InventoryManager.OnExperienceGained += GainExp; // Subscribe to the event when experience is gained from other sources (e.g., quests, items)
     }
 
     void OnDisable()
     {
         Enemy_Health.OnEnemyDefeated -= GainExp; // Unsubscribe from the event when the object is disabled
+        InventoryManager.OnExperienceGained -= GainExp;
     }
 
 

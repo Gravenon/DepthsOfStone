@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Copper
   itemDescription: copper
   itemIcon: {fileID: -1092307444, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
-  itemType: 8
+  itemType: 6
+  isEXP: 0
   stackSize: 6
   currentHealth: 0
   maxHealth: 0

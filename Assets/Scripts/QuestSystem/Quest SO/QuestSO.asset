@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QuestSO
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO
   questName: Acquire Hardware
-  questDescription: 'Find 6 gold coins and give them to the blacksmith '
+  questDescription: 'Find 6 gold ore and give them to the blacksmith '
   questLevel: 1
   objectives:
   - description: 'Find 6 gold '
@@ -26,7 +26,7 @@ MonoBehaviour:
     currentAmount: 0
   rewards:
   - itemSo: {fileID: 11400000, guid: 3f3246849c8df4434a4ddcb3354a4b37, type: 2}
-    quantity: 4
+    quantity: 20
   - itemSo: {fileID: 11400000, guid: 04ba451c3c4da32489f9bdc33a2f2120, type: 2}
     quantity: 5
   - itemSo: {fileID: 11400000, guid: 8348b5e729d5a48d094f14634143a00b, type: 2}

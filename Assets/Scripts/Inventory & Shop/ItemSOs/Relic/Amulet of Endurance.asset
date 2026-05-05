@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Amulet of Endurance
   itemDescription: Keeps you on your feet.
   itemIcon: {fileID: 1111904194, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 7
+  itemType: 5
+  isEXP: 0
   stackSize: 1
   currentHealth: 0
   maxHealth: 25

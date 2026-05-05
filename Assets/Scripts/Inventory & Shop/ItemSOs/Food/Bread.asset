@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Bread
   itemDescription: Bread
   itemIcon: {fileID: -744869514, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 0
+  itemType: 8
+  isEXP: 0
   stackSize: 6
   currentHealth: 15
   maxHealth: 0

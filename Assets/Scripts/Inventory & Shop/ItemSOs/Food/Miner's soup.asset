@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: 'Miner''s soup '
   itemDescription: Miner's soup
   itemIcon: {fileID: 1242145032, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 0
+  itemType: 8
+  isEXP: 0
   stackSize: 6
   currentHealth: 35
   maxHealth: 0

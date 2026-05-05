@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: EXP
   itemDescription: exp
   itemIcon: {fileID: -5079587934203481674, guid: 225e2c53da7b543bc9587858a0ef7950, type: 3}
-  itemType: 7
+  itemType: 8
   isEXP: 1
   stackSize: 0
   currentHealth: 0

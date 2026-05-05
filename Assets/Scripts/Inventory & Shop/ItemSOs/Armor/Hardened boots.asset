@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Hardened boots
   itemDescription: Made for long journeys.
   itemIcon: {fileID: 0}
-  itemType: 6
+  itemType: 4
+  isEXP: 0
   stackSize: 1
   currentHealth: 0
   maxHealth: 15

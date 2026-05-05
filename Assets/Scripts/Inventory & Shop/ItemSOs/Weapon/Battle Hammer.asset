@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: 'Battle Hammer '
   itemDescription: Every blow is as powerful as a mountain.
   itemIcon: {fileID: -751710411, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
-  itemType: 5
+  itemType: 3
+  isEXP: 0
   stackSize: 6
   currentHealth: 0
   maxHealth: 0

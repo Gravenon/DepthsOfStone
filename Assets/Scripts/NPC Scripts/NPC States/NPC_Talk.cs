@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,16 @@ public class NPC_Talk : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        QuestEvents.OnQuestAccepted += OnQuestAccepted_RemoveOfferings;
+    }
+
+    private void OnDestroy()
+    {
+        QuestEvents.OnQuestAccepted -= OnQuestAccepted_RemoveOfferings;
     }
 
     private void OnEnable()
@@ -53,7 +64,8 @@ public class NPC_Talk : MonoBehaviour
             if (GameManager.Instance.DialogueManager.CanStartDialogue())
             {
                 CheckForNewConverstation();
-                GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
+                if (currentConversation != null)
+                    GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
             }
         }
     }
@@ -81,6 +93,19 @@ public class NPC_Talk : MonoBehaviour
                 }
                 break;
             }
+        }
+    }
+
+    private void OnQuestAccepted_RemoveOfferings(QuestSO acceptedQuest)
+    {
+        for (int i = converstations.Count - 1; i >= 0; i--)
+        {
+            var convo = converstations[i];
+            if (convo == null)
+                continue;
+            
+            if(convo.offerQuestOnEnd == acceptedQuest)
+                converstations.RemoveAt(i);
         }
     }
 }

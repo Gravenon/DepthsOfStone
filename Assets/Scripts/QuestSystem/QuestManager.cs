@@ -1,15 +1,98 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
     private Dictionary<QuestSO, Dictionary<QuestObejtive, int>> questProgress = new();
+    private List<QuestSO> comletedQuests = new();
+
+    private void OnEnable()
+    {
+        QuestEvents.IsQuestComplete += IsQuestComplete;
+    }
+
+    private void OnDisable()
+    {
+        QuestEvents.IsQuestComplete -= IsQuestComplete;
+    }
 
 
-    public void UpdateObjectiveProgress(QuestSO quest, QuestObejtive objective)
+    
+    #region Quest Accept Logic
+    public bool IsQuestAccepted(QuestSO questSO)
+    {
+        return questProgress.ContainsKey(questSO);
+    }
+    
+    public List<QuestSO> GetActiveQuests()
+    {
+        return new List<QuestSO>(questProgress.Keys);
+    }
+    
+    public void AcceptQuest(QuestSO quest)
     {
         if (!questProgress.ContainsKey(quest))
             questProgress[quest] = new Dictionary<QuestObejtive, int>();
+
+        foreach (var objective in quest.objectives)
+        {
+            UpdateObjectiveProgress(quest, objective);
+        }
+    }
+    #endregion
+    
+    #region Quest Complete Logic
+    public bool IsQuestComplete(QuestSO quest)
+    {
+        if (!questProgress.TryGetValue(quest, out var progressDictionary))
+            return false;
+
+        foreach (var objective in quest.objectives)
+        {
+            UpdateObjectiveProgress(quest, objective);
+        }
+
+        foreach (var objective in quest.objectives)
+        {
+            if (progressDictionary[objective] < objective.requiredAmount)
+                return false;
+        }
+        
+        return true;
+    }
+
+    public void CompleteQuest(QuestSO quest)
+    {
+        questProgress.Remove(quest);
+        comletedQuests.Add(quest);
+
+        foreach (var objective in quest.objectives)
+        {
+            if (objective.targetItem != null && objective.requiredAmount > 0)
+            {
+                InventoryManager.Instance.RemoveItem(objective.targetItem, objective.requiredAmount);
+            }
+                
+        }
+        
+        foreach (var reward in quest.rewards)
+        {
+            InventoryManager.Instance.AddItem(reward.itemSo, reward.quantity);
+        }
+    }
+
+    public bool GetCompleteQuest(QuestSO quest)
+    {
+        return comletedQuests.Contains(quest);
+    }
+    
+    #endregion
+    
+    public void UpdateObjectiveProgress(QuestSO quest, QuestObejtive objective)
+    {
+        if (!questProgress.ContainsKey(quest))
+            return;
         
         var progressDictionary = questProgress[quest];
         int newAmout = 0;

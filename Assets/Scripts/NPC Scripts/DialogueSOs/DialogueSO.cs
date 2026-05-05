@@ -8,6 +8,15 @@ public class DialogueSO : ScriptableObject
     public DialogueNode[] lines;
     public DialogueOption[] options;
     
+    [Header("Quest Offer(Optional)")]
+    public QuestSO offerQuestOnEnd;
+    
+    [Header("Completed Quest Requirements(Optional)")]
+    public QuestSO[] requiredCompletedQuests;
+    
+    [Header("Quest Turn-In (Optional)")]
+    public QuestSO turnInQuestOnEnd;
+    
     [Header("Conditional Requiremnts (Optional)")]
     public AcotrSO[] requiredNPCs;
     public LocationSO[] requiredLocations;
@@ -19,29 +28,44 @@ public class DialogueSO : ScriptableObject
 
     public bool IsConditionsMet()
     {
-        if(requiredNPCs.Length > 0)
+        if(requiredNPCs != null && requiredNPCs.Length > 0)
         {
             foreach (var npc in requiredNPCs)
             {
+                if (npc == null) continue;
                 if(!GameManager.Instance.DialogueHistoryTraker.HasSpokenWith(npc)) 
                     return false;
             }
         }
-        if(requiredLocations.Length > 0)
+        if(requiredLocations != null && requiredLocations.Length > 0)
         {
             foreach (var location in requiredLocations)
             {
+                if (location == null) continue;
                 if (!GameManager.Instance.LocationHistoryTracker.HasVisited(location)) 
                     return false;
             }
         }
 
-        if(requiredItems.Length > 0)
+        if(requiredItems != null && requiredItems.Length > 0)
         {
             foreach (var item in requiredItems)
             {
+                if (item == null) continue;
                 if(!InventoryManager.Instance.HasItem(item))
                     return false;
+            }
+        }
+        
+        if(requiredCompletedQuests != null && requiredCompletedQuests.Length > 0)
+        {
+            foreach (var quest in requiredCompletedQuests)
+            {
+                if (quest == null) continue;
+                if (!GameManager.Instance.QuestManager.IsQuestComplete(quest))
+                {
+                    return false;
+                }
             }
         }
         return true;
@@ -61,4 +85,5 @@ public class DialogueOption
 {
     public string optionText;
     public DialogueSO nextDialogue;
+    public QuestSO offerQuest;
 }

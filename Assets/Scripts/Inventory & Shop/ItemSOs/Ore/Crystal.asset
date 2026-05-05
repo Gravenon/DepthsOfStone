@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Crystal
   itemDescription: Crystal
   itemIcon: {fileID: 1318589901, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
-  itemType: 8
+  itemType: 6
+  isEXP: 0
   stackSize: 6
   currentHealth: 0
   maxHealth: 0

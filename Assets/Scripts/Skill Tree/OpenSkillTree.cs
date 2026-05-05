@@ -30,6 +30,12 @@ public class OpenSkillTree : MonoBehaviour
     private bool playerInRange;
     private bool isSkillTreeOpen;
 
+
+    private void Start()
+    {
+        HideSkillTree();
+    }
+
     private void OnEnable()
     {
         if (interactAction != null)
