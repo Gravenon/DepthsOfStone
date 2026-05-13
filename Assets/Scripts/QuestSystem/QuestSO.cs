@@ -22,7 +22,10 @@ public class QuestSO : ScriptableObject
         public ItemSO targetItem => trarget as ItemSO;
         public AcotrSO targetNPC => trarget as AcotrSO;
         public LocationSO targetLocation => trarget as LocationSO;
-        
+
+        public bool isAttackObjective; // no target needed — counts player attack swings
+        public bool isDashObjective;   // no target needed — completed when dash is unlocked
+
         public int requiredAmount;
         public int currentAmount;
     }

@@ -1,92 +1,67 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SettingsWindowManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown resolutionDropdown; // Resolution dropdown
-    [SerializeField] private TMP_Dropdown screenModeDropdown;   // Screen mode dropdown
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown screenModeDropdown;
 
     private Resolution[] resolutions;
-    private List<Resolution> selectedResolutions = new List<Resolution>();
+    private readonly List<Resolution> filteredResolutions = new List<Resolution>();
 
-    private int selectedResolutionIndex;
-    private int selectedScreenModeIndex;
-
-
-    void Start()
+    private void Start()
     {
-        // Initialize screen mode dropdown
-        screenModeDropdown.AddOptions(new List<string>
-        {
-            "Windowed",
-            "Fullscreen",
-            "Borderless Windows"    
-        });
-
+        screenModeDropdown.AddOptions(new List<string> { "Windowed", "Fullscreen", "Borderless" });
         int savedMode = PlayerPrefs.GetInt("ScreenMode", 0);
         screenModeDropdown.value = savedMode;
         screenModeDropdown.RefreshShownValue();
         ApplyScreenMode(savedMode);
 
-
-        // Initialize resolution dropdown
         resolutions = Screen.resolutions;
-
-        List<string> optionresolution = new List<string>();
-        string newRes;
-        foreach(Resolution resolution in resolutions)
+        List<string> options = new List<string>();
+        foreach (Resolution r in resolutions)
         {
-            int refreshRate = Mathf.RoundToInt((float)resolution.refreshRateRatio.value);
-            newRes = $"{resolution.width}x{resolution.height} @ {refreshRate} HZ";
-            if(!optionresolution.Contains(newRes))
+            int hz = Mathf.RoundToInt((float)r.refreshRateRatio.value);
+            string entry = $"{r.width}x{r.height} @ {hz}Hz";
+            if (!options.Contains(entry))
             {
-                optionresolution.Add(newRes);
-                selectedResolutions.Add(resolution);
+                options.Add(entry);
+                filteredResolutions.Add(r);
             }
         }
-        resolutionDropdown.AddOptions(optionresolution);
+        resolutionDropdown.AddOptions(options);
 
-        Debug.Log($"Screen modes: {screenModeDropdown.options.Count}");
-        Debug.Log($"Current resolution: {Screen.currentResolution.width}x{Screen.currentResolution.height}");
+        int savedRes = PlayerPrefs.GetInt("Resolution", 0);
+        resolutionDropdown.value = savedRes;
+        resolutionDropdown.RefreshShownValue();
     }
 
-
-    // Change screen mode based on dropdown selection
     public void ChangeScreenMode()
     {
-        selectedScreenModeIndex = screenModeDropdown.value;
-        ApplyScreenMode(selectedScreenModeIndex);
-        PlayerPrefs.SetInt("ScreenMode", selectedScreenModeIndex);
+        int index = screenModeDropdown.value;
+        ApplyScreenMode(index);
+        PlayerPrefs.SetInt("ScreenMode", index);
         PlayerPrefs.Save();
     }
 
     private void ApplyScreenMode(int index)
     {
-        switch (index)
+        Screen.fullScreenMode = index switch
         {
-            case 0: // Windowed
-                Screen.fullScreenMode = FullScreenMode.Windowed;
-                break;
-            case 1: // Fullscreen
-                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-                break;
-            case 2: // Borderless Windows
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-                break;
-        }
-
-        Debug.Log($"Screen mode set to: {screenModeDropdown.options[index].text}");
+            0 => FullScreenMode.Windowed,
+            1 => FullScreenMode.ExclusiveFullScreen,
+            2 => FullScreenMode.FullScreenWindow,
+            _ => FullScreenMode.Windowed
+        };
     }
 
-    // Change resolution based on dropdown selection
     public void ChangeResolution()
     {
-        selectedResolutionIndex = resolutionDropdown.value;
-        Screen.SetResolution(selectedResolutions[selectedResolutionIndex].width, selectedResolutions[selectedResolutionIndex].height, Screen.fullScreen);
-        PlayerPrefs.SetInt("Resolution", selectedResolutionIndex);
+        int index = resolutionDropdown.value;
+        Resolution r = filteredResolutions[index];
+        Screen.SetResolution(r.width, r.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("Resolution", index);
         PlayerPrefs.Save();
-        Debug.Log($"Resolution set to: {resolutionDropdown.options[selectedResolutionIndex].text}");
     }
 }

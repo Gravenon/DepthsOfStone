@@ -29,51 +29,74 @@ public class OpenSkillTree : MonoBehaviour
     public static event Action<bool> OnSkillTreeOpenClose;
     private bool playerInRange;
     private bool isSkillTreeOpen;
-
+    private bool _hasNpcTalk;
+    private NPC_Talk _npcTalk;
 
     private void Start()
     {
         HideSkillTree();
+        _npcTalk = GetComponent<NPC_Talk>();
+        _hasNpcTalk = _npcTalk != null;
     }
 
     private void OnEnable()
     {
         if (interactAction != null)
-        {
             interactAction.action.performed += OnInteract;
-        }
-
         if (cancelAction != null)
-        {
             cancelAction.action.performed += OnCancel;
-        }
+
+        DialogueManager.OnDialogueEnd += OnDialogueEnded;
     }
 
     private void OnDisable()
     {
         if (interactAction != null)
-        {
             interactAction.action.performed -= OnInteract;
-        }
-
         if (cancelAction != null)
-        {
             cancelAction.action.performed -= OnCancel;
-        }
+
+        DialogueManager.OnDialogueEnd -= OnDialogueEnded;
+    }
+
+    // Auto-open skill tree after dialogue ends if player is still in range
+    private void OnDialogueEnded()
+    {
+        if (playerInRange && !isSkillTreeOpen)
+            ShowSkillTree();
     }
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        if (isSkillTreeOpen)
+        var dm = GameManager.Instance?.DialogueManager;
+
+        // Dialogue is active — NPC_Talk handles E, we do nothing
+        if (dm != null && dm.isDialogueActive)
+            return;
+
+        if (_hasNpcTalk)
         {
-            HideSkillTree();
+            // Close skill tree with E
+            if (isSkillTreeOpen)
+            {
+                HideSkillTree();
+                return;
+            }
+
+            if (!playerInRange) return;
+
+            // If NPC still has a valid conversation — let NPC_Talk handle E (don't open skill tree)
+            if (_npcTalk != null && _npcTalk.converstations.Exists(c => c != null && c.IsConditionsMet()))
+                return;
+
+            // No more dialogue — open skill tree directly
+            ShowSkillTree();
             return;
         }
 
-        if (!playerInRange)
-            return;
-        
-        ShowSkillTree();
+        // Pure skill tree NPC (no NPC_Talk)
+        if (isSkillTreeOpen) { HideSkillTree(); return; }
+        if (playerInRange) ShowSkillTree();
     }
 
     private void OnCancel(InputAction.CallbackContext context)

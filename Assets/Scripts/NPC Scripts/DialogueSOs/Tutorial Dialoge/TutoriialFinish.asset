@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774526d0d46ec1469e9bf78c7bd36e1, type: 3}
+  m_Name: TutoriialFinish
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'You can walk.
+
+      You can fight.
+
+      You can grow stronger.
+
+      You
+      can move when death comes close.'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'You are ready to stand for this village in the abyss.
+
+'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'You are ready to strike back at the orcs and reclaim what they
+      have drowned in darkness.
+
+'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: You are ready to begin.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: '[Long heavy sigh...]'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: ...All right. Back to work.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'Off to the mines with you.
+
+'
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: What?!
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: 'After all that speech... the mines?! '
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'A warrior who hates work starves before battle.
+
+'
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: 'I was ready for glory. '
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: 'Then start by carrying rocks gloriously. '
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: 'I...I...I hate this village. '
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: Good. Anger builds character.
+  options: []
+  offerQuestOnEnd: {fileID: 0}
+  requiredCompletedQuests:
+  - {fileID: 11400000, guid: 774d912af9a4b4d09853d328f2286848, type: 2}
+  - {fileID: 11400000, guid: 0e4eac9c5f5e84ede96167af4d8b95c8, type: 2}
+  - {fileID: 11400000, guid: b47d106fb6004441a85a718b6a19a91a, type: 2}
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs:
+  - {fileID: 11400000, guid: 11db11e715e95584b815a631973040c7, type: 2}
+  requiredLocations:
+  - {fileID: 11400000, guid: dcf0db12867f546899e71b92cdb25ef4, type: 2}
+  requiredItems: []
+  removeAfterPlay: 1
+  removeTheseOnPlay:
+  - {fileID: 11400000, guid: 1e4742ea33ac74e88a563a63f294118e, type: 2}

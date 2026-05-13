@@ -12,15 +12,13 @@ public class PlayerMovment : MonoBehaviour
 
     public AudiManager AudiManager;
 
-    [Header("State")]
     private bool isKnockBack;
     private float lastHorizontalSign = 1f;
+    private bool isMovementLocked;
 
-    [Header("Movement Settings")]
     private float horizontal;
     private float vertival;
     private Vector2 lastMoveDirection = Vector2.down;
-
 
     [Header("Dash Settings")]
     [SerializeField] private float dashForce = 12f;
@@ -31,11 +29,20 @@ public class PlayerMovment : MonoBehaviour
     private TrailRenderer[] dashTrails;
     private bool isDashing;
     private bool canDash = true;
-    private bool isDashUnlocked = false;
+    private bool isDashUnlocked;
 
     private void Awake()
     {
         dashTrails = dashTrailObj.GetComponentsInChildren<TrailRenderer>();
+    }
+
+    private void Start()
+    {
+        // Reset layer collision in case it persisted from a previous scene (e.g. player died mid-dash)
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
+        isDashing = false;
+        canDash = true;
+        isKnockBack = false;
     }
 
     void Update()
@@ -69,16 +76,23 @@ public class PlayerMovment : MonoBehaviour
             return;
         }
 
+        if (isMovementLocked)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (!isKnockBack && !isDashing)
         {
             rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
         }
-
     }
 
     #region  PLAYER_CONTROLS
     public void Move(InputAction.CallbackContext context)
     {
+        if (isMovementLocked) return;
+
         anim.SetBool("isWalking", true);
 
         horizontal = context.ReadValue<Vector2>().x;
@@ -86,7 +100,6 @@ public class PlayerMovment : MonoBehaviour
 
         anim.SetFloat("InputX", horizontal);
         anim.SetFloat("InputY", vertival);
-
     }
 
     public void Fire(InputAction.CallbackContext context)
@@ -99,7 +112,6 @@ public class PlayerMovment : MonoBehaviour
     {
         if (!context.performed) return;
         StartCoroutine(DashRoutine());
-        
     }
     #endregion
 
@@ -124,7 +136,7 @@ public class PlayerMovment : MonoBehaviour
         yield return new WaitForSecondsRealtime(dashTime);
 
         rb.linearVelocity *= 0.3f;
-        
+
         isDashing = false;
         playerHealth.SetInvulnerable(isDashing);
         UpdateDashTrail(isDashing);
@@ -159,6 +171,18 @@ public class PlayerMovment : MonoBehaviour
     public void UnlockDash()
     {
         isDashUnlocked = true;
-        Debug.Log("[Player] Dash unlocked.");
+        QuestEvents.OnDashUnlocked?.Invoke();
+    }
+
+    public void SetMovementLocked(bool locked)
+    {
+        isMovementLocked = locked;
+        if (locked)
+        {
+            horizontal = 0f;
+            vertival = 0f;
+            rb.linearVelocity = Vector2.zero;
+            anim.SetBool("isWalking", false);
+        }
     }
 }

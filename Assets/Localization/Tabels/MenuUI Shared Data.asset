@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10400174170116
-    m_Key: menu.MoveDown
+    m_Key: menu.Move
     m_Metadata:
       m_Items: []
   - m_Id: 10400174170117

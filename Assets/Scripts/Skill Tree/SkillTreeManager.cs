@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class SkillTreeManager : MonoBehaviour
+public class SkillTreeManager : MonoBehaviour, IDataPersistence
 {
     public SkillSlot[] skillSlots;
     
@@ -103,5 +105,48 @@ public class SkillTreeManager : MonoBehaviour
     {
         UpdateCombatPointsUI();
         UpdateMagicPointsUI();
+    }
+
+    // ─── IDataPersistence ───────────────────────────────────────────────────
+
+    public void SaveData(ref GameData data)
+    {
+        data.savedCombatPoints = availableCombatPoints;
+        data.savedMagicPoints  = availableMagicPoints;
+
+        var states = new List<SerializedSkillState>();
+        foreach (var slot in skillSlots)
+        {
+            if (slot == null || slot.skillSO == null) continue;
+            states.Add(new SerializedSkillState
+            {
+                skillName    = slot.skillSO.skillName,
+                currentLevel = slot.currentLevel,
+                isUnlocked   = slot.isUnlocked
+            });
+        }
+        data.skillStates = states.ToArray();
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.skillStates == null || data.skillStates.Length == 0) return;
+
+        availableCombatPoints = data.savedCombatPoints;
+        availableMagicPoints  = data.savedMagicPoints;
+
+        var lookup = data.skillStates.ToDictionary(s => s.skillName);
+
+        foreach (var slot in skillSlots)
+        {
+            if (slot == null || slot.skillSO == null) continue;
+            if (!lookup.TryGetValue(slot.skillSO.skillName, out var saved)) continue;
+
+            slot.isUnlocked   = saved.isUnlocked;
+            slot.currentLevel = saved.currentLevel;
+            slot.RefreshUI(); // update visuals without firing events
+        }
+
+        UpdateAllPointsUI();
     }
 }

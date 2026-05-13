@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774526d0d46ec1469e9bf78c7bd36e1, type: 3}
+  m_Name: Tutorila Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: Late again.
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: Only by a moment.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'A moment is enough to die.
+
+'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'No new lessons today. Only the basics.
+
+      If your basics fail,
+      everything fails. Stand straight.'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: And listen well... the orcs have lost their minds.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: With foul magic, they march across our lands, taking villages,
+      burning fields, and dragging all they touch into the abyss of darkness.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: So move. Train. Learn. We do not have time to waste.
+  options: []
+  offerQuestOnEnd: {fileID: 0}
+  requiredCompletedQuests: []
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  removeAfterPlay: 1
+  removeTheseOnPlay: []

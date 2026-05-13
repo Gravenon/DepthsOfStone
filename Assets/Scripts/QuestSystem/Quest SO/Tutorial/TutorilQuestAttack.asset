@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 335145e9b4c38463d91adc3eea79bf15, type: 3}
-  m_Name: First Quest
+  m_Name: TutorilQuestAttack
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO
-  questName: Test
-  questDescription: Test
+  questName: Strike with Purpose
+  questDescription: Hit the training dummy and prove your arms are not weaker than
+    your excuses.
   questLevel: 1
   objectives:
-  - description: Test
-    trarget: {fileID: 11400000, guid: cee5bf6773674184983e7cd0a7574389, type: 2}
-    requiredAmount: 3
+  - description: Land 5 hits on the dummy
+    trarget: {fileID: 0}
+    isAttackObjective: 1
+    isDashObjective: 0
+    requiredAmount: 5
     currentAmount: 0
   rewards:
   - itemSo: {fileID: 11400000, guid: 3f3246849c8df4434a4ddcb3354a4b37, type: 2}
-    quantity: 10
+    quantity: 15
   - itemSo: {fileID: 11400000, guid: 04ba451c3c4da32489f9bdc33a2f2120, type: 2}
-    quantity: 20
+    quantity: 5

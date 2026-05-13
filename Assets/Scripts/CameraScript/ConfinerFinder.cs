@@ -1,5 +1,4 @@
-using Cinemachine;
-
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +9,7 @@ public class ConfinerFinder : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -23,6 +23,6 @@ public class ConfinerFinder : MonoBehaviour
         GameObject confinerObj = GameObject.FindWithTag("Confiner");
         if (confinerObj == null) return;
 
-        confiner.m_BoundingShape2D = confinerObj.GetComponent<PolygonCollider2D>();
+        confiner.BoundingShape2D = confinerObj.GetComponent<PolygonCollider2D>();
     }
 }

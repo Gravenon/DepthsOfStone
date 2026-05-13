@@ -11,5 +11,10 @@ public static class QuestEvents
     
     public static Action OnQuestBoardExit;
     public static Action OnQuestLogToggle;
-    
+
+    // Fired every time the player starts an attack swing
+    public static Action OnPlayerAttacked;
+
+    // Fired once when the player unlocks the dash ability
+    public static Action OnDashUnlocked;
 }

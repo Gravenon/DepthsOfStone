@@ -41,13 +41,15 @@ public class Enemy_Health : MonoBehaviour
     {
         isDead = true;
         col.enabled = false;
-        // Stop coroutines on all components immediately to prevent patrol/attack callbacks firing in the death frame
+        // Ensure timeScale is restored before stopping coroutines,
+        // in case HitStop left it at 0.
+        Time.timeScale = 1f;
         foreach (var mb in GetComponents<MonoBehaviour>())
             mb.StopAllCoroutines();
         OnEnemyDefeated?.Invoke(expReward);
     }
 
-    // Called by Animation Event on the last frame of the Death animation
+    // Called by animation event on the last frame of the death animation.
     public void DestroyEnemy() => Destroy(gameObject);
 
     public void Knockback(Transform attacker, float force, float stunTime)

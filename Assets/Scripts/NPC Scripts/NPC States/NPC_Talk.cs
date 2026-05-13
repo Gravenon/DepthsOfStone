@@ -1,14 +1,20 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NPC_Talk : MonoBehaviour
+public class NPC_Talk : MonoBehaviour, IDataPersistence
 {
     private Rigidbody2D rb;
     private Animator anim;
     public Animator interactAnim;
     public InputActionReference interactAction;
+
+    /// <summary>
+    /// Unique ID for this NPC — set this in the Inspector (e.g. "blacksmith_01").
+    /// If left empty, dialogue state will NOT be saved/loaded.
+    /// </summary>
+    [SerializeField] private string npcId;
 
     public List<DialogueSO> converstations;
     public DialogueSO currentConversation;
@@ -19,22 +25,13 @@ public class NPC_Talk : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
-    private void Start()
-    {
-        QuestEvents.OnQuestAccepted += OnQuestAccepted_RemoveOfferings;
-    }
-
-    private void OnDestroy()
-    {
-        QuestEvents.OnQuestAccepted -= OnQuestAccepted_RemoveOfferings;
-    }
+    private void Start()  => QuestEvents.OnQuestAccepted += OnQuestAccepted_RemoveOfferings;
+    private void OnDestroy() => QuestEvents.OnQuestAccepted -= OnQuestAccepted_RemoveOfferings;
 
     private void OnEnable()
     {
         if (interactAction != null)
-        {
             interactAction.action.performed += OnInteract;
-        }
 
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
@@ -45,9 +42,7 @@ public class NPC_Talk : MonoBehaviour
     private void OnDisable()
     {
         if (interactAction != null)
-        {
             interactAction.action.performed -= OnInteract;
-        }
 
         interactAnim.Play("Close");
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -58,41 +53,35 @@ public class NPC_Talk : MonoBehaviour
         if (GameManager.Instance.DialogueManager.isDialogueActive)
         {
             GameManager.Instance.DialogueManager.AdvancedDialogue();
+            return;
         }
-        else
-        {
-            if (GameManager.Instance.DialogueManager.CanStartDialogue())
-            {
-                CheckForNewConverstation();
-                if (currentConversation != null)
-                    GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
-            }
-        }
+
+        if (!GameManager.Instance.DialogueManager.CanStartDialogue()) return;
+
+        CheckForNewConverstation();
+        if (currentConversation != null)
+            GameManager.Instance.DialogueManager.StartDialogue(currentConversation);
     }
 
     private void CheckForNewConverstation()
     {
+        currentConversation = null;
+
         for (int i = 0; i < converstations.Count; i++)
         {
             var convo = converstations[i];
-            if (convo != null && convo.IsConditionsMet())
-            {
-                currentConversation = convo;
+            if (convo == null || !convo.IsConditionsMet()) continue;
 
-                //remove this if it's one-time only
-                if (convo.removeAfterPlay)
-                    converstations.RemoveAt(i);
+            currentConversation = convo;
 
-                //remove any other dialogues that should be cleared when this one plays (like quest completion)
-                if (convo.removeTheseOnPlay != null && convo.removeTheseOnPlay.Count > 0)
-                {
-                    foreach (var toRemove in convo.removeTheseOnPlay)
-                    {
-                        converstations.Remove(toRemove);
-                    }
-                }
-                break;
-            }
+            if (convo.removeAfterPlay)
+                converstations.RemoveAt(i);
+
+            if (convo.removeTheseOnPlay != null)
+                foreach (var toRemove in convo.removeTheseOnPlay)
+                    converstations.Remove(toRemove);
+
+            break;
         }
     }
 
@@ -100,12 +89,46 @@ public class NPC_Talk : MonoBehaviour
     {
         for (int i = converstations.Count - 1; i >= 0; i--)
         {
-            var convo = converstations[i];
-            if (convo == null)
-                continue;
-            
-            if(convo.offerQuestOnEnd == acceptedQuest)
+            if (converstations[i] != null && converstations[i].offerQuestOnEnd == acceptedQuest)
                 converstations.RemoveAt(i);
         }
+    }
+
+    // ─── IDataPersistence ───────────────────────────────────────────────────
+
+    public void SaveData(ref GameData data)
+    {
+        if (string.IsNullOrEmpty(npcId)) return;
+
+        // Collect names of DialogueSO still in the list
+        string[] remaining = converstations
+            .Where(c => c != null)
+            .Select(c => c.name)
+            .ToArray();
+
+        // Replace or add entry for this NPC
+        var list = data.npcConversationStates?.ToList() ?? new List<SerializedNPCConversationState>();
+        var entry = list.FirstOrDefault(e => e.npcId == npcId);
+        if (entry == null)
+        {
+            entry = new SerializedNPCConversationState { npcId = npcId };
+            list.Add(entry);
+        }
+        entry.remainingConversations = remaining;
+        data.npcConversationStates = list.ToArray();
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (string.IsNullOrEmpty(npcId)) return;
+        if (data.npcConversationStates == null) return;
+
+        var entry = data.npcConversationStates.FirstOrDefault(e => e.npcId == npcId);
+        if (entry == null) return; // never saved — keep full list
+
+        var remainingSet = new HashSet<string>(entry.remainingConversations ?? System.Array.Empty<string>());
+
+        // Remove dialogues that are no longer in the saved remaining set
+        converstations.RemoveAll(c => c != null && !remainingSet.Contains(c.name));
     }
 }

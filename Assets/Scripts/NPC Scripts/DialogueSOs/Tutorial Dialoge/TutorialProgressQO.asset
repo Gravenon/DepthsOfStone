@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774526d0d46ec1469e9bf78c7bd36e1, type: 3}
+  m_Name: TutorialProgressQO
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: Strength is not only muscle.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'Every battle gives experience.
+
+      Every victory gives you
+      a chance to grow stronger.'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'Choose wisely. Power, health, speed...
+
+      A fool improves
+      everything and masters nothing.'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'Go to my brother, Bjorik.
+
+      He teaches movement faster than
+      I do, and louder too.'
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: "He\u2019s not far from the courtyard; when you go out, turn right
+      behind the courtyard\u2014he lives there."
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: Learn the dash from him. Then return.
+  options: []
+  offerQuestOnEnd: {fileID: 11400000, guid: b47d106fb6004441a85a718b6a19a91a, type: 2}
+  requiredCompletedQuests:
+  - {fileID: 11400000, guid: 0e4eac9c5f5e84ede96167af4d8b95c8, type: 2}
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  removeAfterPlay: 0
+  removeTheseOnPlay: []

@@ -1,21 +1,37 @@
 using UnityEngine;
 
+// Attach to Player, Enemy or NPC alongside a local AudioSource.
+// Sounds play from the entity's position; multiple sounds overlap via PlayOneShot.
 public class AudiManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("SFX Clips")]
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip[] footstepSounds;
 
+    [SerializeField] private float footstepCooldown = 0.35f;
+    private float _footstepTimer;
 
-    public void PlayDashSound()
+    public void PlayDashSound() => PlayWithPitch(dashSound);
+    public void PlayHitSound()  => PlayWithPitch(hitSound);
+
+    // Call every frame while the entity is moving.
+    public void TickFootstep()
     {
-        _audioSource.pitch = Random.Range(0.9f, 1.1f);
-        _audioSource.PlayOneShot(dashSound);
+        if (footstepSounds == null || footstepSounds.Length == 0) return;
+        _footstepTimer -= Time.deltaTime;
+        if (_footstepTimer > 0f) return;
+        _footstepTimer = footstepCooldown;
+        PlayWithPitch(footstepSounds[Random.Range(0, footstepSounds.Length)]);
     }
 
-    public void PlayHitSound()
+    private void PlayWithPitch(AudioClip clip)
     {
-        _audioSource.pitch = Random.Range(0.9f, 1.1f);
-        _audioSource.PlayOneShot(hitSound);
-    }  
+        if (clip == null || audioSource == null) return;
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        float volume = AudioManager.Instance != null ? AudioManager.Instance.SfxVolume : 1f;
+        audioSource.PlayOneShot(clip, volume);
+    }
 }

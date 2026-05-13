@@ -142,6 +142,9 @@ public class StatsManager : MonoBehaviour, IDataPersistence
 
         if (statsUI != null)
             statsUI.UpdataAllStats();
+
+        // Notify health bar UI so the slider refreshes after load/respawn
+        OnHealthChanged?.Invoke();
     }
 
     public void SaveData(ref GameData data)

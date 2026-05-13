@@ -1,44 +1,34 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
 public class FrameLimitSettings : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown frameLimitDropdown; // Frame limit dropdown
+    [SerializeField] private TMP_Dropdown frameLimitDropdown;
 
-    private readonly int[] frameLimitOptions = { 30, 60, 120, 144, -1};
-    private int selectedFrameLimitIndex;
+    private readonly int[] frameLimitOptions = { 30, 60, 120, 144, -1 };
 
     private void Start()
     {
         frameLimitDropdown.ClearOptions();
-        frameLimitDropdown.AddOptions(new List<string>
-        {
-            "30",
-            "60",
-            "120",
-            "144",
-            "Unlimited"
-        });
-        
-        int saved = PlayerPrefs.GetInt("FrameLimit", 2); // Default to 60 FPS
+        frameLimitDropdown.AddOptions(new List<string> { "30", "60", "120", "144", "Unlimited" });
+
+        int saved = PlayerPrefs.GetInt("FrameLimit", 1);
         frameLimitDropdown.value = saved;
         ApplyFrameLimit(saved);
     }
 
     public void ChangeFPSLimit()
     {
-        selectedFrameLimitIndex = frameLimitDropdown.value;
-        ApplyFrameLimit(selectedFrameLimitIndex);
-        PlayerPrefs.SetInt("FrameLimit", selectedFrameLimitIndex);
+        int index = frameLimitDropdown.value;
+        ApplyFrameLimit(index);
+        PlayerPrefs.SetInt("FrameLimit", index);
         PlayerPrefs.Save();
     }
 
     private void ApplyFrameLimit(int index)
     {
-        QualitySettings.vSyncCount = 0; // VSync всегда выкл
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = frameLimitOptions[index];
-        Debug.Log($"Frame limit set to: {(frameLimitOptions[index] == -1 ? "Unlimited" : frameLimitOptions[index].ToString())} FPS");
     }
 }

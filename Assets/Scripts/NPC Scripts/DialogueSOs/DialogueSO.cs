@@ -59,10 +59,18 @@ public class DialogueSO : ScriptableObject
         
         if(requiredCompletedQuests != null && requiredCompletedQuests.Length > 0)
         {
+            // Защита: QuestManager может быть ещё не назначен после смены сцены
+            var questManager = GameManager.Instance?.QuestManager;
+            if (questManager == null)
+            {
+                Debug.LogWarning("[DialogueSO] QuestManager is null — условия квестов пропущены.");
+                return false;
+            }
+
             foreach (var quest in requiredCompletedQuests)
             {
                 if (quest == null) continue;
-                if (!GameManager.Instance.QuestManager.IsQuestComplete(quest))
+                if (!questManager.IsQuestComplete(quest))
                 {
                     return false;
                 }

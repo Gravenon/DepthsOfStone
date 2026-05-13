@@ -16,6 +16,34 @@ public class SerializedEquippedSlot
 }
 
 [Serializable]
+public class SerializedQuestProgress
+{
+    public string questName;
+    public int[] objectiveProgress; // прогресс каждой цели по индексу
+}
+
+[Serializable]
+public class SerializedCompletedQuest
+{
+    public string questName;
+}
+
+[Serializable]
+public class SerializedNPCConversationState
+{
+    public string npcId;
+    public string[] remainingConversations; // names of DialogueSO still in the list
+}
+
+[Serializable]
+public class SerializedSkillState
+{
+    public string skillName;
+    public int currentLevel;
+    public bool isUnlocked;
+}
+
+[Serializable]
 public class GameData
 {
     public string saveTime;
@@ -53,8 +81,23 @@ public class GameData
     public SerializedSlot[] equipmentItems;
     public SerializedEquippedSlot[] equippedItems;
 
+    // First-time flags
+    public bool introPlayed;
+
     // Arena / wave progress
     public int arenaWaveIndex;
+
+    // Quest progress
+    public SerializedQuestProgress[] activeQuests;
+    public SerializedCompletedQuest[] completedQuests;
+
+    // Skill tree
+    public int savedCombatPoints;
+    public int savedMagicPoints;
+    public SerializedSkillState[] skillStates;
+
+    // NPC dialogue state
+    public SerializedNPCConversationState[] npcConversationStates;
 
     public GameData(string nameWorld, string playerName)
     {
@@ -71,6 +114,13 @@ public class GameData
         equipmentItems = new SerializedSlot[0];
         equippedItems = new SerializedEquippedSlot[0];
         arenaWaveIndex = 0;
+        introPlayed = false;
+        activeQuests = new SerializedQuestProgress[0];
+        completedQuests = new SerializedCompletedQuest[0];
+        savedCombatPoints = 0;
+        savedMagicPoints = 0;
+        skillStates = new SerializedSkillState[0];
+        npcConversationStates = new SerializedNPCConversationState[0];
 
         if (StatsManager.Instance != null)
         {

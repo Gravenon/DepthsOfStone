@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class DialogueManager : MonoBehaviour
     public Button[] optionButtons;
 
     public bool isDialogueActive;
+
+    // Fired when any dialogue ends — subscribers can react (e.g. open skill tree)
+    public static event Action OnDialogueEnd;
 
     private DialogueSO currentDialogue;
     private int dialogueIndex;
@@ -161,6 +165,7 @@ public class DialogueManager : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
 
         lastDialogueEndTime = Time.unscaledTime;
+        OnDialogueEnd?.Invoke();
     }
 
     private void ClearOption()

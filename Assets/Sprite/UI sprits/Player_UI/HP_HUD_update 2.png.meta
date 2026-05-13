@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 9ac0a451bdf434998b3040522327fcaa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3784078007527247530
+    second: HP_HUD_update 2_0
+  - first:
+      213: -5486586204253309542
+    second: HP_HUD_update 2_1
+  - first:
+      213: 4546210600568353156
+    second: HP_HUD_update 2_2
+  - first:
+      213: 6075418783690245395
+    second: HP_HUD_update 2_3
+  - first:
+      213: 7161378479976636918
+    second: HP_HUD_update 2_4
+  - first:
+      213: 48533257326463706
+    second: HP_HUD_update 2_5
+  - first:
+      213: -2145836181510736125
+    second: HP_HUD_update 2_6
+  - first:
+      213: -293051411985518527
+    second: HP_HUD_update 2_7
+  - first:
+      213: 1294416021177712404
+    second: HP_HUD_update 2_8
+  - first:
+      213: 7234896148566959113
+    second: HP_HUD_update 2_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HP_HUD_update 2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 197
+        width: 137
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aae870126eeb38430800000000000000
+      internalID: 3784078007527247530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_1
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 135
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a953ce99aeabbd3b0800000000000000
+      internalID: -5486586204253309542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 60
+        width: 116
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 481fdf05472671f30800000000000000
+      internalID: 4546210600568353156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 94
+        width: 108
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315c79fd139305450800000000000000
+      internalID: 6075418783690245395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_4
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 90
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f16221f8c3526360800000000000000
+      internalID: 7161378479976636918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_5
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 64
+        width: 82
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada8cba8dbc6ca000800000000000000
+      internalID: 48533257326463706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 32
+        width: 109
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3073fdeac557832e0800000000000000
+      internalID: -2145836181510736125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_7
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 32
+        width: 82
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1403daf1b4fdeebf0800000000000000
+      internalID: -293051411985518527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1
+        width: 109
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41f3fdd5380b6f110800000000000000
+      internalID: 1294416021177712404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 2
+        width: 78
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 904ec2a07b3876460800000000000000
+      internalID: 7234896148566959113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_HUD_update 2_10
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 125
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21a117da3ceb24506bd80367d312c389
+      internalID: 1089688698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a6bdfee7f9d0d481ca43ec2ed07ab49f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HP_HUD_update 2_0: 3784078007527247530
+      HP_HUD_update 2_1: -5486586204253309542
+      HP_HUD_update 2_10: 1089688698
+      HP_HUD_update 2_2: 4546210600568353156
+      HP_HUD_update 2_3: 6075418783690245395
+      HP_HUD_update 2_4: 7161378479976636918
+      HP_HUD_update 2_5: 48533257326463706
+      HP_HUD_update 2_6: -2145836181510736125
+      HP_HUD_update 2_7: -293051411985518527
+      HP_HUD_update 2_8: 1294416021177712404
+      HP_HUD_update 2_9: 7234896148566959113
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

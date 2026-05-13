@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggelInventory",
+                    "name": "Inventory",
                     "type": "Button",
                     "id": "341914f8-a59e-4016-91d6-4fef5fa5cc80",
                     "expectedControlType": "",
@@ -79,7 +79,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleQuestLog",
+                    "name": "Quest",
                     "type": "Button",
                     "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
                     "expectedControlType": "",
@@ -349,7 +349,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ToggelInventory",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -371,7 +371,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ToggleQuestLog",
+                    "action": "Quest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

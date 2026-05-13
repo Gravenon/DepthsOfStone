@@ -1,33 +1,17 @@
 using UnityEngine;
 
+// Scene-level combat music switcher.
+// Call PlayCombatMusic() from WaveSpawner/enemy AI, PlayCalmMusic() when combat ends.
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioClip combatMusic;
+    public static MusicManager Instance { get; private set; }
+
     [SerializeField] private AudioClip calmMusic;
+    [SerializeField] private AudioClip combatMusic;
 
-    private void Start()
-    {
-        PlayCalmMusic();
-    }
+    private void Awake() => Instance = this;
+    private void Start()  => PlayCalmMusic();
 
-    public void PlayCalmMusic()
-    {
-        if (musicSource.clip != calmMusic)
-        {
-            musicSource.Stop();
-            musicSource.clip = calmMusic;
-            musicSource.Play();
-        }
-    }
-
-    public void PlayCombatMusic()
-    {
-        if (musicSource.clip != combatMusic)
-        {
-            musicSource.Stop();
-            musicSource.clip = combatMusic;
-            musicSource.Play();
-        }
-    }
+    public void PlayCalmMusic()   => AudioManager.Instance?.PlayMusic(calmMusic);
+    public void PlayCombatMusic() => AudioManager.Instance?.PlayMusic(combatMusic);
 }

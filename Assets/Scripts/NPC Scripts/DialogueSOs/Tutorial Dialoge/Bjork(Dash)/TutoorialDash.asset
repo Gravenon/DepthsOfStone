@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774526d0d46ec1469e9bf78c7bd36e1, type: 3}
+  m_Name: TutoorialDash
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 11db11e715e95584b815a631973040c7, type: 2}
+    dialogueText: So Old Whitebeard sent you?
+  - speaker: {fileID: 11400000, guid: b7ee7ee5d334dce4c837283e155f29a9, type: 2}
+    dialogueText: He said you could teach me to move faster.
+  - speaker: {fileID: 11400000, guid: 11db11e715e95584b815a631973040c7, type: 2}
+    dialogueText: "He meant that I teach properly.(Press E)\n(Dash \u2014 Space)"
+  options: []
+  offerQuestOnEnd: {fileID: 0}
+  requiredCompletedQuests: []
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  removeAfterPlay: 1
+  removeTheseOnPlay: []

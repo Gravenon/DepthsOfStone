@@ -48,6 +48,15 @@ public class WorldLight : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Disable any Global Light2D objects from the loaded scene that duplicate our persistent light
+        foreach (var l in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
+        {
+            if (l != worldLight && l.lightType == Light2D.LightType.Global)
+            {
+                l.enabled = false;
+            }
+        }
+
         bool disable = false;
 
         foreach (var s in disabledScenes)

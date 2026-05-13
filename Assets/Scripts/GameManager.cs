@@ -40,10 +40,19 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Переназначаем менеджеры, которые могут быть уничтожены при смене сцены
+        if (QuestManager == null)
+            QuestManager = FindFirstObjectByType<QuestManager>();
+        if (DialogueManager == null)
+            DialogueManager = FindFirstObjectByType<DialogueManager>();
+        if (DialogueHistoryTraker == null)
+            DialogueHistoryTraker = FindFirstObjectByType<DialogueHistoryTraker>();
+        if (LocationHistoryTracker == null)
+            LocationHistoryTracker = FindFirstObjectByType<LocationHistoryTracker>();
+
         AudioListener[] listeners = FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
         if (listeners.Length <= 1) return;
 
-        // Keep the first active one, disable the rest
         bool keptOne = false;
         foreach (AudioListener listener in listeners)
         {
@@ -64,18 +73,14 @@ public class GameManager : MonoBehaviour
         foreach (GameObject obj in persistentObjects)
         {
             if(obj != null)
-            {
                 DontDestroyOnLoad(obj);
-            }
         }
     }
 
     private void CleanUpAndDestroy()
     {
         foreach (GameObject obj in persistentObjects)
-        {
             Destroy(obj);
-        }
 
         Destroy(gameObject);
     }

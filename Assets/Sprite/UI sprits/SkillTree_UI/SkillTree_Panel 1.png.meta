@@ -290,9 +290,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 431
-        y: 142
+        y: 143
         width: 51
-        height: 51
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,10 +311,10 @@ TextureImporter:
       name: SkillTree_Panel 1_8
       rect:
         serializedVersion: 2
-        x: 423
-        y: 64
-        width: 63
-        height: 68
+        x: 431
+        y: 80
+        width: 49
+        height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -435,6 +435,94 @@ TextureImporter:
       bones: []
       spriteID: fe4e84418faaece60800000000000000
       internalID: 7984507171843400943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_7
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 84
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff396b5379fd4f69bd4622614d137bb
+      internalID: 2202198172042563101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_9
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 64
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ad9094d821e4d4590a8c86cc2497ae
+      internalID: 2770661072272502904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 83
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04185215f2bd44f4982b0f5d762e7f8
+      internalID: 3698020126529678904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillTree_Panel 1_11
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 127
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9baffd21581254f86ad7147a6ace014b
+      internalID: 4681882078183930858
       vertices: []
       indices: 
       edges: []

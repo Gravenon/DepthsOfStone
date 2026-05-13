@@ -12,7 +12,7 @@ public class DataPersistenceeManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FilePathHandler dataHandler;
 
-    // Survive scene transitions without DontDestroyOnLoad.
+    // Static fields persist across scene transitions without DontDestroyOnLoad.
     private static string _activeProfilID = "";
     private static bool _pendingNewGame = false;
     private static GameData _pendingGameData = null;
@@ -61,9 +61,7 @@ public class DataPersistenceeManager : MonoBehaviour
             _pendingGameData = null;
 
             ApplyDataToAll(new GameData("", ""));
-
             ApplyDataToAll(gameData);
-
             dataHandler.Save(gameData, profilID);
         }
         else
@@ -83,7 +81,7 @@ public class DataPersistenceeManager : MonoBehaviour
         }
         SaveGame();
     }
-    
+
     public void ChangeSelectedProfileID(string newProfilID)
     {
         profilID = newProfilID;
@@ -158,6 +156,21 @@ public class DataPersistenceeManager : MonoBehaviour
 
     public bool HasActiveGameData => gameData != null;
 
+    /// <summary>
+    /// Returns true if the current profile has never seen the intro sequence.
+    /// </summary>
+    public bool IsFirstTime => gameData != null && !gameData.introPlayed;
+
+    /// <summary>
+    /// Call this once the intro has finished so it won't play again for this profile.
+    /// </summary>
+    public void MarkIntroPlayed()
+    {
+        if (gameData == null) return;
+        gameData.introPlayed = true;
+        SaveGame();
+    }
+
     public Dictionary<string, GameData> GetAllProfilesGameData()
         => dataHandler.LoadAllProfiles();
 
@@ -171,8 +184,6 @@ public class DataPersistenceeManager : MonoBehaviour
 
         gameData.lastScene = SceneManager.GetActiveScene().name;
         gameData.playerPosition = checkpointPosition;
-
-        // Store dedicated checkpoint data used on respawn
         gameData.checkpointScene = SceneManager.GetActiveScene().name;
         gameData.checkpointPosition = checkpointPosition;
         gameData.checkpointHealth = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
@@ -196,10 +207,7 @@ public class DataPersistenceeManager : MonoBehaviour
     }
 
     public bool HasCheckpoint()
-    {
-        return gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene);
-    }
-
+        => gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene);
 
     private void HardResetAllObjects()
     {
@@ -207,8 +215,7 @@ public class DataPersistenceeManager : MonoBehaviour
             WorldTime.Instance.ResetToMorning();
 
         GameData blank = new GameData("", "");
-        List<IDataPersistence> all = FindAllDataPersistenceObjects();
-        foreach (IDataPersistence obj in all)
+        foreach (IDataPersistence obj in FindAllDataPersistenceObjects())
         {
             if (obj is MonoBehaviour mb && mb == null) continue;
             obj.LoadData(blank);
@@ -227,9 +234,10 @@ public class DataPersistenceeManager : MonoBehaviour
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        return FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
+        // FindObjectsInactive.Include is required so that objects on inactive GameObjects
+        // (e.g. InventoryManager when the panel is closed) are found and saved correctly.
+        return FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                .OfType<IDataPersistence>()
                .ToList();
     }
 }
-

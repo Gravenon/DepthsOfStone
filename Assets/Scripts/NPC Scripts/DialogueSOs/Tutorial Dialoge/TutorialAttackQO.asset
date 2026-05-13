@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774526d0d46ec1469e9bf78c7bd36e1, type: 3}
+  m_Name: TutorialAttackQO
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: Now strike.
+  - speaker: {fileID: 11400000, guid: f1a8aa03c0e5449f8bc936dfdfb82089, type: 2}
+    dialogueText: 'Do not swing like a farmer cutting weeds.
+
+      Strike with purpose.'
+  options: []
+  offerQuestOnEnd: {fileID: 11400000, guid: 0e4eac9c5f5e84ede96167af4d8b95c8, type: 2}
+  requiredCompletedQuests:
+  - {fileID: 11400000, guid: 774d912af9a4b4d09853d328f2286848, type: 2}
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  removeAfterPlay: 1
+  removeTheseOnPlay: []

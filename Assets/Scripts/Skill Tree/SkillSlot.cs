@@ -20,6 +20,8 @@ public class SkillSlot : MonoBehaviour
     public Sprite ActiveSkillIcon;
     public Sprite MaxLvlIcon;
 
+    public GameObject[] runesIcons;
+
 
     public static event Action<SkillSlot, SkillType> OnAbilityPointSpent;
     public static event Action<SkillSlot> OnSkillMaxed;
@@ -73,6 +75,11 @@ public class SkillSlot : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Refresh visuals from current state without firing any events (used on load).
+    /// </summary>
+    public void RefreshUI() => UpdateUI();
+
     private void SetButtonSprite(Sprite sprite)
     {
         var rt = upgradeButton.image.rectTransform;
@@ -92,7 +99,13 @@ public class SkillSlot : MonoBehaviour
             skillIcon.color = Color.white;
 
             if (currentLevel >= skillSO.maxLevel)
+            {
                 SetButtonSprite(MaxLvlIcon);
+                for (int i = 0; i < runesIcons.Length; i++)
+                {
+                    runesIcons[i].SetActive(true);
+                }
+            }
             else
                 SetButtonSprite(ActiveSkillIcon);
         }
