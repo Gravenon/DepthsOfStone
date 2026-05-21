@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 { 
     [SerializeField] private bool isInvulnerable;
-    [SerializeField] private float damageInvulnerabilityDuration = 0.5f;
+    [SerializeField] private float damageInvulnerabilityDuration = 0.35f;
 
     public TMP_Text healthText;
     public Slider healthBar;

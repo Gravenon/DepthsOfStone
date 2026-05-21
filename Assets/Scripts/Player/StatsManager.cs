@@ -18,7 +18,7 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     public float knockbackTimre;
     public float stunTime;
 
-    [Header("Movment Stats")]
+    [Header("Movement Stats")]
     public int speed;
     [SerializeField] public Transform playerTransform;
 
@@ -26,11 +26,9 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     public int maxHealth;
     public int currentHealth;
 
-    // Base values as set in Inspector — never modified at runtime.
-    // Used to initialise GameData for a brand-new world.
-    [HideInInspector] public int baseMaxHealth;
-    [HideInInspector] public int baseCurrentHealth;
-    [HideInInspector] public int baseSpeed;
+    [HideInInspector] public int   baseMaxHealth;
+    [HideInInspector] public int   baseCurrentHealth;
+    [HideInInspector] public int   baseSpeed;
     [HideInInspector] public float baseDamage;
     [HideInInspector] public float baseWeaponRange;
     [HideInInspector] public float baseKnockbackForce;
@@ -39,20 +37,16 @@ public class StatsManager : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this; else { Destroy(gameObject); return; }
 
-        // Snapshot Inspector values as the true base before any item modifies them.
-        baseMaxHealth = maxHealth;
-        baseCurrentHealth = currentHealth;
-        baseSpeed = speed;
-        baseDamage = damage;
-        baseWeaponRange = weaponRange;
+        baseMaxHealth      = maxHealth;
+        baseCurrentHealth  = currentHealth;
+        baseSpeed          = speed;
+        baseDamage         = damage;
+        baseWeaponRange    = weaponRange;
         baseKnockbackForce = knockbackForce;
         baseKnockbackTimre = knockbackTimre;
-        baseStunTime = stunTime;
+        baseStunTime       = stunTime;
     }
 
     public void UpdateMaxHealth(int amount)
@@ -65,85 +59,57 @@ public class StatsManager : MonoBehaviour, IDataPersistence
 
     public void UpdateHealth(int amount)
     {
-        currentHealth += amount;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
-        if (currentHealth < 0) currentHealth = 0;
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         RefreshHealthText();
     }
 
-    public void UpdateSpeed(int amount)
-    {
-        speed += amount;
-        if (statsUI != null) statsUI.UpdataAllStats();
-        else Debug.LogWarning("[StatsManager] statsUI is NULL — assign it in Inspector!");
-    }
-
-    public void UpdateDamage(float amount)
-    {
-        damage += amount;
-        if (statsUI != null) statsUI.UpdataAllStats();
-        else Debug.LogWarning("[StatsManager] statsUI is NULL — assign it in Inspector!");
-    }
-
-    public void UpdataKnockbackForce(int amount)
-    {
-        knockbackForce += amount;
-        if (statsUI != null) statsUI.UpdataAllStats();
-    }
+    public void UpdateSpeed(int amount)        { speed          += amount; statsUI?.UpdataAllStats(); }
+    public void UpdateDamage(float amount)     { damage         += amount; statsUI?.UpdataAllStats(); }
+    public void UpdataKnockbackForce(int amount){ knockbackForce += amount; statsUI?.UpdataAllStats(); }
 
     private void RefreshHealthText()
     {
-        if (healthText != null)
-            healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
-        else
-            Debug.LogWarning("[StatsManager] healthText is NULL — assign it in Inspector!");
-
+        if (healthText != null) healthText.text = $"HP: {currentHealth}/ {maxHealth}";
         OnHealthChanged?.Invoke();
     }
 
-// ---------------------------------------------------------------
-// IDataPersistence implementation
-// ---------------------------------------------------------------
     public void LoadData(GameData data)
     {
         if (this == null || playerTransform == null) return;
 
-        if (DataPersistenceeManager.IsRespawning && !string.IsNullOrEmpty(data.checkpointScene))
+        if (DataPersistenceeManager.IsRespawning)
         {
-            // Respawning from checkpoint: use checkpoint position and restore health to checkpoint health
-            if (data.checkpointScene == SceneManager.GetActiveScene().name)
+            if (!string.IsNullOrEmpty(data.checkpointScene) && data.checkpointScene == SceneManager.GetActiveScene().name)
                 playerTransform.position = data.checkpointPosition;
+            else if (!string.IsNullOrEmpty(data.lastScene) && data.lastScene == SceneManager.GetActiveScene().name)
+                playerTransform.position = data.playerPosition;
 
-            maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
-            currentHealth = data.checkpointHealth > 0 ? data.checkpointHealth : (data.maxHealth != 0 ? data.maxHealth : baseMaxHealth);
+            int respawnMax = DataPersistenceeManager.RespawnMaxHealth > 0 ? DataPersistenceeManager.RespawnMaxHealth
+                           : (data.maxHealth != 0 ? data.maxHealth : baseMaxHealth);
+            maxHealth = respawnMax;
+            currentHealth = maxHealth;
+            DataPersistenceeManager.RespawnMaxHealth = 0;
         }
         else
         {
-            // Restore position only if it was saved in this same scene.
-            // For a brand-new world (lastScene is empty), always spawn at origin.
             if (string.IsNullOrEmpty(data.lastScene))
                 playerTransform.position = Vector3.zero;
             else if (data.lastScene == SceneManager.GetActiveScene().name)
                 playerTransform.position = data.playerPosition;
 
-            maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
+            maxHealth     = data.maxHealth     != 0 ? data.maxHealth     : baseMaxHealth;
             currentHealth = data.currentHealth != 0 ? data.currentHealth : baseCurrentHealth;
         }
 
-        speed = data.speed != 0 ? data.speed : baseSpeed;
-        damage = data.damage != 0 ? data.damage : baseDamage;
-        weaponRange = data.weaponRange != 0 ? data.weaponRange : baseWeaponRange;
+        speed          = data.speed          != 0 ? data.speed          : baseSpeed;
+        damage         = data.damage         != 0 ? data.damage         : baseDamage;
+        weaponRange    = data.weaponRange    != 0 ? data.weaponRange    : baseWeaponRange;
         knockbackForce = data.knockbackForce != 0 ? data.knockbackForce : baseKnockbackForce;
         knockbackTimre = data.knockbackTimre != 0 ? data.knockbackTimre : baseKnockbackTimre;
-        stunTime = data.stunTime != 0 ? data.stunTime : baseStunTime;
+        stunTime       = data.stunTime       != 0 ? data.stunTime       : baseStunTime;
 
-        if (healthText != null)
-            healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
-
-        if (statsUI != null)
-            statsUI.UpdataAllStats();
-
-        // Notify health bar UI so the slider refreshes after load/respawn
+        if (healthText != null) healthText.text = $"HP: {currentHealth}/ {maxHealth}";
+        statsUI?.UpdataAllStats();
         OnHealthChanged?.Invoke();
     }
 
@@ -153,7 +119,6 @@ public class StatsManager : MonoBehaviour, IDataPersistence
 
         data.lastScene = SceneManager.GetActiveScene().name;
         data.playerPosition = playerTransform.position;
-
         data.maxHealth = maxHealth;
         data.currentHealth = currentHealth;
         data.speed = speed;
@@ -162,8 +127,6 @@ public class StatsManager : MonoBehaviour, IDataPersistence
         data.knockbackForce = knockbackForce;
         data.knockbackTimre = knockbackTimre;
         data.stunTime = stunTime;
-
         data.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm");
     }
-
 }

@@ -138,16 +138,24 @@ public class OpenSkillTree : MonoBehaviour
     private void ActivateCorrectTree()
     {
         DeactivateAllTrees();
-        
+
         switch (treeType)
         {
             case SkillTreeType.Combat:
                 if (combatTree != null)
-                    combatTree.SetActive(true);
+                {
+                    CanvasGroup cg = combatTree.GetComponent<CanvasGroup>();
+                    if (cg != null) UIManager.SetVisible(cg, true);
+                    else combatTree.SetActive(true);
+                }
                 break;
             case SkillTreeType.Magic:
                 if (magicTree != null)
-                    magicTree.SetActive(true);
+                {
+                    CanvasGroup cg = magicTree.GetComponent<CanvasGroup>();
+                    if (cg != null) UIManager.SetVisible(cg, true);
+                    else magicTree.SetActive(true);
+                }
                 break;
         }
     }
@@ -155,9 +163,18 @@ public class OpenSkillTree : MonoBehaviour
     private void DeactivateAllTrees()
     {
         if (combatTree != null)
-            combatTree.SetActive(false);
+        {
+            CanvasGroup cg = combatTree.GetComponent<CanvasGroup>();
+            if (cg != null) UIManager.SetVisible(cg, false);
+            else combatTree.SetActive(false);
+        }
         if (magicTree != null)
-            magicTree.SetActive(false);
+        {
+            CanvasGroup cg = magicTree.GetComponent<CanvasGroup>();
+            if (cg != null) UIManager.SetVisible(cg, false);
+            else magicTree.SetActive(false);
+        }
+        UIManager.Instance?.ForceClose();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

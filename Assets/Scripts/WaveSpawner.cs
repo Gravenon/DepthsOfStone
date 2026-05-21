@@ -32,7 +32,7 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
     public Transform[] spawnPoints;
     public Transform   bossSpawnPoint;          // centre of arena
 
-    public float timeBetweenWaves = 4f;
+    public float timeBetweenWaves = 3f;
     private float waveCountdown;
     private float searchCountdown = 1f;
 

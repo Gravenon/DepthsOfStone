@@ -25,7 +25,7 @@ public class Boss_Health : MonoBehaviour
         
         healthBar.SetHealth(health);
 
-        if (health <= 250)
+        if (health <= 300)
         {
             GetComponent<Animator>().SetBool("InRage", true);
         }

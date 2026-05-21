@@ -120,9 +120,9 @@ public class SkillTreeManager : MonoBehaviour, IDataPersistence
             if (slot == null || slot.skillSO == null) continue;
             states.Add(new SerializedSkillState
             {
-                skillName    = slot.skillSO.skillName,
+                skillName = slot.skillSO.skillName,
                 currentLevel = slot.currentLevel,
-                isUnlocked   = slot.isUnlocked
+                isUnlocked = slot.isUnlocked
             });
         }
         data.skillStates = states.ToArray();

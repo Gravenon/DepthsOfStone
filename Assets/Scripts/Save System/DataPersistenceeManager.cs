@@ -12,43 +12,28 @@ public class DataPersistenceeManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FilePathHandler dataHandler;
 
-    // Static fields persist across scene transitions without DontDestroyOnLoad.
-    private static string _activeProfilID = "";
-    private static bool _pendingNewGame = false;
-    private static GameData _pendingGameData = null;
-    public static bool SuppressNextSave = false;
-    public static bool IsRespawning = false;
+    private static string    _activeProfilID  = "";
+    private static bool      _pendingNewGame  = false;
+    private static GameData  _pendingGameData = null;
 
-    private string profilID
-    {
-        get => _activeProfilID;
-        set => _activeProfilID = value;
-    }
+    public static bool SuppressNextSave  = false;
+    public static bool IsRespawning      = false;
+    public static int  RespawnMaxHealth  = 0;
+
+    private string profilID { get => _activeProfilID; set => _activeProfilID = value; }
 
     public static DataPersistenceeManager instance { get; private set; }
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (instance != null && instance != this) { Destroy(gameObject); return; }
         instance = this;
+        DontDestroyOnLoad(gameObject);
         dataHandler = new FilePathHandler(Application.persistentDataPath, dataDirName);
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-    }
+    private void OnEnable()  { SceneManager.sceneLoaded += OnSceneLoaded; SceneManager.sceneUnloaded += OnSceneUnloaded; }
+    private void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; SceneManager.sceneUnloaded -= OnSceneUnloaded; }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -56,29 +41,19 @@ public class DataPersistenceeManager : MonoBehaviour
 
         if (_pendingNewGame)
         {
-            gameData = _pendingGameData;
-            _pendingNewGame = false;
-            _pendingGameData = null;
-
+            gameData = _pendingGameData; _pendingNewGame = false; _pendingGameData = null;
             ApplyDataToAll(new GameData("", ""));
             ApplyDataToAll(gameData);
             dataHandler.Save(gameData, profilID);
         }
-        else
-        {
-            LoadGame();
-        }
+        else LoadGame();
 
         IsRespawning = false;
     }
 
     public void OnSceneUnloaded(Scene scene)
     {
-        if (_pendingNewGame || SuppressNextSave)
-        {
-            SuppressNextSave = false;
-            return;
-        }
+        if (_pendingNewGame || SuppressNextSave) { SuppressNextSave = false; return; }
         SaveGame();
     }
 
@@ -86,59 +61,33 @@ public class DataPersistenceeManager : MonoBehaviour
     {
         profilID = newProfilID;
         gameData = dataHandler.Load(newProfilID);
-
         HardResetAllObjects();
-
-        if (gameData != null)
-        {
-            dataPersistenceObjects = FindAllDataPersistenceObjects();
-            ApplyDataToAll(gameData);
-        }
+        if (gameData != null) { dataPersistenceObjects = FindAllDataPersistenceObjects(); ApplyDataToAll(gameData); }
     }
 
     public void NewGame(string worldName, string playerName)
     {
         _pendingGameData = new GameData(worldName, playerName);
-        _pendingNewGame = true;
-
+        _pendingNewGame  = true;
         HardResetAllObjects();
-
-        if (WorldTime.Instance != null)
-            WorldTime.Instance.ResetToMorning();
-
+        if (WorldTime.Instance != null) WorldTime.Instance.ResetToMorning();
         dataHandler.Save(_pendingGameData, profilID);
     }
 
     public void LoadGame()
     {
         gameData = dataHandler.Load(profilID);
-
-        if (gameData == null)
-        {
-            Debug.LogWarning("[DPM] No save file for profile: " + profilID);
-            return;
-        }
-
+        if (gameData == null) return;
         dataPersistenceObjects = FindAllDataPersistenceObjects();
         ApplyDataToAll(gameData);
     }
 
     public void SaveGame()
     {
-        if (gameData == null)
-        {
-            Debug.LogWarning("[DPM] SaveGame skipped — no active game data.");
-            return;
-        }
-
+        if (gameData == null) return;
         dataPersistenceObjects = FindAllDataPersistenceObjects();
-
-        foreach (IDataPersistence obj in dataPersistenceObjects)
-        {
-            if (obj is MonoBehaviour mb && mb == null) continue;
-            obj.SaveData(ref gameData);
-        }
-
+        foreach (var obj in dataPersistenceObjects)
+        { if (obj is MonoBehaviour mb && mb == null) continue; obj.SaveData(ref gameData); }
         dataHandler.Save(gameData, profilID);
     }
 
@@ -147,23 +96,12 @@ public class DataPersistenceeManager : MonoBehaviour
     public void DeleteProfile(string profileID)
     {
         dataHandler.Delete(profileID);
-        if (profilID == profileID)
-        {
-            gameData = null;
-            profilID = "";
-        }
+        if (profilID == profileID) { gameData = null; profilID = ""; }
     }
 
     public bool HasActiveGameData => gameData != null;
+    public bool IsFirstTime       => gameData != null && !gameData.introPlayed;
 
-    /// <summary>
-    /// Returns true if the current profile has never seen the intro sequence.
-    /// </summary>
-    public bool IsFirstTime => gameData != null && !gameData.introPlayed;
-
-    /// <summary>
-    /// Call this once the intro has finished so it won't play again for this profile.
-    /// </summary>
     public void MarkIntroPlayed()
     {
         if (gameData == null) return;
@@ -171,73 +109,44 @@ public class DataPersistenceeManager : MonoBehaviour
         SaveGame();
     }
 
-    public Dictionary<string, GameData> GetAllProfilesGameData()
-        => dataHandler.LoadAllProfiles();
+    public Dictionary<string, GameData> GetAllProfilesGameData() => dataHandler.LoadAllProfiles();
 
-    public void SaveCheckpoint(Vector3 checkpointPosition)
+    public void SaveCheckpoint(Vector3 pos)
     {
-        if (gameData == null)
-        {
-            Debug.LogWarning("[DPM] SaveCheckpoint skipped — no active game data.");
-            return;
-        }
-
-        gameData.lastScene = SceneManager.GetActiveScene().name;
-        gameData.playerPosition = checkpointPosition;
-        gameData.checkpointScene = SceneManager.GetActiveScene().name;
-        gameData.checkpointPosition = checkpointPosition;
-        gameData.checkpointHealth = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
-
+        if (gameData == null) { Debug.LogWarning("[DPM] SaveCheckpoint — no game data."); return; }
+        gameData.lastScene         = SceneManager.GetActiveScene().name;
+        gameData.playerPosition    = pos;
+        gameData.checkpointScene   = gameData.lastScene;
+        gameData.checkpointPosition = pos;
+        gameData.checkpointHealth  = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
         SaveGame();
-        Debug.Log($"[DPM] Checkpoint saved — scene: {gameData.lastScene}, pos: {checkpointPosition}");
     }
 
     public string GetLastSavedScene()
-    {
-        if (gameData != null && !string.IsNullOrEmpty(gameData.lastScene))
-            return gameData.lastScene;
-        return SceneManager.GetActiveScene().name;
-    }
+        => gameData != null && !string.IsNullOrEmpty(gameData.lastScene) ? gameData.lastScene : SceneManager.GetActiveScene().name;
 
     public string GetCheckpointScene()
-    {
-        if (gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene))
-            return gameData.checkpointScene;
-        return GetLastSavedScene();
-    }
+        => gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene) ? gameData.checkpointScene : GetLastSavedScene();
 
     public bool HasCheckpoint()
         => gameData != null && !string.IsNullOrEmpty(gameData.checkpointScene);
 
     private void HardResetAllObjects()
     {
-        if (WorldTime.Instance != null)
-            WorldTime.Instance.ResetToMorning();
-
-        GameData blank = new GameData("", "");
-        foreach (IDataPersistence obj in FindAllDataPersistenceObjects())
-        {
-            if (obj is MonoBehaviour mb && mb == null) continue;
-            obj.LoadData(blank);
-        }
+        if (WorldTime.Instance != null) WorldTime.Instance.ResetToMorning();
+        var blank = new GameData("", "");
+        foreach (var obj in FindAllDataPersistenceObjects())
+        { if (obj is MonoBehaviour mb && mb == null) continue; obj.LoadData(blank); }
     }
 
     private void ApplyDataToAll(GameData data)
     {
         if (dataPersistenceObjects == null) return;
-        foreach (IDataPersistence obj in dataPersistenceObjects)
-        {
-            if (obj is MonoBehaviour mb && mb == null) continue;
-            obj.LoadData(data);
-        }
+        foreach (var obj in dataPersistenceObjects)
+        { if (obj is MonoBehaviour mb && mb == null) continue; obj.LoadData(data); }
     }
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
-    {
-        // FindObjectsInactive.Include is required so that objects on inactive GameObjects
-        // (e.g. InventoryManager when the panel is closed) are found and saved correctly.
-        return FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-               .OfType<IDataPersistence>()
-               .ToList();
-    }
+        => FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+           .OfType<IDataPersistence>().ToList();
 }

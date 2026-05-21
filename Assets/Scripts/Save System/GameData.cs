@@ -65,6 +65,11 @@ public class GameData
     public Vector3 checkpointPosition;
     public int checkpointHealth;
 
+    // Player level & experience
+    public int playerLevel;
+    public int playerCurrentExp;
+    public int playerExpToNextLevel;
+
     // Player stats
     public int maxHealth;
     public int currentHealth;
@@ -115,6 +120,9 @@ public class GameData
         equippedItems = new SerializedEquippedSlot[0];
         arenaWaveIndex = 0;
         introPlayed = false;
+        playerLevel = 1;
+        playerCurrentExp = 0;
+        playerExpToNextLevel = 50;
         activeQuests = new SerializedQuestProgress[0];
         completedQuests = new SerializedCompletedQuest[0];
         savedCombatPoints = 0;

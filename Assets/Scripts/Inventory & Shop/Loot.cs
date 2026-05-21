@@ -30,28 +30,6 @@ public class Loot : MonoBehaviour
         }
     }
 
-    //save data for loot
-
-    // public void LoadData(GameData data)
-    // {
-    //     data.itemCollected.TryGetValue(id, out collected);
-    //     if (collected)
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
-
-    // public void SaveData(ref GameData data)
-    // {
-    //     if (data.itemCollected.ContainsKey(id))
-    //     {
-    //         data.itemCollected.Remove(id);
-    //     }
-    //     data.itemCollected.Add(id, collected);
-        
-
-    // }
-
     private void OnValidate()
     {
         if (itemSO == null)

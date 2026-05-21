@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601e6c528e5dac44b87ec9ef111fe20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 28
   weaponRange: 1.4
   knockbackForce: 6
   stunTime: 0.3
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKnockback: 0
   isDead: 0
-  currentHealth: 100
-  maxHealth: 150
-  expReward: 25
+  currentHealth: 180
+  maxHealth: 220
+  expReward: 5
 --- !u!58 &8702800899475287378
 CircleCollider2D:
   m_ObjectHideFlags: 0

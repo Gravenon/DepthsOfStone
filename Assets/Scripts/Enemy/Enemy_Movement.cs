@@ -4,9 +4,9 @@ using UnityEngine;
 public class Enemy_Movement : MonoBehaviour
 {
     [Header("Combat")]
-    public float speed = 3f;
-    public float attackCooldown = 2f;
-    public float playerDetectRange = 5f;
+    public float speed = 3.4f;
+    public float attackCooldown = 1.7f;
+    public float playerDetectRange = 6.5f;
     public float stoppingDistance = 1.2f;
     public Transform detectionPoint;
     public LayerMask playerLayer;
@@ -35,8 +35,8 @@ public class Enemy_Movement : MonoBehaviour
 
     private void Start()
     {
-        rb          = GetComponent<Rigidbody2D>();
-        anim        = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         enemyHealth = GetComponent<Enemy_Health>();
         enemyCombat = GetComponent<Enemy_Combat>();
 

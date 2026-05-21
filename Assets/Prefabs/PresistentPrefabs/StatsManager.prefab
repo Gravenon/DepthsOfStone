@@ -44,11 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7054e7771f09e7d488b6368f82750230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  weaponRange: 0.75
-  knockbackForce: 0
-  knockbackTimre: 0
-  stunTime: 0
+  useItem: {fileID: 0}
+  statsUI: {fileID: 0}
+  healthText: {fileID: 0}
+  damage: 8
+  weaponRange: 0.8
+  knockbackForce: 4
+  knockbackTimre: 0.15
+  stunTime: 0.2
   speed: 4
-  maxHealth: 20
-  currentHealth: 20
+  playerTransform: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 100
+  baseMaxHealth: 0
+  baseCurrentHealth: 0
+  baseSpeed: 0
+  baseDamage: 0
+  baseWeaponRange: 0
+  baseKnockbackForce: 0
+  baseKnockbackTimre: 0
+  baseStunTime: 0

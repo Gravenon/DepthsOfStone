@@ -8,6 +8,7 @@ public class ShopKeeper : MonoBehaviour
     public static ShopKeeper currentShopKeeper;
 
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator ButtonAnim;
     [SerializeField] private CanvasGroup shopCanvasGroup;
     [SerializeField] private ShopManger shopManager;
     [SerializeField] private InputActionReference interactAction;
@@ -32,8 +33,9 @@ public class ShopKeeper : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure shop is fully closed (no raycasts) on game start
         SetCanvasVisible(false);
+        if (anim != null) anim.Play("Idle");
+        else Debug.LogWarning("[ShopKeeper] Animator is not assigned!", this);
     }
 
     private void OnEnable()
@@ -52,14 +54,14 @@ public class ShopKeeper : MonoBehaviour
     {
         if (!collision.CompareTag("Player")) return;
         _playerInRange = true;
-        anim.SetBool("playerInRange", true);
+        if (ButtonAnim != null) anim.SetBool("playerInRange", true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
         _playerInRange = false;
-        anim.SetBool("playerInRange", false);
+        if (ButtonAnim != null) anim.SetBool("playerInRange", false);
     }
 
     // ─── Input Handlers ───────────────────────────────────────────────────────
@@ -88,9 +90,12 @@ public class ShopKeeper : MonoBehaviour
         currentShopKeeper = this;
         _isShopOpen = true;
 
-        SetCanvasVisible(true);
-        OnShopOpenClose?.Invoke(shopManager, true);
+        if (UIManager.Instance != null)
+            UIManager.Instance.NotifyOpened(shopCanvasGroup, OnForcedClose);
+        else
+            SetCanvasVisible(true);
 
+        OnShopOpenClose?.Invoke(shopManager, true);
         shopManager.SetAllShopItems(shopItems, shopWeapons, shopArmour);
         shopManager.RefreshInventoryDisplay();
         OpenItemShop();
@@ -101,8 +106,16 @@ public class ShopKeeper : MonoBehaviour
         Time.timeScale = 1;
         currentShopKeeper = null;
         _isShopOpen = false;
-
         SetCanvasVisible(false);
+        UIManager.Instance?.ForceClose();
+        OnShopOpenClose?.Invoke(shopManager, false);
+    }
+
+    private void OnForcedClose()
+    {
+        Time.timeScale = 1;
+        currentShopKeeper = null;
+        _isShopOpen = false;
         OnShopOpenClose?.Invoke(shopManager, false);
     }
 

@@ -23,24 +23,31 @@ public class MineManager : MonoBehaviour
 
     [Header("Level Select")]
     public CanvasGroup levelSelectCanvasGroup;
-    public GameObject levelSelectUI;
 
     [Header("Play Button")]
     [SerializeField] private Button playButton;
     [SerializeField] private SceneChanger sceneChanger;
 
     private int _selectedIndex = -1;
+    private CanvasGroup _infoCG;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        SetCanvasGroup(levelSelectCanvasGroup, false);
-        if (levelSelectUI != null) levelSelectUI.SetActive(false);
-        if (infoPanel     != null) infoPanel.SetActive(false);
-        if (playButton    != null) playButton.interactable = false;
+
+        if (levelSelectCanvasGroup != null)
+            UIManager.SetVisible(levelSelectCanvasGroup, false);
+
+        if (infoPanel != null)
+        {
+            _infoCG = infoPanel.GetComponent<CanvasGroup>();
+            if (_infoCG == null) _infoCG = infoPanel.AddComponent<CanvasGroup>();
+            UIManager.SetVisible(_infoCG, false);
+        }
+
+        if (playButton != null) playButton.interactable = false;
     }
 
-    // Called by difficulty buttons: 0=Easy, 1=Medium, 2=Hard
     public void ShowInfoByIndex(int index)
     {
         if (levels == null || index < 0 || index >= levels.Length) return;
@@ -49,7 +56,6 @@ public class MineManager : MonoBehaviour
         if (playButton != null) playButton.interactable = true;
     }
 
-    // Called by the Play button
     public void PlaySelectedLevel()
     {
         if (_selectedIndex < 0 || _selectedIndex >= levels.Length)
@@ -66,17 +72,8 @@ public class MineManager : MonoBehaviour
         }
 
         MineConfig chosen = System.Array.Find(configs, c => c != null && !string.IsNullOrEmpty(c.sceneName));
-        if (chosen == null)
-        {
-            Debug.LogWarning("[MineManager] No config with a valid sceneName found.");
-            return;
-        }
-
-        if (sceneChanger == null)
-        {
-            Debug.LogWarning("[MineManager] SceneChanger not assigned.");
-            return;
-        }
+        if (chosen == null) { Debug.LogWarning("[MineManager] No config with a valid sceneName found."); return; }
+        if (sceneChanger == null) { Debug.LogWarning("[MineManager] SceneChanger not assigned."); return; }
 
         sceneChanger.sceneName = chosen.sceneName;
         HideLevelSelect();
@@ -90,7 +87,6 @@ public class MineManager : MonoBehaviour
         foreach (MineConfig cfg in level.configs)
         {
             if (cfg == null) continue;
-
             if (mineNameText        != null) mineNameText.text        = "Name: " + cfg.MineName;
             if (mineDescriptionText != null) mineDescriptionText.text = cfg.itemDescription;
             if (enemiesCountText    != null) enemiesCountText.text    = $"Enemies: {cfg.enemiesCount}";
@@ -106,28 +102,26 @@ public class MineManager : MonoBehaviour
             }
         }
 
-        if (infoPanel != null) infoPanel.SetActive(true);
+        if (_infoCG != null) UIManager.SetVisible(_infoCG, true);
     }
 
     public void ShowLevelSelect()
     {
-        SetCanvasGroup(levelSelectCanvasGroup, true);
-        if (levelSelectUI != null) levelSelectUI.SetActive(true);
+        if (levelSelectCanvasGroup == null) return;
+        if (UIManager.Instance != null)
+            UIManager.Instance.NotifyOpened(levelSelectCanvasGroup, () => Time.timeScale = 1f);
+        else
+            UIManager.SetVisible(levelSelectCanvasGroup, true);
         Time.timeScale = 0f;
     }
 
     public void HideLevelSelect()
     {
-        SetCanvasGroup(levelSelectCanvasGroup, false);
-        if (levelSelectUI != null) levelSelectUI.SetActive(false);
+        if (levelSelectCanvasGroup != null) UIManager.SetVisible(levelSelectCanvasGroup, false);
+        if (_infoCG != null) UIManager.SetVisible(_infoCG, false);
+        if (playButton != null) playButton.interactable = false;
+        _selectedIndex = -1;
         Time.timeScale = 1f;
-    }
-
-    private static void SetCanvasGroup(CanvasGroup cg, bool visible)
-    {
-        if (cg == null) return;
-        cg.alpha = visible ? 1f : 0f;
-        cg.interactable = visible;
-        cg.blocksRaycasts = visible;
+        UIManager.Instance?.ForceClose();
     }
 }

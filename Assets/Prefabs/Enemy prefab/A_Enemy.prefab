@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4576377714032824373}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.404, y: -0.012, z: 0}
+  m_LocalPosition: {x: 0.4041782, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,18 +238,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601e6c528e5dac44b87ec9ef111fe20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 9
-  attackPoint: {fileID: 2404284684162461914}
+  damage: 13
   weaponRange: 0.6
   knockbackForce: 3
   stunTime: 0.15
-  hitStopDuration: 0.02
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  windupTime: 0.6
+  hitStopDuration: 0.02
+  windupTime: 0.35
   attackSpeed: 5
   spriteRenderer: {fileID: 7860412584072217090}
+  attackPoint: {fileID: 2404284684162461914}
 --- !u!114 &6111379004721146630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,9 +262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8f01df11004ff47845ee8cc597105a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  attackCooldown: 1
-  playerDetectRange: 5.32
+  speed: 3.4
+  attackCooldown: 1.7
+  playerDetectRange: 6.5
   stoppingDistance: 0.8
   detectionPoint: {fileID: 2989307380317650540}
   playerLayer:
@@ -287,9 +287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKnockback: 0
-  currentHealth: 100
-  maxHealth: 40
-  expReward: 10
+  isDead: 0
+  currentHealth: 160
+  maxHealth: 160
+  expReward: 3
 --- !u!58 &3030460918003152250
 CircleCollider2D:
   m_ObjectHideFlags: 0

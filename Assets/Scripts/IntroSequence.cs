@@ -121,6 +121,8 @@ public class IntroSequence : MonoBehaviour
         _player?.SetMovementLocked(false);
         loreText.text = "";
         onIntroFinished?.Invoke();
+        panelCanvasGroup.alpha = 0f;
+        panelCanvasGroup.blocksRaycasts = false;
     }
 
     public void SkipIntro()

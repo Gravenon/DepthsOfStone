@@ -39,13 +39,20 @@ public class PlayerCombat : MonoBehaviour
     // Called by animation event at the hit frame.
     public void DealDamage()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayers);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayers);
 
+        // Use a HashSet to ensure each GameObject is only damaged once,
+        // even if it has multiple colliders in range.
+        var hitObjects = new System.Collections.Generic.HashSet<GameObject>();
         bool hitAny = false;
-        foreach (var enemy in enemies)
+
+        foreach (var col in hits)
         {
-            var enemyHealth = enemy.GetComponent<Enemy_Health>();
-            var bossHealth  = enemy.GetComponent<Boss_Health>();
+            GameObject root = col.transform.root.gameObject;
+            if (!hitObjects.Add(root)) continue;
+
+            var enemyHealth = root.GetComponentInChildren<Enemy_Health>();
+            var bossHealth  = root.GetComponentInChildren<Boss_Health>();
 
             if (enemyHealth == null && bossHealth == null) continue;
 

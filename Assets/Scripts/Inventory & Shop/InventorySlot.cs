@@ -14,7 +14,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     private InventoryManager _inventoryManager;
     private static ShopManger _activeShop;
 
-    private void Start() => _inventoryManager = GetComponentInParent<InventoryManager>();
+    private void Start()
+    {
+        _inventoryManager = GetComponentInParent<InventoryManager>();
+        if (_inventoryManager == null) _inventoryManager = InventoryManager.Instance;
+    }
 
     private void OnEnable()  => ShopKeeper.OnShopOpenClose += HandleShopStateChange;
     private void OnDisable() => ShopKeeper.OnShopOpenClose -= HandleShopStateChange;

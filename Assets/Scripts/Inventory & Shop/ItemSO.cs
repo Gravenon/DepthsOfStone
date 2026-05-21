@@ -29,7 +29,7 @@ public class ItemSO : ScriptableObject
             return;
         }
         
-        if (maxHealth != 0)  StatsManager.Instance.UpdateMaxHealth(maxHealth);
+        if (maxHealth != 0) StatsManager.Instance.UpdateMaxHealth(maxHealth);
         if (currentHealth != 0) StatsManager.Instance.UpdateHealth(currentHealth);
         if (speed != 0) StatsManager.Instance.UpdateSpeed(speed);
         if (damage != 0) StatsManager.Instance.UpdateDamage(damage);
@@ -43,9 +43,9 @@ public class ItemSO : ScriptableObject
         }
 
 
-        if (maxHealth != 0)  StatsManager.Instance.UpdateMaxHealth(-maxHealth);
+        if (maxHealth != 0) StatsManager.Instance.UpdateMaxHealth(-maxHealth);
         if (currentHealth != 0) StatsManager.Instance.UpdateHealth(-currentHealth);
-        if (speed != 0)     StatsManager.Instance.UpdateSpeed(-speed);
-        if (damage != 0)    StatsManager.Instance.UpdateDamage(-damage);
+        if (speed != 0) StatsManager.Instance.UpdateSpeed(-speed);
+        if (damage != 0) StatsManager.Instance.UpdateDamage(-damage);
     }
 }

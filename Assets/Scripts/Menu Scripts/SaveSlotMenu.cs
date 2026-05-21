@@ -3,11 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Hades-style slot selection:
-/// • Filled slot  → click to continue that world immediately.
-/// • Empty slot   → click to open the inline name form; confirm to create a new world.
-/// </summary>
 public class SaveSlotMenu : MonoBehaviour
 {
     public static SaveSlotMenu Instance { get; private set; }
@@ -43,7 +38,7 @@ public class SaveSlotMenu : MonoBehaviour
 
         if (DataPersistenceeManager.instance.HasActiveGameData)
         {
-            // Filled slot — continue this world straight away.
+            DataPersistenceeManager.SuppressNextSave = true;
             SceneManager.LoadScene(gameplaySceneName);
         }
         else
