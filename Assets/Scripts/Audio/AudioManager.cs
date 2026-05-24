@@ -34,8 +34,22 @@ public class AudioManager : MonoBehaviour
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        EnsureAudioListener();
         LoadVolumes();
         PlayMusic(menuMusic);
+    }
+
+    private void OnEnable()
+    {
+        EnsureAudioListener();
+    }
+    
+    private void EnsureAudioListener()
+    {
+        AudioListener al = GetComponent<AudioListener>();
+        if (al == null)
+            al = gameObject.AddComponent<AudioListener>();
+        al.enabled = true;
     }
 
     // Music

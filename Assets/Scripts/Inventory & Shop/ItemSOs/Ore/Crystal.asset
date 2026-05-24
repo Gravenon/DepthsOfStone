@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crystal
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Crystal
-  itemDescription: Crystal
+  itemDescription: Shards of Magical Ice
   itemIcon: {fileID: 1318589901, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 6
   isEXP: 0

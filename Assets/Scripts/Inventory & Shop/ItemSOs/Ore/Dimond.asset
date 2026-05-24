@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dimond
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Dimond
-  itemDescription: Dimond
+  itemDescription: Stars Buried in Stone
   itemIcon: {fileID: 314853534, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 6
   isEXP: 0

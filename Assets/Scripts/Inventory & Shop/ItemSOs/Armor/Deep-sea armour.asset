@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Deep-sea armour
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Deep-sea armour
-  itemDescription: Made for the most dangerous depths.
-  itemIcon: {fileID: 0}
+  itemName: The Dragon Spawn's Chest
+  itemDescription: Made from the scales of a young dragon that the dwarves "accidentally"
+    found in a mine. It smells of sulphur and pride.
+  itemIcon: {fileID: 4639506938558671751, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 1
   isEXP: 0
   stackSize: 1

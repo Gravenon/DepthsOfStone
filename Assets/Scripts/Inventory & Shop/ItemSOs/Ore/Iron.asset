@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Iron
-  itemDescription: Iron
+  itemDescription: The Bones of the Ancients
   itemIcon: {fileID: -1493983409, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 6
   isEXP: 0

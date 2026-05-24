@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   itemName: Gold
-  itemDescription: Gold is an item that can be traded with villagers.
+  itemDescription: The Tears of Greedy Gods
   itemIcon: {fileID: 1011649785, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 6
   isEXP: 0

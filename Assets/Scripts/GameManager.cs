@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Переназначаем менеджеры, которые могут быть уничтожены при смене сцены
         if (QuestManager == null)
             QuestManager = FindFirstObjectByType<QuestManager>();
         if (DialogueManager == null)
@@ -50,22 +49,19 @@ public class GameManager : MonoBehaviour
         if (LocationHistoryTracker == null)
             LocationHistoryTracker = FindFirstObjectByType<LocationHistoryTracker>();
 
-        AudioListener[] listeners = FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
-        if (listeners.Length <= 1) return;
+        AudioListener[] listeners = FindObjectsByType<AudioListener>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-        bool keptOne = false;
+        AudioListener preferred = null;
+        if (AudioManager.Instance != null)
+            preferred = AudioManager.Instance.GetComponent<AudioListener>();
+
         foreach (AudioListener listener in listeners)
-        {
-            if (!keptOne)
-            {
-                listener.enabled = true;
-                keptOne = true;
-            }
-            else
-            {
-                listener.enabled = false;
-            }
-        }
+            listener.enabled = false;
+
+        if (preferred != null)
+            preferred.enabled = true;
+        else if (listeners.Length > 0)
+            listeners[0].enabled = true;
     }
 
     private void MarkPersistentObjects()

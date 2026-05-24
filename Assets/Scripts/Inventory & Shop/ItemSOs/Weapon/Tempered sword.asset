@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Tempered sword
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Tempered sword
-  itemDescription: Well-balanced and deadly.
-  itemIcon: {fileID: -224742245, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
+  itemName: "The \u201CHonour\u201D Blade"
+  itemDescription: 'Simple, reliable, a bit on the heavy side. '
+  itemIcon: {fileID: 3719068211130651045, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 3
   isEXP: 0
-  stackSize: 6
+  stackSize: 1
   currentHealth: 0
   maxHealth: 0
   speed: 2

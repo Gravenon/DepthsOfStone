@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: The miner's ring
   itemDescription: Hands work faster.
-  itemIcon: {fileID: -496274253, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
+  itemIcon: {fileID: 969892935, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0
   stackSize: 1

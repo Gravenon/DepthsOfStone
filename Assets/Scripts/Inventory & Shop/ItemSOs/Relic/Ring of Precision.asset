@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Ring of Precision
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Ring of Precision
-  itemDescription: Your strikes become more confident.
-  itemIcon: {fileID: 1769272158, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
+  itemName: 'A Star Fragment '
+  itemDescription: "It glows with a soft blue light. The dwarves are convinced it\u2019s
+    a piece of a real star. The elves call it a \u2018meteorite\u2019. The dwarves
+    beat them up."
+  itemIcon: {fileID: -7652154954077232485, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0
   stackSize: 1
   currentHealth: 0
   maxHealth: 0
   speed: 2
-  damage: 4
+  damage: 7
   duration: 0
