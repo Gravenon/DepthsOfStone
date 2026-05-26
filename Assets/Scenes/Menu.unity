@@ -441,7 +441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0426"
+  m_Text: W
 --- !u!222 &27276307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6528,7 +6528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0428"
+  m_Text: I
 --- !u!222 &513172531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9901,7 +9901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E"
+  m_Text: J
 --- !u!222 &911083342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11081,7 +11081,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u042B"
+  m_Text: S
 --- !u!222 &982593815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19971,7 +19971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0423"
+  m_Text: E
 --- !u!222 &1685876955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22965,7 +22965,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0424"
+  m_Text: A
 --- !u!222 &1840588610
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24108,7 +24108,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3a7b991742cff4586838fd379378745d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 517ce772e6883104183b9d9edc14b8fa, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -26271,7 +26271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412"
+  m_Text: D
 --- !u!222 &2146765891
 CanvasRenderer:
   m_ObjectHideFlags: 0

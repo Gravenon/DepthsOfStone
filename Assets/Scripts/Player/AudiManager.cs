@@ -14,8 +14,38 @@ public class AudiManager : MonoBehaviour
     [SerializeField] private float footstepCooldown = 0.35f;
     private float _footstepTimer;
 
+    [Header("Ambient")]
+    [SerializeField] private AudioSource ambientAudioSource;
+    [SerializeField] private AudioClip ambientClip;
+
     public void PlayDashSound() => PlayWithPitch(dashSound);
     public void PlayHitSound()  => PlayWithPitch(hitSound);
+
+    private void Start()
+    {
+        if (ambientAudioSource != null && ambientClip != null)
+        {
+            ambientAudioSource.clip = ambientClip;
+            ambientAudioSource.loop = true;
+            ambientAudioSource.volume = AudioManager.Instance != null ? AudioManager.Instance.SfxVolume : 1f;
+            ambientAudioSource.Play();
+        }
+    }
+
+    public void PlayAmbient()
+    {
+        if (ambientAudioSource == null || ambientClip == null) return;
+        if (ambientAudioSource.isPlaying) return;
+        ambientAudioSource.volume = AudioManager.Instance != null ? AudioManager.Instance.SfxVolume : 1f;
+        ambientAudioSource.Play();
+    }
+
+    public void StopAmbient()
+    {
+        if (ambientAudioSource != null && ambientAudioSource.isPlaying)
+            ambientAudioSource.Stop();
+    }
+
 
     // Call every frame while the entity is moving.
     public void TickFootstep()

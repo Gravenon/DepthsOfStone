@@ -48,6 +48,7 @@ public class PlayerMovment : MonoBehaviour
     void Update()
     {
         UpdateAnimations();
+        TickFootstepSound();
     }
 
     void UpdateAnimations()
@@ -87,6 +88,15 @@ public class PlayerMovment : MonoBehaviour
             rb.linearVelocity = new Vector2(horizontal, vertival) * StatsManager.Instance.speed;
         }
     }
+
+
+    private void TickFootstepSound()
+    {
+        if (isMovementLocked || isDashing || isKnockBack) return;
+        if (horizontal != 0f || vertival != 0f)
+            AudiManager.TickFootstep();
+    }
+
 
     #region  PLAYER_CONTROLS
     public void Move(InputAction.CallbackContext context)
