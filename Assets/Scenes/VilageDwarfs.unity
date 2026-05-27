@@ -62886,7 +62886,7 @@ PrefabInstance:
       objectReference: {fileID: 761070907}
     - target: {fileID: 8714953990885710182, guid: 08387c2288ff3d94ea7de15ce5f1d258, type: 3}
       propertyPath: persistentObjects.Array.size
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8714953990885710182, guid: 08387c2288ff3d94ea7de15ce5f1d258, type: 3}
       propertyPath: 'persistentObjects.Array.data[0]'
@@ -62979,7 +62979,7 @@ PrefabInstance:
     - target: {fileID: 8714953990885710182, guid: 08387c2288ff3d94ea7de15ce5f1d258, type: 3}
       propertyPath: 'persistentObjects.Array.data[22]'
       value: 
-      objectReference: {fileID: 1878113269}
+      objectReference: {fileID: 1396509840}
     - target: {fileID: 8714953990885710182, guid: 08387c2288ff3d94ea7de15ce5f1d258, type: 3}
       propertyPath: 'persistentObjects.Array.data[23]'
       value: 
@@ -65878,7 +65878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137178517398084966, guid: edcb5f24584268b48ad5a6bec33f9fee, type: 3}
       propertyPath: orthographic size
-      value: 4.515625
+      value: 4.758929
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
