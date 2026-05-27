@@ -101,12 +101,10 @@ public class PlayerMovment : MonoBehaviour
     #region  PLAYER_CONTROLS
     public void Move(InputAction.CallbackContext context)
     {
-        if (isMovementLocked) return;
-
-        anim.SetBool("isWalking", true);
-
         horizontal = context.ReadValue<Vector2>().x;
         vertival = context.ReadValue<Vector2>().y;
+
+        if (isMovementLocked) return;
 
         anim.SetFloat("InputX", horizontal);
         anim.SetFloat("InputY", vertival);

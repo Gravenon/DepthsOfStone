@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Blacksmith NPC
   m_EditorClassIdentifier: 
   actorName: Jhon
-  portrait: {fileID: -1706263913, guid: 94cc9965b2e9e2e429d6e4c8396dae75, type: 3}
+  portrait: {fileID: 589380139, guid: 48bfaf63930234e37a6addf546b58629, type: 3}

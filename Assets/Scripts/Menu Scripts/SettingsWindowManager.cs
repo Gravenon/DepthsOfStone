@@ -13,20 +13,20 @@ public class SettingsWindowManager : MonoBehaviour
     private void Start()
     {
         screenModeDropdown.AddOptions(new List<string> { "Windowed", "Fullscreen", "Borderless" });
-        int savedMode = PlayerPrefs.GetInt("ScreenMode", 0);
+        int savedMode = PlayerPrefs.GetInt("ScreenMode", 1);
         screenModeDropdown.value = savedMode;
         screenModeDropdown.RefreshShownValue();
         ApplyScreenMode(savedMode);
 
         resolutions = Screen.resolutions;
         List<string> options = new List<string>();
+        var seenResolutions = new HashSet<string>();
         foreach (Resolution r in resolutions)
         {
-            int hz = Mathf.RoundToInt((float)r.refreshRateRatio.value);
-            string entry = $"{r.width}x{r.height} @ {hz}Hz";
-            if (!options.Contains(entry))
+            string key = $"{r.width}x{r.height}";
+            if (seenResolutions.Add(key))
             {
-                options.Add(entry);
+                options.Add(key);
                 filteredResolutions.Add(r);
             }
         }

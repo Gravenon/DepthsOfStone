@@ -167,7 +167,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.Game-For-Degree
+    Standalone: com.DepthofStone.Depth-of-Stone
   buildNumber:
     Standalone: 0
     VisionOS: 0

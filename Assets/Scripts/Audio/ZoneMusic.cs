@@ -1,30 +1,30 @@
 using UnityEngine;
 
-// Place one per scene (triggerOnAwake = true) or as a trigger area (triggerOnAwake = false + Collider2D IsTrigger).
+/// <summary>
+/// Changes music when scene loads or player enters trigger zone.
+/// For ambient sounds, use MultiAmbientZone component instead.
+/// </summary>
 public class ZoneMusic : MonoBehaviour
 {
-    [Header("Clips")]
     [SerializeField] private AudioClip music;
-    [SerializeField] private AudioClip ambient;
-
-    [SerializeField] private bool  triggerOnAwake = true;
-    [SerializeField] private float crossfadeTime  = 1.5f;
+    [SerializeField] private bool triggerOnAwake = true;
+    [SerializeField] private float crossfadeTime = 1.5f;
 
     private void Start()
     {
-        if (triggerOnAwake) Apply();
+        if (triggerOnAwake)
+            ApplyMusic();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!triggerOnAwake && other.CompareTag("Player")) Apply();
+        if (!triggerOnAwake && other.CompareTag("Player"))
+            ApplyMusic();
     }
 
-    private void Apply()
+    private void ApplyMusic()
     {
-        if (AudioManager.Instance == null) return;
-        StartCoroutine(AudioManager.Instance.CrossfadeMusic(music, crossfadeTime));
-        if (ambient != null) StartCoroutine(AudioManager.Instance.CrossfadeAmbient(ambient, crossfadeTime));
-        else AudioManager.Instance.StopAmbient();
+        if (AudioManager.Instance != null && music != null)
+            StartCoroutine(AudioManager.Instance.CrossfadeMusic(music, crossfadeTime));
     }
 }

@@ -49028,7 +49028,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.65
+  m_fontSize: 34.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -63152,12 +63152,36 @@ PrefabInstance:
       objectReference: {fileID: 3536062767956877424}
     - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
       propertyPath: footstepSounds.Array.size
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
       propertyPath: 'footstepSounds.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 56ba5b92279bee846a06f550959af420, type: 3}
+      objectReference: {fileID: 8300000, guid: 4d5290829cef04151b5a0864e06af319, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 000d405a0ba434ef68da94e31cc87015, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d10a7edf3097448219ca2e58034b0fdf, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c165a72c33d04707bf2e5bc6eba31a0, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c08b9ac8d8a441a2851d91feb093df9, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 31ccb90360f014f309f6c74e36c4e514, type: 3}
+    - target: {fileID: 8988081609374780333, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
+      propertyPath: 'footstepSounds.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a687c877e2f2411586bb0744e7322b3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3662297025383517289, guid: bfca2121c1a809b44995f7a616d79177, type: 3}
@@ -65366,7 +65390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3729842352431441791, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_fontSize
-      value: 62.55
+      value: 66.65
       objectReference: {fileID: 0}
     - target: {fileID: 4214146249661198300, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_fontSize
@@ -65722,8 +65746,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 27648850079321581, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8610781365663694721}
   m_SourcePrefab: {fileID: 100100000, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+--- !u!1 &8610781365663694720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 27648850079321581, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+  m_PrefabInstance: {fileID: 8610781365663694719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8610781365663694721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610781365663694720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd37e1d4c02d49f58001b52a63d4bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MultiAmbientZone
+  layers:
+  - name: wind
+    clip: {fileID: 8300000, guid: 517ce772e6883104183b9d9edc14b8fa, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  playOnAwake: 1
+  triggerOnEnter: 0
+  fadeTime: 1.5
 --- !u!1001 &8646537184607833712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65826,7 +65878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137178517398084966, guid: edcb5f24584268b48ad5a6bec33f9fee, type: 3}
       propertyPath: orthographic size
-      value: 5.625
+      value: 4.515625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66406,8 +66458,8 @@ SceneRoots:
   - {fileID: 8249289321650180193}
   - {fileID: 667494245}
   - {fileID: 6552109591303970497}
-  - {fileID: 8610781365663694719}
   - {fileID: 5659240168760605226}
+  - {fileID: 8610781365663694719}
   - {fileID: 8857582126113530273}
   - {fileID: 924614017}
   - {fileID: 1002020398}

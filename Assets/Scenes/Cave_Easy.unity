@@ -5960,8 +5960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: VilageDwarfs
-  fadeAnim: {fileID: 285318554}
-  fadeTime: 1
   newPlayerPosition: {x: -5, y: 3}
   selectedLevel: 0
   mineManager: {fileID: 0}
@@ -12940,8 +12938,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 27648850079321581, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728581614}
   m_SourcePrefab: {fileID: 100100000, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+--- !u!1 &1728581613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 27648850079321581, guid: 4de4b224121f24ed8ae35e945b7b596f, type: 3}
+  m_PrefabInstance: {fileID: 1728581612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1728581614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728581613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd37e1d4c02d49f58001b52a63d4bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MultiAmbientZone
+  layers:
+  - name: gul
+    clip: {fileID: 8300000, guid: 95aa9ac1b33ffdd4cab843eee5cca2fd, type: 3}
+    volume: 0.1
+    source: {fileID: 0}
+  - name: water_drop
+    clip: {fileID: 8300000, guid: 2b0bf926f825c7646845cc7b0cf025f1, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  playOnAwake: 1
+  triggerOnEnter: 0
+  fadeTime: 1.5
 --- !u!1 &1796787900
 GameObject:
   m_ObjectHideFlags: 0

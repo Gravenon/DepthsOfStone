@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Tutorial(Torgrim)
   m_EditorClassIdentifier: Assembly-CSharp::AcotrSO
   actorName: Torgrim
-  portrait: {fileID: 737231511072755166, guid: 660d4047001d74c21a831055520580c8, type: 3}
+  portrait: {fileID: 1447678150, guid: 48bfaf63930234e37a6addf546b58629, type: 3}

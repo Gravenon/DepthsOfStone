@@ -1,28 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-// Persistent singleton — place on a GameObject in the Menu scene ONLY.
-// Owns the single AudioListener. Provides Music, SFX and Ambient channels.
-// Remove AudioListener from ALL cameras in ALL scenes.
+/// <summary>
+/// Singleton audio manager for music and SFX.
+/// Also holds the global ambient volume used by all MultiAmbientZone components.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    // Fired whenever ambient volume changes so all active MultiAmbientZone components can update.
+    public static event System.Action<float> OnAmbientVolumeChanged;
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioSource ambientSource;
 
     [Header("Menu Music")]
-    [SerializeField] private AudioClip menuMusic; // plays automatically when the game starts
+    [SerializeField] private AudioClip menuMusic;
 
     [Header("Default Volumes")]
     [Range(0f, 1f)] [SerializeField] private float defaultMusicVolume   = 0.5f;
     [Range(0f, 1f)] [SerializeField] private float defaultSfxVolume     = 1.0f;
     [Range(0f, 1f)] [SerializeField] private float defaultAmbientVolume = 0.4f;
 
-    private const string KeyMusic = "Vol_Music";
-    private const string KeySfx = "Vol_SFX";
+    private const string KeyMusic   = "Vol_Music";
+    private const string KeySfx     = "Vol_SFX";
     private const string KeyAmbient = "Vol_Ambient";
 
     private float _musicTargetVolume;
@@ -31,7 +34,12 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
         EnsureAudioListener();
@@ -39,25 +47,21 @@ public class AudioManager : MonoBehaviour
         PlayMusic(menuMusic);
     }
 
-    private void OnEnable()
-    {
-        EnsureAudioListener();
-    }
-    
+    private void OnEnable() => EnsureAudioListener();
+
     private void EnsureAudioListener()
     {
-        AudioListener al = GetComponent<AudioListener>();
-        if (al == null)
-            al = gameObject.AddComponent<AudioListener>();
-        al.enabled = true;
+        AudioListener listener = GetComponent<AudioListener>();
+        if (listener == null)
+            listener = gameObject.AddComponent<AudioListener>();
+        listener.enabled = true;
     }
-
-    // Music
 
     public void PlayMusic(AudioClip clip)
     {
         if (clip == null) return;
-        if (musicSource.clip == clip && musicSource.isPlaying) return; // skip only if already audibly playing
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
         musicSource.Stop();
         musicSource.clip = clip;
         musicSource.loop = true;
@@ -77,66 +81,51 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic() => musicSource.Stop();
 
-    // SFX — for UI or generic sounds; per-character sounds go through AudiManager
-
     public void PlaySfx(AudioClip clip)
     {
         if (clip == null) return;
-        sfxSource.PlayOneShot(clip, sfxSource.volume);
+        sfxSource.PlayOneShot(clip, _sfxTargetVolume);
     }
-
-    // Ambient
-
-    public void PlayAmbient(AudioClip clip)
-    {
-        if (clip == null || ambientSource.clip == clip) return;
-        ambientSource.Stop();
-        ambientSource.clip   = clip;
-        ambientSource.loop   = true;
-        ambientSource.volume = _ambientTargetVolume;
-        ambientSource.Play();
-    }
-
-    public IEnumerator CrossfadeAmbient(AudioClip newClip, float duration)
-    {
-        if (newClip == null || ambientSource.clip == newClip) yield break;
-        yield return FadeSource(ambientSource, ambientSource.volume, 0f, duration * 0.5f);
-        ambientSource.clip = newClip;
-        ambientSource.loop = true;
-        ambientSource.Play();
-        yield return FadeSource(ambientSource, 0f, _ambientTargetVolume, duration * 0.5f);
-    }
-
-    public void StopAmbient() => StartCoroutine(FadeSource(ambientSource, ambientSource.volume, 0f, 0.5f));
-
-    // Volume properties — values are saved to PlayerPrefs automatically
 
     public float MusicVolume
     {
         get => _musicTargetVolume;
-        set { _musicTargetVolume = Mathf.Clamp01(value); musicSource.volume = _musicTargetVolume; PlayerPrefs.SetFloat(KeyMusic, _musicTargetVolume); }
+        set
+        {
+            _musicTargetVolume = Mathf.Clamp01(value);
+            musicSource.volume = _musicTargetVolume;
+            PlayerPrefs.SetFloat(KeyMusic, _musicTargetVolume);
+        }
     }
 
     public float SfxVolume
     {
         get => _sfxTargetVolume;
-        set { _sfxTargetVolume = Mathf.Clamp01(value); sfxSource.volume = _sfxTargetVolume; PlayerPrefs.SetFloat(KeySfx, _sfxTargetVolume); }
+        set
+        {
+            _sfxTargetVolume = Mathf.Clamp01(value);
+            sfxSource.volume = _sfxTargetVolume;
+            PlayerPrefs.SetFloat(KeySfx, _sfxTargetVolume);
+        }
     }
 
-    // Call from a "Reset to defaults" button if volumes get stuck.
+    public float AmbientVolume
+    {
+        get => _ambientTargetVolume;
+        set
+        {
+            _ambientTargetVolume = Mathf.Clamp01(value);
+            PlayerPrefs.SetFloat(KeyAmbient, _ambientTargetVolume);
+            OnAmbientVolumeChanged?.Invoke(_ambientTargetVolume);
+        }
+    }
+
     public void ResetVolumesToDefault()
     {
         PlayerPrefs.DeleteKey(KeyMusic);
         PlayerPrefs.DeleteKey(KeySfx);
         PlayerPrefs.DeleteKey(KeyAmbient);
         LoadVolumes();
-        Debug.Log("[AudioManager] Volumes reset to defaults.");
-    }
-
-    public float AmbientVolume
-    {
-        get => _ambientTargetVolume;
-        set { _ambientTargetVolume = Mathf.Clamp01(value); ambientSource.volume = _ambientTargetVolume; PlayerPrefs.SetFloat(KeyAmbient, _ambientTargetVolume); }
     }
 
     private void LoadVolumes()
@@ -146,7 +135,6 @@ public class AudioManager : MonoBehaviour
         _ambientTargetVolume = PlayerPrefs.GetFloat(KeyAmbient, defaultAmbientVolume);
         musicSource.volume   = _musicTargetVolume;
         sfxSource.volume     = _sfxTargetVolume;
-        ambientSource.volume = _ambientTargetVolume;
     }
 
     private IEnumerator FadeSource(AudioSource source, float from, float to, float duration)
