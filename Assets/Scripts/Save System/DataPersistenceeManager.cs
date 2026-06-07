@@ -89,6 +89,7 @@ public class DataPersistenceeManager : MonoBehaviour
         foreach (var obj in dataPersistenceObjects)
         { if (obj is MonoBehaviour mb && mb == null) continue; obj.SaveData(ref gameData); }
         dataHandler.Save(gameData, profilID);
+        SaveIndicator.Instance?.Show();
     }
 
     public void OnApplicationQuit() => SaveGame();

@@ -49,19 +49,6 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
         waveCountdown = timeBetweenWaves;
         musicManager  = FindFirstObjectByType<MusicManager>();
         musicManager.PlayCombatMusic();
-        PlayerHealth.Died += OnPlayerDied;
-    }
-
-    void OnDestroy() => PlayerHealth.Died -= OnPlayerDied;
-
-    private void OnPlayerDied()
-    {
-        if (transitionTriggered) return;
-        transitionTriggered = true;
-        nextWave = 0;
-        DataPersistenceeManager.instance.SaveGame();
-        DataPersistenceeManager.SuppressNextSave = true;
-        sceneChanger.ChangeScene();
     }
 
     void Update()
