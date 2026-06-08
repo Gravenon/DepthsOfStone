@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// UI controller for audio settings in menu.
-/// Syncs sliders with AudioManager volume values.
-/// </summary>
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
     [SerializeField] private Slider ambientVolumeSlider;
 
-    private void Start() => SyncSliders();
+    private void Start()
+    {
+        SyncSliders();
+    }
 
     public void SetMusicVolume()
     {

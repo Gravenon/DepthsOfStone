@@ -29,7 +29,6 @@ public class ShopKeeper : MonoBehaviour
 
     public bool OnlySell => onlySell;
 
-    // ─── Unity Events ─────────────────────────────────────────────────────────
 
     private void Awake()
     {
@@ -41,13 +40,13 @@ public class ShopKeeper : MonoBehaviour
     private void OnEnable()
     {
         if (interactAction != null) interactAction.action.performed += OnInteract;
-        if (cancelAction != null)   cancelAction.action.performed   += OnCancel;
+        if (cancelAction != null) cancelAction.action.performed += OnCancel;
     }
 
     private void OnDisable()
     {
         if (interactAction != null) interactAction.action.performed -= OnInteract;
-        if (cancelAction != null)   cancelAction.action.performed   -= OnCancel;
+        if (cancelAction != null) cancelAction.action.performed -= OnCancel;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,8 +62,6 @@ public class ShopKeeper : MonoBehaviour
         _playerInRange = false;
         if (ButtonAnim != null) anim.SetBool("playerInRange", false);
     }
-
-    // ─── Input Handlers ───────────────────────────────────────────────────────
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
@@ -82,7 +79,6 @@ public class ShopKeeper : MonoBehaviour
         if (_isShopOpen) CloseShop();
     }
 
-    // ─── Shop Control ─────────────────────────────────────────────────────────
 
     private void OpenShop()
     {
@@ -126,9 +122,7 @@ public class ShopKeeper : MonoBehaviour
         shopCanvasGroup.interactable = visible;
     }
 
-    // ─── Page Switching (called by UI buttons via ShopButtonToggles) ──────────
-
-    public void OpenItemShop()   => shopManager.PopulateShopItem(shopItems);
+    public void OpenItemShop() => shopManager.PopulateShopItem(shopItems);
     public void OpenWeaponShop() => shopManager.PopulateShopItem(shopWeapons);
     public void OpenArmourShop() => shopManager.PopulateShopItem(shopArmour);
 }

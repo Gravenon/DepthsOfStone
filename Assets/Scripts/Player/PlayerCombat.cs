@@ -41,8 +41,7 @@ public class PlayerCombat : MonoBehaviour
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayers);
 
-        // Use a HashSet to ensure each GameObject is only damaged once,
-        // even if it has multiple colliders in range.
+        // use a HashSet to ensure each root object is only damaged once
         var hitObjects = new System.Collections.Generic.HashSet<GameObject>();
         bool hitAny = false;
 
@@ -52,7 +51,7 @@ public class PlayerCombat : MonoBehaviour
             if (!hitObjects.Add(root)) continue;
 
             var enemyHealth = root.GetComponentInChildren<Enemy_Health>();
-            var bossHealth  = root.GetComponentInChildren<Boss_Health>();
+            var bossHealth = root.GetComponentInChildren<Boss_Health>();
 
             if (enemyHealth == null && bossHealth == null) continue;
 

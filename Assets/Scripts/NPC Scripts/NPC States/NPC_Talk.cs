@@ -10,10 +10,6 @@ public class NPC_Talk : MonoBehaviour, IDataPersistence
     public Animator interactAnim;
     public InputActionReference interactAction;
 
-    /// <summary>
-    /// Unique ID for this NPC — set this in the Inspector (e.g. "blacksmith_01").
-    /// If left empty, dialogue state will NOT be saved/loaded.
-    /// </summary>
     [SerializeField] private string npcId;
 
     public List<DialogueSO> converstations;
@@ -94,7 +90,6 @@ public class NPC_Talk : MonoBehaviour, IDataPersistence
         }
     }
 
-    // ─── IDataPersistence ───────────────────────────────────────────────────
 
     public void SaveData(ref GameData data)
     {

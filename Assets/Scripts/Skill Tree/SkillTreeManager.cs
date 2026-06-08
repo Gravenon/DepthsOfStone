@@ -107,12 +107,10 @@ public class SkillTreeManager : MonoBehaviour, IDataPersistence
         UpdateMagicPointsUI();
     }
 
-    // ─── IDataPersistence ───────────────────────────────────────────────────
-
     public void SaveData(ref GameData data)
     {
         data.savedCombatPoints = availableCombatPoints;
-        data.savedMagicPoints  = availableMagicPoints;
+        data.savedMagicPoints = availableMagicPoints;
 
         var states = new List<SerializedSkillState>();
         foreach (var slot in skillSlots)

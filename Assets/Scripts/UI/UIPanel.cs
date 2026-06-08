@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class UIPanel : MonoBehaviour
 {
     private CanvasGroup _cg;
+
+    [SerializeField] private bool openPauseMenuOnClose;
 
     private void Awake()
     {
@@ -14,7 +17,10 @@ public class UIPanel : MonoBehaviour
     public void Toggle()
     {
         if (UIManager.Instance != null)
-            UIManager.Instance.Toggle(_cg);
+        {
+            Action onClose = openPauseMenuOnClose ? () => PauseMenuManager.Instance?.OpenPause() : (Action)null;
+            UIManager.Instance.Toggle(_cg, onClose);
+        }
         else
             UIManager.SetVisible(_cg, _cg.alpha < 0.5f);
     }

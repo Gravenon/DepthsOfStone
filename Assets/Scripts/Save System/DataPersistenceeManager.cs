@@ -32,8 +32,17 @@ public class DataPersistenceeManager : MonoBehaviour
         dataHandler = new FilePathHandler(Application.persistentDataPath, dataDirName);
     }
 
-    private void OnEnable()  { SceneManager.sceneLoaded += OnSceneLoaded; SceneManager.sceneUnloaded += OnSceneUnloaded; }
-    private void OnDisable() { SceneManager.sceneLoaded -= OnSceneLoaded; SceneManager.sceneUnloaded -= OnSceneUnloaded; }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -41,7 +50,9 @@ public class DataPersistenceeManager : MonoBehaviour
 
         if (_pendingNewGame)
         {
-            gameData = _pendingGameData; _pendingNewGame = false; _pendingGameData = null;
+            gameData = _pendingGameData;
+            _pendingNewGame = false;
+            _pendingGameData = null;
             ApplyDataToAll(new GameData("", ""));
             ApplyDataToAll(gameData);
             dataHandler.Save(gameData, profilID);
@@ -62,7 +73,11 @@ public class DataPersistenceeManager : MonoBehaviour
         profilID = newProfilID;
         gameData = dataHandler.Load(newProfilID);
         HardResetAllObjects();
-        if (gameData != null) { dataPersistenceObjects = FindAllDataPersistenceObjects(); ApplyDataToAll(gameData); }
+        if (gameData != null)
+        {
+            dataPersistenceObjects = FindAllDataPersistenceObjects();
+            ApplyDataToAll(gameData);
+        }
     }
 
     public void NewGame(string worldName, string playerName)
@@ -87,7 +102,10 @@ public class DataPersistenceeManager : MonoBehaviour
         if (gameData == null) return;
         dataPersistenceObjects = FindAllDataPersistenceObjects();
         foreach (var obj in dataPersistenceObjects)
-        { if (obj is MonoBehaviour mb && mb == null) continue; obj.SaveData(ref gameData); }
+        {
+            if (obj is MonoBehaviour mb && mb == null) continue;
+            obj.SaveData(ref gameData);
+        }
         dataHandler.Save(gameData, profilID);
         SaveIndicator.Instance?.Show();
     }
@@ -137,14 +155,20 @@ public class DataPersistenceeManager : MonoBehaviour
         if (WorldTime.Instance != null) WorldTime.Instance.ResetToMorning();
         var blank = new GameData("", "");
         foreach (var obj in FindAllDataPersistenceObjects())
-        { if (obj is MonoBehaviour mb && mb == null) continue; obj.LoadData(blank); }
+        {
+            if (obj is MonoBehaviour mb && mb == null) continue;
+            obj.LoadData(blank);
+        }
     }
 
     private void ApplyDataToAll(GameData data)
     {
         if (dataPersistenceObjects == null) return;
         foreach (var obj in dataPersistenceObjects)
-        { if (obj is MonoBehaviour mb && mb == null) continue; obj.LoadData(data); }
+        {
+            if (obj is MonoBehaviour mb && mb == null) continue;
+            obj.LoadData(data);
+        }
     }
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()

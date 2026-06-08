@@ -20,8 +20,15 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         if (_inventoryManager == null) _inventoryManager = InventoryManager.Instance;
     }
 
-    private void OnEnable()  => ShopKeeper.OnShopOpenClose += HandleShopStateChange;
-    private void OnDisable() => ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+    private void OnEnable()
+    {
+        ShopKeeper.OnShopOpenClose += HandleShopStateChange;
+    }
+
+    private void OnDisable()
+    {
+        ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+    }
 
     private void HandleShopStateChange(ShopManger shop, bool isOpen)
     {
@@ -40,7 +47,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                // Consumables that restore health can only be used below max health
+                // items that restore health can only be used below max health
                 if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
                     return;
                 if (itemSO.itemType != ItemType.ore)

@@ -1167,7 +1167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: S
+  m_Text: "\u042B"
 --- !u!222 &86104100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1502,8 +1502,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 495.22684, y: -82.3787}
-  m_SizeDelta: {x: 910.4537, y: 82}
+  m_AnchoredPosition: {x: 520.18274, y: -74.1756}
+  m_SizeDelta: {x: 960.3655, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101230187
 MonoBehaviour:
@@ -13407,7 +13407,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: W
+  m_Text: "\u0426"
 --- !u!222 &388970067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19551,7 +19551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A
+  m_Text: "\u0424"
 --- !u!222 &641855114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35337,7 +35337,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I
+  m_Text: "\u0428"
 --- !u!222 &1105188396
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38419,8 +38419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 495.22684, y: -602.51483}
-  m_SizeDelta: {x: 910.4537, y: 82}
+  m_AnchoredPosition: {x: 520.18274, y: -569.7024}
+  m_SizeDelta: {x: 960.3655, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213077268
 MonoBehaviour:
@@ -39375,6 +39375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!1 &1261003281
 GameObject:
   m_ObjectHideFlags: 0
@@ -62415,6 +62416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!224 &1557010264 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3874229646942575689, guid: 76c61684c03752449b38967c58c73ed9, type: 3}
@@ -62772,6 +62774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!1 &1570129767
 GameObject:
   m_ObjectHideFlags: 0
@@ -63914,8 +63917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 495.22684, y: -429.13608}
-  m_SizeDelta: {x: 910.4537, y: 82}
+  m_AnchoredPosition: {x: 520.18274, y: -404.5268}
+  m_SizeDelta: {x: 960.3655, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631201331
 MonoBehaviour:
@@ -69334,6 +69337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!1001 &1787996837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75299,7 +75303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: J
+  m_Text: "\u041E"
 --- !u!222 &1954057260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -75680,6 +75684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!1 &1988028014
 GameObject:
   m_ObjectHideFlags: 0
@@ -77193,7 +77198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 148769621816857794, guid: 1f57f79960e054edab673ede3064a300, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 910.4537
+      value: 960.3655
       objectReference: {fileID: 0}
     - target: {fileID: 148769621816857794, guid: 1f57f79960e054edab673ede3064a300, type: 3}
       propertyPath: m_SizeDelta.y
@@ -77229,11 +77234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 148769621816857794, guid: 1f57f79960e054edab673ede3064a300, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 495.22684
+      value: 520.18274
       objectReference: {fileID: 0}
     - target: {fileID: 148769621816857794, guid: 1f57f79960e054edab673ede3064a300, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -776.2546
+      value: -735.239
       objectReference: {fileID: 0}
     - target: {fileID: 148769621816857794, guid: 1f57f79960e054edab673ede3064a300, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -79382,7 +79387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: E
+  m_Text: "\u0423"
 --- !u!222 &2108535122
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -80009,7 +80014,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: D
+  m_Text: "\u0412"
 --- !u!222 &2122345196
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -80074,8 +80079,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 495.22684, y: -255.75739}
-  m_SizeDelta: {x: 910.4537, y: 82}
+  m_AnchoredPosition: {x: 520.18274, y: -239.3512}
+  m_SizeDelta: {x: 960.3655, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125014773
 MonoBehaviour:
@@ -82379,6 +82384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c2ebe3844984688920ba56db7e0077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPanel
+  openPauseMenuOnClose: 0
 --- !u!1001 &3219138644679349588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85008,11 +85014,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1878113274}
     - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1553820836}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
@@ -85020,11 +85038,23 @@ PrefabInstance:
       value: GoToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 386788459503933397, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 439401648891145686, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
@@ -85073,6 +85103,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 439401648891145686, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439401648891145686, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439401648891145686, guid: 2e1a069da4e3d447da983ea51ca8976c, type: 3}
@@ -85844,7 +85878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137178517398084966, guid: edcb5f24584268b48ad5a6bec33f9fee, type: 3}
       propertyPath: orthographic size
-      value: 4.625
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

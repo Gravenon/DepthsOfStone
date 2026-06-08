@@ -6,18 +6,31 @@ public class DiedUI : MonoBehaviour
 {
     public GameObject diedUI;
 
-    [Tooltip("Секунд после смерти до авто-возрождения (время анимации)")]
+    [Tooltip("Seconds after death before auto-respawn")]
     [SerializeField] private float respawnDelay = 3f;
 
     private Coroutine _respawnCoroutine;
 
-    private void OnEnable()  { PlayerHealth.Died += EnableDiedMenu; SceneManager.sceneLoaded += OnSceneLoaded; }
-    private void OnDisable() { PlayerHealth.Died -= EnableDiedMenu; SceneManager.sceneLoaded -= OnSceneLoaded; }
+    private void OnEnable()
+    {
+        PlayerHealth.Died += EnableDiedMenu;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.Died -= EnableDiedMenu;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (diedUI != null) diedUI.SetActive(false);
-        if (_respawnCoroutine != null) { StopCoroutine(_respawnCoroutine); _respawnCoroutine = null; }
+        if (_respawnCoroutine != null)
+        {
+            StopCoroutine(_respawnCoroutine);
+            _respawnCoroutine = null;
+        }
     }
 
     public void EnableDiedMenu()
@@ -33,10 +46,14 @@ public class DiedUI : MonoBehaviour
         Respawn();
     }
 
-    // Кнопка «Возродиться» — пропускает таймер.
+    // respawn button — skips the timer
     public void Respawn()
     {
-        if (_respawnCoroutine != null) { StopCoroutine(_respawnCoroutine); _respawnCoroutine = null; }
+        if (_respawnCoroutine != null)
+        {
+            StopCoroutine(_respawnCoroutine);
+            _respawnCoroutine = null;
+        }
 
         DataPersistenceeManager.RespawnMaxHealth = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : 0;
         DataPersistenceeManager.instance.SaveGame();
@@ -52,7 +69,11 @@ public class DiedUI : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        if (_respawnCoroutine != null) { StopCoroutine(_respawnCoroutine); _respawnCoroutine = null; }
+        if (_respawnCoroutine != null)
+        {
+            StopCoroutine(_respawnCoroutine);
+            _respawnCoroutine = null;
+        }
         DataPersistenceeManager.instance?.SaveGame();
         DataPersistenceeManager.SuppressNextSave = true;
         SceneManager.LoadScene("Menu");

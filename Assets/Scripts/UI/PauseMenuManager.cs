@@ -4,12 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    public static PauseMenuManager Instance { get; private set; }
+
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private string mainMenuSceneName = "Menu";
 
     public static bool IsGamePaused;
 
     private CanvasGroup _pauseCG;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
 
     private void Start()
     {
@@ -21,16 +33,34 @@ public class PauseMenuManager : MonoBehaviour
     private void Update()
     {
         if (Keyboard.current == null || !Keyboard.current.escapeKey.wasPressedThisFrame) return;
+        if (SceneManager.GetActiveScene().name == mainMenuSceneName) return;
         if (UIManager.Instance != null && UIManager.Instance.IsAnyOpen) return;
         if (IsGamePaused) Resume(); else Pause();
     }
 
-    public void Resume() { Time.timeScale = 1f; IsGamePaused = false; UIManager.SetVisible(_pauseCG, false); }
-    private void Pause() { IsGamePaused = true; Time.timeScale = 0f; UIManager.SetVisible(_pauseCG, true); }
+    public void OpenPause()
+    {
+        if (!IsGamePaused) Pause();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        IsGamePaused = false;
+        UIManager.SetVisible(_pauseCG, false);
+    }
+
+    private void Pause()
+    {
+        IsGamePaused = true;
+        Time.timeScale = 0f;
+        UIManager.SetVisible(_pauseCG, true);
+    }
 
     public void Retry()
     {
-        Time.timeScale = 1f; IsGamePaused = false;
+        Time.timeScale = 1f;
+        IsGamePaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -38,9 +68,16 @@ public class PauseMenuManager : MonoBehaviour
     {
         DataPersistenceeManager.instance.SaveGame();
         DataPersistenceeManager.SuppressNextSave = true;
-        Time.timeScale = 1f; IsGamePaused = false;
+        Time.timeScale = 1f;
+        IsGamePaused = false;
+        UIManager.SetVisible(_pauseCG, false);
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
-    public void QuitGame() { DataPersistenceeManager.instance.SaveGame(); Application.Quit(); }
+    public void QuitGame()
+    {
+        DataPersistenceeManager.instance.SaveGame();
+        UIManager.SetVisible(_pauseCG, false);
+        Application.Quit();
+    }
 }

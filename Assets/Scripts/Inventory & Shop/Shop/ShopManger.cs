@@ -11,16 +11,16 @@ public class ShopManger : MonoBehaviour
     [Tooltip("EquipmentSlot components inside ShopCanvas that mirror the player's equipment panel")]
     [SerializeField] private EquipmentSlot[] shopEquipmentSlots;
 
-    // All items across every shop page — populated by ShopKeeper on open
+    // all items across every page, set by ShopKeeper on open
     private List<ShopItems> _allItems = new List<ShopItems>();
 
 
     public void SetAllShopItems(List<ShopItems> items, List<ShopItems> weapons, List<ShopItems> armour)
     {
         _allItems.Clear();
-        if (items != null)   _allItems.AddRange(items);
+        if (items != null) _allItems.AddRange(items);
         if (weapons != null) _allItems.AddRange(weapons);
-        if (armour != null)  _allItems.AddRange(armour);
+        if (armour != null) _allItems.AddRange(armour);
     }
 
     public void PopulateShopItem(List<ShopItems> items)
@@ -65,7 +65,6 @@ public class ShopManger : MonoBehaviour
         SyncEquipmentMirror();
     }
 
-    /// Sells one unit of an item from the player's inventory and awards coins based on the buyback rate.
     public void SellItem(ItemSO item)
     {
         if (item == null) return;
@@ -77,7 +76,6 @@ public class ShopManger : MonoBehaviour
         SyncEquipmentMirror();
     }
 
-    /// Refreshes the real equipment slots UI and syncs the shop-side mirror.
     public void RefreshInventoryDisplay()
     {
         foreach (var slot in inventoryManager.equimentSlot)
@@ -86,7 +84,6 @@ public class ShopManger : MonoBehaviour
         SyncEquipmentMirror();
     }
 
-    /// Copies data from the player's real equipment slots into the shop canvas mirror slots.
     public void SyncEquipmentMirror()
     {
         if (shopEquipmentSlots == null || shopEquipmentSlots.Length == 0) return;
@@ -94,13 +91,12 @@ public class ShopManger : MonoBehaviour
         EquipmentSlot[] real = inventoryManager.equimentSlot;
         for (int i = 0; i < shopEquipmentSlots.Length; i++)
         {
-            shopEquipmentSlots[i].itemSO   = i < real.Length ? real[i].itemSO   : null;
+            shopEquipmentSlots[i].itemSO = i < real.Length ? real[i].itemSO : null;
             shopEquipmentSlots[i].quantity = i < real.Length ? real[i].quantity : 0;
             shopEquipmentSlots[i].UpdateUI();
         }
     }
 
-    // ─── Private Helpers ──────────────────────────────────────────────────────
 
     private static bool IsEquipmentType(ItemType type)
     {

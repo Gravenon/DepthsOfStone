@@ -14,12 +14,15 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        // Регистрируемся до sceneLoaded — гарантирует, что LoadData нас найдёт.
+        // register before sceneLoaded so LoadData can find this slot
         InventoryManager.RegisterSlot(this);
         if (slotImage != null) SetEmptyVisual();
     }
 
-    private void OnDestroy() => InventoryManager.UnregisterSlot(this);
+    private void OnDestroy()
+    {
+        InventoryManager.UnregisterSlot(this);
+    }
 
     private void Start()
     {
@@ -33,7 +36,9 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         if (slotInUse && itemSO != null)
         {
             slotImage.sprite = itemSO.itemIcon;
-            var c = slotImage.color; c.a = 1f; slotImage.color = c;
+            var c = slotImage.color;
+            c.a = 1f;
+            slotImage.color = c;
             if (emptySlotImage != null) emptySlotImage.enabled = false;
         }
         else SetEmptyVisual();
@@ -50,7 +55,8 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         if (itemType != ItemType.none && newItem.itemType != itemType) return false;
         if (slotInUse) UnequipGear();
 
-        itemSO = newItem; slotInUse = true;
+        itemSO = newItem;
+        slotInUse = true;
         itemSO.Use();
         UpdateUI();
 
@@ -64,12 +70,17 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         if (!slotInUse || itemSO == null) return;
 
         inventoryManager ??= InventoryManager.Instance ?? FindAnyObjectByType<InventoryManager>();
-        if (inventoryManager == null) { Debug.LogError("[EquippedSlot] InventoryManager not found!", this); return; }
+        if (inventoryManager == null)
+        {
+            Debug.LogError("[EquippedSlot] InventoryManager not found!", this);
+            return;
+        }
 
         int typeId = (int)itemType;
         ItemSO removed = itemSO;
 
-        itemSO = null; slotInUse = false;
+        itemSO = null;
+        slotInUse = false;
         UpdateUI();
 
         removed.Unuse();
@@ -77,15 +88,32 @@ public class EquippedSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager.AddItem(removed, 1);
     }
 
-    public void ClearSlot()      { itemSO = null; slotInUse = false; SetEmptyVisual(); }
-    public void RestoreGearVisual(ItemSO item) { if (item == null) return; itemSO = item; slotInUse = true; UpdateUI(); }
+    public void ClearSlot()
+    {
+        itemSO = null;
+        slotInUse = false;
+        SetEmptyVisual();
+    }
+
+    public void RestoreGearVisual(ItemSO item)
+    {
+        if (item == null) return;
+        itemSO = item;
+        slotInUse = true;
+        UpdateUI();
+    }
 
     private void SetEmptyVisual()
     {
-        if (slotImage != null) { var c = slotImage.color; c.a = 0f; slotImage.color = c; }
+        if (slotImage != null)
+        {
+            var c = slotImage.color;
+            c.a = 0f;
+            slotImage.color = c;
+        }
         if (emptySlotImage != null) emptySlotImage.enabled = true;
     }
 
-    public ItemSO   GetEquippedItem()  => slotInUse ? itemSO : null;
-    public ItemType GetSlotItemType()  => itemType;
+    public ItemSO GetEquippedItem() => slotInUse ? itemSO : null;
+    public ItemType GetSlotItemType() => itemType;
 }

@@ -4,11 +4,9 @@ using UnityEngine;
 public class Boss_Health : MonoBehaviour
 {
     public int health = 500;
-    
-    // public GameObject deathEffect;
-    
+
     public bool isInvulneable = false;
-    
+
     public BossHealthBar healthBar;
 
     private void Start()
@@ -18,18 +16,17 @@ public class Boss_Health : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        if(isInvulneable)
+        if (isInvulneable)
             return;
         
         health += (int)amount;
-        
+
         healthBar.SetHealth(health);
 
         if (health <= 300)
         {
             GetComponent<Animator>().SetBool("InRage", true);
         }
-        
         if (health <= 0)
         {
             health = 0;
@@ -41,7 +38,7 @@ public class Boss_Health : MonoBehaviour
         }
     }
     
-    void Die()
+    private void Die()
     {
         isInvulneable = true;
         GetComponent<Animator>().SetBool("IsDead", true);

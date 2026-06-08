@@ -11,16 +11,16 @@ public class QuestManager : MonoBehaviour, IDataPersistence
 
     private void OnEnable()
     {
-        QuestEvents.IsQuestComplete  += IsQuestComplete;
+        QuestEvents.IsQuestComplete += IsQuestComplete;
         QuestEvents.OnPlayerAttacked += OnPlayerAttacked;
-        QuestEvents.OnDashUnlocked   += OnDashUnlocked;
+        QuestEvents.OnDashUnlocked += OnDashUnlocked;
     }
 
     private void OnDisable()
     {
-        QuestEvents.IsQuestComplete  -= IsQuestComplete;
+        QuestEvents.IsQuestComplete -= IsQuestComplete;
         QuestEvents.OnPlayerAttacked -= OnPlayerAttacked;
-        QuestEvents.OnDashUnlocked   -= OnDashUnlocked;
+        QuestEvents.OnDashUnlocked -= OnDashUnlocked;
     }
 
     private void OnPlayerAttacked()

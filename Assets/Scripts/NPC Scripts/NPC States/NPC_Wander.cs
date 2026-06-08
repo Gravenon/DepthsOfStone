@@ -54,12 +54,10 @@ public class NPC_Wander : MonoBehaviour
     IEnumerator PauseAndPickNewDestation()
     {
         isPaused = true;
-        //anim.Play("Idle");
         yield return new WaitForSeconds(pauseDuration);
 
         target = GetRandomPosition();
         isPaused = false;
-        //anim.Play("Walk");
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

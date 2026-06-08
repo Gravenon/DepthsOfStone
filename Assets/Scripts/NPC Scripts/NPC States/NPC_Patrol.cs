@@ -49,12 +49,10 @@ public class NPC_Patrol : MonoBehaviour
     IEnumerator SetPatrolPoint()
     {
         isPaused = true;
-        //anim.Play("Idle");
         yield return new WaitForSeconds(pauseDuration);
 
         currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         target = patrolPoints[currentPatrolIndex];
         isPaused = false;
-        //anim.Play("Walk");
     }
 }

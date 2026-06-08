@@ -14,12 +14,15 @@ public class ShopInfo : MonoBehaviour
 
     private RectTransform _rect;
 
-    private void Awake() => _rect = GetComponent<RectTransform>();
+    private void Awake()
+    {
+        _rect = GetComponent<RectTransform>();
+    }
 
     public void ShowItemInfo(ItemSO item)
     {
         infoPanel.alpha = 1;
-        itemNameText.text        = item.itemName;
+        itemNameText.text = item.itemName;
         itemDescriptionText.text = item.itemDescription;
 
         var stats = BuildStatList(item);
@@ -41,8 +44,8 @@ public class ShopInfo : MonoBehaviour
 
     public void HideItemInfo()
     {
-        infoPanel.alpha          = 0;
-        itemNameText.text        = "";
+        infoPanel.alpha = 0;
+        itemNameText.text = "";
         itemDescriptionText.text = "";
     }
 
@@ -57,11 +60,11 @@ public class ShopInfo : MonoBehaviour
     private static List<string> BuildStatList(ItemSO item)
     {
         var stats = new List<string>();
-        if (item.currentHealth > 0) stats.Add("Health: "     + item.currentHealth);
-        if (item.maxHealth     > 0) stats.Add("Max Health: " + item.maxHealth);
-        if (item.speed         > 0) stats.Add("Speed: "      + item.speed);
-        if (item.damage        > 0) stats.Add("Damage: "     + item.damage);
-        if (item.duration      > 0) stats.Add("Duration: "   + item.duration);
+        if (item.currentHealth > 0) stats.Add("Health: " + item.currentHealth);
+        if (item.maxHealth > 0) stats.Add("Max Health: " + item.maxHealth);
+        if (item.speed > 0) stats.Add("Speed: " + item.speed);
+        if (item.damage > 0) stats.Add("Damage: " + item.damage);
+        if (item.duration > 0) stats.Add("Duration: " + item.duration);
         return stats;
     }
 }

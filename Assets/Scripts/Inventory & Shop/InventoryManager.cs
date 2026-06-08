@@ -23,14 +23,21 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     private CanvasGroup _equipmentCG;
 
-    // Key=(int)ItemType, Value=itemName. Static — переживает пересоздание между сценами.
+    // static so it survives scene reloads
     private static readonly Dictionary<int, string> _equippedCache = new Dictionary<int, string>();
 
-    // Реестр слотов: заполняется в Awake() слотов, до вызова sceneLoaded → LoadData.
+    // filled in Awake by each EquippedSlot, before LoadData is called
     private static readonly List<EquippedSlot> _registeredSlots = new List<EquippedSlot>();
 
-    public static void RegisterSlot(EquippedSlot slot)   { if (!_registeredSlots.Contains(slot)) _registeredSlots.Add(slot); }
-    public static void UnregisterSlot(EquippedSlot slot) => _registeredSlots.Remove(slot);
+    public static void RegisterSlot(EquippedSlot slot)
+    {
+        if (!_registeredSlots.Contains(slot)) _registeredSlots.Add(slot);
+    }
+
+    public static void UnregisterSlot(EquippedSlot slot)
+    {
+        _registeredSlots.Remove(slot);
+    }
 
     public static ItemSO GetEquippedItemSO(int typeId)
     {
@@ -69,8 +76,15 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         if (toggleInventoryAction != null) toggleInventoryAction.action.performed -= OnToggleInventory;
     }
 
-    public void RegisterEquip(int typeId, string itemName)   => _equippedCache[typeId] = itemName;
-    public void RegisterUnequip(int typeId)                  => _equippedCache.Remove(typeId);
+    public void RegisterEquip(int typeId, string itemName)
+    {
+        _equippedCache[typeId] = itemName;
+    }
+
+    public void RegisterUnequip(int typeId)
+    {
+        _equippedCache.Remove(typeId);
+    }
 
     public void LoadData(GameData data)
     {
@@ -88,8 +102,18 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        foreach (var slot in inventorySlots) { slot.itemSO = null; slot.quantity = 0; slot.UpdateUI(); }
-        foreach (var slot in equimentSlot)   { slot.itemSO = null; slot.quantity = 0; slot.UpdateUI(); }
+        foreach (var slot in inventorySlots)
+        {
+            slot.itemSO = null;
+            slot.quantity = 0;
+            slot.UpdateUI();
+        }
+        foreach (var slot in equimentSlot)
+        {
+            slot.itemSO = null;
+            slot.quantity = 0;
+            slot.UpdateUI();
+        }
         foreach (var slot in _registeredSlots) slot.ClearSlot();
 
         coins = data.coins;
@@ -97,11 +121,17 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
         if (data.inventoryItems != null)
             foreach (var s in data.inventoryItems)
-            { var item = Array.Find(lib.itemSOs, so => so != null && so.itemName == s.itemName); if (item != null) AddItem(item, s.quantity); }
+            {
+                var item = Array.Find(lib.itemSOs, so => so != null && so.itemName == s.itemName);
+                if (item != null) AddItem(item, s.quantity);
+            }
 
         if (data.equipmentItems != null)
             foreach (var s in data.equipmentItems)
-            { var item = Array.Find(lib.itemSOs, so => so != null && so.itemName == s.itemName); if (item != null) AddItem(item, s.quantity); }
+            {
+                var item = Array.Find(lib.itemSOs, so => so != null && so.itemName == s.itemName);
+                if (item != null) AddItem(item, s.quantity);
+            }
 
         foreach (var slot in _registeredSlots)
         {
@@ -140,29 +170,72 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     public void AddItem(ItemSO itemSO, int quantity)
     {
-        if (itemSO.itemType == ItemType.coins) { coins += quantity; coinText.text = coins.ToString(); return; }
-        if (itemSO.isEXP) { OnExperienceGained?.Invoke(quantity); return; }
+        if (itemSO.itemType == ItemType.coins)
+        {
+            coins += quantity;
+            coinText.text = coins.ToString();
+            return;
+        }
+        if (itemSO.isEXP)
+        {
+            OnExperienceGained?.Invoke(quantity);
+            return;
+        }
 
-        bool isOre  = itemSO.itemType == ItemType.ore;
+        bool isOre = itemSO.itemType == ItemType.ore;
         bool isGear = itemSO.itemType is ItemType.mainHand or ItemType.head or ItemType.body
-                                      or ItemType.legs    or ItemType.feet  or ItemType.relic;
+            or ItemType.legs or ItemType.feet or ItemType.relic;
 
         if (isGear || isOre)
         {
             int max = isOre ? itemSO.stackSize : 1;
             foreach (var s in equimentSlot)
-            { if (s.itemSO != itemSO || s.quantity >= max) continue; int add = Mathf.Min(max - s.quantity, quantity); s.quantity += add; quantity -= add; s.UpdateUI(); if (quantity <= 0) return; }
+            {
+                if (s.itemSO != itemSO || s.quantity >= max) continue;
+                int add = Mathf.Min(max - s.quantity, quantity);
+                s.quantity += add;
+                quantity -= add;
+                s.UpdateUI();
+                if (quantity <= 0) return;
+            }
             foreach (var s in equimentSlot)
-            { if (s.itemSO != null) continue; s.itemSO = itemSO; s.quantity = Mathf.Min(max, quantity); s.UpdateUI(); quantity -= s.quantity; if (quantity <= 0) return; }
+            {
+                if (s.itemSO != null) continue;
+                s.itemSO = itemSO;
+                s.quantity = Mathf.Min(max, quantity);
+                s.UpdateUI();
+                quantity -= s.quantity;
+                if (quantity <= 0) return;
+            }
             foreach (var s in inventorySlots)
-            { if (s.itemSO != null) continue; s.itemSO = itemSO; s.quantity = Mathf.Min(max, quantity); s.UpdateUI(); quantity -= s.quantity; if (quantity <= 0) return; }
+            {
+                if (s.itemSO != null) continue;
+                s.itemSO = itemSO;
+                s.quantity = Mathf.Min(max, quantity);
+                s.UpdateUI();
+                quantity -= s.quantity;
+                if (quantity <= 0) return;
+            }
         }
         else
         {
             foreach (var s in inventorySlots)
-            { if (s.itemSO != itemSO || s.quantity >= itemSO.stackSize) continue; int add = Mathf.Min(itemSO.stackSize - s.quantity, quantity); s.quantity += add; quantity -= add; s.UpdateUI(); if (quantity <= 0) return; }
+            {
+                if (s.itemSO != itemSO || s.quantity >= itemSO.stackSize) continue;
+                int add = Mathf.Min(itemSO.stackSize - s.quantity, quantity);
+                s.quantity += add;
+                quantity -= add;
+                s.UpdateUI();
+                if (quantity <= 0) return;
+            }
             foreach (var s in inventorySlots)
-            { if (s.itemSO != null) continue; s.itemSO = itemSO; s.quantity = Mathf.Min(itemSO.stackSize, quantity); s.UpdateUI(); return; }
+            {
+                if (s.itemSO != null) continue;
+                s.itemSO = itemSO;
+                s.quantity = Mathf.Min(itemSO.stackSize, quantity);
+                s.UpdateUI();
+                return;
+            }
         }
 
         if (quantity > 0) DropLoot(itemSO, quantity);
@@ -173,13 +246,34 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         foreach (var s in inventorySlots)
         {
             if (s.itemSO != itemSO) continue;
-            if (s.quantity > quantity) { s.quantity -= quantity; s.UpdateUI(); return; }
-            quantity -= s.quantity; s.itemSO = null; s.quantity = 0; s.UpdateUI();
+            if (s.quantity > quantity)
+            {
+                s.quantity -= quantity;
+                s.UpdateUI();
+                return;
+            }
+            quantity -= s.quantity;
+            s.itemSO = null;
+            s.quantity = 0;
+            s.UpdateUI();
         }
     }
 
-    public void DropItem(InventorySlot slot)  { DropLoot(slot.itemSO, 1); slot.quantity--; if (slot.quantity <= 0) slot.itemSO = null; slot.UpdateUI(); }
-    public void DropItem(EquipmentSlot slot)  { DropLoot(slot.itemSO, 1); slot.quantity--; if (slot.quantity <= 0) slot.itemSO = null; slot.UpdateUI(); }
+    public void DropItem(InventorySlot slot)
+    {
+        DropLoot(slot.itemSO, 1);
+        slot.quantity--;
+        if (slot.quantity <= 0) slot.itemSO = null;
+        slot.UpdateUI();
+    }
+
+    public void DropItem(EquipmentSlot slot)
+    {
+        DropLoot(slot.itemSO, 1);
+        slot.quantity--;
+        if (slot.quantity <= 0) slot.itemSO = null;
+        slot.UpdateUI();
+    }
 
     private void DropLoot(ItemSO itemSO, int quantity)
     {
@@ -196,8 +290,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         slot.UpdateUI();
     }
 
-    public bool HasItem(ItemSO itemSO)      => inventorySlots.Any(s => s.itemSO == itemSO && s.quantity > 0);
-    public int  GetItemCount(ItemSO itemSO) => inventorySlots.Where(s => s.itemSO == itemSO).Sum(s => s.quantity);
+    public bool HasItem(ItemSO itemSO) => inventorySlots.Any(s => s.itemSO == itemSO && s.quantity > 0);
+    public int GetItemCount(ItemSO itemSO) => inventorySlots.Where(s => s.itemSO == itemSO).Sum(s => s.quantity);
 }
 
 public enum ItemType { head, body, legs, mainHand, feet, relic, ore, coins, none }

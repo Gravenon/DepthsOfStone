@@ -29,9 +29,6 @@ public class SaveSlotMenu : MonoBehaviour
         RefreshSlots();
     }
 
-    // ---------------------------------------------------------------
-    // Called by each SaveSlot button OnClick — pass (this) from the slot.
-    // ---------------------------------------------------------------
     public void OnSaveSlotSelected(SaveSlot slot)
     {
         DataPersistenceeManager.instance.ChangeSelectedProfileID(slot.GetProfileID());
@@ -43,39 +40,33 @@ public class SaveSlotMenu : MonoBehaviour
         }
         else
         {
-            // Empty slot — show the inline name form.
-            if (worldNameInput != null)  worldNameInput.text  = "";
+            if (worldNameInput != null) worldNameInput.text = "";
             if (playerNameInput != null) playerNameInput.text = "";
-            if (newGamePanel != null)    newGamePanel.SetActive(true);
+            if (newGamePanel != null) newGamePanel.SetActive(true);
         }
     }
 
-    // Called by the "Create" / "Confirm" button inside newGamePanel.
     public void OnCreateNewGameConfirmed()
     {
-        string worldName  = (worldNameInput  != null && !string.IsNullOrWhiteSpace(worldNameInput.text))
-                            ? worldNameInput.text.Trim()  : "World";
+        string worldName = (worldNameInput != null && !string.IsNullOrWhiteSpace(worldNameInput.text))
+            ? worldNameInput.text.Trim() : "World";
         string playerName = (playerNameInput != null && !string.IsNullOrWhiteSpace(playerNameInput.text))
-                            ? playerNameInput.text.Trim() : "Player";
+            ? playerNameInput.text.Trim() : "Player";
 
         DataPersistenceeManager.instance.NewGame(worldName, playerName);
         SceneManager.LoadScene(gameplaySceneName);
     }
 
-    // Called by the "Back" / "Cancel" button inside newGamePanel.
     public void OnCreateNewGameCancelled()
     {
         if (newGamePanel != null) newGamePanel.SetActive(false);
     }
 
-    // Called by the Delete button on each SaveSlot — pass (this) from the slot.
     public void OnDeleteSlotClicked(SaveSlot slot)
     {
         DataPersistenceeManager.instance.DeleteProfile(slot.GetProfileID());
         RefreshSlots();
     }
-
-    // ---------------------------------------------------------------
 
     private void RefreshSlots()
     {
@@ -86,7 +77,7 @@ public class SaveSlotMenu : MonoBehaviour
             GameData profileData = null;
             allProfilesData.TryGetValue(slot.GetProfileID(), out profileData);
             slot.SetData(profileData);
-            slot.SetInteractable(true); // every slot is always clickable
-        }
+        slot.SetInteractable(true);
+    }
     }
 }

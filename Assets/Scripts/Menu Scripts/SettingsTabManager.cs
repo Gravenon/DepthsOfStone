@@ -2,11 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-/// <summary>
-/// Менеджер вкладок настроек.
-/// При нажатии на кнопку текущая панель закрывается и открывается новая.
-/// При старте все панели закрыты.
-/// </summary>
 public class SettingsTabManager : MonoBehaviour
 {
     [System.Serializable]
@@ -37,7 +32,7 @@ public class SettingsTabManager : MonoBehaviour
     {
         if (index < 0 || index >= tabs.Count) return;
 
-        // Если нажали на уже открытую вкладку — закрываем её
+        // close if same tab clicked again
         if (index == currentTabIndex)
         {
             tabs[currentTabIndex].panel?.SetActive(false);
@@ -45,11 +40,9 @@ public class SettingsTabManager : MonoBehaviour
             return;
         }
 
-        // Закрываем текущую
         if (currentTabIndex >= 0 && currentTabIndex < tabs.Count)
             tabs[currentTabIndex].panel?.SetActive(false);
 
-        // Открываем новую
         currentTabIndex = index;
         tabs[currentTabIndex].panel?.SetActive(true);
     }
@@ -60,7 +53,7 @@ public class SettingsTabManager : MonoBehaviour
         if (idx >= 0)
             OpenTab(idx);
         else
-            Debug.LogWarning($"[SettingsTabManager] Вкладка '{tabName}' не найдена!");
+            Debug.LogWarning($"[SettingsTabManager] Tab '{tabName}' not found!");
     }
 
     public void CloseAll()

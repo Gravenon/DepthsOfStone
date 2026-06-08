@@ -27,8 +27,6 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         StatsManager.OnHealthChanged += RefreshHealthBar;
-        // Subscribe here (not Awake) so it works for both regular and DontDestroyOnLoad objects.
-        // For DDOL objects Start() is only called once — this handler fires on every scene load.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -38,8 +36,7 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // Resets stale flags on every scene load.
-    // Required for DontDestroyOnLoad objects where Start() is only called once.
+    // resets stale flags on every scene load
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         isDead = false;
@@ -52,8 +49,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (StatsManager.Instance == null) return;
         healthBar.maxValue = StatsManager.Instance.maxHealth;
-        healthBar.value    = StatsManager.Instance.currentHealth;
-        healthText.text    = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
+        healthBar.value = StatsManager.Instance.currentHealth;
+        healthText.text = "HP: " + StatsManager.Instance.currentHealth + " / " + StatsManager.Instance.maxHealth;
     }
 
     public void ChangeHealth(float amount)

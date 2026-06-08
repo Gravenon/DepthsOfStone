@@ -28,10 +28,20 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         if (_inventoryManager == null) _inventoryManager = InventoryManager.Instance;
     }
 
-    private void OnEnable()  => ShopKeeper.OnShopOpenClose += HandleShopStateChange;
-    private void OnDisable() => ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+    private void OnEnable()
+    {
+        ShopKeeper.OnShopOpenClose += HandleShopStateChange;
+    }
 
-    private void HandleShopStateChange(ShopManger shop, bool isOpen) => _activeShop = isOpen ? shop : null;
+    private void OnDisable()
+    {
+        ShopKeeper.OnShopOpenClose -= HandleShopStateChange;
+    }
+
+    private void HandleShopStateChange(ShopManger shop, bool isOpen)
+    {
+        _activeShop = isOpen ? shop : null;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -62,13 +72,13 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     {
         switch (type)
         {
-            case ItemType.head:     return headSlot;
-            case ItemType.body:     return bodySlot;
-            case ItemType.legs:     return legsSlot;
+            case ItemType.head: return headSlot;
+            case ItemType.body: return bodySlot;
+            case ItemType.legs: return legsSlot;
             case ItemType.mainHand: return weaponSlot;
-            case ItemType.relic:    return accessorySlot;
-            case ItemType.feet:     return feetSlot;
-            default:                return null;
+            case ItemType.relic: return accessorySlot;
+            case ItemType.feet: return feetSlot;
+            default: return null;
         }
     }
 

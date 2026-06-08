@@ -12,7 +12,11 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -24,19 +28,30 @@ public class UIManager : MonoBehaviour
             CloseActive();
     }
 
-    private void OnEnable()  => SceneManager.sceneLoaded += OnSceneLoaded;
-    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _activeGroup  = null;
+        _activeGroup = null;
         _onForcedClose = null;
     }
 
     public void Toggle(CanvasGroup group, Action onForcedClose = null)
     {
         if (PauseMenuManager.IsGamePaused) return;
-        if (_activeGroup == group) { CloseActive(); return; }
+        if (_activeGroup == group)
+        {
+            CloseActive();
+            return;
+        }
         CloseActive();
         OpenGroup(group, onForcedClose);
     }
@@ -46,19 +61,27 @@ public class UIManager : MonoBehaviour
         if (PauseMenuManager.IsGamePaused) return;
         if (_activeGroup == group) return;
         CloseActive();
-        _activeGroup   = group;
+        _activeGroup = group;
         _onForcedClose = onForcedClose;
         SetVisible(group, true);
     }
 
-    public void Close()      => CloseActive();
-    public void ForceClose() { _activeGroup = null; _onForcedClose = null; }
+    public void Close()
+    {
+        CloseActive();
+    }
+
+    public void ForceClose()
+    {
+        _activeGroup = null;
+        _onForcedClose = null;
+    }
 
     public bool IsAnyOpen => _activeGroup != null;
 
     private void OpenGroup(CanvasGroup group, Action onForcedClose)
     {
-        _activeGroup   = group;
+        _activeGroup = group;
         _onForcedClose = onForcedClose;
         SetVisible(group, true);
     }
@@ -75,8 +98,8 @@ public class UIManager : MonoBehaviour
 
     public static void SetVisible(CanvasGroup cg, bool visible)
     {
-        cg.alpha          = visible ? 1f : 0f;
+        cg.alpha = visible ? 1f : 0f;
         cg.blocksRaycasts = visible;
-        cg.interactable   = visible;
+        cg.interactable = visible;
     }
 }

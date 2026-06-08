@@ -35,7 +35,7 @@ public class ExpManager : MonoBehaviour, IDataPersistence
 
     private void CheckLevelUp()
     {
-        // Loop handles multiple level-ups from a single large exp gain.
+        // loop handles multiple level-ups from a single large exp gain
         while (currentExp >= expToNextLevel)
         {
             currentExp -= expToNextLevel;
@@ -48,16 +48,18 @@ public class ExpManager : MonoBehaviour, IDataPersistence
 
     private void UpdateUI()
     {
-        if (expBar    != null) { expBar.maxValue = expToNextLevel; expBar.value = currentExp; }
+        if (expBar != null)
+        {
+            expBar.maxValue = expToNextLevel;
+            expBar.value = currentExp;
+        }
         if (levelText != null) levelText.text = level.ToString();
     }
 
-    // ─── IDataPersistence ───────────────────────────────────────────────────
-
     public void SaveData(ref GameData data)
     {
-        data.playerLevel          = level;
-        data.playerCurrentExp     = currentExp;
+        data.playerLevel = level;
+        data.playerCurrentExp = currentExp;
         data.playerExpToNextLevel = expToNextLevel;
     }
 

@@ -41,8 +41,7 @@ public class Enemy_Health : MonoBehaviour
     {
         isDead = true;
         col.enabled = false;
-        // Ensure timeScale is restored before stopping coroutines,
-        // in case HitStop left it at 0.
+        // restore timeScale in case HitStop left it at 0
         Time.timeScale = 1f;
         foreach (var mb in GetComponents<MonoBehaviour>())
             mb.StopAllCoroutines();

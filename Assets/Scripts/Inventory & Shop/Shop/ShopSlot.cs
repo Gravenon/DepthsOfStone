@@ -25,15 +25,21 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         priceText.text = itemPrice.ToString();
     }
 
-    // Called by the Buy button in the UI
-    public void OnBuyButtonClicked() => shopManager.TryBuyItem(itemSO, price);
+    // called by the Buy button in the UI
+    public void OnBuyButtonClicked()
+    {
+        shopManager.TryBuyItem(itemSO, price);
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (itemSO != null) shopInfo.ShowItemInfo(itemSO);
     }
 
-    public void OnPointerExit(PointerEventData eventData) => shopInfo.HideItemInfo();
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        shopInfo.HideItemInfo();
+    }
 
     public void OnPointerMove(PointerEventData eventData)
     {

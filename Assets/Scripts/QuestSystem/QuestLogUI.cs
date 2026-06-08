@@ -71,7 +71,7 @@ public class QuestLogUI : MonoBehaviour
         }
     }
 
-    // Открыть журнал в режиме просмотра (без кнопок принятия/отказа/завершения)
+    // open log in view mode (no accept/decline/complete buttons)
     private void OpenQuestLog()
     {
         RefreshQuestList();
@@ -80,7 +80,7 @@ public class QuestLogUI : MonoBehaviour
         SetCanvasState(declineCanvasGroup, false);
         SetCanvasState(completeCanvasGroup, false);
 
-        // Показать первый активный квест, если есть
+        // show first active quest if any
         var activeQuests = questManager.GetActiveQuests();
         if (activeQuests.Count > 0)
             HandleQuestClicked(activeQuests[0]);

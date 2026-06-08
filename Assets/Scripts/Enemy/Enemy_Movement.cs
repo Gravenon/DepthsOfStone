@@ -78,8 +78,8 @@ public class Enemy_Movement : MonoBehaviour
 
     private void Chase()
     {
-        float distance   = Vector2.Distance(transform.position, player.position);
-        float stopAt     = Mathf.Max(stoppingDistance, enemyCombat.AttackReach);
+        float distance = Vector2.Distance(transform.position, player.position);
+        float stopAt = Mathf.Max(stoppingDistance, enemyCombat.AttackReach);
         Vector2 toPlayer = (player.position - transform.position).normalized;
 
         if ((player.position.x > transform.position.x && facingDirection == -1) ||
@@ -88,8 +88,8 @@ public class Enemy_Movement : MonoBehaviour
 
         if (distance > stopAt)
         {
-            lastMoveDirection  = toPlayer;
-            rb.linearVelocity  = toPlayer * speed;
+            lastMoveDirection = toPlayer;
+            rb.linearVelocity = toPlayer * speed;
         }
         else
         {

@@ -28,7 +28,7 @@ public class SkillManager : MonoBehaviour, IDataPersistence
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // Stop Berserk coroutine on scene reload to prevent SetInvulnerable leaking across scenes.
+    // stop Berserk coroutine on scene reload to prevent invulnerability leaking
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StopAllCoroutines();
