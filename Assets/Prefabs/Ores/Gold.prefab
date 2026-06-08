@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d73b3f4a8953544a1440509deeee35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oreNameKey: O_GOLD_NAME
   oreItem: {fileID: 11400000, guid: cee5bf6773674184983e7cd0a7574389, type: 2}
   orePrefab: {fileID: 2141617616028719491, guid: 6661e3a658e32784fb594a50c5491a19, type: 3}
   minDropQuantity: 1

@@ -1,0 +1,306 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Items_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: a029f017ad6bf514b8fe69ef39b999cc, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10333130752
+    m_Localized: "The \u2018Greetings from Grandad\u2019 Hammer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436750127104
+    m_Localized: "The \u2018Lumberjack\u2019 Axe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292928
+    m_Localized: "The \u2018Beard Splitter\u2019 Axe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292929
+    m_Localized: "The \u201CDragon Slayer \u2013 The Loser\u201D Sword"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292930
+    m_Localized: "The \u2018Sword of Honour\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292931
+    m_Localized: 'A miner''s ring '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292932
+    m_Localized: Amulet of the Depths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292933
+    m_Localized: The lucky hammer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487232
+    m_Localized: A fragment of a star that fell into the mine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487233
+    m_Localized: The Amulet of the Eternal Run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487234
+    m_Localized: Coal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487235
+    m_Localized: Copper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487236
+    m_Localized: Crystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487237
+    m_Localized: Dimond
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487238
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487239
+    m_Localized: Iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487240
+    m_Localized: "\u2018Iron\u2019 bread"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487241
+    m_Localized: Honey beer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487242
+    m_Localized: Mushroom pie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487243
+    m_Localized: Roast rabbit, Dwarf-style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487244
+    m_Localized: "Old Man Boromir\u2019s Bucket"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487245
+    m_Localized: "The Blacksmith\u2019s Brother\u2019s Helmet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487246
+    m_Localized: "The Thunder Father\u2019s Crown"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487247
+    m_Localized: "The Ancestors\u2019 Shirt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487248
+    m_Localized: "The Beer Shield\u2019s Armour"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487249
+    m_Localized: "The Stone Blood\u2019s Cuirass"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487250
+    m_Localized: "The Dragon Spawn\u2019s Breastplate"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487251
+    m_Localized: "\u2018I Won\u2019t Fall\u2019 Boots"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487252
+    m_Localized: Shod Hooves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487253
+    m_Localized: Earthquake Boots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17363162828800
+    m_Localized: Stone Heart Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551762575360
+    m_Localized: Coin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741184
+    m_Localized: Exp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741185
+    m_Localized: "A huge two-handed hammer. The handle is engraved with the words
+      \u2018If you love me, give it a knock\u2019."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741186
+    m_Localized: Lightweight, yet deadly. They say it can settle not only an orc,
+      but also a tavern brawl in a flash.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741187
+    m_Localized: The dwarves show it off to the humans.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741188
+    m_Localized: "The blade is covered in nicks and teeth marks. \u2018He almost
+      killed a dragon\u2026 almost.\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741189
+    m_Localized: Simple, reliable, a bit on the heavy side.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935488
+    m_Localized: Makes the wearer a little more stubborn. Sometimes a bit too much.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935489
+    m_Localized: Sometimes it reveals the terrifying depths of a tale rather than
+      dreams.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935490
+    m_Localized: "Not a weapon. Just a talisman. Brings good luck\u2026 sometimes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935491
+    m_Localized: "It glows with a soft blue light. The dwarves are convinced it\u2019s
+      a piece of a real star. The elves call it a \u2018meteorite\u2019. The dwarves
+      beat them up."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935492
+    m_Localized: "You\u2019ll never tire of running"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935493
+    m_Localized: Hands work faster.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935494
+    m_Localized: The Black Breath of the Earth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935495
+    m_Localized: The Blood of the Young Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935496
+    m_Localized: Shards of Magical Ice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935497
+    m_Localized: Stars Buried in Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935498
+    m_Localized: The Tears of Greedy Gods
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935499
+    m_Localized: The Bones of the Ancients
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935500
+    m_Localized: Black and dense could be used as a weapon in a pinch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935501
+    m_Localized: A classic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935502
+    m_Localized: "After the second slice, you start to see the \u2018spirits of your
+      ancestors\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935503
+    m_Localized: Rabbit and lots and lots and lots of spices.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935504
+    m_Localized: "\"Yes, it\u2019s literally a bucket. But a very sturdy one. Boromir
+      even used it to cook soup.\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935505
+    m_Localized: A heavy helmet with a hammer engraved on the forehead. Legend has
+      it that it was once struck by lightning. Now, its owner sometimes hears the
+      approving grumbling of his ancestors.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935506
+    m_Localized: "A simple but sturdy helmet with horns. \"The dwarves say the horns
+      aren\u2019t just for show, but to make it easier to grip the rocks in the mine.\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935507
+    m_Localized: Made from the scales of a young dragon that the dwarves "accidentally"
+      found in a mine. It smells of sulphur and pride.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935508
+    m_Localized: The ground trembles slightly with every step. Perfect for scaring
+      the elves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935509
+    m_Localized: Forged from iron veined with red quartz. It looks as though molten
+      stone is flowing from the chest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935510
+    m_Localized: "Decorated with an image of a mug. \u2018As long as you\u2019re
+      drinking, you\u2019re invincible. After the fifth mug, you\u2019re immortal
+      (in your own eyes).\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935511
+    m_Localized: The soles are fitted with real iron spikes. The dwarves claim this
+      is for better grip on stone. In reality, they just love to stomp about loudly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935512
+    m_Localized: A chainmail shirt, with a small stone bearing the name of an ancestor
+      fused into each link. Very heavy. Very noisy. Very dwarven.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935513
+    m_Localized: "Extremely durable. Even when you\u2019re really tired, you\u2019ll
+      stay on your feet. Tested by several generations."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935514
+    m_Localized: Coin - money.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935515
+    m_Localized: exp
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

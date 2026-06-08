@@ -1,0 +1,67 @@
+Key,Id,English(en),Japanese(ja),Latvian(lv),Spanish(es)
+W_HAMMER_NAME,10333130752,The ‘Greetings from Grandad’ Hammer,「おじいちゃんからのご挨拶」ハンマー,Āmurs „Sveicieni no vectēva“,El martillo «Saludos del abuelo»
+W_AXE_NAME,,The ‘Lumberjack’ Axe,「ランバージャック」斧,„Mežizstrādātāja“ cirvis,El hacha «Lumberjack»
+W_AXEtoo_NAME,,The ‘Beard Splitter’ Axe,「ひげ切り」の斧,Cirvis „Bārdas sadalītājs“,Hacha «Cortabarbas»
+W_SWORD_NAME,,The “Dragon Slayer – The Loser” Sword,「ドラゴンスレイヤー ― 敗者」の剣,Zobens „Pūķu nogalinātājs – zaudētājs“,La espada «El matador de dragones: el perdedor»
+W_SWORDtoo_NAME,,The ‘Sword of Honour’,剣「名誉の刃」,Zobens „Gods”,La espada «Hoja del Honor»
+R_RING_NAME,,Stone Heart Ring,ストーンハートリング,Gredzens „Akmens sirds“,Anillo «Corazón de piedra»
+R_AMULET_NAME,,Amulet of the Depths,深淵の護符,Dziļumu amulets,Amuleto de las Profundidades
+R_HAMMER_NAME,,The lucky hammer,幸運のハンマー,Laimīgais āmurs,El martillo de la suerte
+R_FRAGMENT_NAME,,A fragment of a star that fell into the mine,鉱山に落下した星のかけら,"Zvaigznes fragments, kas iekrita raktuvē",Un fragmento de una estrella que cayó en la mina
+R_AMULETtoo_NAME,,The Amulet of the Eternal Run,永遠の奔走のお守り,Mūžīgā skrējiena amulets,Amuleto de la Carrera Eterna
+R_RINGtoo_NAME,,A miner's ring ,鉱夫の指輪 ,Kalnrača gredzens ,Un anillo de minero 
+O_COAL_NAME,,Coal,石炭,Ogles,Carbón
+O_COPPER_NAME,,Copper,銅,Varš,Cobre
+O_CRYSTAL_NAME,,Crystal,水晶,Kristāls,Cristal
+O_DIMOND_NAME,,Dimond,ダイヤモンド,Dimonds,Diamante
+O_GOLD_NAME,,Gold,金,Zelts,Oro
+O_IRON_NAME,,Iron,鉄,Dzelzs,Hierro
+F_BREAD_NAME,,‘Iron’ bread,「アイアン」ブレッド,„Dzelzs“ maize,Pan «de hierro»
+F_BEER_NAME,,Honey beer,ハニービール,Medus alus,Cerveza de miel
+F_PIE_NAME,,Mushroom pie,マッシュルームパイ,Sēņu pīrāgs,Pastel de setas
+F_RABBIT_NAME,,"Roast rabbit, Dwarf-style",ドワーフ風ローストウサギ,Cepts trusis pēc rūķu receptes,"Conejo asado, al estilo enano"
+A_HEAD1_NAME,,Old Man Boromir’s Bucket,ボロミール老人のバケツ,Vecā vīra Boromira spainis,El cubo del anciano Boromir
+A_HEAD2_NAME,,The Blacksmith’s Brother’s Helmet,鍛冶屋の弟の兜,Kalēja brāļa ķivere,El yelmo del hermano del herrero
+A_HEAD3_NAME,,The Thunder Father’s Crown,雷の父の冠,Pērkona tēva kronis,La corona del Padre del Trueno
+A_BODY1_NAME,,The Ancestors’ Shirt,先祖のシャツ,Senču krekla,La camisa de los antepasados
+A_BODY2_NAME,,The Beer Shield’s Armour,ビール盾の鎧,Alus vairoga bruņas,La armadura del escudo de la cerveza
+A_BODY3_NAME,,The Stone Blood’s Cuirass,石の血の胸当て,Akmens asins krūšbruņas,La coraza de la sangre de piedra
+A_BODY4_NAME,,The Dragon Spawn’s Breastplate,竜の血を引く者の胸当て,Pūķa pēcnācēja krūšbruņas,La coraza de la prole del dragón
+A_BOOTS1_NAME,,‘I Won’t Fall’ Boots,「転ばない」ブーツ,„Es nekrīšu“ zābaki,Las botas «No caeré»
+A_BOOTS2_NAME,,Shod Hooves,蹄鉄,Apautas nagi,Las pezuñas herradas
+A_BOOTS3_NAME,,Earthquake Boots,地震ブーツ,Zemestrīces zābaki,Las botas del terremoto
+O_COIN_NAME,,Coin,コイン,Monēta,Moneda
+O_EXP_NAME,,Exp,経験値,Pieredze,Exp
+W_HAMMER_DES,,"A huge two-handed hammer. The handle is engraved with the words ‘If you love me, give it a knock’.",巨大な両手ハンマー。柄には「俺を愛してるなら、一撃食らわせてみろ」という言葉が刻まれている。,"Milzīgs divrokas āmurs. Uz roktura iegravēti vārdi: „Ja tu mani mīli, tad uzsit ar to”.","Un enorme martillo de dos manos. En el mango están grabadas las palabras «Si me quieres, dale un golpe»."
+W_AXE_DES,,"Lightweight, yet deadly. They say it can settle not only an orc, but also a tavern brawl in a flash.",軽量でありながら、その威力は絶大だ。オークだけでなく、酒場の乱闘も一瞬で収められると言われている。,"Viegls, taču nāvējošs. Stāsta, ka ar to mirklī var atrisināt ne tikai cīņu ar orku, bet arī kautiņu krogā.","Ligero, pero letal. Dicen que puede acabar no solo con un orco, sino también con una pelea de taberna en un santiamén."
+W_AXEtoo_DES,,The dwarves show it off to the humans.,ドワーフたちは人間たちにそれを自慢げに見せびらかす。,Rūķi to rāda cilvēkiem.,Los enanos se lo enseñan a los humanos.
+W_SWORD_DES,,The blade is covered in nicks and teeth marks. ‘He almost killed a dragon… almost.’,刃には無数の傷や歯型がついている。「あいつ、ドラゴンを殺しかけたんだ……あと一歩でな」,Asmens ir pārklāts ar iecirtumiem un zobu nospiedumiem. „Viņš gandrīz nogalināja pūķi… gandrīz.”,La hoja está llena de mellas y marcas de dientes. «Casi mata a un dragón… casi».
+W_SWORDtoo_DES,,"Simple, reliable, a bit on the heavy side.",シンプルで頼りになるが、少々重めだ。,"Vienkāršs, uzticams, nedaudz par smagu.","Sencillo, fiable, un poco pesado."
+R_RING_DES,,Makes the wearer a little more stubborn. Sometimes a bit too much.,これを身につけると、持ち主は少し頑固になる。時には、それが度を越してしまうこともある。,"Padara to, kas to valkā, nedaudz spītīgāku. Dažreiz pat pārāk.","Hace que quien lo lleva sea un poco más testarudo. A veces, demasiado."
+R_AMULET_DES,,Sometimes it reveals the terrifying depths of a tale rather than dreams.,時には、夢ではなく物語の恐ろしい深淵を露わにすることもある。,"Dažreiz tas atklāj stāsta biedējošās dziļumas, nevis sapņus.",A veces revela las aterradoras profundidades de una historia en lugar de los sueños.
+R_HAMMER_DES,,Not a weapon. Just a talisman. Brings good luck… sometimes.,武器ではない。単なるお守りだ。幸運をもたらす……ときもある。,Nav ierocis. Tikai talismans. Nes labu veiksmi… dažreiz.,No es un arma. Solo un talismán. Trae buena suerte… a veces.
+R_FRAGMENT_DES,,It glows with a soft blue light. The dwarves are convinced it’s a piece of a real star. The elves call it a ‘meteorite’. The dwarves beat them up.,柔らかな青い光を放っている。ドワーフたちは、これが本物の星のかけらだと確信している。エルフたちはそれを「隕石」と呼ぶ。ドワーフたちは彼らを殴り倒す。,"Tas spīd ar maigu zilu gaismu. Rūķi ir pārliecināti, ka tas ir īsta zvaigznes gabals. Elfi to sauc par “meteorītu”. Rūķi viņus piekauj.",Brilla con una suave luz azul. Los enanos están convencidos de que es un trozo de una estrella real. Los elfos lo llaman «meteorito». Los enanos les dan una paliza.
+R_AMULETtoo_DES,,You’ll never tire of running,走り続けることに飽きることはないだろう,Tu nekad nepagursi skriet,Nunca te cansarás de correr.
+R_RINGtoo_DES,,Hands work faster.,手はより速く動く。,Rokas strādā ātrāk.,Las manos trabajan más rápido.
+O_COAL_DES,,The Black Breath of the Earth,大地の黒い息吹,Zemes melnais elpa,El aliento negro de la Tierra
+O_COPPER_DES,,The Blood of the Young Mountain,若き山の血,Jaunā kalna asinis,La sangre de la montaña joven
+O_CRYSTAL_DES,,Shards of Magical Ice,魔法の氷の破片,Burvju ledus šķembas,Fragmentos de hielo mágico
+O_DIMOND_DES,,Stars Buried in Stone,石に埋もれた星々,Akmenī apraktās zvaigznes,Estrellas enterradas en la piedra
+O_GOLD_DES,,The Tears of Greedy Gods,貪欲な神々の涙,Alkstošo dievu asaras,Las lágrimas de los dioses codiciosos
+O_IRON_DES,,The Bones of the Ancients,太古の者たちの骨,Senču kauli,Los huesos de los antiguos
+F_BREAD_DES,,Black and dense could be used as a weapon in a pinch.,真っ黒で濃厚なこの一品は、いざという時には武器にもなり得る。,Melna un blīva – ārkārtas gadījumā to varētu izmantot kā ieroci.,"Negado y denso, podría servir de arma en caso de apuro."
+F_BEER_DES,,A classic.,定番の一品だ。,Klasika.,Todo un clásico.
+F_PIE_DES,,"After the second slice, you start to see the ‘spirits of your ancestors’",2切れ目を食べると、「先祖の霊」が見えてくる。,Pēc otrās šķēles sāk parādīties „senču gari“,"Tras la segunda porción, empiezas a ver a los «espíritus de tus antepasados»."
+F_RABBIT_DES,,Rabbit and lots and lots and lots of spices.,ウサギ肉と、山ほど、山ほど、山ほどのスパイス。,"Trušis un ļoti, ļoti daudz garšvielu.",Conejo y montones y montones y montones de especias.
+A_HEAD1_DES,,"""Yes, it’s literally a bucket. But a very sturdy one. Boromir even used it to cook soup.""",「そう、文字通りバケツなんだ。でも、すごく頑丈なやつだよ。ボロミアはこれを使ってスープを作ったりもしたんだ。」,"“Jā, tas patiešām ir vienkārši spainis. Bet ļoti izturīgs. Boromirs to pat izmantoja zupas vārīšanai.”","«Sí, es literalmente un cubo. Pero uno muy resistente. Boromir incluso lo usó para cocinar sopa»."
+A_HEAD3_DES,,"A heavy helmet with a hammer engraved on the forehead. Legend has it that it was once struck by lightning. Now, its owner sometimes hears the approving grumbling of his ancestors.",額にハンマーが刻まれた重厚な兜。かつて雷に打たれたという伝説がある。今では、持ち主は時折、先祖たちが満足そうに唸る声を耳にするという。,"Smags ķivere ar āmuru, kas iegravēts uz pieres. Leģenda stāsta, ka to kādreiz skāra zibens. Tagad tās īpašnieks dažkārt dzird savu senču apstiprinošu murmināšanu.","Un pesado yelmo con un martillo grabado en la frente. Cuenta la leyenda que en su día fue alcanzado por un rayo. Ahora, su dueño oye a veces los gruñidos de aprobación de sus antepasados."
+A_HEAD2_DES,,"A simple but sturdy helmet with horns. ""The dwarves say the horns aren’t just for show, but to make it easier to grip the rocks in the mine.""",角のついた、シンプルだが頑丈な兜。「ドワーフたちによれば、この角は単なる飾りではなく、坑道の岩を掴みやすくするためのものだそうだ。」,"Vienkāršs, bet izturīgs ķivere ar ragiem. “Rūķi saka, ka ragi nav tikai parādībai, bet lai vieglāk varētu satvert akmeņus raktuvē.”","Un yelmo sencillo pero robusto con cuernos. «Los enanos dicen que los cuernos no son solo para lucirlos, sino para facilitar el agarre a las rocas de la mina»."
+A_BODY4_DES,,"Made from the scales of a young dragon that the dwarves ""accidentally"" found in a mine. It smells of sulphur and pride.",ドワーフたちが坑道で「偶然」見つけた、若いドラゴンの鱗で作られている。硫黄と誇りの匂いがする。,"Izgatavota no jauna pūķa zvīņām, ko rūķi “nejauši” atrada raktuvē. No tās smaržo pēc sēra un lepnuma.",Hecho con las escamas de un dragón joven que los enanos encontraron «por casualidad» en una mina. Huele a azufre y a orgullo.
+A_BOOTS3_DES,,The ground trembles slightly with every step. Perfect for scaring the elves.,一歩踏み出すたびに地面がわずかに揺れる。エルフを怖がらせるのに最適だ。,"Zeme nedaudz dreb ar katru soli. Ideāli piemērota, lai biedētu elfus.",El suelo tiembla ligeramente con cada paso. Perfecto para asustar a los elfos.
+A_BODY3_DES,,Forged from iron veined with red quartz. It looks as though molten stone is flowing from the chest.,赤水晶の筋が入った鉄で鍛え上げられた。胸元から溶けた石が流れ出ているかのように見える。,"Kalts no dzelzs ar sarkanu kvarca dzīslu. Izskatās, it kā no krūtīm plūstu izkausēts akmens.",Forjado en hierro veteado de cuarzo rojo. Parece como si fluyera piedra fundida desde el pecho.
+A_BODY2_DES,,"Decorated with an image of a mug. ‘As long as you’re drinking, you’re invincible. After the fifth mug, you’re immortal (in your own eyes).’",ジョッキの絵柄が飾られている。「飲んでいる限り、無敵だ。5杯目を飲み干せば、不死身になる（自分の中ではな）」,"Rotāts ar krūzes attēlu. „Kamēr tu dzer, tu esi neuzvarams. Pēc piektās krūzes tu esi nemirstīgs (savās acīs).”","Decorado con la imagen de una jarra. «Mientras estés bebiendo, eres invencible. Después de la quinta jarra, eres inmortal (a tus propios ojos)»."
+A_BOOTS2_DES,,"The soles are fitted with real iron spikes. The dwarves claim this is for better grip on stone. In reality, they just love to stomp about loudly.",靴底には本物の鉄の棘が打ち込まれている。ドワーフたちは、石の上でのグリップを良くするためだと言っている。実のところ、彼らはただ大きな音を立てて踏み鳴らすのが好きなだけだ。,"Zolēs ir iestrādāti īsti dzelzs smaili. Rūķi apgalvo, ka tas ir labākai saķerei ar akmeni. Patiesībā viņiem vienkārši patīk skaļi staigāt.","Las suelas están provistas de púas de hierro auténtico. Los enanos afirman que es para tener un mejor agarre sobre la piedra. En realidad, simplemente les encanta pisotear ruidosamente."
+A_BODY1_DES,,"A chainmail shirt, with a small stone bearing the name of an ancestor fused into each link. Very heavy. Very noisy. Very dwarven.",鎖帷子の鎧。各リンクには、先祖の名前が刻まれた小さな石が溶接されている。非常に重く、非常に騒がしく、まさにドワーフらしい。,"Ķēžu bruņas, kurās katrā posmā ir iestrādāts mazs akmens ar senča vārdu. Ļoti smagas. Ļoti trokšņainas. Ļoti rūķiskas.","Una cota de malla, con una pequeña piedra que lleva el nombre de un antepasado fundida en cada eslabón. Muy pesada. Muy ruidosa. Muy enana."
+A_BOOTS1_DES,,"Extremely durable. Even when you’re really tired, you’ll stay on your feet. Tested by several generations.",極めて耐久性が高い。どんなに疲れていても、立ち続けることができる。数世代にわたって実証済みだ。,"Ļoti izturīgas. Pat ja esi patiešām noguris, tu paliksi uz kājām. Pārbaudītas vairāku paaudžu garumā.","Extremadamente resistente. Incluso cuando estés realmente cansado, te mantendrás en pie. Probada por varias generaciones."
+O_COIN_DES,,Coin - money.,コイン - お金。,Monēta – nauda.,Moneda - dinero.
+O_EXP_DES,,exp,exp,papildinājums,exp

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Old boots
   m_EditorClassIdentifier: 
-  itemName: "\u2018I Won\u2019t Fall\u2019 Boots"
-  itemDescription: "Extremely durable. Even when you\u2019re really tired, you\u2019ll
-    stay on your feet. Tested by several generations."
+  itemNameKey: A_BOOTS1_NAME
+  itemDescriptionKey: A_BOOTS1_DES
   itemIcon: {fileID: -7855203551248514480, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 4
   isEXP: 0

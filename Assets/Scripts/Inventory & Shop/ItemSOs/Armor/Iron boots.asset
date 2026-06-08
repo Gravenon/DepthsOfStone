@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Iron boots
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Shod Hooves
-  itemDescription: The soles are fitted with real iron spikes. The dwarves claim
-    this is for better grip on stone. In reality, they just love to stomp about loudly.
+  itemNameKey: A_BOOTS2_NAME
+  itemDescriptionKey: A_BOOTS2_DES
   itemIcon: {fileID: -2064859774160998932, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 4
   isEXP: 0

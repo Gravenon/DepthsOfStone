@@ -87,17 +87,22 @@ public class MineManager : MonoBehaviour
         foreach (MineConfig cfg in level.configs)
         {
             if (cfg == null) continue;
-            if (mineNameText        != null) mineNameText.text        = "Name: " + cfg.MineName;
-            if (mineDescriptionText != null) mineDescriptionText.text = cfg.itemDescription;
-            if (enemiesCountText    != null) enemiesCountText.text    = $"Enemies: {cfg.enemiesCount}";
+            if (mineNameText != null) mineNameText.text = cfg.MineName;
+            if (mineDescriptionText != null) mineDescriptionText.text = cfg.MineDescription;
+            if (enemiesCountText != null) enemiesCountText.text = $"Enemies: {cfg.enemiesCount}";
 
             if (oresText != null && cfg.ores != null && cfg.ores.Length > 0)
             {
-                oresText.text = "Ores:";
+                //oresText.text = "Ores:";
                 foreach (var ore in cfg.ores)
                 {
                     if (ore?.orePrefab == null) continue;
-                    oresText.text += $"\n  {ore.orePrefab.name}: {ore.minAmount}–{ore.maxAmount}";
+                    Ore oreData = ore.orePrefab.GetComponent<Ore>();
+
+                    if (oreData != null)
+                    {
+                        oresText.text = $"\n  {oreData.OreName}: {ore.minAmount}–{ore.maxAmount}";
+                    }
                 }
             }
         }

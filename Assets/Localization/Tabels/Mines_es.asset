@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Mines_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 191211623f4c74e4a9839efc4098f437, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 191133798122389643
+  m_TableData:
+  - m_Id: 16771387392
+    m_Localized: El Puesto Avanzado de los Pioneros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152683614208
+    m_Localized: "La parte m\xE1s antigua de las minas, donde los enanos comenzaron
+      a extraer mineral tras la fundaci\xF3n del asentamiento. T\xFAneles seguros,
+      antiguos campamentos y yacimientos de hierro de sencilla explotaci\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029440
+    m_Localized: "La Bah\xEDa Inundada de las Profundidades"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029441
+    m_Localized: "Una red de antiguos t\xFAneles, parcialmente sumergidos tras el
+      desbordamiento de un lago subterr\xE1neo. Aqu\xED, entre las cuevas inundadas,
+      se extraen cristales raros y metales preciosos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029442
+    m_Localized: El Bosque de Piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029443
+    m_Localized: "Una misteriosa regi\xF3n en las profundidades de la monta\xF1a,
+      llena de enormes columnas de piedra que parecen \xE1rboles antiguos. Entre
+      ellas se esconden los recursos m\xE1s raros y peligrosas criaturas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4578303479808
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 191133798122389643
+  references:
+    version: 2
+    RefIds:
+    - rid: 191133798122389643
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 4578303479808

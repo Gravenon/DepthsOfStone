@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: The Iron Ring of Power
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Amulet of Endless Vitality
-  itemDescription: "You\u2019ll never tire of running "
+  itemNameKey: R_AMULETtoo_NAME
+  itemDescriptionKey: R_AMULETtoo_DES
   itemIcon: {fileID: -321695129, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0

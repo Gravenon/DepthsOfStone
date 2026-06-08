@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: Mines
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: 191211623f4c74e4a9839efc4098f437, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 8c3b47d19df05c74c9ed0c963f59f5d7, type: 2}
+  - {fileID: 11400000, guid: 34c8a5ad1fb87f9449d6fdf0136eca25, type: 2}
+  - {fileID: 11400000, guid: 3e4492d5b1c131b419b825faf2c56561, type: 2}
+  - {fileID: 11400000, guid: 0615c86d15e3f164b8374b4f098f047d, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

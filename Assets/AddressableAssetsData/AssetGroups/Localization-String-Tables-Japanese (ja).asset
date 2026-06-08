@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Japanese (ja)
   m_GUID: bfeecc67ea6cc4c049fcb7e1fed52619
   m_SerializeEntries:
+  - m_GUID: 0f297a8cda1788a4cb1dda9c15744460
+    m_Address: gameUI_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34c8a5ad1fb87f9449d6fdf0136eca25
+    m_Address: Mines_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 803935dd132e44e529f5cfbff9d326db
     m_Address: MenuUI_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0d0be95aafc6074eaa255c392878c33
+    m_Address: Items_ja
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja

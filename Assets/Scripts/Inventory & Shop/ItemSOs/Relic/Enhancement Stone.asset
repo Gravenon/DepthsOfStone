@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Enhancement Stone
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Hammer of Luck (small)
-  itemDescription: "Not a weapon. Just a talisman. Brings good luck\u2026 sometimes."
+  itemNameKey: R_HAMMER_NAME
+  itemDescriptionKey: R_HAMMER_DES
   itemIcon: {fileID: -3004918560657441691, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0

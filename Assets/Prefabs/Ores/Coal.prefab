@@ -834,6 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d73b3f4a8953544a1440509deeee35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oreNameKey: O_COAL_NAME
   oreItem: {fileID: 11400000, guid: 90e1e89bbab64433d9498f71d04f274d, type: 2}
   orePrefab: {fileID: 2141617616028719491, guid: 6661e3a658e32784fb594a50c5491a19, type: 3}
   minDropQuantity: 1

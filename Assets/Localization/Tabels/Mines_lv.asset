@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Mines_lv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: lv
+  m_SharedData: {fileID: 11400000, guid: 191211623f4c74e4a9839efc4098f437, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 191133798122389642
+  m_TableData:
+  - m_Id: 16771387392
+    m_Localized: "Pionieru priek\u0161postenis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152683614208
+    m_Localized: "Raktuvju sen\u0101k\u0101 da\u013Ca, kur r\u016B\u0137i s\u0101ka
+      ieguvi p\u0113c apmetnes dibin\u0101\u0161anas. Dro\u0161i tune\u013Ci, vecas
+      nometnes un vienk\u0101r\u0161i dzelzs atradumi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029440
+    m_Localized: "Pazemes dzi\u013Cumu appl\u016Bdu\u0161\u0101 l\u012Bc\u012B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029441
+    m_Localized: "Senu tune\u013Cu t\u012Bkls, kas da\u013C\u0113ji appl\u016Bdis
+      p\u0113c tam, kad pazemes ezers p\u0101rpl\u016Bda. \u0160eit, appl\u016Bdu\u0161aj\u0101s
+      al\u0101s, tiek ieguvi reti krist\u0101li un d\u0101rgmet\u0101li."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029442
+    m_Localized: "Akmens me\u017Es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029443
+    m_Localized: "Nosl\u0113pumaina teritorija dzi\u013Ci zem kalna, kas piepild\u012Bta
+      ar milz\u012Bg\u0101m akmens kolonn\u0101m, kas atg\u0101dina senus kokus.
+      Starp t\u0101m sl\u0113pjas visret\u0101kie resursi un b\u012Bstamas b\u016Btnes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4578303479808
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 191133798122389642
+  references:
+    version: 2
+    RefIds:
+    - rid: 191133798122389642
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 4578303479808

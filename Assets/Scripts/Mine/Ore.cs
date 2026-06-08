@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class Ore : MonoBehaviour
 {
+    [SerializeField] private string oreNameKey;
+
+    public string OreName =>
+     LocalizationSettings.StringDatabase.GetLocalizedString(
+         "Items",
+         oreNameKey
+     );
+
     [Header("Drop Settings")]
     public ItemSO oreItem;
     public GameObject orePrefab;

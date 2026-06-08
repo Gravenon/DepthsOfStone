@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: gameUI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: gameUI
+  m_TableCollectionNameGuidString: 26cab21b1a374ea449b6e314eb37db72
+  m_Entries:
+  - m_Id: 52947259392
+    m_Key: game.stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849872519168
+    m_Key: game.damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684992
+    m_Key: game.speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684993
+    m_Key: game.health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684994
+    m_Key: game.died
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684995
+    m_Key: game.shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684996
+    m_Key: game.quest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684997
+    m_Key: game.accept
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684998
+    m_Key: game.decline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684999
+    m_Key: game.rewards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685000
+    m_Key: game.skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685001
+    m_Key: game.skillpoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685002
+    m_Key: game.locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685003
+    m_Key: game.pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685004
+    m_Key: game.save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404781129728
+    m_Key: game.complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404810489856
+    m_Key: game.continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404810489857
+    m_Key: game.backmenu
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 191133798122389590
+  references:
+    version: 2
+    RefIds:
+    - rid: 191133798122389590
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1780928032340

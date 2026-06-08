@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Hardened boots
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Earthquake Boots
-  itemDescription: The ground trembles slightly with every step. Perfect for scaring
-    the elves.
+  itemNameKey: A_BOOTS3_NAME
+  itemDescriptionKey: A_BOOTS3_DES
   itemIcon: {fileID: -3694533877916086887, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 4
   isEXP: 0

@@ -1196,6 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d73b3f4a8953544a1440509deeee35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oreNameKey: O_DIMOND_NAME
   oreItem: {fileID: 11400000, guid: 72e61fd7b580c40a68ec6f7502be213c, type: 2}
   orePrefab: {fileID: 2141617616028719491, guid: 6661e3a658e32784fb594a50c5491a19, type: 3}
   minDropQuantity: 1

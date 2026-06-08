@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Dwarven stew
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: El
-  itemDescription: A classic.
+  itemNameKey: F_BEER_NAME
+  itemDescriptionKey: F_BEER_DES
   itemIcon: {fileID: -1977531369, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 8
   isEXP: 0

@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Latvian (lv)
   m_GUID: 363e8cfb5b24a4d9cbc227fefd4250a3
   m_SerializeEntries:
+  - m_GUID: 03d862ac6fe3ea8478054bb277ac0787
+    m_Address: Items_lv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-lv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e4492d5b1c131b419b825faf2c56561
+    m_Address: Mines_lv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-lv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0ae086a2c604471abb7f1e513d403da
     m_Address: MenuUI_lv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-lv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2092ba67fd6cb14cb74a942bf01f6ca
+    m_Address: gameUI_lv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-lv

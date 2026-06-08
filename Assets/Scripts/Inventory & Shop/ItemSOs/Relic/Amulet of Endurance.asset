@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Amulet of Endurance
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: The Ring of the Stone Heart
-  itemDescription: Makes the wearer a little more stubborn. Sometimes a bit too much.
+  itemNameKey: R_RING_NAME
+  itemDescriptionKey: R_RING_DES
   itemIcon: {fileID: -2421343691936151383, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0

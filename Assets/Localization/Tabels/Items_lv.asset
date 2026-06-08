@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Items_lv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: lv
+  m_SharedData: {fileID: 11400000, guid: a029f017ad6bf514b8fe69ef39b999cc, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10333130752
+    m_Localized: "\u0100murs \u201ESveicieni no vect\u0113va\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436750127104
+    m_Localized: "\u201EMe\u017Eizstr\u0101d\u0101t\u0101ja\u201C cirvis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292928
+    m_Localized: "Cirvis \u201EB\u0101rdas sadal\u012Bt\u0101js\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292929
+    m_Localized: "Zobens \u201EP\u016B\u0137u nogalin\u0101t\u0101js \u2013 zaud\u0113t\u0101js\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292930
+    m_Localized: "Zobens \u201EGods\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292931
+    m_Localized: "Kalnra\u010Da gredzens "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292932
+    m_Localized: "Dzi\u013Cumu amulets"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292933
+    m_Localized: "Laim\u012Bgais \u0101murs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487232
+    m_Localized: "Zvaigznes fragments, kas iekrita raktuv\u0113"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487233
+    m_Localized: "M\u016B\u017E\u012Bg\u0101 skr\u0113jiena amulets"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487234
+    m_Localized: Ogles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487235
+    m_Localized: "Var\u0161"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487236
+    m_Localized: "Krist\u0101ls"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487237
+    m_Localized: Dimonds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487238
+    m_Localized: Zelts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487239
+    m_Localized: Dzelzs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487240
+    m_Localized: "\u201EDzelzs\u201C maize"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487241
+    m_Localized: Medus alus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487242
+    m_Localized: "S\u0113\u0146u p\u012Br\u0101gs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487243
+    m_Localized: "Cepts trusis p\u0113c r\u016B\u0137u receptes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487244
+    m_Localized: "Vec\u0101 v\u012Bra Boromira spainis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487245
+    m_Localized: "Kal\u0113ja br\u0101\u013Ca \u0137ivere"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487246
+    m_Localized: "P\u0113rkona t\u0113va kronis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487247
+    m_Localized: "Sen\u010Du krekla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487248
+    m_Localized: "Alus vairoga bru\u0146as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487249
+    m_Localized: "Akmens asins kr\u016B\u0161bru\u0146as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487250
+    m_Localized: "P\u016B\u0137a p\u0113cn\u0101c\u0113ja kr\u016B\u0161bru\u0146as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487251
+    m_Localized: "\u201EEs nekr\u012B\u0161u\u201C z\u0101baki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487252
+    m_Localized: Apautas nagi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487253
+    m_Localized: "Zemestr\u012Bces z\u0101baki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17363162828800
+    m_Localized: "Gredzens \u201EAkmens sirds\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551762575360
+    m_Localized: "Mon\u0113ta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741184
+    m_Localized: Pieredze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741185
+    m_Localized: "Milz\u012Bgs divrokas \u0101murs. Uz roktura iegrav\u0113ti v\u0101rdi:
+      \u201EJa tu mani m\u012Bli, tad uzsit ar to\u201D."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741186
+    m_Localized: "Viegls, ta\u010Du n\u0101v\u0113jo\u0161s. St\u0101sta, ka ar to
+      mirkl\u012B var atrisin\u0101t ne tikai c\u012B\u0146u ar orku, bet ar\u012B
+      kauti\u0146u krog\u0101."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741187
+    m_Localized: "R\u016B\u0137i to r\u0101da cilv\u0113kiem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741188
+    m_Localized: "Asmens ir p\u0101rkl\u0101ts ar iecirtumiem un zobu nospiedumiem.
+      \u201EVi\u0146\u0161 gandr\u012Bz nogalin\u0101ja p\u016B\u0137i\u2026 gandr\u012Bz.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741189
+    m_Localized: "Vienk\u0101r\u0161s, uzticams, nedaudz par smagu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935488
+    m_Localized: "Padara to, kas to valk\u0101, nedaudz sp\u012Bt\u012Bg\u0101ku.
+      Da\u017Ereiz pat p\u0101r\u0101k."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935489
+    m_Localized: "Da\u017Ereiz tas atkl\u0101j st\u0101sta bied\u0113jo\u0161\u0101s
+      dzi\u013Cumas, nevis sap\u0146us."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935490
+    m_Localized: "Nav ierocis. Tikai talismans. Nes labu veiksmi\u2026 da\u017Ereiz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935491
+    m_Localized: "Tas sp\u012Bd ar maigu zilu gaismu. R\u016B\u0137i ir p\u0101rliecin\u0101ti,
+      ka tas ir \u012Bsta zvaigznes gabals. Elfi to sauc par \u201Cmeteor\u012Btu\u201D.
+      R\u016B\u0137i vi\u0146us piekauj."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935492
+    m_Localized: Tu nekad nepagursi skriet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935493
+    m_Localized: "Rokas str\u0101d\u0101 \u0101tr\u0101k."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935494
+    m_Localized: Zemes melnais elpa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935495
+    m_Localized: "Jaun\u0101 kalna asinis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935496
+    m_Localized: "Burvju ledus \u0161\u0137embas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935497
+    m_Localized: "Akmen\u012B aprakt\u0101s zvaigznes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935498
+    m_Localized: "Alksto\u0161o dievu asaras"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935499
+    m_Localized: "Sen\u010Du kauli"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935500
+    m_Localized: "Melna un bl\u012Bva \u2013 \u0101rk\u0101rtas gad\u012Bjum\u0101
+      to var\u0113tu izmantot k\u0101 ieroci."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935501
+    m_Localized: Klasika.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935502
+    m_Localized: "P\u0113c otr\u0101s \u0161\u0137\u0113les s\u0101k par\u0101d\u012Bties
+      \u201Esen\u010Du gari\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935503
+    m_Localized: "Tru\u0161is un \u013Coti, \u013Coti daudz gar\u0161vielu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935504
+    m_Localized: "\u201CJ\u0101, tas patie\u0161\u0101m ir vienk\u0101r\u0161i spainis.
+      Bet \u013Coti iztur\u012Bgs. Boromirs to pat izmantoja zupas v\u0101r\u012B\u0161anai.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935505
+    m_Localized: "Smags \u0137ivere ar \u0101muru, kas iegrav\u0113ts uz pieres.
+      Le\u0123enda st\u0101sta, ka to k\u0101dreiz sk\u0101ra zibens. Tagad t\u0101s
+      \u012Bpa\u0161nieks da\u017Ek\u0101rt dzird savu sen\u010Du apstiprino\u0161u
+      murmin\u0101\u0161anu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935506
+    m_Localized: "Vienk\u0101r\u0161s, bet iztur\u012Bgs \u0137ivere ar ragiem. \u201CR\u016B\u0137i
+      saka, ka ragi nav tikai par\u0101d\u012Bbai, bet lai viegl\u0101k var\u0113tu
+      satvert akme\u0146us raktuv\u0113.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935507
+    m_Localized: "Izgatavota no jauna p\u016B\u0137a zv\u012B\u0146\u0101m, ko r\u016B\u0137i
+      \u201Cnejau\u0161i\u201D atrada raktuv\u0113. No t\u0101s smar\u017Eo p\u0113c
+      s\u0113ra un lepnuma."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935508
+    m_Localized: "Zeme nedaudz dreb ar katru soli. Ide\u0101li piem\u0113rota, lai
+      bied\u0113tu elfus."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935509
+    m_Localized: "Kalts no dzelzs ar sarkanu kvarca dz\u012Bslu. Izskat\u0101s, it
+      k\u0101 no kr\u016Bt\u012Bm pl\u016Bstu izkaus\u0113ts akmens."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935510
+    m_Localized: "Rot\u0101ts ar kr\u016Bzes att\u0113lu. \u201EKam\u0113r tu dzer,
+      tu esi neuzvarams. P\u0113c piekt\u0101s kr\u016Bzes tu esi nemirst\u012Bgs
+      (sav\u0101s ac\u012Bs).\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935511
+    m_Localized: "Zol\u0113s ir iestr\u0101d\u0101ti \u012Bsti dzelzs smaili. R\u016B\u0137i
+      apgalvo, ka tas ir lab\u0101kai sa\u0137erei ar akmeni. Paties\u012Bb\u0101
+      vi\u0146iem vienk\u0101r\u0161i pat\u012Bk ska\u013Ci staig\u0101t."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935512
+    m_Localized: "\u0136\u0113\u017Eu bru\u0146as, kur\u0101s katr\u0101 posm\u0101
+      ir iestr\u0101d\u0101ts mazs akmens ar sen\u010Da v\u0101rdu. \u013Boti smagas.
+      \u013Boti trok\u0161\u0146ainas. \u013Boti r\u016B\u0137iskas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935513
+    m_Localized: "\u013Boti iztur\u012Bgas. Pat ja esi patie\u0161\u0101m noguris,
+      tu paliksi uz k\u0101j\u0101m. P\u0101rbaud\u012Btas vair\u0101ku paaud\u017Eu
+      garum\u0101."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935514
+    m_Localized: "Mon\u0113ta \u2013 nauda."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935515
+    m_Localized: "papildin\u0101jums"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

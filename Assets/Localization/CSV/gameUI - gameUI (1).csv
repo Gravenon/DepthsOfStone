@@ -1,0 +1,19 @@
+Key,Id,English(en),Japanese(ja),Latvian(lv),Spanish(es)
+game.stats,52947259392,Player Stats,選手の成績,Spēlētāju statistika,Estadísticas de los jugadores
+game.damage,,Damage,損害,Bojājumi,Daños
+game.speed,,Speed,速度,Ātrums,Velocidad
+game.health,,Health,健康,Veselība,Salud
+game.died,,You died,あなたは死にました,Tu nomiri,Has muerto
+game.shop,,Shop,ショップ,Veikals,Tienda
+game.quest,,Quest Log,クエストログ,Uzdevumu žurnāls,Registro de misiones
+game.accept,,Accept,同意する,Pieņemt,Aceptar
+game.decline,,Decline,キャンセルする,Atteikties,Cerrar
+game.rewards,,Rewards,特典,Balvas,Recompensas
+game.skill,,Skill Tree,スキルツリー,Prasmju koks,Árbol de habilidades
+game.skillpoint,,Skill Points,スキルポイント,Prasmju punkti,Puntos de habilidad
+game.locked,,Locked,ロック中,Bloķēts,Bloqueado
+game.pause,,Pause,一時停止,Pauze,Pausa
+game.save,,Save Game,セーブ,Saglabāt spēli,Guardar partida
+game.complete,,Complete,完了,Pabeigt,Completo
+game.continue,,Continue,続ける,Turpināt,Continuar
+game.backmenu,,Back to menu,メニューに戻る,Atgriezties izvēlnē,Volver al menú

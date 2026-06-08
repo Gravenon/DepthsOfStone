@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: gameUI_lv
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: lv
+  m_SharedData: {fileID: 11400000, guid: 26cab21b1a374ea449b6e314eb37db72, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 52947259392
+    m_Localized: "Sp\u0113l\u0113t\u0101ju statistika"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849872519168
+    m_Localized: "Boj\u0101jumi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684992
+    m_Localized: "\u0100trums"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684993
+    m_Localized: "Vesel\u012Bba"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684994
+    m_Localized: Tu nomiri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684995
+    m_Localized: Veikals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684996
+    m_Localized: "Uzdevumu \u017Eurn\u0101ls"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684997
+    m_Localized: "Pie\u0146emt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684998
+    m_Localized: Atteikties
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897684999
+    m_Localized: Balvas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685000
+    m_Localized: Prasmju koks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685001
+    m_Localized: Prasmju punkti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685002
+    m_Localized: "Blo\u0137\u0113ts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685003
+    m_Localized: Pauze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9849897685004
+    m_Localized: "Saglab\u0101t sp\u0113li"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404781129728
+    m_Localized: Pabeigt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404810489856
+    m_Localized: "Turpin\u0101t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35404810489857
+    m_Localized: "Atgriezties izv\u0113ln\u0113"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

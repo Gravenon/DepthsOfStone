@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Heavy armour
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 'The Stoneblood Cuirass '
-  itemDescription: Forged from iron veined with red quartz. It looks as though molten
-    stone is flowing from the chest.
+  itemNameKey: A_BODY3_NAME
+  itemDescriptionKey: A_BODY3_DES
   itemIcon: {fileID: -6099050445329199328, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 1
   isEXP: 0

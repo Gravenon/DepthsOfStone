@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Tempered sword
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: "The \u201CHonour\u201D Blade"
-  itemDescription: 'Simple, reliable, a bit on the heavy side. '
+  itemNameKey: W_SWORDtoo_NAME
+  itemDescriptionKey: W_SWORDtoo_DES
   itemIcon: {fileID: 3719068211130651045, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 3
   isEXP: 0

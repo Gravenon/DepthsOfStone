@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: A hardened helmet
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 'The Crown of the Thunder Father '
-  itemDescription: A heavy helmet with a hammer engraved on the forehead. Legend
-    has it that it was once struck by lightning. Now, its owner sometimes hears the
-    approving grumbling of his ancestors.
+  itemNameKey: A_HEAD3_NAME
+  itemDescriptionKey: A_HEAD3_DES
   itemIcon: {fileID: -488721925442295091, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 0
   isEXP: 0

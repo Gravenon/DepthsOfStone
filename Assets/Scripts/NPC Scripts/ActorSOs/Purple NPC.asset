@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff38d3ca7d9e0984abdce0d963355e6e, type: 3}
   m_Name: Purple NPC
   m_EditorClassIdentifier: 
-  actorName: Purple
+  actorName: Bjork
   portrait: {fileID: -3238287849584833686, guid: 48bfaf63930234e37a6addf546b58629, type: 3}

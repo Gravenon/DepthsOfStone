@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Iron armour
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: "El the Shield\u2019s Armour"
-  itemDescription: "Decorated with an image of a mug. \u2018As long as you\u2019re
-    drinking, you\u2019re invincible. After the fifth mug, you\u2019re immortal (in
-    your own eyes).\u2019"
+  itemNameKey: A_BODY2_NAME
+  itemDescriptionKey: A_BODY2_DES
   itemIcon: {fileID: -5971942374765049077, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 1
   isEXP: 0

@@ -1,0 +1,309 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Items_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: a029f017ad6bf514b8fe69ef39b999cc, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10333130752
+    m_Localized: "El martillo \xABSaludos del abuelo\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436750127104
+    m_Localized: "El hacha \xABLumberjack\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292928
+    m_Localized: "Hacha \xABCortabarbas\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292929
+    m_Localized: "La espada \xABEl matador de dragones: el perdedor\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292930
+    m_Localized: "La espada \xABHoja del Honor\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292931
+    m_Localized: 'Un anillo de minero '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292932
+    m_Localized: Amuleto de las Profundidades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292933
+    m_Localized: El martillo de la suerte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487232
+    m_Localized: "Un fragmento de una estrella que cay\xF3 en la mina"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487233
+    m_Localized: Amuleto de la Carrera Eterna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487234
+    m_Localized: "Carb\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487235
+    m_Localized: Cobre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487236
+    m_Localized: Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487237
+    m_Localized: Diamante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487238
+    m_Localized: Oro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487239
+    m_Localized: Hierro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487240
+    m_Localized: "Pan \xABde hierro\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487241
+    m_Localized: Cerveza de miel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487242
+    m_Localized: Pastel de setas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487243
+    m_Localized: Conejo asado, al estilo enano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487244
+    m_Localized: El cubo del anciano Boromir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487245
+    m_Localized: El yelmo del hermano del herrero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487246
+    m_Localized: La corona del Padre del Trueno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487247
+    m_Localized: La camisa de los antepasados
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487248
+    m_Localized: La armadura del escudo de la cerveza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487249
+    m_Localized: La coraza de la sangre de piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487250
+    m_Localized: "La coraza de la prole del drag\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487251
+    m_Localized: "Las botas \xABNo caer\xE9\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487252
+    m_Localized: "Las pezu\xF1as herradas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487253
+    m_Localized: Las botas del terremoto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17363162828800
+    m_Localized: "Anillo \xABCoraz\xF3n de piedra\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551762575360
+    m_Localized: Moneda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741184
+    m_Localized: Exp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741185
+    m_Localized: "Un enorme martillo de dos manos. En el mango est\xE1n grabadas
+      las palabras \xABSi me quieres, dale un golpe\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741186
+    m_Localized: "Ligero, pero letal. Dicen que puede acabar no solo con un orco,
+      sino tambi\xE9n con una pelea de taberna en un santiam\xE9n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741187
+    m_Localized: "Los enanos se lo ense\xF1an a los humanos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741188
+    m_Localized: "La hoja est\xE1 llena de mellas y marcas de dientes. \xABCasi mata
+      a un drag\xF3n\u2026 casi\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741189
+    m_Localized: Sencillo, fiable, un poco pesado.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935488
+    m_Localized: "Hace que quien lo lleva sea un poco m\xE1s testarudo. A veces,
+      demasiado."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935489
+    m_Localized: "A veces revela las aterradoras profundidades de una historia en
+      lugar de los sue\xF1os."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935490
+    m_Localized: "No es un arma. Solo un talism\xE1n. Trae buena suerte\u2026 a veces."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935491
+    m_Localized: "Brilla con una suave luz azul. Los enanos est\xE1n convencidos
+      de que es un trozo de una estrella real. Los elfos lo llaman \xABmeteorito\xBB.
+      Los enanos les dan una paliza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935492
+    m_Localized: "Nunca te cansar\xE1s de correr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935493
+    m_Localized: "Las manos trabajan m\xE1s r\xE1pido."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935494
+    m_Localized: El aliento negro de la Tierra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935495
+    m_Localized: "La sangre de la monta\xF1a joven"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935496
+    m_Localized: "Fragmentos de hielo m\xE1gico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935497
+    m_Localized: Estrellas enterradas en la piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935498
+    m_Localized: "Las l\xE1grimas de los dioses codiciosos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935499
+    m_Localized: Los huesos de los antiguos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935500
+    m_Localized: "Negado y denso, podr\xEDa servir de arma en caso de apuro."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935501
+    m_Localized: "Todo un cl\xE1sico."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935502
+    m_Localized: "Tras la segunda porci\xF3n, empiezas a ver a los \xABesp\xEDritus
+      de tus antepasados\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935503
+    m_Localized: Conejo y montones y montones y montones de especias.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935504
+    m_Localized: "\xABS\xED, es literalmente un cubo. Pero uno muy resistente. Boromir
+      incluso lo us\xF3 para cocinar sopa\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935505
+    m_Localized: "Un pesado yelmo con un martillo grabado en la frente. Cuenta la
+      leyenda que en su d\xEDa fue alcanzado por un rayo. Ahora, su due\xF1o oye
+      a veces los gru\xF1idos de aprobaci\xF3n de sus antepasados."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935506
+    m_Localized: "Un yelmo sencillo pero robusto con cuernos. \xABLos enanos dicen
+      que los cuernos no son solo para lucirlos, sino para facilitar el agarre a
+      las rocas de la mina\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935507
+    m_Localized: "Hecho con las escamas de un drag\xF3n joven que los enanos encontraron
+      \xABpor casualidad\xBB en una mina. Huele a azufre y a orgullo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935508
+    m_Localized: El suelo tiembla ligeramente con cada paso. Perfecto para asustar
+      a los elfos.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935509
+    m_Localized: Forjado en hierro veteado de cuarzo rojo. Parece como si fluyera
+      piedra fundida desde el pecho.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935510
+    m_Localized: "Decorado con la imagen de una jarra. \xABMientras est\xE9s bebiendo,
+      eres invencible. Despu\xE9s de la quinta jarra, eres inmortal (a tus propios
+      ojos)\xBB."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935511
+    m_Localized: "Las suelas est\xE1n provistas de p\xFAas de hierro aut\xE9ntico.
+      Los enanos afirman que es para tener un mejor agarre sobre la piedra. En realidad,
+      simplemente les encanta pisotear ruidosamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935512
+    m_Localized: "Una cota de malla, con una peque\xF1a piedra que lleva el nombre
+      de un antepasado fundida en cada eslab\xF3n. Muy pesada. Muy ruidosa. Muy enana."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935513
+    m_Localized: "Extremadamente resistente. Incluso cuando est\xE9s realmente cansado,
+      te mantendr\xE1s en pie. Probada por varias generaciones."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935514
+    m_Localized: Moneda - dinero.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935515
+    m_Localized: exp
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

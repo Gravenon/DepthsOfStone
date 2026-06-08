@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Mines_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 191211623f4c74e4a9839efc4098f437, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 191133798122389640
+  m_TableData:
+  - m_Id: 16771387392
+    m_Localized: "The Pioneers\u2019 Outpost"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152683614208
+    m_Localized: The oldest part of the mines, where the dwarves began mining ore
+      after the settlement was founded. Safe tunnels, old camps and simple iron deposits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029440
+    m_Localized: Stone Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029441
+    m_Localized: A mysterious region deep beneath the mountain, filled with huge
+      stone columns resembling ancient trees. Hidden amongst them are the rarest
+      resources and dangerous creatures.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029442
+    m_Localized: Flooded Bay of the Depths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1267668029443
+    m_Localized: A network of ancient tunnels, partially submerged after an underground
+      lake burst its banks. Rare crystals and precious metals are mined here amongst
+      the flooded caves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4578303479808
+    m_Localized: 'Ores:'
+    m_Metadata:
+      m_Items:
+      - rid: 191133798122389640
+  references:
+    version: 2
+    RefIds:
+    - rid: 191133798122389640
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 4578303479808

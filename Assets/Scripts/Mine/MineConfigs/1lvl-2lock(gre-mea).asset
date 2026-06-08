@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38be2a49e1ac24797b6ae0d2737476, type: 3}
   m_Name: 1lvl-2lock(gre-mea)
   m_EditorClassIdentifier: Assembly-CSharp::MineConfig
+  mineNameKey: MINE_CAMP_NAME
+  mineDescriptionKey: MINE_CAMP_DESC
+  sceneName: 
   enemyPrefabs:
   - {fileID: 7905704420351958002, guid: d7bc376d44d424ede988d1e2bbbe414f, type: 3}
   enemiesCount: 4

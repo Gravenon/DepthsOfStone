@@ -26,9 +26,9 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     public int maxHealth;
     public int currentHealth;
 
-    [HideInInspector] public int   baseMaxHealth;
-    [HideInInspector] public int   baseCurrentHealth;
-    [HideInInspector] public int   baseSpeed;
+    [HideInInspector] public int baseMaxHealth;
+    [HideInInspector] public int baseCurrentHealth;
+    [HideInInspector] public int baseSpeed;
     [HideInInspector] public float baseDamage;
     [HideInInspector] public float baseWeaponRange;
     [HideInInspector] public float baseKnockbackForce;
@@ -39,14 +39,14 @@ public class StatsManager : MonoBehaviour, IDataPersistence
     {
         if (Instance == null) Instance = this; else { Destroy(gameObject); return; }
 
-        baseMaxHealth      = maxHealth;
-        baseCurrentHealth  = currentHealth;
-        baseSpeed          = speed;
-        baseDamage         = damage;
-        baseWeaponRange    = weaponRange;
+        baseMaxHealth = maxHealth;
+        baseCurrentHealth = currentHealth;
+        baseSpeed = speed;
+        baseDamage = damage;
+        baseWeaponRange = weaponRange;
         baseKnockbackForce = knockbackForce;
         baseKnockbackTimre = knockbackTimre;
-        baseStunTime       = stunTime;
+        baseStunTime = stunTime;
     }
 
     public void UpdateMaxHealth(int amount)
@@ -63,9 +63,23 @@ public class StatsManager : MonoBehaviour, IDataPersistence
         RefreshHealthText();
     }
 
-    public void UpdateSpeed(int amount)        { speed          += amount; statsUI?.UpdataAllStats(); }
-    public void UpdateDamage(float amount)     { damage         += amount; statsUI?.UpdataAllStats(); }
-    public void UpdataKnockbackForce(int amount){ knockbackForce += amount; statsUI?.UpdataAllStats(); }
+    public void UpdateSpeed(int amount)
+    {
+        speed += amount;
+        statsUI?.UpdataAllStats();
+    }
+
+    public void UpdateDamage(float amount)
+    {
+        damage += amount;
+        statsUI?.UpdataAllStats();
+    }
+
+    public void UpdataKnockbackForce(int amount)
+    {
+        knockbackForce += amount;
+        statsUI?.UpdataAllStats();
+    }
 
     private void RefreshHealthText()
     {
@@ -97,16 +111,16 @@ public class StatsManager : MonoBehaviour, IDataPersistence
             else if (data.lastScene == SceneManager.GetActiveScene().name)
                 playerTransform.position = data.playerPosition;
 
-            maxHealth     = data.maxHealth     != 0 ? data.maxHealth     : baseMaxHealth;
+            maxHealth = data.maxHealth != 0 ? data.maxHealth : baseMaxHealth;
             currentHealth = data.currentHealth != 0 ? data.currentHealth : baseCurrentHealth;
         }
 
-        speed          = data.speed          != 0 ? data.speed          : baseSpeed;
-        damage         = data.damage         != 0 ? data.damage         : baseDamage;
-        weaponRange    = data.weaponRange    != 0 ? data.weaponRange    : baseWeaponRange;
+        speed = data.speed != 0 ? data.speed : baseSpeed;
+        damage = data.damage != 0 ? data.damage : baseDamage;
+        weaponRange = data.weaponRange != 0 ? data.weaponRange : baseWeaponRange;
         knockbackForce = data.knockbackForce != 0 ? data.knockbackForce : baseKnockbackForce;
         knockbackTimre = data.knockbackTimre != 0 ? data.knockbackTimre : baseKnockbackTimre;
-        stunTime       = data.stunTime       != 0 ? data.stunTime       : baseStunTime;
+        stunTime = data.stunTime != 0 ? data.stunTime : baseStunTime;
 
         if (healthText != null) healthText.text = $"HP: {currentHealth}/ {maxHealth}";
         statsUI?.UpdataAllStats();

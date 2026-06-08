@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38be2a49e1ac24797b6ae0d2737476, type: 3}
   m_Name: 3lvll-1lock
   m_EditorClassIdentifier: 
-  MineName: HardLvlv
-  itemDescription: HardLvlvHardLvlvHardLvlvHardLvlv
+  mineNameKey: MINE_WATER_NAME
+  mineDescriptionKey: MINE_WATER_DESC
   sceneName: Cave_Hard
   enemyPrefabs:
   - {fileID: 7905704420351958002, guid: d7bc376d44d424ede988d1e2bbbe414f, type: 3}

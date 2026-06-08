@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Copper
-  itemDescription: The Blood of the Young Mountain
+  itemNameKey: O_COPPER_NAME
+  itemDescriptionKey: O_COPPER_DES
   itemIcon: {fileID: -1092307444, guid: dcfee582f28814aaa8ac4f932c440aa0, type: 3}
   itemType: 6
   isEXP: 0

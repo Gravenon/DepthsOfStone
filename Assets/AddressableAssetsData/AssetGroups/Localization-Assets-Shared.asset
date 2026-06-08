@@ -15,6 +15,21 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: b687e906663a64bc6bf44c5398943ab3
   m_SerializeEntries:
+  - m_GUID: 191211623f4c74e4a9839efc4098f437
+    m_Address: Assets/Localization/Tabels/Mines Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26cab21b1a374ea449b6e314eb37db72
+    m_Address: Assets/Localization/Tabels/game Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a029f017ad6bf514b8fe69ef39b999cc
+    m_Address: Assets/Localization/Tabels/Item Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb7d5a123388a4dca8aadc7e16fe6693
     m_Address: Assets/Localization/Tabels/MenuUI Shared Data.asset
     m_ReadOnly: 1

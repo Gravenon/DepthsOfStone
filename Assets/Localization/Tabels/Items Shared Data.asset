@@ -1,0 +1,292 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Items Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Items
+  m_TableCollectionNameGuidString: a029f017ad6bf514b8fe69ef39b999cc
+  m_Entries:
+  - m_Id: 10333130752
+    m_Key: W_HAMMER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436750127104
+    m_Key: W_AXE_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292928
+    m_Key: W_AXEtoo_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292929
+    m_Key: W_SWORD_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292930
+    m_Key: W_SWORDtoo_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17363162828800
+    m_Key: R_RING_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292932
+    m_Key: R_AMULET_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292933
+    m_Key: R_HAMMER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487232
+    m_Key: R_FRAGMENT_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487233
+    m_Key: R_AMULETtoo_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436775292931
+    m_Key: R_RINGtoo_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487234
+    m_Key: O_COAL_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487235
+    m_Key: O_COPPER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487236
+    m_Key: O_CRYSTAL_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487237
+    m_Key: O_DIMOND_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487238
+    m_Key: O_GOLD_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487239
+    m_Key: O_IRON_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487240
+    m_Key: F_BREAD_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487241
+    m_Key: F_BEER_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487242
+    m_Key: F_PIE_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487243
+    m_Key: F_RABBIT_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487244
+    m_Key: A_HEAD1_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487245
+    m_Key: A_HEAD2_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487246
+    m_Key: A_HEAD3_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487247
+    m_Key: A_BODY1_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487248
+    m_Key: A_BODY2_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487249
+    m_Key: A_BODY3_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487250
+    m_Key: A_BODY4_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487251
+    m_Key: A_BOOTS1_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487252
+    m_Key: A_BOOTS2_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16436779487253
+    m_Key: A_BOOTS3_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551762575360
+    m_Key: O_COIN_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741184
+    m_Key: O_EXP_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741185
+    m_Key: W_HAMMER_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741186
+    m_Key: W_AXE_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741187
+    m_Key: W_AXEtoo_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741188
+    m_Key: W_SWORD_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551787741189
+    m_Key: W_SWORDtoo_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935488
+    m_Key: R_RING_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935489
+    m_Key: R_AMULET_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935490
+    m_Key: R_HAMMER_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935491
+    m_Key: R_FRAGMENT_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935492
+    m_Key: R_AMULETtoo_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935493
+    m_Key: R_RINGtoo_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935494
+    m_Key: O_COAL_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935495
+    m_Key: O_COPPER_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935496
+    m_Key: O_CRYSTAL_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935497
+    m_Key: O_DIMOND_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935498
+    m_Key: O_GOLD_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935499
+    m_Key: O_IRON_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935500
+    m_Key: F_BREAD_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935501
+    m_Key: F_BEER_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935502
+    m_Key: F_PIE_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935503
+    m_Key: F_RABBIT_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935504
+    m_Key: A_HEAD1_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935505
+    m_Key: A_HEAD3_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935506
+    m_Key: A_HEAD2_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935507
+    m_Key: A_BODY4_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935508
+    m_Key: A_BOOTS3_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935509
+    m_Key: A_BODY3_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935510
+    m_Key: A_BODY2_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935511
+    m_Key: A_BOOTS2_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935512
+    m_Key: A_BODY1_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935513
+    m_Key: A_BOOTS1_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935514
+    m_Key: O_COIN_DES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21551791935515
+    m_Key: O_EXP_DES
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 191133798122389601
+  references:
+    version: 2
+    RefIds:
+    - rid: 191133798122389601
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1780937939833

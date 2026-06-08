@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Spanish (es)
   m_GUID: e6496bb64b6bc40839c0c04a52c4475c
   m_SerializeEntries:
+  - m_GUID: 0615c86d15e3f164b8374b4f098f047d
+    m_Address: Mines_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 34d2defad81d24bb4b4a8e5f8a26f7b1
     m_Address: MenuUI_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd93c298c70a7e54dafe41b8efff9c5e
+    m_Address: Items_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0563409d765cc8478405a027c6b0018
+    m_Address: gameUI_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

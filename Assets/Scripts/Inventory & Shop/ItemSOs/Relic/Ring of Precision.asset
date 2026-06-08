@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211e5e0de5f381b4da088b39a2ac63f6, type: 3}
   m_Name: Ring of Precision
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 'A Star Fragment '
-  itemDescription: "It glows with a soft blue light. The dwarves are convinced it\u2019s
-    a piece of a real star. The elves call it a \u2018meteorite\u2019. The dwarves
-    beat them up."
+  itemNameKey: R_FRAGMENT_NAME
+  itemDescriptionKey: R_FRAGMENT_DES
   itemIcon: {fileID: -7652154954077232485, guid: 737a2560f42304792bb9451ff6d045db, type: 3}
   itemType: 5
   isEXP: 0
