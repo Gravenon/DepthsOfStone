@@ -152,8 +152,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
-
     private void EndDialogue()
     {
         dialogueIndex = 0;

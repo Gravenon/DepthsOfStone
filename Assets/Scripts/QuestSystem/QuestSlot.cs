@@ -15,9 +15,8 @@ public class QuestSlot : MonoBehaviour
         if(currentQuest != null)
             SetQuest(currentQuest);
         else
-        {
             gameObject.SetActive(false);
-        }
+        
     }
 
 

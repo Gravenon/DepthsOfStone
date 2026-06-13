@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Blocks passage until the required quest is turned in.
-// Attach to any GameObject with a Collider2D.
 public class QuestColliderGate : MonoBehaviour
 {
     [SerializeField] private QuestSO requiredQuest;

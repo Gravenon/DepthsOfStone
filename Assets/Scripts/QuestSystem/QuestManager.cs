@@ -46,11 +46,7 @@ public class QuestManager : MonoBehaviour, IDataPersistence
         var activeList = new List<SerializedQuestProgress>();
         foreach (var kv in questProgress)
         {
-            var saved = new SerializedQuestProgress
-            {
-                questName = kv.Key.questName,
-                objectiveProgress = new int[kv.Key.objectives.Count]
-            };
+            var saved = new SerializedQuestProgress { questName = kv.Key.questName, objectiveProgress = new int[kv.Key.objectives.Count]};
             for (int i = 0; i < kv.Key.objectives.Count; i++)
             {
                 kv.Value.TryGetValue(kv.Key.objectives[i], out int progress);
@@ -91,8 +87,7 @@ public class QuestManager : MonoBehaviour, IDataPersistence
                 var progressDict = new Dictionary<QuestObejtive, int>();
                 for (int i = 0; i < quest.objectives.Count; i++)
                 {
-                    int savedProgress = saved.objectiveProgress != null && i < saved.objectiveProgress.Length
-                        ? saved.objectiveProgress[i] : 0;
+                    int savedProgress = saved.objectiveProgress != null && i < saved.objectiveProgress.Length ? saved.objectiveProgress[i] : 0;
                     progressDict[quest.objectives[i]] = savedProgress;
                 }
                 questProgress[quest] = progressDict;

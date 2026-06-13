@@ -65,9 +65,12 @@ public class Enemy_Movement : MonoBehaviour
 
         switch (enemyState)
         {
-            case EnemyState.Chasing:   Chase();   break;
-            case EnemyState.Attacking: rb.linearVelocity = Vector2.zero; break;
-            case EnemyState.Patrolling: Patrol(); break;
+            case EnemyState.Chasing: Chase();   
+            break;
+            case EnemyState.Attacking: rb.linearVelocity = Vector2.zero; 
+            break;
+            case EnemyState.Patrolling: Patrol(); 
+            break;
         }
 
         if (enemyState != EnemyState.Attacking && !enemyCombat.IsAttacking)
@@ -115,7 +118,7 @@ public class Enemy_Movement : MonoBehaviour
         Vector2 direction = (patrolTarget - (Vector2)transform.position).normalized;
         lastMoveDirection = direction;
 
-        if      (direction.x < 0 && facingDirection ==  1) Flip();
+        if (direction.x < 0 && facingDirection ==  1) Flip();
         else if (direction.x > 0 && facingDirection == -1) Flip();
 
         rb.linearVelocity = direction * patrolSpeed;
@@ -159,15 +162,15 @@ public class Enemy_Movement : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
             StopAllCoroutines();
-            anim.SetBool("isAttacking",  false);
-            anim.SetBool("isChasing",    false);
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isChasing", false);
             anim.SetBool("isPatrolling", false);
-            anim.SetBool("isDead",       true);
+            anim.SetBool("isDead", true);
             return;
         }
 
-        anim.SetBool("isAttacking",  enemyState == EnemyState.Attacking);
-        anim.SetBool("isChasing",    enemyState == EnemyState.Chasing);
+        anim.SetBool("isAttacking", enemyState == EnemyState.Attacking);
+        anim.SetBool("isChasing", enemyState == EnemyState.Chasing);
         anim.SetBool("isPatrolling", enemyState == EnemyState.Patrolling);
         UpdateAnimationDirection();
     }
@@ -209,24 +212,6 @@ public class Enemy_Movement : MonoBehaviour
             2 => new Vector2(Random.Range(spawnPosition.x - hw, spawnPosition.x + hw), spawnPosition.y - hh),
             _ => new Vector2(Random.Range(spawnPosition.x - hw, spawnPosition.x + hw), spawnPosition.y + hh),
         };
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (detectionPoint != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(detectionPoint.position, playerDetectRange);
-        }
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(patrolWidth, patrolHeight, 0));
-
-        if (enemyCombat != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, enemyCombat.AttackReach);
-        }
     }
 }
 

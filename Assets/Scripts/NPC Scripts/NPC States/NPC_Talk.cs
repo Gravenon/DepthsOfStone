@@ -96,10 +96,7 @@ public class NPC_Talk : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(npcId)) return;
 
         // Collect names of DialogueSO still in the list
-        string[] remaining = converstations
-            .Where(c => c != null)
-            .Select(c => c.name)
-            .ToArray();
+        string[] remaining = converstations.Where(c => c != null).Select(c => c.name).ToArray();
 
         // Replace or add entry for this NPC
         var list = data.npcConversationStates?.ToList() ?? new List<SerializedNPCConversationState>();

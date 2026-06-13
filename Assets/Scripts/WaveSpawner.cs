@@ -9,8 +9,7 @@ public class WaveData
     public int hardEnimies;
     public int distantEnimies;
     public float rate;
-    public bool isBossWave;    // if true — spawns boss instead of regular enemies
-}
+    public bool isBossWave;   
 
 public class WaveSpawner : MonoBehaviour, IDataPersistence
 {
@@ -23,14 +22,14 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
     public GameObject easyEnimiesPrefab;
     public GameObject hardEnimiesPrefab;
     public GameObject distantEnimiesPrefab;
-    public GameObject bossPrefab;               // assign Boss prefab here
+    public GameObject bossPrefab;               
 
     private int nextWave = 0;
     private bool waveComplete = false;
     private bool transitionTriggered = false;
 
     public Transform[] spawnPoints;
-    public Transform   bossSpawnPoint;          // centre of arena
+    public Transform bossSpawnPoint;         
 
     public float timeBetweenWaves = 3f;
     private float waveCountdown;
@@ -38,16 +37,16 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
 
     private SpawnState state = SpawnState.COUNTING;
 
-    public SpawnState State      => state;
-    public float      WaveCountdown => waveCountdown;
-    public int        NextWave   => nextWave + 1;
+    public SpawnState State => state;
+    public float WaveCountdown => waveCountdown;
+    public int NextWave => nextWave + 1;
 
     private MusicManager musicManager;
 
     void Start()
     {
         waveCountdown = timeBetweenWaves;
-        musicManager  = FindFirstObjectByType<MusicManager>();
+        musicManager = FindFirstObjectByType<MusicManager>();
         musicManager.PlayCombatMusic();
     }
 
@@ -76,8 +75,8 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
     void WaveCompleted()
     {
         waveCountdown = timeBetweenWaves;
-        waveComplete  = true;
-        state         = SpawnState.COUNTING;
+        waveComplete = true;
+        state = SpawnState.COUNTING;
         nextWave++;
 
         if (nextWave >= waves.Length)
@@ -149,5 +148,6 @@ public class WaveSpawner : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data) => nextWave = data.arenaWaveIndex;
     public void SaveData(ref GameData data) => data.arenaWaveIndex = nextWave;
+}   
 }
 

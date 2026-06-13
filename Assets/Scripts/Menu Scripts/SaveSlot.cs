@@ -54,7 +54,7 @@ public class SaveSlot : MonoBehaviour
 
     public void SetInteractable(bool isInteractable)
     {
-        GetComponent<UnityEngine.UI.Button>().interactable = isInteractable;
+        GetComponent<Button>().interactable = isInteractable;
     }
 
 }

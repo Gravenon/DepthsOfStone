@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Changes music when scene loads or player enters trigger zone.
-/// For ambient sounds, use MultiAmbientZone component instead.
-/// </summary>
 public class ZoneMusic : MonoBehaviour
 {
     [SerializeField] private AudioClip music;

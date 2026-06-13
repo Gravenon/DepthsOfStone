@@ -6,7 +6,6 @@ public class DiedUI : MonoBehaviour
 {
     public GameObject diedUI;
 
-    [Tooltip("Seconds after death before auto-respawn")]
     [SerializeField] private float respawnDelay = 3f;
 
     private Coroutine _respawnCoroutine;
@@ -60,8 +59,7 @@ public class DiedUI : MonoBehaviour
         DataPersistenceeManager.SuppressNextSave = true;
         DataPersistenceeManager.IsRespawning = true;
 
-        string scene = DataPersistenceeManager.instance.HasCheckpoint()
-            ? DataPersistenceeManager.instance.GetCheckpointScene()
+        string scene = DataPersistenceeManager.instance.HasCheckpoint() ? DataPersistenceeManager.instance.GetCheckpointScene() 
             : DataPersistenceeManager.instance.GetLastSavedScene();
 
         SceneManager.LoadScene(scene);

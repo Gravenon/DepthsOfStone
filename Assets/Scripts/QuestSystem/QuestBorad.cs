@@ -27,15 +27,10 @@ public class QuestBorad : MonoBehaviour
         {
             bool canTurnIn = questToTurnIn != null && QuestEvents.IsQuestComplete?.Invoke(questToTurnIn) == true;
 
-            if (canTurnIn)
-            {
+            if (canTurnIn) 
                 QuestEvents.OnQuestTurnInRequested?.Invoke(questToTurnIn);
-            }
-            else
-            {
+            else 
                 QuestEvents.OnQuestOfferRequested?.Invoke(questToOffer);
-
-            }
         }
     }
 

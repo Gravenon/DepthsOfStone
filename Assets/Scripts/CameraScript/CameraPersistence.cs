@@ -2,10 +2,6 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Attach to the Cameras GameObject.
-/// Makes the camera DontDestroyOnLoad and re-finds the Player by tag on every scene load.
-/// </summary>
 public class CameraPersistence : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera vcam;
@@ -25,7 +21,7 @@ public class CameraPersistence : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()  => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
     private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

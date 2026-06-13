@@ -71,7 +71,6 @@ public class FilePathHandler
         }
 
         return allProfilesData;
-
     }
 
     public void Delete(string profilID)

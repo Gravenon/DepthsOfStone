@@ -65,8 +65,8 @@ public class ExpManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        level          = data.playerLevel          > 0 ? data.playerLevel          : 1;
-        currentExp     = data.playerCurrentExp;
+        level = data.playerLevel > 0 ? data.playerLevel : 1;
+        currentExp = data.playerCurrentExp;
         expToNextLevel = data.playerExpToNextLevel > 0 ? data.playerExpToNextLevel : 50;
         UpdateUI();
     }

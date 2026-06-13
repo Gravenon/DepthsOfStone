@@ -22,13 +22,13 @@ public class CaveLeveButtonlToggels : MonoBehaviour
     private void OnEnable()
     {
         if (interactAction != null) interactAction.action.performed += OnInteract;
-        if (cancelAction    != null) cancelAction.action.performed    += OnCancel;
+        if (cancelAction != null) cancelAction.action.performed    += OnCancel;
     }
 
     private void OnDisable()
     {
         if (interactAction != null) interactAction.action.performed -= OnInteract;
-        if (cancelAction    != null) cancelAction.action.performed    -= OnCancel;
+        if (cancelAction  != null) cancelAction.action.performed    -= OnCancel;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -47,7 +47,11 @@ public class CaveLeveButtonlToggels : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (_isOpen)  { Hide(); return; }
+        if (_isOpen) 
+        { 
+            Hide(); 
+            return; 
+        }
         if (_playerInRange) Show();
     }
 
@@ -56,10 +60,8 @@ public class CaveLeveButtonlToggels : MonoBehaviour
         if (_isOpen) Hide();
     }
 
-    // ── public so UI buttons can call Close after selecting a cave ────────────
     public void CloseDificultCanvas() => Hide();
 
-    // ── helpers ───────────────────────────────────────────────────────────────
     private void Show()
     {
         _isOpen = true;
@@ -77,8 +79,8 @@ public class CaveLeveButtonlToggels : MonoBehaviour
     private void SetCanvas(bool visible)
     {
         if (mineDificultCanvasGroup == null) return;
-        mineDificultCanvasGroup.alpha          = visible ? 1f : 0f;
-        mineDificultCanvasGroup.interactable   = visible;
+        mineDificultCanvasGroup.alpha = visible ? 1f : 0f;
+        mineDificultCanvasGroup.interactable = visible;
         mineDificultCanvasGroup.blocksRaycasts = visible;
     }
 }

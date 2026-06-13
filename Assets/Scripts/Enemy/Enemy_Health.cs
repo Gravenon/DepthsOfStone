@@ -18,7 +18,7 @@ public class Enemy_Health : MonoBehaviour
 
     private void Awake()
     {
-        rb  = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
     }
 

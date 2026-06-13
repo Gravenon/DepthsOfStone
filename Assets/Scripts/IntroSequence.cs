@@ -37,8 +37,7 @@ public class IntroSequence : MonoBehaviour
 
     private void Start()
     {
-        bool shouldPlay = forcePlayIntro ||
-                          (DataPersistenceeManager.instance != null && DataPersistenceeManager.instance.IsFirstTime);
+        bool shouldPlay = forcePlayIntro || (DataPersistenceeManager.instance != null && DataPersistenceeManager.instance.IsFirstTime);
 
         if (shouldPlay)
         {

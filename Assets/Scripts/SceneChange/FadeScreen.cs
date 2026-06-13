@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class FadeScreen : MonoBehaviour
 {
     public static FadeScreen Instance;
-
-    [Tooltip("Seconds to fade in (to black) before loading a scene.")]
     public float fadeInDuration = 0.4f;
-
-    [Tooltip("Seconds to fade out (from black) after a scene loads.")]
     public float fadeOutDuration = 0.6f;
 
-    [Tooltip("Extra seconds to hold the black screen after scene is ready before fading out.\n" +
-             "Increase this if objects still pop in after fade.")]
+    
     public float holdAfterLoad = 0.15f;
 
     private CanvasGroup _cg;
@@ -36,7 +31,6 @@ public class FadeScreen : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
-    // ── Public API ───────────────────────────────────────────────────────────
 
     /// Fades screen to black. Await in a coroutine before loading the scene.
     public IEnumerator FadeIn()
@@ -54,8 +48,6 @@ public class FadeScreen : MonoBehaviour
         yield return StartCoroutine(Fade(1f, 0f, fadeOutDuration));
         _cg.blocksRaycasts = false;
     }
-
-    // ── Private ───────────────────────────────────────────────────────────────
 
     private IEnumerator Fade(float from, float to, float duration)
     {
@@ -92,9 +84,9 @@ public class FadeScreen : MonoBehaviour
 
         // CanvasGroup on overlay for alpha control
         _cg = imgObj.AddComponent<CanvasGroup>();
-        _cg.alpha          = 0f;
+        _cg.alpha = 0f;
         _cg.blocksRaycasts = false;
-        _cg.interactable   = false;
+        _cg.interactable = false;
     }
 }
 

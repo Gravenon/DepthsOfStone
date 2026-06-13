@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,13 +58,7 @@ public class DialogueSO : ScriptableObject
         
         if(requiredCompletedQuests != null && requiredCompletedQuests.Length > 0)
         {
-            // Защита: QuestManager может быть ещё не назначен после смены сцены
             var questManager = GameManager.Instance?.QuestManager;
-            if (questManager == null)
-            {
-                Debug.LogWarning("[DialogueSO] QuestManager is null — условия квестов пропущены.");
-                return false;
-            }
 
             foreach (var quest in requiredCompletedQuests)
             {

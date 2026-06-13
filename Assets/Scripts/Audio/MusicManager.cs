@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Scene-level combat music controller.
-/// Call PlayCombatMusic() when combat starts, PlayCalmMusic() when it ends.
-/// </summary>
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }

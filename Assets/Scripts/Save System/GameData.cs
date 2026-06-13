@@ -19,7 +19,7 @@ public class SerializedEquippedSlot
 public class SerializedQuestProgress
 {
     public string questName;
-    public int[] objectiveProgress; // прогресс каждой цели по индексу
+    public int[] objectiveProgress; 
 }
 
 [Serializable]

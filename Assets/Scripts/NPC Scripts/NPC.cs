@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -14,7 +12,6 @@ public class NPC : MonoBehaviour
     public NPCState currentState = NPCState.Patrol;
     private NPCState defaultState;
 
-
     public NPC_Patrol patrol;
     public NPC_Wander wander;
     public NPC_Talk talk;
@@ -24,8 +21,6 @@ public class NPC : MonoBehaviour
         defaultState = currentState;
         SwitchState(currentState);
     }
-
-
 
     public void SwitchState(NPCState newState)
     {

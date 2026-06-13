@@ -65,10 +65,7 @@ public class NightTimeTracker : MonoBehaviour, IDataPersistence
         }
     }
 
-    // ---------------------------------------------------------------
-    // Public API
-    // ---------------------------------------------------------------
-
+   
     public int CountNight => countNight;
     public float NightTimeMinutes => nightTimeMinutes;
 

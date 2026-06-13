@@ -1,9 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// State machine behaviour on the Imunitet (invulnerability) state.
-/// Slows down the animator so the phase-transition animation plays longer.
-/// </summary>
+
 public class Boss_Enrage : StateMachineBehaviour
 {
     [Tooltip("Animator playback speed during the invulnerability animation (< 1 = slower)")]

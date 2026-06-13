@@ -66,8 +66,6 @@ public class CutscenePlayer : MonoBehaviour
         onCutsceneFinished?.Invoke();
     }
 
-    // ── Camera discovery ────────────────────────────────────────
-
     private void FindPlayerFollowCamera()
     {
         var all = FindObjectsByType<CinemachineCamera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -79,7 +77,6 @@ public class CutscenePlayer : MonoBehaviour
                 return;
             }
         }
-        Debug.LogWarning("[CutscenePlayer] Player follow camera not found — make sure Follow target has tag 'Player'");
     }
 
     private void FindCutsceneCameras()
@@ -95,7 +92,6 @@ public class CutscenePlayer : MonoBehaviour
         _cutsceneCameras = list.ToArray();
     }
 
-    // ── Timeline binding ────────────────────────────────────────
 
     private void BindCinemachineBrainToTimeline()
     {
@@ -108,7 +104,6 @@ public class CutscenePlayer : MonoBehaviour
             director.SetGenericBinding(output.sourceObject, brain);
             return;
         }
-        Debug.LogWarning("[CutscenePlayer] Cinemachine Track not found in Timeline!");
     }
 
     private void BindPlayerCameraToTimeline()
@@ -136,7 +131,6 @@ public class CutscenePlayer : MonoBehaviour
         }
     }
 
-    // ── Helpers ─────────────────────────────────────────────────
 
     private void SetCutsceneCamerasPriority(int priority)
     {

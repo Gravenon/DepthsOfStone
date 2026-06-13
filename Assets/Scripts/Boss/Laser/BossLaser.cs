@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Horizontal laser sweep at the player's Y position.
-/// Warning line shows where the laser will fire — player must dodge up or down.
-/// </summary>
 public class BossLaser : MonoBehaviour
 {
     [Header("Warning")]

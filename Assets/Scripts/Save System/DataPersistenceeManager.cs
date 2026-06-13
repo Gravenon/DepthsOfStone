@@ -12,13 +12,13 @@ public class DataPersistenceeManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FilePathHandler dataHandler;
 
-    private static string    _activeProfilID  = "";
-    private static bool      _pendingNewGame  = false;
-    private static GameData  _pendingGameData = null;
+    private static string _activeProfilID  = "";
+    private static bool _pendingNewGame  = false;
+    private static GameData _pendingGameData = null;
 
-    public static bool SuppressNextSave  = false;
-    public static bool IsRespawning      = false;
-    public static int  RespawnMaxHealth  = 0;
+    public static bool SuppressNextSave = false;
+    public static bool IsRespawning = false;
+    public static int  RespawnMaxHealth = 0;
 
     private string profilID { get => _activeProfilID; set => _activeProfilID = value; }
 
@@ -115,11 +115,15 @@ public class DataPersistenceeManager : MonoBehaviour
     public void DeleteProfile(string profileID)
     {
         dataHandler.Delete(profileID);
-        if (profilID == profileID) { gameData = null; profilID = ""; }
+        if (profilID == profileID) 
+        { 
+            gameData = null; 
+            profilID = ""; 
+        }
     }
 
     public bool HasActiveGameData => gameData != null;
-    public bool IsFirstTime       => gameData != null && !gameData.introPlayed;
+    public bool IsFirstTime => gameData != null && !gameData.introPlayed;
 
     public void MarkIntroPlayed()
     {
@@ -132,12 +136,11 @@ public class DataPersistenceeManager : MonoBehaviour
 
     public void SaveCheckpoint(Vector3 pos)
     {
-        if (gameData == null) { Debug.LogWarning("[DPM] SaveCheckpoint — no game data."); return; }
-        gameData.lastScene         = SceneManager.GetActiveScene().name;
-        gameData.playerPosition    = pos;
-        gameData.checkpointScene   = gameData.lastScene;
+        gameData.lastScene = SceneManager.GetActiveScene().name;
+        gameData.playerPosition = pos;
+        gameData.checkpointScene = gameData.lastScene;
         gameData.checkpointPosition = pos;
-        gameData.checkpointHealth  = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
+        gameData.checkpointHealth = StatsManager.Instance != null ? StatsManager.Instance.maxHealth : gameData.maxHealth;
         SaveGame();
     }
 
@@ -172,6 +175,5 @@ public class DataPersistenceeManager : MonoBehaviour
     }
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
-        => FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-           .OfType<IDataPersistence>().ToList();
+        => FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IDataPersistence>().ToList();
 }

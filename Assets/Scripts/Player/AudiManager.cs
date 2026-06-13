@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Handles entity-specific sounds (footsteps, dash, hit).
-/// Attach to Player, Enemy or NPC with a local AudioSource.
-/// </summary>
 public class AudiManager : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;

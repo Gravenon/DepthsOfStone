@@ -62,13 +62,10 @@ public class QuestLogUI : MonoBehaviour
     public void ToggleQuestLog()
     {
         if (_isOpen)
-        {
             CloseQuestOffer();
-        }
-        else
-        {
+        else 
             OpenQuestLog();
-        }
+        
     }
 
     // open log in view mode (no accept/decline/complete buttons)

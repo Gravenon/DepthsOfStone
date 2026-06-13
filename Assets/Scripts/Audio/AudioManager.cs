@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Singleton audio manager for music and SFX.
-/// Also holds the global ambient volume used by all MultiAmbientZone components.
-/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -24,8 +20,8 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float defaultSfxVolume     = 1.0f;
     [Range(0f, 1f)] [SerializeField] private float defaultAmbientVolume = 0.4f;
 
-    private const string KeyMusic   = "Vol_Music";
-    private const string KeySfx     = "Vol_SFX";
+    private const string KeyMusic = "Vol_Music";
+    private const string KeySfx = "Vol_SFX";
     private const string KeyAmbient = "Vol_Ambient";
 
     private float _musicTargetVolume;
@@ -130,11 +126,11 @@ public class AudioManager : MonoBehaviour
 
     private void LoadVolumes()
     {
-        _musicTargetVolume   = PlayerPrefs.GetFloat(KeyMusic,   defaultMusicVolume);
-        _sfxTargetVolume     = PlayerPrefs.GetFloat(KeySfx,     defaultSfxVolume);
+        _musicTargetVolume = PlayerPrefs.GetFloat(KeyMusic,   defaultMusicVolume);
+        _sfxTargetVolume = PlayerPrefs.GetFloat(KeySfx,     defaultSfxVolume);
         _ambientTargetVolume = PlayerPrefs.GetFloat(KeyAmbient, defaultAmbientVolume);
-        musicSource.volume   = _musicTargetVolume;
-        sfxSource.volume     = _sfxTargetVolume;
+        musicSource.volume = _musicTargetVolume;
+        sfxSource.volume = _sfxTargetVolume;
     }
 
     private IEnumerator FadeSource(AudioSource source, float from, float to, float duration)

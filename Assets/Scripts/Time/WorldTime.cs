@@ -27,13 +27,11 @@ public class WorldTime : MonoBehaviour, IDataPersistence
         Instance = this;
 
         if (transform.root != null)
-        {
             DontDestroyOnLoad(transform.root.gameObject);
-        }
+        
         else
-        {
             DontDestroyOnLoad(gameObject);
-        }
+        
     }
 
     private void Start()
@@ -73,9 +71,6 @@ public class WorldTime : MonoBehaviour, IDataPersistence
         WorldTimeChange?.Invoke(this, currentTime);
     }
 
-    // ---------------------------------------------------------------
-    // IDataPersistence implementation
-    // ---------------------------------------------------------------
     public void LoadData(GameData data)
     {
         currentTime = TimeSpan.FromMinutes(data.worldTimeMinutes);

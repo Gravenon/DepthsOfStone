@@ -8,7 +8,6 @@ public class ShopManger : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
 
     [Header("Equipment Mirror (Shop Canvas)")]
-    [Tooltip("EquipmentSlot components inside ShopCanvas that mirror the player's equipment panel")]
     [SerializeField] private EquipmentSlot[] shopEquipmentSlots;
 
     // all items across every page, set by ShopKeeper on open
@@ -184,7 +183,6 @@ public class ShopItems
     public ItemSO itemSO;
     public int price;
 
-    [Tooltip("Fraction of the purchase price the player receives when selling (0.0 – 1.0)")]
     public float ransomProcentage;
 
 }

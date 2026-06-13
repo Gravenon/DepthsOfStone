@@ -147,7 +147,6 @@ public class SkillManager : MonoBehaviour, IDataPersistence
     public float GetDamageReduction()
         => stoneSkinActive ? damageReduction : 0f;
 
-    // ─── IDataPersistence ───────────────────────────────────────────────────
 
     public void SaveData(ref GameData data)
     {
@@ -168,10 +167,6 @@ public class SkillManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    /// <summary>
-    /// Restores only the runtime-behaviour side of a skill (flags/coroutines).
-    /// Stat bonuses are intentionally skipped — StatsManager restores those.
-    /// </summary>
     private void RestoreRuntimeEffect(string skillName)
     {
         switch (skillName)
@@ -200,8 +195,7 @@ public class SkillManager : MonoBehaviour, IDataPersistence
             case "Dash":
                 playerMovement?.UnlockDash();
                 break;
-            // Stat-only skills (Max Health Boost, A powerful blow, Light on his feet, Punching)
-            // are already handled by StatsManager's saved data — no action needed here.
+
         }
     }
 }
